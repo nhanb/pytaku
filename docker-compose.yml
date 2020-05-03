@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  pytaku:
+    # or use `:latest-builder` to get currently deployed image with tooling
+    #image: registry.gitlab.com/pytaku/ptk-web:master-builder
+    build:
+      context: ./ptk-web
+      target: builder
+      args:
+        NO_DEV: 0
+    env_file:
+      - ./ptk-web/dockerstuff/envs/local.env
+    volumes:
+      - ./ptk-web:/code
+    # Uncomment this to avoid launching web service automatically:
+    #command: sleep 365d
+    init: true
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: "postgres:11-alpine"
+    environment:
+      - 'POSTGRES_USER=ptklocal'
+      - 'POSTGRES_PASSWORD=ptklocal'
+      - 'POSTGRES_DB=ptklocal'
