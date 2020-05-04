@@ -1,0 +1,3 @@
+augroup LOCAL_SETUP
+    autocmd BufNewFile,BufRead *.html set filetype=htmldjango
+augroup end
