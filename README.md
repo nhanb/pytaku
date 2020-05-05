@@ -31,7 +31,7 @@ poetry install
 pyenv deactivate && pyenv activate
 
 # generate initial config for local dev - should work out of the box with the
-# db provided docker-compose above.
+# db provided by docker-compose above.
 make localconfig
 
 make dev

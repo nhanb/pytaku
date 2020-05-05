@@ -25,9 +25,11 @@ class Chapter(models.Model):
         db_table = "chapter"
         constraints = [
             models.UniqueConstraint(
-                fields=["title", "ordering"], name="unique_order_within_title"
+                fields=["title", "num_major", "num_minor"],
+                name="unique_number_within_title",
             )
         ]
+        ordering = ["num_major", "num_minor"]
 
     original_id = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
