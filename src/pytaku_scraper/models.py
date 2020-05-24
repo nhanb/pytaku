@@ -1,7 +1,7 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-QUEUE_NAMES = [("Scrape", "scrape")]
+QUEUE_NAMES = [("Download", "download")]
 
 
 class TaskQueue(models.Model):
@@ -22,6 +22,11 @@ class TaskQueue(models.Model):
 
     class Meta:
         db_table = "task_queue"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["name", "payload"], name="unique_url_payload"
+            )
+        ]
 
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100, choices=QUEUE_NAMES)
@@ -34,7 +39,8 @@ class TaskQueue(models.Model):
     @classmethod
     def put_bulk(cls, name, payloads):
         return cls.objects.bulk_create(
-            [cls(name=name, payload=payload) for payload in payloads]
+            [cls(name=name, payload=payload) for payload in payloads],
+            ignore_conflicts=True,
         )
 
     @classmethod
@@ -56,16 +62,17 @@ class TaskQueue(models.Model):
         return self.delete()
 
 
-class ScrapeAttempt(models.Model):
+class DownloadResult(models.Model):
     class Meta:
-        db_table = "scrape_attempt"
+        db_table = "download_result"
+        constraints = [
+            models.UniqueConstraint(fields=["url", "method"], name="unique_url_method")
+        ]
 
-    scraped_at = models.DateTimeField(auto_now_add=True)
+    downloaded_at = models.DateTimeField(auto_now_add=True)
 
     url = models.CharField(max_length=1024)
-    method = models.CharField(max_length=7)
-    headers = JSONField(default=dict)
-    body = models.TextField()
+    method = models.CharField(max_length=7, default="get")
 
     resp_body = models.TextField()
     resp_status = models.IntegerField()

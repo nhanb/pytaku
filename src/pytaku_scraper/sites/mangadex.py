@@ -60,7 +60,6 @@ def scrape_title(original_id):
     source_url = title_url_from_id(original_id)
     html = session.get(source_url).text
     soup = BeautifulSoup(html, "lxml")
-    print(soup)
 
     url = soup.select('link[rel="canonical"]')[0].attrs["href"]
     name = soup.select(".card-header span.mx-1")[0].text
@@ -180,3 +179,12 @@ def scrape_chapter(original_id):
         "name": data["title"],
         "pages": pages,
     }
+
+
+def get_latest_id():
+    resp = session.get("https://mangadex.org/")
+    assert resp.status_code == 200, resp.text
+    soup = BeautifulSoup(resp.text, "lxml")
+    latest_href = soup.select_one("#new_titles_owl_carousel a").attrs["href"]
+    latest_id = re.search(r"/(\d+)/", latest_href).group(1)
+    return int(latest_id)
