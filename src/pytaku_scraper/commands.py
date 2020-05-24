@@ -1,7 +1,7 @@
-import requests
 from django.db import transaction
 from django.utils import timezone
 
+from .httpclient import HttpClient
 from .models import DownloadResult, TaskQueue
 from .sites.mangadex import get_latest_id
 
@@ -20,14 +20,15 @@ def put_download_tasks():
     print(f'Successfully put {len(result)} "download" tasks.')
 
 
-def download_worker():
+def download_worker(proxy_index):
+    http = HttpClient(proxy_index)
     while True:
         with transaction.atomic():
             task = TaskQueue.pop("download")
             task_id = task.id
             print(f"Processing task {task_id}: {task.payload}")
-            resp = requests.get(task.payload["url"], timeout=30)
-            assert resp.status_code in (200, 404), f"Unexpected error: {resp.text}"
+            resp = http.proxied_get(task.payload["url"])
+            assert resp.status_code in (200, 404), f"Unexpected DL error: {resp.text}"
 
             DownloadResult.objects.update_or_create(
                 url=task.payload["url"],
