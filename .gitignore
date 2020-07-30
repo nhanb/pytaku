@@ -1,7 +1,6 @@
 __pycache__
 *.pyc
+*.json
+*.sqlite3
 *.egg-info
 /dist/
-pytaku.conf.json
-/test_media/
-/pgdata
