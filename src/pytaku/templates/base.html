@@ -1,0 +1,55 @@
+{# vim: ft=htmldjango
+#}
+{% macro ibutton(icon, text, color='red') -%}
+<button class="{{ color }} button">
+  <img src="{{ url_for('static', filename='icons/' + icon + '.svg')}}" alt="{{ text }} icon" />
+  <span>{{ text }}</span>
+</button>
+{%- endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {% block title %}
+      {% endblock %}
+      - Pytaku
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='minireset.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" />
+
+    {% block head %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <nav>
+      <a class="logo" href="/"><img src="{{ url_for('static', filename='pytaku.svg')}}" alt="home" /></a>
+      <form class="search" action="{{ url_for('search_view') }}">
+        <input type="text" placeholder="search manga" /><button class="red button">
+          <img src="{{ url_for('static', filename='icons/search.svg')}}" alt="search">
+        </button>
+      </form>
+      <span class="links">
+        <a href="/bookmarks">
+          <img src="{{ url_for('static', filename='icons/bookmark.svg')}}" alt="bookmarks" />
+          <span>Bookmarks</span>
+        </a>
+        <a href="/account">
+          <img src="{{ url_for('static', filename='icons/user.svg')}}" alt="account" />
+          <span>Account</span>
+        </a>
+      </span>
+      </ul>
+    </nav>
+
+    <div class="content">
+    {% block content %}
+    {% endblock %}
+    </div>
+  </body>
+
+</html>

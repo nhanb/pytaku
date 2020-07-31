@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+  .cover {
+    width: 400px;
+    border: 1px solid black;
+  }
+</style>
+{% endblock %}
+
+{% block title %}
+{{ name }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ name }}</h1>
+
+{{ ibutton('bookmark', 'Bookmark', 'blue') }}
+
+<img class="cover" src="{{ cover }}" alt="cover" />
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Group</th>
+  </tr>
+  {% for chapter in chapters %}
+  <tr>
+    <td>
+      <a href="{{ url_for('chapter_view', chapter_id=chapter['id']) }}">
+        Ch.{{ chapter['number'] }} - {{ chapter['name'] }}
+      </a>
+    </td>
+    <td>{{ chapter['group'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
