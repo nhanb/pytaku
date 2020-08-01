@@ -2,9 +2,11 @@ import base64
 import re
 
 import requests
-from flask import Flask, make_response, render_template, url_for
+from flask import Flask, make_response, render_template, request, url_for
 
-from mangoapi import get_chapter, get_title
+from mangoapi import get_chapter, get_title, search_title
+
+from . import mangadex
 
 app = Flask(__name__)
 
@@ -31,7 +33,12 @@ def chapter_view(chapter_id):
 
 @app.route("/search")
 def search_view():
-    return "TODO"
+    query = request.args.get("q", "").strip()
+    titles = []
+    if query:
+        cookies = mangadex.get_cookies()
+        titles = search_title(cookies, query)
+    return render_template("search.html", titles=titles, query=query)
 
 
 @app.route("/proxy/<b64_url>")

@@ -39,8 +39,8 @@
   <body>
     <nav>
       <a class="logo" href="/"><img src="{{ url_for('static', filename='pytaku.svg')}}" alt="home" /></a>
-      <form class="search" action="{{ url_for('search_view') }}">
-        <input type="text" placeholder="search manga" /><button class="red button">
+      <form class="search" action="{{ url_for('search_view') }}" method="GET">
+        <input type="text" placeholder="search manga" name="q" value="{{ query }}" /><button class="red button">
           <img src="{{ url_for('static', filename='icons/search.svg')}}" alt="search">
         </button>
       </form>

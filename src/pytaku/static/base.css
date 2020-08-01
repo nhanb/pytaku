@@ -157,7 +157,6 @@ nav {
 
 .content {
   margin: auto;
-  max-width: 800px;
   padding: var(--body-padding);
 }
 .content > * {

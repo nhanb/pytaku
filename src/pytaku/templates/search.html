@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if query %}
+    "{{ query }}" search results
+  {% else %}
+    Search
+  {% endif %}
+{% endblock %}
+
+{% block head %}
+<style>
+  .results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .result {
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px solid var(--bg-black);
+    margin: 0 1rem 1rem 0;
+    background-color: var(--bg-black);
+    color: white;
+    text-decoration: none;
+  }
+  .result span {
+    padding: .5rem;
+    width: 0;
+    min-width: 100%;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if not query %}
+  <h1>Please enter a search query above.</h1>
+
+{% else %}
+  {% if titles %}
+  <h1>Showing {{ titles | length }} result(s) for "{{ query }}":</h1>
+  {% else %}
+  <h1>No results for "{{ query }}".</h1>
+  {% endif %}
+
+  <div class="results">
+  {% for title in titles %}
+    <a class="result" href="{{ url_for('title_view', title_id=title['id']) }}"
+       title="{{ title['name'] }}">
+      <img src="https://mangadex.org/images/manga/{{ title['id'] }}.large.jpg" alt="">
+      <span>{{ title['name'] | truncate(50) }}</span>
+    </a>
+  {% endfor %}
+  </div>
+
+{% endif %}
+
+
+{% endblock %}

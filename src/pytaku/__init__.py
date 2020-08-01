@@ -1,3 +1,6 @@
+from pytaku.conf import config
+
+
 def migrate():
     import argparse
     from .database.migrator import migrate
@@ -12,3 +15,7 @@ def migrate():
     args = argparser.parse_args()
 
     migrate(overwrite_latest_schema=args.dev)
+
+
+def generate_config():
+    print(config.generate_json(DEBUG=True))

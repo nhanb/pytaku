@@ -6,4 +6,7 @@ pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-
       --global-option=build --global-option=--enable-all-extensions
 
 FLASK_ENV=development FLASK_APP=pytaku.main:app flask run
+
+pytaku-generate-config > pytaku.conf.json
+# fill stuff as needed
 ```
