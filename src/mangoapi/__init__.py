@@ -1,4 +1,12 @@
+import re
+
 import requests
+
+# Titles regex slightly adapted from https://github.com/md-y/mangadex-full-api
+# Thanks!
+TITLES_PATTERN = re.compile(
+    r"""<a[^>]*href=["']\/title\/(\d+)\/\S+["'][^>]*manga_title[^>]*>([^<]*)<"""
+)
 
 
 def _parse_chapter_number(string):
@@ -62,3 +70,33 @@ def get_chapter(chapter_id):
         **_parse_chapter_number(md_json["chapter"]),
     }
     return chapter
+
+
+def login(username, password):
+    """
+    Returns cookies of a logged in user.
+    """
+    form_data = {
+        "login_username": username,
+        "login_password": password,
+        "two_factor": "",
+        "remember_me": "1",
+    }
+    md_resp = requests.post(
+        "https://mangadex.org/ajax/actions.ajax.php?function=login",
+        data=form_data,
+        headers={"X-Requested-With": "XMLHttpRequest"},
+    )
+    assert md_resp.status_code == 200, md_resp.text
+    return dict(md_resp.cookies)
+
+
+def search_title(user_cookies, query):
+    md_resp = requests.get(
+        f"https://mangadex.org/quick_search/{query}", cookies=user_cookies,
+    )
+    assert md_resp.status_code == 200, md_resp.text
+
+    matches = TITLES_PATTERN.findall(md_resp.text)
+    titles = [{"id": int(id), "name": name.strip()} for id, name in matches]
+    return titles
