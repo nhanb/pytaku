@@ -49,6 +49,7 @@ input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: bottom;
   gap: 0.3rem;
 
   cursor: pointer;
