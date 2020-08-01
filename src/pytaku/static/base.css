@@ -87,14 +87,13 @@ input {
 /* Grid layout */
 
 nav {
-  display: grid;
-  grid-gap: 0.5rem;
-  grid-template-areas: "logo search links";
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   padding: var(--body-padding);
 }
 
 .logo {
-  grid-area: logo;
   width: 150px;
 }
 .logo img {
@@ -103,12 +102,11 @@ nav {
 }
 
 .search {
-  grid-area: search;
   display: flex;
 }
 
 .links {
-  grid-area: links;
+  margin-left: auto; /* to pull to the right */
   display: inline-flex;
   gap: 1rem;
   justify-content: center;
