@@ -50,7 +50,6 @@ input {
   align-items: center;
   justify-content: center;
   vertical-align: bottom;
-  gap: 0.3rem;
 
   cursor: pointer;
   border: 0;
@@ -58,6 +57,12 @@ input {
   border-radius: var(--border-radius);
   color: white;
   text-decoration: none;
+}
+.button > * {
+  margin-right: 0.3rem;
+}
+.button > *:last-child {
+  margin-right: 0;
 }
 .button:hover {
   filter: brightness(110%);
@@ -88,9 +93,16 @@ input {
 
 nav {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
   padding: var(--body-padding);
+}
+nav > * {
+  margin-right: 1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+nav > *:last-child {
+  margin-right: 0;
 }
 
 .logo {
@@ -108,9 +120,14 @@ nav {
 .links {
   margin-left: auto; /* to pull to the right */
   display: inline-flex;
-  gap: 1rem;
   justify-content: center;
   align-items: center;
+}
+.links > * {
+  margin-right: 1rem;
+}
+.links > *:last-child {
+  margin-right: 0;
 }
 .links a * {
   vertical-align: middle;
