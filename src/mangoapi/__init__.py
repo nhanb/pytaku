@@ -42,22 +42,22 @@ def get_title(title_id):
 
 
 def get_chapter(chapter_id):
-    md_resp = requests.get(f"https://mangadex.org/api/?id={chapter_id}&type=chapter")
+    md_resp = requests.get(
+        f"https://mangadex.org/api/?id={chapter_id}&type=chapter&saver=0"
+    )
     assert md_resp.status_code == 200
     md_json = md_resp.json()
     assert md_json["status"] == "OK"
 
-    img_path = f"{md_json['server']}{md_json['hash']}"
+    server = md_json.get("server_fallback") or md_json["server"]
+    img_path = f"{server}{md_json['hash']}"
 
     chapter = {
-        'id': chapter_id,
-        'title_id': md_json['manga_id'],
-        'name': md_json['title'],
-        'pages': [
-            f'{img_path}/{page}'
-            for page in md_json['page_array']
-        ],
-        'group': md_json['group_name'],
-        **_parse_chapter_number(md_json['chapter']),
+        "id": chapter_id,
+        "title_id": md_json["manga_id"],
+        "name": md_json["title"],
+        "pages": [f"{img_path}/{page}" for page in md_json["page_array"]],
+        "group": md_json["group_name"],
+        **_parse_chapter_number(md_json["chapter"]),
     }
     return chapter

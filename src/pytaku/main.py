@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/title/mangadex/<int:title_id>")
 def title_view(title_id):
     title = get_title(title_id)
-    return render_template("title.html", **title)
+    return render_template("title.html", id=title_id, **title)
 
 
 @app.route("/chapter/mangadex/<int:chapter_id>")
