@@ -13,8 +13,9 @@ def _parse_chapter_number(string):
 
 
 def get_title(title_id):
-    md_resp = requests.get(f"https://mangadex.org/api/?id={title_id}&type=manga")
-    assert md_resp.status_code == 200
+    url = f"https://mangadex.org/api/?id={title_id}&type=manga"
+    md_resp = requests.get(url)
+    assert md_resp.status_code == 200, md_resp.text
     md_json = md_resp.json()
     assert md_json["status"] == "OK"
 
@@ -45,7 +46,7 @@ def get_chapter(chapter_id):
     md_resp = requests.get(
         f"https://mangadex.org/api/?id={chapter_id}&type=chapter&saver=0"
     )
-    assert md_resp.status_code == 200
+    assert md_resp.status_code == 200, md_resp.text
     md_json = md_resp.json()
     assert md_json["status"] == "OK"
 
