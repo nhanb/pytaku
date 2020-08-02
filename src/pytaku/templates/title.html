@@ -32,10 +32,13 @@
   <tr>
     <td>
       <a href="{{ url_for('chapter_view', chapter_id=chapter['id']) }}">
-        Ch.{{ chapter['number'] }} - {{ chapter['name'] }}
+        Chapter {{ chapter['number'] }}
+        {% if chapter['volume'] %}Volume {{ chapter['volume'] }} {% endif %}
+        {% if chapter['name'] %}- {{ chapter['name'] }} {% endif %}
+
       </a>
     </td>
-    <td>{{ chapter['group'] }}</td>
+    <td>{{ ', '.join(chapter['groups']) }}</td>
   </tr>
   {% endfor %}
 </table>

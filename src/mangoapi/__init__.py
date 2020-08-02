@@ -20,6 +20,14 @@ def _parse_chapter_number(string):
     return result
 
 
+def _extract_groups(chap):
+    return [
+        group.strip()
+        for group in [chap["group_name"], chap["group_name_2"], chap["group_name_3"]]
+        if group
+    ]
+
+
 def get_title(title_id):
     url = f"https://mangadex.org/api/?id={title_id}&type=manga"
     md_resp = requests.get(url)
@@ -40,7 +48,7 @@ def get_title(title_id):
                 "id": chap_id,
                 "name": chap["title"],
                 "volume": int(chap["volume"]) if chap["volume"] else None,
-                "group": chap["group_name"],
+                "groups": _extract_groups(chap),
                 **_parse_chapter_number(chap["chapter"]),
             }
             for chap_id, chap in md_json["chapter"].items()
@@ -66,7 +74,7 @@ def get_chapter(chapter_id):
         "title_id": md_json["manga_id"],
         "name": md_json["title"],
         "pages": [f"{img_path}/{page}" for page in md_json["page_array"]],
-        "group": md_json["group_name"],
+        "groups": _extract_groups(md_json),
         **_parse_chapter_number(md_json["chapter"]),
     }
     return chapter
