@@ -19,7 +19,6 @@ def _get_current_version():
     cur = conn.cursor()
     cur.execute("PRAGMA user_version;")
     version = int(cur.fetchone()[0])
-    conn.close()
     return version
 
 
@@ -57,6 +56,11 @@ def _write_db_schema_script(migrations_dir: Path):
 
 
 def migrate(overwrite_latest_schema=True):
+    # If there's no existing db, create one with the correct pragmas
+    if not Path(DBNAME).is_file():
+        conn = get_conn()
+        conn.cursor().execute("PRAGMA journal_mode = WAL;")
+
     with resources.path(migrations, "") as migrations_dir:
         pending_migrations = _get_pending_migrations(migrations_dir)
         if not pending_migrations:
@@ -66,9 +70,8 @@ def migrate(overwrite_latest_schema=True):
         migration_contents = _read_migrations(pending_migrations)
 
         conn = get_conn()
-        cursor = conn.cursor()
-
         with conn:  # apsw provides automatic rollback for free here
+            cursor = conn.cursor()
             for version, sql in migration_contents:
                 print("Migrating version", version, "...")
                 cursor.execute(sql)
