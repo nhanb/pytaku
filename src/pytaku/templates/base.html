@@ -1,9 +1,11 @@
 {# vim: ft=htmldjango
 #}
 
-{% macro ibutton(href='', left_icon='', right_icon='', text='', color='red') -%}
+{% macro ibutton(href='', left_icon='', right_icon='', text='', color='red', disabled=False) -%}
 {% set element = 'a' if href else 'button' %}
-<{{ element }} class="{{ color }} button" {% if href %}href="{{ href }}"{% endif %}>
+<{{ element }} class="{{ color }} button {% if disabled %}disabled{% endif %}"
+        {% if href %}href="{{ href }}"{% endif %}
+        {% if disabled %}disabled{% endif %} >
   {% if left_icon %}
   <img src="{{ url_for('static', filename='icons/' + left_icon + '.svg')}}" alt="{{ text }} icon" />
   {% endif %}

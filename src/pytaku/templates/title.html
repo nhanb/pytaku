@@ -15,13 +15,12 @@
 
 {% block content %}
 
+<div>
 <h1>{{ name }}</h1>
+{{ ibutton(href='https://mangadex.org/manga/' + id, right_icon='arrow-up-right', text='Source site', color='blue') }}
+</div>
 
-{{ ibutton(left_icon='bookmark', text='Bookmark', color='blue') }}
-
-<a href="https://mangadex.org/manga/{{ id }}">Original link</a>
-
-<img class="cover" src="{{ cover }}" alt="cover" />
+<img class="cover" src="https://mangadex.org/images/manga/{{ id }}.jpg" alt="cover" />
 
 <table>
   <tr>
@@ -35,7 +34,6 @@
         Chapter {{ chapter['number'] }}
         {% if chapter['volume'] %}Volume {{ chapter['volume'] }} {% endif %}
         {% if chapter['name'] %}- {{ chapter['name'] }} {% endif %}
-
       </a>
     </td>
     <td>{{ ', '.join(chapter['groups']) }}</td>

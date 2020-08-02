@@ -85,6 +85,15 @@ input {
   background-color: var(--btn-blue);
   border-bottom: 4px solid var(--btn-blue-bottom);
 }
+.button.disabled,
+.button.disabled:hover,
+.button.disabled:active {
+  background-color: #aaa;
+  border-bottom: 4px solid #aaa;
+  filter: none;
+  cursor: default;
+  opacity: 0.5;
+}
 .button > img {
   height: 1rem;
 }

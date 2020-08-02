@@ -7,6 +7,13 @@ from flask import Flask, make_response, render_template, request, url_for
 from mangoapi import get_chapter, get_title, search_title
 
 from . import mangadex
+from .persistence import (
+    get_prev_next_chapters,
+    load_chapter,
+    load_title,
+    save_chapter,
+    save_title,
+)
 
 app = Flask(__name__)
 
@@ -16,18 +23,39 @@ def home_view():
     return render_template("home.html")
 
 
-@app.route("/title/mangadex/<int:title_id>")
+@app.route("/title/mangadex/<title_id>")
 def title_view(title_id):
-    title = get_title(title_id)
-    return render_template("title.html", id=title_id, **title)
+    title = load_title(title_id)
+    if not title:
+        print("Getting title", title_id)
+        title = get_title(title_id)
+        print("Saving title", title_id, "to db")
+        save_title(title)
+    else:
+        print("Loading title", title_id, "from db")
+    return render_template("title.html", **title)
 
 
-@app.route("/chapter/mangadex/<int:chapter_id>")
+@app.route("/chapter/mangadex/<chapter_id>")
 def chapter_view(chapter_id):
-    chapter = get_chapter(chapter_id)
+    chapter = load_chapter(chapter_id)
+    if not chapter:
+        print("Getting chapter", chapter_id)
+        chapter = get_chapter(chapter_id)
+        save_chapter(chapter)
+    else:
+        print("Loading chapter", chapter_id, "from db")
+
     chapter["pages"] = [
         url_for("proxy_view", b64_url=_encode_proxy_url(p)) for p in chapter["pages"]
     ]
+
+    # YIIIIKES
+    title = load_title(chapter["title_id"])
+    prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
+    chapter["prev_chapter"] = prev_chapter
+    chapter["next_chapter"] = next_chapter
+
     return render_template("chapter.html", **chapter)
 
 
@@ -46,8 +74,7 @@ def proxy_view(b64_url):
     """Fine I'll do it"""
     url = _decode_proxy_url(b64_url)
     if not _is_manga_img_url(url):
-        return "Nope"
-    print("Proxying", url)
+        return "Nope", 400
     md_resp = requests.get(url)
     resp = make_response(md_resp.content, md_resp.status_code)
     resp.headers.extend(**md_resp.headers)

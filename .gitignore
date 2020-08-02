@@ -2,6 +2,6 @@
 __pycache__
 *.pyc
 *.json
-*.sqlite3
+*.sqlite3*
 *.egg-info
 /dist/

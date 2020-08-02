@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Ch.{{ number }} - {{ name }}
+Ch. {{ num_major }}
+{% if num_minor %}.{{ num_minor }}{% endif %}
+{% if name %} - {{ name }}{% endif %}
 {% endblock %}
 
 {% block head %}
@@ -45,14 +47,24 @@ Ch.{{ number }} - {{ name }}
 
 {% block content %}
 
-<h1>Ch.{{ number }}: {{ name }}</h1>
+<h1>{{ self.title() }}</h1>
 
 {# Put buttons in block to reuse later in this same template #}
 {% block buttons %}
 <div class="buttons">
-{{ ibutton(href='#TODO', left_icon='chevrons-left', text='Previous') }}
-{{ ibutton(left_icon='eye', text='Reading', color='green') }}
-{{ ibutton(href='#TODO', right_icon='chevrons-right', text='Next') }}
+  {% if prev_chapter %}
+  {{ ibutton(href=url_for('chapter_view', chapter_id=prev_chapter['id']), left_icon='chevrons-left', text='Prev') }}
+  {% else %}
+  {{ ibutton(left_icon='chevrons-left', text='Prev', disabled=True) }}
+  {% endif %}
+
+  {{ ibutton(href=url_for('title_view', title_id=title_id), left_icon='list', text='Chapter list', color='blue') }}
+
+  {% if next_chapter %}
+  {{ ibutton(href=url_for('chapter_view', chapter_id=next_chapter['id']), right_icon='chevrons-right', text='Next') }}
+  {% else %}
+  {{ ibutton(right_icon='chevrons-right', text='Next', disabled=True) }}
+  {% endif %}
 </div>
 {% endblock %}
 

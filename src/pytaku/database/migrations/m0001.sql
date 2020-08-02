@@ -1,5 +1,6 @@
 create table title (
     id text,
+    name text,
     site text,
     chapters text,
     alt_names text,
@@ -11,13 +12,14 @@ create table title (
 create table chapter (
     id text,
     title_id text,
+    site text,
     num_major integer,
     num_minor integer,
     name text,
     pages text,
     groups text,
 
-    foreign key (title_id) references title (id),
-    unique(id, title_id),
+    foreign key (title_id, site) references title (id, site),
+    unique(id, title_id, site),
     unique(num_major, num_minor, title_id)
 );
