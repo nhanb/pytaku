@@ -76,6 +76,7 @@ def get_chapter(chapter_id):
         "name": md_json["title"],
         "pages": [f"{img_path}/{page}" for page in md_json["page_array"]],
         "groups": _extract_groups(md_json),
+        "is_webtoon": md_json["long_strip"] == 1,
         **_parse_chapter_number(md_json["chapter"]),
     }
     return chapter

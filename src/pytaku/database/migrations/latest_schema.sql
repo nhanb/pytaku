@@ -22,7 +22,7 @@ CREATE TABLE chapter (
     name text,
     pages text,
     groups text,
-    updated_at text default (datetime('now')),
+    updated_at text default (datetime('now')), is_webtoon boolean,
 
     foreign key (title_id, site) references title (id, site),
     unique(id, title_id, site),

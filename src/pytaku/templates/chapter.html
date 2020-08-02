@@ -30,7 +30,10 @@ Ch. {{ num_major }}
 
   .pages img {
     display: block;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto .7rem auto;
+  }
+  .pages.webtoon img {
+    margin: 0 auto;
   }
 
   .buttons {
@@ -74,7 +77,7 @@ Ch. {{ num_major }}
 </div>
 {% endblock %}
 
-<div class="pages">
+<div class="pages {% if is_webtoon %}webtoon{% endif %}">
   {% for page in pages %}
   <img src="{{ page }}" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   {% endfor %}

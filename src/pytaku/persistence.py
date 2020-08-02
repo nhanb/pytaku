@@ -86,7 +86,8 @@ def save_chapter(chapter):
         num_minor,
         name,
         pages,
-        groups
+        groups,
+        is_webtoon
     ) VALUES (
         :id,
         :title_id,
@@ -95,7 +96,8 @@ def save_chapter(chapter):
         :num_minor,
         :name,
         :pages,
-        :groups
+        :groups,
+        :is_webtoon
     );
     """,
         {
@@ -107,6 +109,7 @@ def save_chapter(chapter):
             "name": chapter["name"],
             "pages": json.dumps(chapter["pages"]),
             "groups": json.dumps(chapter["groups"]),
+            "is_webtoon": chapter["is_webtoon"],
         },
     )
 
@@ -116,7 +119,7 @@ def load_chapter(chapter_id):
     result = list(
         conn.cursor().execute(
             """
-    SELECT id, title_id, num_major, num_minor, name, pages, groups
+    SELECT id, title_id, num_major, num_minor, name, pages, groups, is_webtoon
     FROM chapter
     WHERE id = ?;
     """,
@@ -137,6 +140,7 @@ def load_chapter(chapter_id):
             "name": chapter[4],
             "pages": json.loads(chapter[5]),
             "groups": json.loads(chapter[6]),
+            "is_webtoon": chapter[7],
         }
 
 
