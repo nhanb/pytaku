@@ -35,9 +35,13 @@ def get_title(title_id):
     md_json = md_resp.json()
     assert md_json["status"] == "OK"
 
+    cover = md_json["manga"]["cover_url"].split("/")[-1]
+    cover_ext = cover[cover.find(".") + 1 : cover.rfind("?")]
+
     title = {
         "id": title_id,
         "name": md_json["manga"]["title"],
+        "cover_ext": cover_ext,
         "alt_names": md_json["manga"]["alt_names"],
         "descriptions": md_json["manga"]["description"].split("\r\n\r\n"),
         "chapters": [

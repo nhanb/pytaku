@@ -5,6 +5,7 @@ CREATE TABLE title (
     id text,
     name text,
     site text,
+    cover_ext text,
     chapters text,
     alt_names text,
     descriptions text,

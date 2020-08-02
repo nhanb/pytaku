@@ -11,6 +11,7 @@ def save_title(title):
         id,
         name,
         site,
+        cover_ext,
         chapters,
         alt_names,
         descriptions
@@ -18,11 +19,13 @@ def save_title(title):
         :id,
         :name,
         :site,
+        :cover_ext,
         :chapters,
         :alt_names,
         :descriptions
     ) ON CONFLICT (id, site) DO UPDATE SET
         name=excluded.name,
+        cover_ext=excluded.cover_ext,
         chapters=excluded.chapters,
         alt_names=excluded.alt_names,
         descriptions=excluded.descriptions,
@@ -33,6 +36,7 @@ def save_title(title):
             "id": title["id"],
             "name": title["name"],
             "site": "mangadex",
+            "cover_ext": title["cover_ext"],
             "chapters": json.dumps(title["chapters"]),
             "alt_names": json.dumps(title["alt_names"]),
             "descriptions": json.dumps(title["descriptions"]),
@@ -45,7 +49,7 @@ def load_title(title_id):
     result = list(
         conn.cursor().execute(
             """
-    SELECT id, name, site, chapters, alt_names, descriptions
+    SELECT id, name, site, cover_ext, chapters, alt_names, descriptions
     FROM title
     WHERE id = ?
       AND datetime(updated_at) > datetime('now', '-6 hours');
@@ -63,9 +67,10 @@ def load_title(title_id):
             "id": title[0],
             "name": title[1],
             "site": title[2],
-            "chapters": json.loads(title[3]),
-            "alt_names": json.loads(title[4]),
-            "descriptions": json.loads(title[5]),
+            "cover_ext": title[3],
+            "chapters": json.loads(title[4]),
+            "alt_names": json.loads(title[5]),
+            "descriptions": json.loads(title[6]),
         }
 
 
