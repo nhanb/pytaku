@@ -5,6 +5,7 @@ create table title (
     chapters text,
     alt_names text,
     descriptions text,
+    updated_at text default (datetime('now')),
 
     unique(id, site)
 );
@@ -18,6 +19,7 @@ create table chapter (
     name text,
     pages text,
     groups text,
+    updated_at text default (datetime('now')),
 
     foreign key (title_id, site) references title (id, site),
     unique(id, title_id, site),

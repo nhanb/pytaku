@@ -21,7 +21,13 @@ def save_title(title):
         :chapters,
         :alt_names,
         :descriptions
-    );
+    ) ON CONFLICT (id, site) DO UPDATE SET
+        name=excluded.name,
+        chapters=excluded.chapters,
+        alt_names=excluded.alt_names,
+        descriptions=excluded.descriptions,
+        updated_at=datetime('now')
+    ;
     """,
         {
             "id": title["id"],
@@ -41,7 +47,8 @@ def load_title(title_id):
             """
     SELECT id, name, site, chapters, alt_names, descriptions
     FROM title
-    WHERE id = ?;
+    WHERE id = ?
+      AND datetime(updated_at) > datetime('now', '-6 hours');
     """,
             (title_id,),
         )
