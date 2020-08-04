@@ -1,5 +1,8 @@
 import json
 
+import apsw
+import argon2
+
 from .database.common import get_conn
 
 
@@ -161,3 +164,38 @@ def get_prev_next_chapters(title, chapter):
                 prev_chapter = chapters[i + 1]
 
     return prev_chapter, next_chapter
+
+
+def register_user(username, password):
+    hasher = argon2.PasswordHasher()
+    hashed_password = hasher.hash(password)
+    try:
+        get_conn().cursor().execute(
+            "INSERT INTO user (username, password) VALUES (?, ?);",
+            (username, hashed_password),
+        )
+        return None
+    except apsw.ConstraintError as e:
+        if "UNIQUE" in str(e):
+            return "Username already exists."
+        raise
+
+
+def verify_username_password(username, password):
+    data = list(
+        get_conn()
+        .cursor()
+        .execute("SELECT password FROM user WHERE username = ?;", (username,))
+    )
+    if len(data) != 1:
+        print(f"User {username} doesn't exist.")
+        return False
+
+    hasher = argon2.PasswordHasher()
+    hash = data[0][0]
+    try:
+        hasher.verify(hash, password)
+        return True
+    except argon2.exceptions.VerifyMismatchError:
+        print(f"User {username} exists but password doesn't match.")
+        return False

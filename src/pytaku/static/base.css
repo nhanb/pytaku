@@ -131,6 +131,7 @@ nav > *:last-child {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .links > * {
   margin-right: 1rem;

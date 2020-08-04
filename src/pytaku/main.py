@@ -1,26 +1,128 @@
 import base64
 import re
+from datetime import timedelta
 
 import requests
-from flask import Flask, make_response, render_template, request, url_for
+from flask import (
+    Flask,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 from mangoapi import get_chapter, get_title, search_title
 
 from . import mangadex
+from .conf import config
 from .persistence import (
     get_prev_next_chapters,
     load_chapter,
     load_title,
+    register_user,
     save_chapter,
     save_title,
+    verify_username_password,
 )
 
 app = Flask(__name__)
+app.config.update(
+    SECRET_KEY=config.FLASK_SECRET_KEY, PERMANENT_SESSION_LIFETIME=timedelta(days=365),
+)
 
 
 @app.route("/")
 def home_view():
     return render_template("home.html")
+
+
+@app.route("/logout", methods=["POST"])
+def logout_view():
+    session.pop("user")
+    return redirect("/")
+
+
+@app.route("/auth", methods=["GET", "POST"])
+def auth_view():
+    if session.get("user"):
+        return redirect(url_for("home_view"))
+
+    if request.method == "POST":
+
+        if request.form["action"] == "register":
+            username = request.form["username"].strip()
+            password = request.form["password"]
+            confirm_password = request.form["confirm-password"]
+            message = None
+            if password != confirm_password:
+                message = "Password confirmation didn't match."
+                status_code = 400
+            elif not (username and password and confirm_password):
+                message = "Empty field(s) spotted. Protip: spaces don't count."
+                status_code = 400
+            elif (
+                len(username) < 2
+                or len(username) > 15
+                or len(password) < 5
+                or len(password) > 50
+            ):
+                message = "Invalid username/password length. Username length should be 2~15, password 5~50."
+                status_code = 400
+            else:  # success!
+                err = register_user(username, password)
+                if err:
+                    message = err
+                    status_code = 400
+                else:
+                    username = ""
+                    password = ""
+                    confirm_password = ""
+                    message = "Registration successful! You can login now."
+                    status_code = 200
+            return (
+                render_template(
+                    "auth.html",
+                    register_username=username,
+                    register_password=password,
+                    register_confirm_password=confirm_password,
+                    register_message=message,
+                    register_has_error=status_code != 200,
+                ),
+                status_code,
+            )
+
+        else:  # action == 'login'
+            username = request.form["username"].strip()
+            password = request.form["password"]
+            remember = request.form.get("remember") == "on"
+            if not (username and password):
+                message = "Empty field(s) spotted. Protip: spaces don't count."
+                status_code = 400
+            elif not verify_username_password(username, password):
+                message = "Wrong username/password combination."
+                status_code = 400
+            else:  # success!
+                resp = redirect(request.args.get("next", url_for("home_view")))
+                session.permanent = remember
+                session["user"] = {"username": username}
+                return resp
+
+            return (
+                render_template(
+                    "auth.html",
+                    login_username=username,
+                    login_password=password,
+                    login_remember=remember,
+                    login_message=message,
+                    login_has_error=status_code != 200,
+                ),
+                status_code,
+            )
+
+    # Just a plain ol' GET request:
+    return render_template("auth.html")
 
 
 @app.route("/title/mangadex/<title_id>")

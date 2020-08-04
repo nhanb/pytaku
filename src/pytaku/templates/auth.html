@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login / Register
+{% endblock %}
+
+{% block head %}
+<style>
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 900px;
+  padding: 0;
+}
+
+.content > form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 1rem;
+}
+
+.content input,
+.content button {
+  margin: .5rem 0;
+}
+
+.success {
+  color: inherit;
+}
+.error {
+  color: red;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+  <h1>Login</h1>
+  <input type="hidden" name="action" value="login">
+  <input name="username" placeholder="Username" required value="{{ login_username }}">
+  <input name="password" type="password" placeholder="Password" required value="{{ login_password }}">
+  <label for="remember">
+    <input name="remember" id="remember" type="checkbox" {% if login_remember %}checked{% endif %}>
+    Remember me
+  </label>
+  <button class="green button" type="submit">Login</button>
+  <p class="{{ 'error' if login_has_error else 'success'}}">
+  {{ login_message }}
+  </p>
+</form>
+
+<form method="POST">
+  <h1>Register</h1>
+  <input type="hidden" name="action" value="register">
+  <input name="username" placeholder="Username (2~15 chars)" required value="{{ register_username }}">
+  <input name="password" type="password" placeholder="Password (5~50 chars)" required value="{{ register_password }}">
+  <input name="confirm-password" type="password" placeholder="Confirm password" required value="{{ register_confirm_password }}">
+  <button class="blue button" type="submit">Register</button>
+  <p class="{{ 'error' if register_has_error else 'success'}}">
+  {{ register_message }}
+  </p>
+</form>
+{% endblock %}

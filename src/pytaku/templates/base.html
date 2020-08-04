@@ -47,14 +47,17 @@
         </button>
       </form>
       <span class="links">
-        <a href="/bookmarks">
-          <img src="{{ url_for('static', filename='icons/bookmark.svg')}}" alt="bookmarks" />
-          <span>Bookmarks</span>
+        {% if session.get('user') %}
+        <span>Hi there <strong>{{ session.user['username'] }}</strong>!</span>
+        <form method="POST" action="{{ url_for('logout_view') }}">
+          {{ ibutton(left_icon='log-out', text='Logout') }}
+        </form>
+        {% else %}
+        <a href="/auth">
+          <img src="{{ url_for('static', filename='icons/log-in.svg')}}" alt="login/register" />
+          <span>Login/Register</span>
         </a>
-        <a href="/account">
-          <img src="{{ url_for('static', filename='icons/user.svg')}}" alt="account" />
-          <span>Account</span>
-        </a>
+        {% endif %}
       </span>
       </ul>
     </nav>
