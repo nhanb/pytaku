@@ -66,7 +66,7 @@ Ch.{{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}
   {{ ibutton(left_icon='chevrons-left', text='Prev', disabled=True) }}
   {% endif %}
 
-  {{ ibutton(href=url_for('title_view', title_id=title_id, site=title_site), left_icon='list', text='Chapter list', color='blue') }}
+  {{ ibutton(href=url_for('title_view', title_id=title_id, site=site), left_icon='list', text='Chapter list', color='blue') }}
 
   {% if next_chapter %}
   {{ ibutton(href=url_for('chapter_view', site=site, chapter_id=next_chapter['id']), right_icon='chevrons-right', text='Next') }}
