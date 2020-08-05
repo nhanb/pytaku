@@ -6,6 +6,8 @@
   --btn-green-bottom: #338a0d;
   --btn-blue: #009ee8;
   --btn-blue-bottom: #26789f;
+  --btn-gray: #444;
+  --btn-gray-bottom: #555;
   --bg-black: #231f20;
   --border-radius: 3px;
   --body-padding: 0.5rem;
@@ -84,6 +86,10 @@ input {
 .button.blue {
   background-color: var(--btn-blue);
   border-bottom: 4px solid var(--btn-blue-bottom);
+}
+.button.gray {
+  background-color: var(--btn-gray);
+  border-bottom: 4px solid var(--btn-gray-bottom);
 }
 .button.disabled,
 .button.disabled:hover,
