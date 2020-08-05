@@ -57,7 +57,6 @@ Stuff I follow
 
 {% block content %}
 
-
 {% for title in titles %}
 {% set title_url = url_for('title_view', site=title['site'], title_id=title['id']) %}
 <div class="title">
@@ -85,5 +84,9 @@ Stuff I follow
   </div>
 </div>
 {% endfor %}
+
+{% if not titles %}
+<p>You're not following any title yet. Try searching for some.</p>
+{% endif %}
 
 {% endblock %}
