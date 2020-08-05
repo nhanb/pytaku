@@ -108,5 +108,8 @@ def search_title(user_cookies, query):
     assert md_resp.status_code == 200, md_resp.text
 
     matches = TITLES_PATTERN.findall(md_resp.text)
-    titles = [{"id": int(id), "name": name.strip()} for id, name in matches]
+    titles = [
+        {"id": int(id), "name": name.strip(), "site": "mangadex"}
+        for id, name in matches
+    ]
     return titles

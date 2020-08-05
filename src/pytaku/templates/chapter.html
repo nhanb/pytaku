@@ -9,7 +9,7 @@ Ch. {{ num_major }}
 {% block head %}
 
 {% if next_chapter %}
-<link rel="prefetch" href="{{ url_for('chapter_view', chapter_id=next_chapter['id'])}}">
+<link rel="prefetch" href="{{ url_for('chapter_view', site=site, chapter_id=next_chapter['id'])}}">
 {% endif %}
 
 <style>
@@ -62,15 +62,15 @@ Ch. {{ num_major }}
 {% block buttons %}
 <div class="buttons">
   {% if prev_chapter %}
-  {{ ibutton(href=url_for('chapter_view', chapter_id=prev_chapter['id']), left_icon='chevrons-left', text='Prev') }}
+  {{ ibutton(href=url_for('chapter_view', site=site, chapter_id=prev_chapter['id']), left_icon='chevrons-left', text='Prev') }}
   {% else %}
   {{ ibutton(left_icon='chevrons-left', text='Prev', disabled=True) }}
   {% endif %}
 
-  {{ ibutton(href=url_for('title_view', title_id=title_id), left_icon='list', text='Chapter list', color='blue') }}
+  {{ ibutton(href=url_for('title_view', title_id=title_id, site=title_site), left_icon='list', text='Chapter list', color='blue') }}
 
   {% if next_chapter %}
-  {{ ibutton(href=url_for('chapter_view', chapter_id=next_chapter['id']), right_icon='chevrons-right', text='Next') }}
+  {{ ibutton(href=url_for('chapter_view', site=site, chapter_id=next_chapter['id']), right_icon='chevrons-right', text='Next') }}
   {% else %}
   {{ ibutton(right_icon='chevrons-right', text='Next', disabled=True) }}
   {% endif %}

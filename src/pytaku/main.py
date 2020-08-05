@@ -38,6 +38,13 @@ def home_view():
     return render_template("home.html")
 
 
+@app.route("/follow", methods=["POST"])
+def follow_view():
+    title_id = request.form.get("title_id")
+    site = request.form.get("site", "mangadex")
+    return redirect(url_for(""))
+
+
 @app.route("/logout", methods=["POST"])
 def logout_view():
     session.pop("user")
@@ -125,9 +132,9 @@ def auth_view():
     return render_template("auth.html")
 
 
-@app.route("/title/mangadex/<title_id>")
-def title_view(title_id):
-    title = load_title(title_id)
+@app.route("/title/<site>/<title_id>")
+def title_view(site, title_id):
+    title = load_title(site, title_id)
     if not title:
         print("Getting title", title_id)
         title = get_title(title_id)
@@ -135,12 +142,13 @@ def title_view(title_id):
         save_title(title)
     else:
         print("Loading title", title_id, "from db")
+    title["site"] = site
     return render_template("title.html", **title)
 
 
-@app.route("/chapter/mangadex/<chapter_id>")
-def chapter_view(chapter_id):
-    chapter = load_chapter(chapter_id)
+@app.route("/chapter/<site>/<chapter_id>")
+def chapter_view(site, chapter_id):
+    chapter = load_chapter(site, chapter_id)
     if not chapter:
         print("Getting chapter", chapter_id)
         chapter = get_chapter(chapter_id)
@@ -153,11 +161,12 @@ def chapter_view(chapter_id):
     ]
 
     # YIIIIKES
-    title = load_title(chapter["title_id"])
+    title = load_title(site, chapter["title_id"])
     prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
     chapter["prev_chapter"] = prev_chapter
     chapter["next_chapter"] = next_chapter
 
+    chapter["site"] = site
     return render_template("chapter.html", **chapter)
 
 

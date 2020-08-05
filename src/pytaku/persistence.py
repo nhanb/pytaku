@@ -47,7 +47,7 @@ def save_title(title):
     )
 
 
-def load_title(title_id):
+def load_title(site, title_id):
     conn = get_conn()
     result = list(
         conn.cursor().execute(
@@ -55,15 +55,16 @@ def load_title(title_id):
     SELECT id, name, site, cover_ext, chapters, alt_names, descriptions
     FROM title
     WHERE id = ?
+      AND site = ?
       AND datetime(updated_at) > datetime('now', '-6 hours');
     """,
-            (title_id,),
+            (title_id, site),
         )
     )
     if not result:
         return None
     elif len(result) > 1:
-        raise Exception(f"Found multiple results for title_id {title_id}!")
+        raise Exception(f"Found multiple results for title_id {title_id} on {site}!")
     else:
         title = result[0]
         return {
@@ -117,16 +118,16 @@ def save_chapter(chapter):
     )
 
 
-def load_chapter(chapter_id):
+def load_chapter(site, chapter_id):
     conn = get_conn()
     result = list(
         conn.cursor().execute(
             """
     SELECT id, title_id, num_major, num_minor, name, pages, groups, is_webtoon
     FROM chapter
-    WHERE id = ?;
+    WHERE id = ? AND site=?;
     """,
-            (chapter_id,),
+            (chapter_id, site),
         )
     )
     if not result:
