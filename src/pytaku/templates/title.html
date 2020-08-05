@@ -6,6 +6,10 @@
     width: 400px;
     border: 1px solid black;
   }
+
+  .details > form {
+    display: inline-block;
+  }
 </style>
 {% endblock %}
 
@@ -15,9 +19,25 @@
 
 {% block content %}
 
-<div>
-<h1>{{ name }}</h1>
-{{ ibutton(href='https://mangadex.org/manga/' + id, right_icon='arrow-up-right', text='Source site', color='blue') }}
+<div class="details">
+  <h1>{{ name }}</h1>
+  {% if session['user'] %}
+    {% if is_following %}
+      {% set fview = 'unfollow_view' %}
+      {% set ftext = 'Following' %}
+      {% set fcolor = 'red' %}
+      {% set ftitle = 'Click to unfollow' %}
+    {% else %}
+      {% set fview = 'follow_view' %}
+      {% set ftext = 'Follow' %}
+      {% set fcolor = 'green' %}
+      {% set ftitle = 'Click to follow' %}
+    {% endif %}
+    <form action="{{ url_for(fview, site=site, title_id=id) }}" method="POST">
+      {{ ibutton(left_icon='bookmark', text=ftext, color=fcolor, title=ftitle) }}
+    </form>
+  {% endif %}
+  {{ ibutton(href='https://mangadex.org/manga/' + id, right_icon='arrow-up-right', text='Source site', color='blue', title='Go to source site') }}
 </div>
 
 <img class="cover" src="https://mangadex.org/images/manga/{{ id }}.{{ cover_ext }}" alt="cover" />

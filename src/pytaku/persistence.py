@@ -3,7 +3,7 @@ import json
 import apsw
 import argon2
 
-from .database.common import get_conn
+from .database.common import get_conn, run_sql
 
 
 def save_title(title):
@@ -47,7 +47,7 @@ def save_title(title):
     )
 
 
-def load_title(site, title_id):
+def load_title(site, title_id, user_id=None):
     conn = get_conn()
     result = list(
         conn.cursor().execute(
@@ -67,7 +67,8 @@ def load_title(site, title_id):
         raise Exception(f"Found multiple results for title_id {title_id} on {site}!")
     else:
         title = result[0]
-        return {
+
+        return_val = {
             "id": title[0],
             "name": title[1],
             "site": title[2],
@@ -76,6 +77,15 @@ def load_title(site, title_id):
             "alt_names": json.loads(title[5]),
             "descriptions": json.loads(title[6]),
         }
+
+        if user_id is not None:
+            return_val["is_following"] = bool(
+                run_sql(
+                    "SELECT 1 FROM follow WHERE user_id=? AND site=? AND title_id=?;",
+                    (user_id, site, return_val["id"]),
+                )
+            )
+        return return_val
 
 
 def save_chapter(chapter):
@@ -186,17 +196,54 @@ def verify_username_password(username, password):
     data = list(
         get_conn()
         .cursor()
-        .execute("SELECT password FROM user WHERE username = ?;", (username,))
+        .execute("SELECT id, password FROM user WHERE username = ?;", (username,))
     )
     if len(data) != 1:
         print(f"User {username} doesn't exist.")
-        return False
+        return None
+
+    user_id = data[0][0]
+    hashed_password = data[0][1]
 
     hasher = argon2.PasswordHasher()
-    hash = data[0][0]
     try:
-        hasher.verify(hash, password)
-        return True
+        hasher.verify(hashed_password, password)
+        return user_id
     except argon2.exceptions.VerifyMismatchError:
         print(f"User {username} exists but password doesn't match.")
-        return False
+        return None
+
+
+def follow(user_id, site, title_id):
+    get_conn().cursor().execute(
+        "INSERT INTO follow (user_id, site, title_id) VALUES (?, ?, ?);",
+        (user_id, site, title_id),
+    )
+
+
+def unfollow(user_id, site, title_id):
+    get_conn().cursor().execute(
+        "DELETE FROM follow WHERE user_id=? AND site=? AND title_id=?;",
+        (user_id, site, title_id),
+    )
+
+
+def get_followed_titles(user_id):
+    titles = run_sql(
+        """
+        SELECT t.id, t.site, t.name, t.cover_ext, t.chapters
+        FROM title t
+          INNER JOIN follow f ON f.title_id = t.id AND f.site = t.site
+          INNER JOIN user u ON u.id = f.user_id
+        WHERE user_id=?;
+        """,
+        (user_id,),
+    )
+    keys = ("id", "site", "name", "cover_ext", "chapters")
+    title_dicts = []
+    for t in titles:
+        title = {key: t[i] for i, key in enumerate(keys)}
+        title["chapters"] = json.loads(title["chapters"])
+        title_dicts.append(title)
+
+    return title_dicts

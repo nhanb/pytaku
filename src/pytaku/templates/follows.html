@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Stuff I follow
+{% endblock %}
+
+{% block head %}
+<style>
+.title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: var(--body-padding);
+  background-color: #efefef;
+}
+
+.cover {
+  border: 1px solid #777;
+  margin-right: .5rem;
+}
+.cover:hover {
+  box-shadow: 0 0 3px black;
+}
+
+.chapters {
+  padding: .5rem .5rem .5rem 0;
+}
+
+.chapter {
+  display: block;
+  margin-bottom: .5rem;
+  background-color: white;
+  border: 1px solid #999;
+  padding: 6px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+.chapter:hover {
+  background-color: #eee;
+}
+
+.group {
+  font-size: .9em;
+  background-color: #ddd;
+  border-radius: 3px;
+  white-space: nowrap;
+  padding: 2px 5px;
+}
+
+.more {
+  display: inline-block;
+  font-style: italic;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+{% for title in titles %}
+{% set title_url = url_for('title_view', site=title['site'], title_id=title['id']) %}
+<div class="title">
+  <div>
+    <a href="{{ title_url }}">
+      <img class="cover"
+           src="https://mangadex.org/images/manga/{{ title['id'] }}.large.{{ title['cover_ext'] }}"
+           alt="{{ title['name'] }}" />
+    </a>
+  </div>
+  <div class="chapters">
+    {% for ch in title['chapters'][:6] %}
+    <a class="chapter" href="{{ url_for('chapter_view', site=title['site'], chapter_id=ch['id']) }}">
+      Chapter {{ ch['num_major'] }}{% if ch['num_minor'] %}.{{ ch['num_minor'] }}{% endif %}
+              {% if ch['volume'] %}Volume {{ ch['volume'] }} {% endif %}
+              {% if ch['name'] %} - {{ ch['name'] }}{% endif %}
+        {% for group in ch['groups'] %}
+        <span class="group">{{ group | truncate(20) }}</span>
+        {% endfor %}
+    </a>
+    {% endfor %}
+    {% if title['chapters']|length > 6 %}
+    <a class="more chapter" href="{{ title_url }}">and more...</a>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

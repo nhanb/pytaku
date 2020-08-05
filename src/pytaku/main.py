@@ -17,13 +17,17 @@ from mangoapi import get_chapter, get_title, search_title
 
 from . import mangadex
 from .conf import config
+from .decorators import require_login
 from .persistence import (
+    follow,
+    get_followed_titles,
     get_prev_next_chapters,
     load_chapter,
     load_title,
     register_user,
     save_chapter,
     save_title,
+    unfollow,
     verify_username_password,
 )
 
@@ -35,14 +39,30 @@ app.config.update(
 
 @app.route("/")
 def home_view():
+    if session.get("user"):
+        return redirect(url_for("follows_view"))
     return render_template("home.html")
 
 
-@app.route("/follow", methods=["POST"])
-def follow_view():
-    title_id = request.form.get("title_id")
-    site = request.form.get("site", "mangadex")
-    return redirect(url_for(""))
+@app.route("/me", methods=["GET"])
+@require_login
+def follows_view():
+    titles = get_followed_titles(session["user"]["id"])
+    return render_template("follows.html", titles=titles)
+
+
+@app.route("/follow/<site>/<title_id>", methods=["POST"])
+@require_login
+def follow_view(site, title_id):
+    follow(session["user"]["id"], site, title_id)
+    return redirect(url_for("title_view", site=site, title_id=title_id))
+
+
+@app.route("/unfollow/<site>/<title_id>", methods=["POST"])
+@require_login
+def unfollow_view(site, title_id):
+    unfollow(session["user"]["id"], site, title_id)
+    return redirect(url_for("title_view", site=site, title_id=title_id))
 
 
 @app.route("/logout", methods=["POST"])
@@ -107,14 +127,16 @@ def auth_view():
             if not (username and password):
                 message = "Empty field(s) spotted. Protip: spaces don't count."
                 status_code = 400
-            elif not verify_username_password(username, password):
-                message = "Wrong username/password combination."
-                status_code = 400
-            else:  # success!
-                resp = redirect(request.args.get("next", url_for("home_view")))
-                session.permanent = remember
-                session["user"] = {"username": username}
-                return resp
+            else:
+                user_id = verify_username_password(username, password)
+                if user_id is None:
+                    message = "Wrong username/password combination."
+                    status_code = 400
+                else:  # success!
+                    resp = redirect(request.args.get("next", url_for("home_view")))
+                    session.permanent = remember
+                    session["user"] = {"username": username, "id": user_id}
+                    return resp
 
             return (
                 render_template(
@@ -134,7 +156,9 @@ def auth_view():
 
 @app.route("/title/<site>/<title_id>")
 def title_view(site, title_id):
-    title = load_title(site, title_id)
+    user = session.get("user", None)
+    user_id = user["id"] if user else None
+    title = load_title(site, title_id, user_id=user_id)
     if not title:
         print("Getting title", title_id)
         title = get_title(title_id)

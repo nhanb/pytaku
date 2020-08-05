@@ -1,9 +1,9 @@
 {# vim: ft=htmldjango
 #}
 
-{% macro ibutton(href='', left_icon='', right_icon='', text='', color='red', disabled=False) -%}
+{% macro ibutton(href='', left_icon='', right_icon='', text='', color='red', title='', disabled=False) -%}
 {% set element = 'a' if href else 'button' %}
-<{{ element }} class="{{ color }} button {% if disabled %}disabled{% endif %}"
+<{{ element }} class="{{ color }} button {% if disabled %}disabled{% endif %}" title="{{title}}"
         {% if href %}href="{{ href }}"{% endif %}
         {% if disabled %}disabled{% endif %} >
   {% if left_icon %}
