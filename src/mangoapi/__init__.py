@@ -10,6 +10,9 @@ TITLES_PATTERN = re.compile(
 
 
 def _parse_chapter_number(string):
+    if string == "":
+        # most likely a oneshot
+        return {"number": ""}
     nums = string.split(".")
     count = len(nums)
     assert count == 1 or count == 2
