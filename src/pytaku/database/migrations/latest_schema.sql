@@ -26,6 +26,7 @@ CREATE TABLE chapter (
 
     foreign key (title_id, site) references title (id, site),
     unique(id, title_id, site),
+    unique(id, site),
     unique(num_major, num_minor, title_id)
 );
 CREATE TABLE user (
@@ -43,4 +44,14 @@ CREATE TABLE follow (
     foreign key (title_id, site) references title (id, site),
     foreign key (user_id) references user (id),
     unique(user_id, title_id, site)
+);
+CREATE TABLE read (
+    user_id integer not null,
+    chapter_id text not null,
+    site text not null,
+    updated_at text default (datetime('now')),
+
+    foreign key (user_id) references user (id),
+    foreign key (chapter_id, site) references chapter (id, site),
+    unique(user_id, chapter_id, site)
 );

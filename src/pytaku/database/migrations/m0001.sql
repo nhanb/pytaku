@@ -20,9 +20,39 @@ create table chapter (
     name text,
     pages text,
     groups text,
-    updated_at text default (datetime('now')),
+    updated_at text default (datetime('now')), is_webtoon boolean,
 
     foreign key (title_id, site) references title (id, site),
     unique(id, title_id, site),
+    unique(id, site),
     unique(num_major, num_minor, title_id)
+);
+
+create table user (
+    id integer primary key,
+    username text unique,
+    password text,
+    created_at text default (datetime('now'))
+);
+
+create table follow (
+    user_id integer not null,
+    title_id text not null,
+    site text not null,
+    created_at text default (datetime('now')),
+
+    foreign key (title_id, site) references title (id, site),
+    foreign key (user_id) references user (id),
+    unique(user_id, title_id, site)
+);
+
+create table read (
+    user_id integer not null,
+    chapter_id text not null,
+    site text not null,
+    updated_at text default (datetime('now')),
+
+    foreign key (user_id) references user (id),
+    foreign key (chapter_id, site) references chapter (id, site),
+    unique(user_id, chapter_id, site)
 );

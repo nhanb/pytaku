@@ -49,7 +49,7 @@ def get_title(title_id):
         "descriptions": md_json["manga"]["description"].split("\r\n\r\n"),
         "chapters": [
             {
-                "id": chap_id,
+                "id": str(chap_id),
                 "name": chap["title"],
                 "volume": int(chap["volume"]) if chap["volume"] else None,
                 "groups": _extract_groups(chap),

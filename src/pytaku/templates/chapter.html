@@ -69,10 +69,21 @@ Ch.{{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}
   {{ ibutton(href=url_for('title_view', title_id=title_id, site=site), left_icon='list', text='Chapter list', color='blue') }}
 
   {% if next_chapter %}
-  {{ ibutton(href=url_for('chapter_view', site=site, chapter_id=next_chapter['id']), right_icon='chevrons-right', text='Next') }}
+
+    {% set next_url = url_for('chapter_view', site=site, chapter_id=next_chapter['id']) %}
+    {% if session['user'] %}
+      {% set next_url = next_url + '?has_read=' + id %}
+    {% endif %}
+    {{ ibutton(href=next_url, right_icon='chevrons-right', text='Next') }}
+
   {% else %}
-  {{ ibutton(right_icon='chevrons-right', text='Next', disabled=True) }}
+    {% if session['user'] %}
+    {{ ibutton(href=url_for('title_view', site=site, title_id=title_id) + '?has_read=' + id, text='✓ Finish reading', color='green') }}
+    {% else %}
+    {{ ibutton(right_icon='chevrons-right', text='Next', disabled=True) }}
+    {% endif %}
   {% endif %}
+
 </div>
 {% endblock %}
 

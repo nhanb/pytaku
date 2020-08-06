@@ -3,7 +3,7 @@ import json
 import apsw
 import argon2
 
-from .database.common import run_sql
+from .database.common import run_sql, run_sql_on_demand
 
 
 def save_title(title):
@@ -74,6 +74,23 @@ def load_title(site, title_id, user_id=None):
                     (user_id, site, title["id"]),
                 )
             )
+
+            chapters_i_read = run_sql(
+                """
+                SELECT r.chapter_id
+                FROM read r
+                  INNER JOIN chapter c ON c.id = r.chapter_id AND c.site = r.site
+                WHERE r.user_id = ?
+                  AND c.title_id = ?
+                  AND c.site = ?
+                ORDER BY r.updated_at;
+                """,
+                (user_id, title["id"], title["site"]),
+            )
+
+            for ch in title["chapters"]:
+                if ch["id"] in chapters_i_read:
+                    ch["is_read"] = True
         return title
 
 
@@ -130,7 +147,10 @@ def load_chapter(site, chapter_id):
     elif len(result) > 1:
         raise Exception(f"Found multiple results for chapter_id {chapter_id}!")
     else:
-        return result[0]
+        chapter = result[0]
+        chapter["pages"] = json.loads(chapter["pages"])
+        chapter["groups"] = json.loads(chapter["groups"])
+        return chapter
 
 
 def get_prev_next_chapters(title, chapter):
@@ -209,9 +229,51 @@ def get_followed_titles(user_id):
         """,
         (user_id,),
     )
-    title_dicts = []
-    for t in titles:
-        t["chapters"] = json.loads(t["chapters"])
-        title_dicts.append(t)
 
-    return title_dicts
+    for t in titles:
+        chapters = json.loads(t["chapters"])
+
+        # n+1 queries cuz I don't give a f- actually I do, but sqlite's cool with it:
+        # https://www.sqlite.org/np1queryprob.html
+        chapters_i_finished = run_sql_on_demand(
+            """
+            SELECT r.chapter_id
+            FROM read r
+                INNER JOIN chapter c ON c.id = r.chapter_id AND c.site = r.site
+            WHERE r.user_id = ?
+                AND c.title_id = ?
+                AND c.site = ?
+            ORDER BY c.num_major desc, c.num_minor desc;
+            """,
+            (user_id, t["id"], t["site"]),
+        )
+        # Cut off chapter list:
+        # only show chapters newer than the latest chapter that user has finished.
+        # Running a loop here instead of just picking the one latest finished chapter
+        # because source site may have deleted said chapter.
+        for finished_chapter_id in chapters_i_finished:
+            for i, ch in enumerate(chapters):
+                if finished_chapter_id == ch["id"]:
+                    chapters = chapters[:i]
+                    break
+
+        t["chapters"] = chapters
+
+    return sorted(titles, key=lambda t: len(t["chapters"]), reverse=True)
+
+
+def read(user_id, site, chapter_id):
+    run_sql(
+        """
+        INSERT INTO read (user_id, site, chapter_id) VALUES (?, ?, ?)
+        ON CONFLICT (user_id, site, chapter_id) DO UPDATE SET updated_at=datetime('now')
+        """,
+        (user_id, site, chapter_id),
+    )
+
+
+def unread(user_id, site, chapter_id):
+    run_sql(
+        "DELETE FROM read WHERE user_id=? AND site=? AND chapter_id=?;",
+        (user_id, site, chapter_id),
+    )

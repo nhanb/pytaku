@@ -15,7 +15,7 @@ Forward-only DB migration scheme held together by duct tape.
 
 
 def _get_current_version():
-    return run_sql("PRAGMA user_version;")[0]["user_version"]
+    return run_sql("PRAGMA user_version;")[0]
 
 
 def _get_version(migration: Path):

@@ -44,11 +44,13 @@
 
 <table>
   <tr>
+    <th>Finished?</th>
     <th>Name</th>
     <th>Group</th>
   </tr>
   {% for chapter in chapters %}
   <tr>
+    <td>{% if chapter['is_read'] %}yes{% endif %}</td>
     <td>
       <a href="{{ url_for('chapter_view', chapter_id=chapter['id'], site=site) }}">
         Chapter {{ chapter['number'] }}
