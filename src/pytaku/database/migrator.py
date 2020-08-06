@@ -3,7 +3,7 @@ from importlib import resources
 from pathlib import Path
 
 from . import migrations
-from .common import DBNAME, get_conn
+from .common import DBNAME, get_conn, run_sql
 
 
 """
@@ -15,11 +15,7 @@ Forward-only DB migration scheme held together by duct tape.
 
 
 def _get_current_version():
-    conn = get_conn()
-    cur = conn.cursor()
-    cur.execute("PRAGMA user_version;")
-    version = int(cur.fetchone()[0])
-    return version
+    return run_sql("PRAGMA user_version;")[0]["user_version"]
 
 
 def _get_version(migration: Path):
@@ -58,8 +54,7 @@ def _write_db_schema_script(migrations_dir: Path):
 def migrate(overwrite_latest_schema=True):
     # If there's no existing db, create one with the correct pragmas
     if not Path(DBNAME).is_file():
-        conn = get_conn()
-        conn.cursor().execute("PRAGMA journal_mode = WAL;")
+        run_sql("PRAGMA journal_mode = WAL;")
 
     with resources.path(migrations, "") as migrations_dir:
         pending_migrations = _get_pending_migrations(migrations_dir)

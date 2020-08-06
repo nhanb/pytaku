@@ -7,10 +7,20 @@ _conn = None
 
 def get_conn():
     global _conn
+
     if not _conn:
         _conn = apsw.Connection(DBNAME)
+
         # Apparently you need to enable this pragma _per connection_
         _conn.cursor().execute("PRAGMA foreign_keys = ON;")
+
+        # Return rows as dicts instead of tuples
+        _conn.setrowtrace(
+            lambda cursor, row: {
+                k[0]: row[i] for i, k in enumerate(cursor.getdescription())
+            }
+        )
+
     return _conn
 
 
