@@ -37,7 +37,7 @@ class Worker:
 
 
 class UpdateOutdatedSeries(Worker):
-    interval = timedelta(seconds=9)
+    interval = timedelta(hours=2)
 
     def run(self):
         for title in find_outdated_titles():
