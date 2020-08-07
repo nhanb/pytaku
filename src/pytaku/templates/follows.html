@@ -13,6 +13,12 @@ Stuff I follow
   margin-bottom: var(--body-padding);
   background-color: #efefef;
 }
+.title.empty {
+  display: inline-flex;
+}
+.title.empty .chapters {
+  display: none;
+}
 
 .cover {
   border: 1px solid #777;
@@ -59,7 +65,7 @@ Stuff I follow
 
 {% for title in titles %}
 {% set title_url = url_for('title_view', site=title['site'], title_id=title['id']) %}
-<div class="title">
+<div class="title {% if title['chapters']|length == 0 %}empty{% endif %}">
   <div>
     <a href="{{ title_url }}">
       <img class="cover"
