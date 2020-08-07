@@ -277,3 +277,9 @@ def unread(user_id, site, chapter_id):
         "DELETE FROM read WHERE user_id=? AND site=? AND chapter_id=?;",
         (user_id, site, chapter_id),
     )
+
+
+def find_outdated_titles(since="-6 hours"):
+    return run_sql(
+        "SELECT id, site FROM title WHERE updated_at <= datetime('now', ?);", (since,)
+    )

@@ -19,3 +19,9 @@ def migrate():
 
 def generate_config():
     print(config.generate_json(DEBUG=True))
+
+
+def scheduler():
+    from .scheduler import main_loop
+
+    main_loop()
