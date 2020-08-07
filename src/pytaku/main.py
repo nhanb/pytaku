@@ -17,7 +17,7 @@ from mangoapi import get_chapter, get_title, search_title
 
 from . import mangadex
 from .conf import config
-from .decorators import require_login, trigger_has_read
+from .decorators import ensure_session_version, require_login, trigger_has_read
 from .persistence import (
     follow,
     get_followed_titles,
@@ -38,6 +38,7 @@ app.config.update(
 
 
 @app.route("/")
+@ensure_session_version
 def home_view():
     if session.get("user"):
         return redirect(url_for("follows_view"))
@@ -45,6 +46,7 @@ def home_view():
 
 
 @app.route("/me", methods=["GET"])
+@ensure_session_version
 @require_login
 def follows_view():
     titles = get_followed_titles(session["user"]["id"])
@@ -52,6 +54,7 @@ def follows_view():
 
 
 @app.route("/follow/<site>/<title_id>", methods=["POST"])
+@ensure_session_version
 @require_login
 def follow_view(site, title_id):
     follow(session["user"]["id"], site, title_id)
@@ -59,6 +62,7 @@ def follow_view(site, title_id):
 
 
 @app.route("/unfollow/<site>/<title_id>", methods=["POST"])
+@ensure_session_version
 @require_login
 def unfollow_view(site, title_id):
     unfollow(session["user"]["id"], site, title_id)
@@ -66,12 +70,14 @@ def unfollow_view(site, title_id):
 
 
 @app.route("/logout", methods=["POST"])
+@ensure_session_version
 def logout_view():
     session.pop("user")
     return redirect("/")
 
 
 @app.route("/auth", methods=["GET", "POST"])
+@ensure_session_version
 def auth_view():
     if session.get("user"):
         return redirect(url_for("home_view"))
@@ -155,6 +161,7 @@ def auth_view():
 
 
 @app.route("/title/<site>/<title_id>")
+@ensure_session_version
 @trigger_has_read
 def title_view(site, title_id):
     user = session.get("user", None)
@@ -172,6 +179,7 @@ def title_view(site, title_id):
 
 
 @app.route("/chapter/<site>/<chapter_id>")
+@ensure_session_version
 @trigger_has_read
 def chapter_view(site, chapter_id):
     chapter = load_chapter(site, chapter_id)
@@ -197,6 +205,7 @@ def chapter_view(site, chapter_id):
 
 
 @app.route("/search")
+@ensure_session_version
 def search_view():
     query = request.args.get("q", "").strip()
     titles = []
