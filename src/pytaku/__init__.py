@@ -19,6 +19,20 @@ def serve():
     subprocess.run(command)
 
 
+def dev():
+    import os
+    import subprocess
+    from sys import argv
+
+    command = ["flask", "run"] + argv[1:]
+    print("Running:", " ".join(command))
+
+    subprocess.run(
+        command,
+        env={"FLASK_ENV": "development", "FLASK_APP": "pytaku.main:app", **os.environ},
+    )
+
+
 def migrate():
     import argparse
     from .database.migrator import migrate

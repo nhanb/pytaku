@@ -11,6 +11,7 @@ packages = [
 
 [tool.poetry.scripts]
 pytaku = "pytaku:serve"
+pytaku-dev = "pytaku:dev"
 pytaku-migrate = "pytaku:migrate"
 pytaku-generate-config = "pytaku:generate_config"
 pytaku-scheduler = "pytaku:scheduler"

@@ -1,11 +1,32 @@
+Live demo: https://dev.pytaku.com (db may be hosed any time, also expect bugs)
+
+Production instance coming When It's Ready (tm).
+
+Pytaku is a WIP web-based manga reader that keeps track of your reading
+progress and new chapter updates. Its design goals are:
+
+- Self-host friendly - if you have a UNIX-like server with python3.7+ and can
+  run `pip install`, you're good.
+
+- Optional javascript - it should work **well** without javascript, but
+  javascript enablers should still get extra UX goodies.
+
+- Phone/tablet friendly - although I hardly read any webtoons these days so the
+  phone experience may not be as polished.
+
+- KISSFFS, or **K**eep **I**t rea**S**onably **S**imple you **F**-ing
+  architecture **F**etishi**S**ts! Oftentimes I have enough practice on
+  industrial grade power tools at work so at home I want a change of pace.
+  Flask + raw SQL has been surprisingly comfy.
+
+# Development
+
 ```sh
 poetry install
 pip install --upgrade pip
 pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
       --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
       --global-option=build --global-option=--enable-all-extensions
-
-FLASK_ENV=development FLASK_APP=pytaku.main:app flask run
 
 pytaku-generate-config > pytaku.conf.json
 # fill stuff as needed
@@ -14,6 +35,34 @@ pytaku-generate-config > pytaku.conf.json
 pytaku-migrate
 
 # run 2 processes:
-pytaku -w 7 -b 0.0.0.0:5001  # web server
+pytaku-dev -p 8000  # development webserver
 pytaku-scheduler  # scheduled tasks e.g. update titles
 ```
+
+# Production
+
+```sh
+pip install --user --upgrade pip
+pip install --user pytaku
+pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
+      --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
+      --global-option=build --global-option=--enable-all-extensions
+
+pytaku-generate-config > pytaku.conf.json
+# fill stuff as needed
+
+# run migration script once
+pytaku-migrate
+
+# run 2 processes:
+pytaku -w 7  # production web server - args are passed as-is to gunicorn
+pytaku-scheduler  # scheduled tasks e.g. update titles
+
+# upgrades:
+pip install --user --upgrade pytaku
+pytaku-migrate
+# then restart `pytaku` & `pytaku-scheduler` processes
+```
+
+I don't have to remind you to properly set up a firewall and a TLS-terminating
+reverse proxy e.g. nginx/caddy, right?
