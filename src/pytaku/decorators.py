@@ -2,7 +2,7 @@ from functools import wraps
 
 from flask import redirect, request, session, url_for
 
-from .persistence import read
+from .persistence import read, unread
 
 
 def ensure_session_version(f, CURRENT_VERSION=1):
@@ -36,9 +36,9 @@ def require_login(f):
     return decorated_function
 
 
-def trigger_has_read(f):
+def toggle_has_read(f):
     """
-    Augments a view with the ability to mark a chapter as read if there's a
+    Augments a view with the ability to toggle a chapter's read status if there's a
     `?has_read=<chapter_id>` url param.
     """
 
@@ -46,9 +46,15 @@ def trigger_has_read(f):
     def decorated_function(*args, **kwargs):
         assert "site" in kwargs  # only use on site-specific views
         has_read_chapter_id = request.args.get("has_read")
-        if has_read_chapter_id:
-            if session.get("user"):
+        unread_chapter_id = request.args.get("unread")
+        assert not (has_read_chapter_id and unread_chapter_id)  # can't do both
+
+        if session.get("user"):
+            if has_read_chapter_id:
                 read(session["user"]["id"], kwargs["site"], has_read_chapter_id)
+                return redirect(request.url[: request.url.rfind("?")])
+            elif unread_chapter_id:
+                unread(session["user"]["id"], kwargs["site"], unread_chapter_id)
                 return redirect(request.url[: request.url.rfind("?")])
         return f(*args, **kwargs)
 

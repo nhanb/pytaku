@@ -52,8 +52,7 @@ def load_title(site, title_id, user_id=None):
         SELECT id, name, site, cover_ext, chapters, alt_names, descriptions
         FROM title
         WHERE id = ?
-          AND site = ?
-          AND datetime(updated_at) > datetime('now', '-6 hours');
+          AND site = ?;
         """,
         (title_id, site),
     )

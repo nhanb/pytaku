@@ -50,7 +50,11 @@
   </tr>
   {% for chapter in chapters %}
   <tr>
-    <td>{% if chapter['is_read'] %}yes{% endif %}</td>
+    <td>
+      {% if chapter['is_read'] %}
+      {{ ibutton(href='?unread=' + chapter['id'], text='✓', color='green', title='Click to unread') }}
+      {% endif %}
+    </td>
     <td>
       <a href="{{ url_for('chapter_view', chapter_id=chapter['id'], site=site) }}">
         Chapter {{ chapter['number'] }}

@@ -17,7 +17,7 @@ from mangoapi import get_chapter, get_title, search_title
 
 from . import mangadex
 from .conf import config
-from .decorators import ensure_session_version, require_login, trigger_has_read
+from .decorators import ensure_session_version, require_login, toggle_has_read
 from .persistence import (
     follow,
     get_followed_titles,
@@ -162,7 +162,7 @@ def auth_view():
 
 @app.route("/title/<site>/<title_id>")
 @ensure_session_version
-@trigger_has_read
+@toggle_has_read
 def title_view(site, title_id):
     user = session.get("user", None)
     user_id = user["id"] if user else None
@@ -180,7 +180,7 @@ def title_view(site, title_id):
 
 @app.route("/chapter/<site>/<chapter_id>")
 @ensure_session_version
-@trigger_has_read
+@toggle_has_read
 def chapter_view(site, chapter_id):
     chapter = load_chapter(site, chapter_id)
     if not chapter:

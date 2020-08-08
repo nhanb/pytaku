@@ -45,6 +45,10 @@ Stuff I follow
 .chapter:hover {
   background-color: #eee;
 }
+.chapter:last-child::after {
+  content: '← resume here';
+  background-color: cornsilk;
+}
 
 .group {
   font-size: .9em;
@@ -74,7 +78,10 @@ Stuff I follow
     </a>
   </div>
   <div class="chapters">
-    {% for ch in title['chapters'][:6] %}
+    {% if title['chapters']|length > 4 %}
+    <a class="more chapter" href="{{ title_url }}">and {{ title['chapters']|length - 4 }} more...</a>
+    {% endif %}
+    {% for ch in title['chapters'][-4:] %}
     <a class="chapter" href="{{ url_for('chapter_view', site=title['site'], chapter_id=ch['id']) }}">
       Chapter {{ ch['num_major'] }}{% if ch['num_minor'] %}.{{ ch['num_minor'] }}{% endif %}
               {% if ch['volume'] %}Volume {{ ch['volume'] }} {% endif %}
@@ -84,9 +91,6 @@ Stuff I follow
         {% endfor %}
     </a>
     {% endfor %}
-    {% if title['chapters']|length > 6 %}
-    <a class="more chapter" href="{{ title_url }}">and more...</a>
-    {% endif %}
   </div>
 </div>
 {% endfor %}
