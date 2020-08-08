@@ -181,9 +181,12 @@ nav {
 }
 
 footer {
-  padding: 1rem var(--body-padding);
-  background-color: #eee;
+  padding: 1rem var(--body-padding) var(--body-padding) var(--body-padding);
   line-height: 1.5em;
+  opacity: 0.7;
+}
+footer a {
+  color: inherit;
 }
 
 /* sticky footer */
