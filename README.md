@@ -4,8 +4,6 @@ Production instance coming When It's Ready (tm).
 
 # Pytaku
 
-[![builds.sr.ht status](https://builds.sr.ht/~nhanb/pytaku/commits/ubuntu.yml.svg)](https://builds.sr.ht/~nhanb/pytaku/commits/ubuntu.yml?)
-
 Pytaku is a WIP web-based manga reader that keeps track of your reading
 progress and new chapter updates. Its design goals are:
 
