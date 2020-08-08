@@ -44,17 +44,19 @@
 
 <table>
   <tr>
-    <th>Done</th>
+    {% if session['user'] %}<th>Done</th>{% endif %}
     <th>Name</th>
     <th>Group</th>
   </tr>
   {% for chapter in chapters %}
   <tr>
+    {% if session['user'] %}
     <td>
       {% if chapter['is_read'] %}
       {{ ibutton(href='?unread=' + chapter['id'], text='✓', color='green', title='Click to unread') }}
       {% endif %}
     </td>
+    {% endif %}
     <td>
       <a href="{{ url_for('chapter_view', chapter_id=chapter['id'], site=site) }}">
         Chapter {{ chapter['number'] }}
