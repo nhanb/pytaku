@@ -3,6 +3,8 @@ image: ubuntu/bionic
 secrets:
   # Github deploy key: solely for mirroring to github
   - 89816c8b-4416-4a78-84ee-3ad77b485912
+  # PyPI token for pytaku:
+  - 8c42b8a6-d1b7-4af7-82f2-b8f1b6e085e2
 
 environment:
   # Ugly hack to prepend to PATH:
@@ -13,6 +15,8 @@ environment:
 packages:
   - curl
   - python3.7-dev
+  - python3.7-venv
+  - python3-pip
 
 tasks:
   - mirror-to-github: |
@@ -24,11 +28,32 @@ tasks:
       git push -f github '*:*' --follow-tags
 
   - setup: |
+      python3.7 -m venv ~/venv
+      source ~/venv/bin/activate
       curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -o get-poetry.py
-      python3.7 get-poetry.py -y
+      python get-poetry.py -y
       cd pytaku
       poetry install
 
   - build: |
       cd pytaku
+      source ~/venv/bin/activate
       poetry build
+
+  # Builds.sr.ht doesn't support tag or even branch detection yet:
+  # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
+  # Also the yaml gets mangled badly whenever I try to use a pipe
+  # operator, so I'm moving the whole tag detection thing into a
+  # bash script.
+  - check-publish: |
+      if [[ "$GITHUB_EVENT" == "push" ]] && [[ "$GITHUB_REF" =~ ^refs/tags/ ]]
+      then
+          echo "This is a tag push. Proceeding to publish..."
+      else
+          echo "Not deploying."
+          complete-build  # stop build with a "success" status
+      fi
+
+  - publish: |
+      cd pytaku
+      poetry publish
