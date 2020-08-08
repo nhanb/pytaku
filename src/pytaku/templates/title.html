@@ -42,6 +42,7 @@
 
 <img class="cover" src="https://mangadex.org/images/manga/{{ id }}.{{ cover_ext }}" alt="cover" />
 
+{% if chapters %}
 <table>
   <tr>
     {% if session['user'] %}<th>Done</th>{% endif %}
@@ -68,4 +69,8 @@
   </tr>
   {% endfor %}
 </table>
+{% else %}
+<p>This one has no chapters.</p>
+{% endif %}
+
 {% endblock %}
