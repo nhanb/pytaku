@@ -43,22 +43,22 @@ tasks:
   # Builds.sr.ht doesn't support tag or even branch detection yet:
   # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
   # So here I manually check for it:
-  #- check-publish: |
-      #cd pytaku
-      #git describe --exact-match HEAD || complete-build
+  - check-publish: |
+      cd pytaku
+      git describe --exact-match HEAD || complete-build
 
   - publish: |
       cd pytaku
       poetry publish
 
   - deploy-dev: |
-      # I'm not installing pytaku from pypi here because it may
-      # take a loooong time for the new version to appear.
       cd pytaku
       echo "dev.pytaku.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAQ1jWerB3GUGRhaZZzgpRyCSwo7PRi1cPbokaAwwsAKts1dkXSdCtR9xoTXKdvhASX5xafdzHZqbyFzpc0RleM=" >> ~/.ssh/known_hosts
       # Clean up old stuff just in case
       ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com 'rm -f /home/pytaku/pytaku*.whl'
-      # Copy wheel & systemd service files over
+      # Copy wheel & systemd service files over.
+      # I'm not installing pytaku from pypi here because it may
+      # take a loooong time for the new version to appear.
       scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 dist/pytaku*.whl pytaku@dev.pytaku.com:/home/pytaku/
       scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 contrib/systemd/*.service pytaku@dev.pytaku.com:/home/pytaku/.config/systemd/user/
       # Install & restart serivces
