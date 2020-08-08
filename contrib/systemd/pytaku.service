@@ -1,0 +1,17 @@
+# this goes in ~/.config/systemd/user/pytaku.service
+
+# systemctl --user daemon-reload
+# systemctl --user enable pytaku
+# systemctl --user restart pytaku
+# loginctl enable-linger <username>
+
+[Unit]
+Description=Pytaku server
+
+[Service]
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/bin/bash -c 'export PATH=$PATH:$HOME/.local/bin; pytaku -w 10 -b 0.0.0.0:5001'
+WorkingDirectory=/home/pytaku/pytaku
+
+[Install]
+WantedBy=default.target

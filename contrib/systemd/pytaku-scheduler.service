@@ -1,0 +1,17 @@
+# this goes in ~/.config/systemd/user/pytaku-scheduler.service
+
+# systemctl --user daemon-reload
+# systemctl --user enable pytaku-scheduler
+# systemctl --user restart pytaku-scheduler
+# loginctl enable-linger <username>
+
+[Unit]
+Description=Pytaku scheduler
+
+[Service]
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/home/pytaku/.local/bin/pytaku-scheduler
+WorkingDirectory=/home/pytaku/pytaku
+
+[Install]
+WantedBy=default.target

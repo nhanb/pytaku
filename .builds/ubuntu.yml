@@ -5,6 +5,8 @@ secrets:
   - 89816c8b-4416-4a78-84ee-3ad77b485912
   # PyPI token for pytaku:
   - 8c42b8a6-d1b7-4af7-82f2-b8f1b6e085e2
+  # ssh key for dev.pytaku.com:
+  - 2d6e3246-5adc-41c2-bebe-01dacda9d0c8
 
 environment:
   # Ugly hack to prepend to PATH:
@@ -32,8 +34,6 @@ tasks:
       source ~/venv/bin/activate
       curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -o get-poetry.py
       python get-poetry.py -y
-      cd pytaku
-      poetry install
 
   - build: |
       cd pytaku
@@ -43,10 +43,30 @@ tasks:
   # Builds.sr.ht doesn't support tag or even branch detection yet:
   # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
   # So here I manually check for it:
-  - check-publish: |
-      cd pytaku
-      git describe --exact-match HEAD || complete-build
+  #- check-publish: |
+      #cd pytaku
+      #git describe --exact-match HEAD || complete-build
 
   - publish: |
       cd pytaku
       poetry publish
+
+  - deploy-dev: |
+      # I'm not installing pytaku from pypi here because it may
+      # take a loooong time for the new version to appear.
+      cd pytaku
+      echo "dev.pytaku.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAQ1jWerB3GUGRhaZZzgpRyCSwo7PRi1cPbokaAwwsAKts1dkXSdCtR9xoTXKdvhASX5xafdzHZqbyFzpc0RleM=" >> ~/.ssh/known_hosts
+      # Clean up old stuff just in case
+      ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com 'rm -f /home/pytaku/pytaku*.whl'
+      # Copy wheel & systemd service files over
+      scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 dist/pytaku*.whl pytaku@dev.pytaku.com:/home/pytaku/
+      scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 contrib/systemd/*.service pytaku@dev.pytaku.com:/home/pytaku/.config/systemd/user/
+      # Install & restart serivces
+      ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com "
+        ~/.local/bin/pip install --user pytaku*.whl
+        systemctl --user daemon-reload
+        systemctl --user restart pytaku
+        systemctl --user restart pytaku-scheduler
+        rm pytaku*.whl
+        echo 'All done.'
+      "
