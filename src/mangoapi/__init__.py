@@ -55,7 +55,7 @@ def get_title(title_id):
                 "groups": _extract_groups(chap),
                 **_parse_chapter_number(chap["chapter"]),
             }
-            for chap_id, chap in md_json["chapter"].items()
+            for chap_id, chap in md_json.get("chapter", {}).items()
             if chap["lang_code"] == "gb" and chap["group_name"] != "MangaPlus"
         ],
     }
