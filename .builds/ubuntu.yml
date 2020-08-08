@@ -42,13 +42,10 @@ tasks:
 
   # Builds.sr.ht doesn't support tag or even branch detection yet:
   # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
-  # So here I manually check if:
-  # - current commit has an annotated tag: using git describe
-  # - currently in detached HEAD, not master: to rule out the sourcehut build
-  # that's triggered by the master branch push and not the `--tags` push.
+  # So here I manually check for it:
   - check-publish: |
       cd pytaku
-      git describe --exact-match HEAD && git rev-parse --abbrev-ref --symbolic-full-name HEAD | grep master || complete-build
+      git describe --exact-match HEAD || complete-build
 
   - publish: |
       cd pytaku
