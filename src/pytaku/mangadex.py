@@ -1,9 +1,6 @@
 from mangoapi import login
 from pytaku.conf import config
 
-assert config.MANGADEX_USERNAME
-assert config.MANGADEX_PASSWORD
-
 _cookies = None
 
 

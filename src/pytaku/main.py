@@ -31,6 +31,8 @@ from .persistence import (
     verify_username_password,
 )
 
+config.load()
+
 app = Flask(__name__)
 app.config.update(
     SECRET_KEY=config.FLASK_SECRET_KEY, PERMANENT_SESSION_LIFETIME=timedelta(days=365),

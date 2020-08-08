@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pytaku"
-version = "0.2.1"
+version = "0.2.2"
 description = ""
 authors = ["Bùi Thành Nhân <hi@imnhan.com>"]
 license = "AGPL-3.0-only"
@@ -10,6 +10,7 @@ packages = [
 ]
 
 [tool.poetry.scripts]
+pytaku = "pytaku:serve"
 pytaku-migrate = "pytaku:migrate"
 pytaku-generate-config = "pytaku:generate_config"
 pytaku-scheduler = "pytaku:scheduler"

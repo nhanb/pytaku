@@ -10,7 +10,10 @@ FLASK_ENV=development FLASK_APP=pytaku.main:app flask run
 pytaku-generate-config > pytaku.conf.json
 # fill stuff as needed
 
+# run migration script once
+pytaku-migrate
+
 # run 2 processes:
-gunicorn pytaku.main:app -w 7 -b 0.0.0.0:5001  # web server
+pytaku -w 7 -b 0.0.0.0:5001  # web server
 pytaku-scheduler  # scheduled tasks e.g. update titles
 ```
