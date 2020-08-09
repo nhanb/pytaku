@@ -1,3 +1,5 @@
+begin transaction;
+
 create table title (
     id text,
     name text,
@@ -56,3 +58,5 @@ create table read (
     foreign key (chapter_id, site) references chapter (id, site),
     unique(user_id, chapter_id, site)
 );
+
+commit;

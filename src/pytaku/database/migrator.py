@@ -1,3 +1,4 @@
+import datetime
 import subprocess
 from importlib import resources
 from pathlib import Path
@@ -65,12 +66,27 @@ def migrate(overwrite_latest_schema=True):
         migration_contents = _read_migrations(pending_migrations)
 
         conn = get_conn()
-        with conn:  # apsw provides automatic rollback for free here
-            cursor = conn.cursor()
-            for version, sql in migration_contents:
-                print("Migrating version", version, "...")
-                cursor.execute(sql)
-                cursor.execute(f"PRAGMA user_version = {version};")
+        cursor = conn.cursor()
+
+        # Backup first
+        now = datetime.datetime.utcnow().isoformat("T", "milliseconds")
+        backup_filename = f"db_backup_{now}.sqlite3"
+        print(f"Backup up to {backup_filename}...", end="")
+        cursor.execute("VACUUM main INTO ?;", (backup_filename,))
+        print(" done")
+
+        # Start migrations
+        # NOTE: this is NOT done in a transaction.
+        # You'll need to do transactions inside your sql scripts.
+        # This is to allow for drastic changes that require temporarily turning off the
+        # foreign_keys pragma, which doesn't work inside transactions.
+        # If anything goes wrong here, let it abort the whole script. You can always
+        # restore from the backup file.
+        cursor = conn.cursor()
+        for version, sql in migration_contents:
+            print("Migrating version", version, "...")
+            cursor.execute(sql)
+            cursor.execute(f"PRAGMA user_version = {version};")
 
         if overwrite_latest_schema:
             _write_db_schema_script(migrations_dir)

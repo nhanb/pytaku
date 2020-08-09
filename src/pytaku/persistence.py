@@ -261,20 +261,21 @@ def get_followed_titles(user_id):
     return sorted(titles, key=lambda t: len(t["chapters"]), reverse=True)
 
 
-def read(user_id, site, chapter_id):
+def read(user_id, site, title_id, chapter_id):
     run_sql(
         """
-        INSERT INTO read (user_id, site, chapter_id) VALUES (?, ?, ?)
-        ON CONFLICT (user_id, site, chapter_id) DO UPDATE SET updated_at=datetime('now')
+        INSERT INTO read (user_id, site, title_id, chapter_id) VALUES (?,?,?,?)
+        ON CONFLICT (user_id, site, title_id, chapter_id)
+        DO UPDATE SET updated_at=datetime('now');
         """,
-        (user_id, site, chapter_id),
+        (user_id, site, title_id, chapter_id),
     )
 
 
-def unread(user_id, site, chapter_id):
+def unread(user_id, site, title_id, chapter_id):
     run_sql(
-        "DELETE FROM read WHERE user_id=? AND site=? AND chapter_id=?;",
-        (user_id, site, chapter_id),
+        "DELETE FROM read WHERE user_id=? AND site=? AND title_id=? AND chapter_id=?;",
+        (user_id, site, title_id, chapter_id),
     )
 
 
