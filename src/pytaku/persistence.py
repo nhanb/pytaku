@@ -282,3 +282,32 @@ def find_outdated_titles(since="-6 hours"):
     return run_sql(
         "SELECT id, site FROM title WHERE updated_at <= datetime('now', ?);", (since,)
     )
+
+
+class KeyvalStore:
+    @staticmethod
+    def get(key: str, default=None, since=None) -> str:
+        if since is None:
+            result = run_sql("SELECT value FROM keyval_store WHERE key=?;", (key,))
+        else:
+            result = run_sql(
+                """
+                SELECT value FROM keyval_store WHERE key=?
+                AND updated_at >= datetime('now', ?);
+                """,
+                (key, since),
+            )
+        return result[0] if result else default
+
+    @staticmethod
+    def set(key: str, value: str):
+        # let's not allow crap in by accident
+        assert isinstance(key, str)
+        assert isinstance(value, str)
+        run_sql(
+            """
+            INSERT INTO keyval_store (key, value) VALUES (?,?)
+            ON CONFLICT (key) DO UPDATE SET value=excluded.value, updated_at=datetime('now');
+            """,
+            (key, value),
+        )

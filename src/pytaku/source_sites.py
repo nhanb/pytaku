@@ -1,6 +1,7 @@
 from mangoapi import get_site_class
 
 from .conf import config
+from .persistence import KeyvalStore
 
 """
 This module adapts mangoapi's API to a more convenient one for app-wide use.
@@ -20,6 +21,8 @@ def _get_site(name):
         if name == "mangadex":
             site.username = config.MANGADEX_USERNAME
             site.password = config.MANGADEX_PASSWORD
+        elif name == "mangasee":
+            site.keyval_store = KeyvalStore
     return site
 
 

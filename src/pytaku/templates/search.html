@@ -26,6 +26,7 @@
     background-color: var(--bg-black);
     color: white;
     text-decoration: none;
+    max-width: 150px;
   }
   .result span {
     padding: .5rem;
@@ -59,7 +60,7 @@
   {% for title in titles %}
     <a class="result" href="{{ url_for('title_view', title_id=title['id'], site=title['site']) }}"
        title="{{ title['name'] }}">
-      <img src="https://mangadex.org/images/manga/{{ title['id'] }}.large.jpg" alt="{{ title['name'] }}">
+      <img src="{{ title['thumbnail'] }}" alt="{{ title['name'] }}">
       <span>{{ title['name'] | truncate(50) }}</span>
     </a>
   {% endfor %}

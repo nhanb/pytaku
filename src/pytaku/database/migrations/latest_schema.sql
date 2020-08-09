@@ -55,3 +55,8 @@ CREATE TABLE read (
     foreign key (chapter_id, site) references chapter (id, site),
     unique(user_id, chapter_id, site)
 );
+CREATE TABLE keyval_store (
+    key text primary key,
+    value text not null,
+    updated_at text default (datetime('now'))
+);

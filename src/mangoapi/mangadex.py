@@ -67,7 +67,12 @@ class Mangadex(Site):
 
         matches = TITLES_PATTERN.findall(md_resp.text)
         titles = [
-            {"id": int(id), "name": name.strip(), "site": "mangadex"}
+            {
+                "id": id,
+                "name": name.strip(),
+                "site": "mangadex",
+                "thumbnail": f"https://mangadex.org/images/manga/{id}.large.jpg",
+            }
             for id, name in matches
         ]
         return titles
