@@ -13,7 +13,7 @@ class Site(ABC):
         pass
 
     @abstractmethod
-    def get_chapter(self, chapter_id):
+    def get_chapter(self, title_id, chapter_id):
         pass
 
     @abstractmethod

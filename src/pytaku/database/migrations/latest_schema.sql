@@ -13,7 +13,7 @@ CREATE TABLE title (
 
     unique(id, site)
 );
-CREATE TABLE chapter (
+CREATE TABLE IF NOT EXISTS "old_chapter" (
     id text,
     title_id text,
     site text,
@@ -52,11 +52,26 @@ CREATE TABLE read (
     updated_at text default (datetime('now')),
 
     foreign key (user_id) references user (id),
-    foreign key (chapter_id, site) references chapter (id, site),
+    foreign key (chapter_id, site) references "old_chapter" (id, site),
     unique(user_id, chapter_id, site)
 );
 CREATE TABLE keyval_store (
     key text primary key,
     value text not null,
     updated_at text default (datetime('now'))
+);
+CREATE TABLE chapter (
+    id text,
+    title_id text,
+    site text,
+    num_major integer,
+    num_minor integer,
+    name text,
+    pages text,
+    groups text,
+    updated_at text default (datetime('now')), is_webtoon boolean,
+
+    foreign key (title_id, site) references title (id, site),
+    unique(site, title_id, id),
+    unique(site, title_id, num_major, num_minor)
 );

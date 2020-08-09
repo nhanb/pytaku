@@ -84,7 +84,7 @@ Stuff I follow
     <a class="more chapter" href="{{ title_url }}">and {{ title['chapters']|length - 4 }} more...</a>
     {% endif %}
     {% for ch in title['chapters'][-4:] %}
-    <a class="chapter" href="{{ url_for('chapter_view', site=title['site'], chapter_id=ch['id']) }}">
+    <a class="chapter" href="{{ url_for('chapter_view', site=title['site'], title_id=title['id'], chapter_id=ch['id']) }}">
       Chapter {{ ch['num_major'] }}{% if ch['num_minor'] %}.{{ ch['num_minor'] }}{% endif %}
               {% if ch['volume'] %}Volume {{ ch['volume'] }} {% endif %}
               {% if ch['name'] %} - {{ ch['name'] }}{% endif %}

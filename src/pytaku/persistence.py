@@ -121,7 +121,7 @@ def save_chapter(chapter):
         {
             "id": chapter["id"],
             "title_id": chapter["title_id"],
-            "site": "mangadex",
+            "site": chapter["site"],
             "num_major": chapter.get("num_major"),
             "num_minor": chapter.get("num_minor"),
             "name": chapter["name"],
@@ -132,14 +132,14 @@ def save_chapter(chapter):
     )
 
 
-def load_chapter(site, chapter_id):
+def load_chapter(site, title_id, chapter_id):
     result = run_sql(
         """
         SELECT id, title_id, num_major, num_minor, name, pages, groups, is_webtoon
         FROM chapter
-        WHERE id = ? AND site=?;
+        WHERE site=? AND title_id=? AND id=?;
         """,
-        (chapter_id, site),
+        (site, title_id, chapter_id),
     )
     if not result:
         return None

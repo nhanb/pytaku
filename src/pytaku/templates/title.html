@@ -59,7 +59,7 @@
     </td>
     {% endif %}
     <td>
-      <a href="{{ url_for('chapter_view', chapter_id=chapter['id'], site=site) }}">
+      <a href="{{ url_for('chapter_view', chapter_id=chapter['id'], title_id=id, site=site) }}">
         Chapter {{ chapter['number'] }}
         {% if chapter['volume'] %}Volume {{ chapter['volume'] }} {% endif %}
         {% if chapter['name'] %}- {{ chapter['name'] }} {% endif %}

@@ -51,7 +51,7 @@ def home_view():
     return render_template("home.html")
 
 
-@app.route("/me", methods=["GET"])
+@app.route("/following", methods=["GET"])
 @ensure_session_version
 @require_login
 def follows_view():
@@ -168,7 +168,7 @@ def auth_view():
     return render_template("auth.html")
 
 
-@app.route("/title/<site>/<title_id>")
+@app.route("/m/<site>/<title_id>")
 @ensure_session_version
 @toggle_has_read
 def title_view(site, title_id):
@@ -188,24 +188,27 @@ def title_view(site, title_id):
     return render_template("title.html", **title)
 
 
-@app.route("/chapter/<site>/<chapter_id>")
+@app.route("/m/<site>/<title_id>/<chapter_id>")
 @ensure_session_version
 @toggle_has_read
-def chapter_view(site, chapter_id):
-    chapter = load_chapter(site, chapter_id)
+def chapter_view(site, title_id, chapter_id):
+    chapter = load_chapter(site, title_id, chapter_id)
     if not chapter:
         print("Getting chapter", chapter_id)
-        chapter = get_chapter(chapter_id)
+        chapter = get_chapter(site, title_id, chapter_id)
+        chapter["site"] = site
         save_chapter(chapter)
     else:
         print("Loading chapter", chapter_id, "from db")
 
-    chapter["pages"] = [
-        url_for("proxy_view", b64_url=_encode_proxy_url(p)) for p in chapter["pages"]
-    ]
+    if site in ("mangadex", "mangasee"):
+        chapter["pages"] = [
+            url_for("proxy_view", b64_url=_encode_proxy_url(p))
+            for p in chapter["pages"]
+        ]
 
     # YIIIIKES
-    title = load_title(site, chapter["title_id"])
+    title = load_title(site, title_id)
     prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
     chapter["prev_chapter"] = prev_chapter
     chapter["next_chapter"] = next_chapter
@@ -229,6 +232,7 @@ def proxy_view(b64_url):
     """Fine I'll do it"""
     url = _decode_proxy_url(b64_url)
     if not _is_manga_img_url(url):
+        print("Invalid img url:", url)
         return "Nope", 400
     md_resp = requests.get(url)
     resp = make_response(md_resp.content, md_resp.status_code)
@@ -245,6 +249,9 @@ def _decode_proxy_url(b64_url):
 
 
 def _is_manga_img_url(
-    url, pattern=re.compile(r"^https://(\w+\.)?mangadex\.org/data/.+$")
+    url,
+    pattern=re.compile(
+        r"^https://([\w_-]+\.)?(mangadex\.org/data|mangabeast\d{0,4}.com/manga)/"
+    ),
 ):
     return pattern.match(url)

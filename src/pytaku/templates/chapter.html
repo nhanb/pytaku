@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Ch.{{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}
+Chapter {{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}
 {% if name %} - {{ name }}{% endif %}
 {% endblock %}
 
 {% block head %}
 
 {% if next_chapter %}
-<link rel="prefetch" href="{{ url_for('chapter_view', site=site, chapter_id=next_chapter['id'])}}">
+<link rel="prefetch" href="{{ url_for('chapter_view', site=site, title_id=title_id, chapter_id=next_chapter['id'])}}">
 {% endif %}
 
 <style>
@@ -61,7 +61,7 @@ Ch.{{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}
 {% block buttons %}
 <div class="buttons">
   {% if prev_chapter %}
-  {{ ibutton(href=url_for('chapter_view', site=site, chapter_id=prev_chapter['id']), left_icon='chevrons-left', text='Prev') }}
+  {{ ibutton(href=url_for('chapter_view', site=site, title_id=title_id, chapter_id=prev_chapter['id']), left_icon='chevrons-left', text='Prev') }}
   {% else %}
   {{ ibutton(left_icon='chevrons-left', text='Prev', disabled=True) }}
   {% endif %}
@@ -70,7 +70,7 @@ Ch.{{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}
 
   {% if next_chapter %}
 
-    {% set next_url = url_for('chapter_view', site=site, chapter_id=next_chapter['id']) %}
+    {% set next_url = url_for('chapter_view', site=site, title_id=title_id, chapter_id=next_chapter['id']) %}
     {% if session['user'] %}
       {% set next_url = next_url + '?has_read=' + id %}
     {% endif %}

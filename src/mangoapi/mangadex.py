@@ -36,7 +36,7 @@ class Mangadex(Site):
         }
         return title
 
-    def get_chapter(self, chapter_id):
+    def get_chapter(self, title_id, chapter_id):
         md_resp = requests.get(
             f"https://mangadex.org/api/?id={chapter_id}&type=chapter&saver=0"
         )

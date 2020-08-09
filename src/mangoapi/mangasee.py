@@ -9,6 +9,9 @@ from mangoapi.base_site import Site
 regexes = {
     "title_name": re.compile(r"<title>\s*([^|]+) | MangaSee</title>"),
     "title_chapters": re.compile(r"vm\.Chapters = (\[[^\]]+\])"),
+    "chapter_title_name": re.compile(r'vm\.IndexName = "([^"]+)"'),
+    "chapter_data": re.compile(r"vm\.CurChapter = (\{[^\}]+\})"),
+    "chapter_img_server": re.compile(r'vm\.CurPathName = "([^"]+)"'),
 }
 
 
@@ -24,16 +27,18 @@ class Mangasee(Site):
         html = resp.text
         name = regexes["title_name"].search(html).group(1).strip()
         chapters_str = regexes["title_chapters"].search(html).group(1)
-        chapters = [
-            {
-                "id": ch["Chapter"],
-                "name": ch["ChapterName"],
-                "volume": "",
-                "groups": [],
-                **_parse_chapter_number(ch["Chapter"]),
-            }
-            for ch in json.loads(chapters_str)
-        ]
+        chapters = []
+        for ch in json.loads(chapters_str):
+            numbers = _parse_chapter_number(ch["Chapter"])
+            chapters.append(
+                {
+                    "id": numbers["number"],
+                    "name": ch["ChapterName"],
+                    "volume": "",
+                    "groups": [],
+                    **numbers,
+                }
+            )
         return {
             "id": title_id,
             "name": name,
@@ -44,8 +49,33 @@ class Mangasee(Site):
             "descriptions": [],
         }
 
-    def get_chapter(self, chapter_id):
-        pass
+    def get_chapter(self, title_id, chapter_id):
+        resp = requests.get(
+            f"https://mangasee123.com/read-online/{title_id}-chapter-{chapter_id}.html"
+        )
+        assert resp.status_code == 200
+        html = resp.text
+
+        title_id = regexes["chapter_title_name"].search(html).group(1)
+        chapter_data = json.loads(regexes["chapter_data"].search(html).group(1))
+        num_pages = int(chapter_data["Page"])
+        img_server = regexes["chapter_img_server"].search(html).group(1)
+
+        numbers = _parse_chapter_number(chapter_data["Chapter"])
+
+        result = {
+            "id": chapter_id,
+            "title_id": title_id,
+            "name": chapter_data["ChapterName"] or "",
+            "pages": [
+                _generate_img_src(img_server, title_id, chapter_data["Chapter"], p)
+                for p in range(1, num_pages + 1)
+            ],
+            "groups": [],
+            "is_webtoon": False,
+            **numbers,
+        }
+        return result
 
     def search_title(self, query):
         """
@@ -116,8 +146,9 @@ class SearchTable:
         )
 
     def search(self, query):
+        query = '"' + query.replace('"', '""') + '"'
         return self.db.cursor().execute(
-            "SELECT id, name FROM titles(?) ORDER BY rank;", (query,)
+            "SELECT id, name FROM titles WHERE titles MATCH ? ORDER BY rank;", (query,),
         )
 
 
@@ -138,8 +169,33 @@ def _parse_chapter_number(e):
     """
     major = int(e[1:-1])
     minor = int(e[-1])
-    return {
+    result = {
         "num_major": major,
-        "num_minor": minor,
         "number": str(major) if not minor else f"{major}.{minor}",
     }
+    if minor:
+        result["num_minor"] = minor
+    return result
+
+
+def _generate_img_src(img_srv, title_id, chapter_id, page):
+    """
+    Chapter ID padding logic:
+
+        vm.ChapterImage = function (ChapterString) {
+          var Chapter = ChapterString.slice(1, -1);
+          var Odd = ChapterString[ChapterString.length - 1];
+          if (Odd == 0) {
+            return Chapter;
+          } else {
+            return Chapter + "." + Odd;
+          }
+        };
+    """
+    chapter = chapter_id[1:-1]
+    odd = chapter_id[len(chapter_id) - 1]
+    if odd == "0":
+        padded_chapter = chapter
+    else:
+        padded_chapter = f"{chapter}.{odd}"
+    return f"https://{img_srv}/manga/{title_id}/{padded_chapter}-{page:03d}.png"
