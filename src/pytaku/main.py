@@ -13,9 +13,6 @@ from flask import (
     url_for,
 )
 
-from mangoapi import get_chapter, get_title, search_title
-
-from . import mangadex
 from .conf import config
 from .decorators import ensure_session_version, require_login, toggle_has_read
 from .persistence import (
@@ -30,6 +27,7 @@ from .persistence import (
     unfollow,
     verify_username_password,
 )
+from .source_sites import get_chapter, get_title, search_title_all_sites
 
 config.load()
 
@@ -210,11 +208,10 @@ def chapter_view(site, chapter_id):
 @ensure_session_version
 def search_view():
     query = request.args.get("q", "").strip()
-    titles = []
+    results = {}
     if query:
-        cookies = mangadex.get_cookies()
-        titles = search_title(cookies, query)
-    return render_template("search.html", titles=titles, query=query)
+        results = search_title_all_sites(query)
+    return render_template("search.html", results=results, query=query)
 
 
 @app.route("/proxy/<b64_url>")

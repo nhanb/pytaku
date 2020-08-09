@@ -1,9 +1,8 @@
 import time
 from datetime import datetime, timedelta
 
-from mangoapi import get_title
-
 from .persistence import find_outdated_titles, save_title
+from .source_sites import get_title
 
 now = datetime.now
 

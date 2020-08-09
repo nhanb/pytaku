@@ -10,6 +10,9 @@
 
 {% block head %}
 <style>
+  .site-heading {
+    text-transform: capitalize;
+  }
   .results {
     display: flex;
     flex-direction: row;
@@ -29,6 +32,10 @@
     width: 0;
     min-width: 100%;
   }
+
+  .result-text {
+    margin-bottom: 1rem;
+  }
 </style>
 {% endblock %}
 
@@ -38,10 +45,14 @@
   <h1>Please enter a search query above.</h1>
 
 {% else %}
+{% for site, titles in results.items() %}
+<div>
+  <h1 class="site-heading">{{ site }}</h1>
+
   {% if titles %}
-  <h1>Showing {{ titles | length }} result(s) for "{{ query }}":</h1>
+  <h2 class="result-text">Showing <strong>{{ titles | length }}</strong> result(s) for "{{ query }}":</h2>
   {% else %}
-  <h1>No results for "{{ query }}".</h1>
+  <h2 class="result-text">No results for "{{ query }}".</h2>
   {% endif %}
 
   <div class="results">
@@ -53,7 +64,8 @@
     </a>
   {% endfor %}
   </div>
-
+</div>
+{% endfor %}
 {% endif %}
 
 
