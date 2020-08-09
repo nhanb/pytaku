@@ -37,10 +37,10 @@
       {{ ibutton(left_icon='bookmark', text=ftext, color=fcolor, title=ftitle) }}
     </form>
   {% endif %}
-  {{ ibutton(href='https://mangadex.org/manga/' + id, right_icon='arrow-up-right', text='Source site', color='blue', title='Go to source site') }}
+  {{ ibutton(href=source_url, right_icon='arrow-up-right', text='Source site', color='blue', title='Go to source site') }}
 </div>
 
-<img class="cover" src="https://mangadex.org/images/manga/{{ id }}.{{ cover_ext }}" alt="cover" />
+<img class="cover" src="{{ cover }}" alt="cover" />
 
 {% if chapters %}
 <table>

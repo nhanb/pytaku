@@ -38,12 +38,17 @@ def search_title(site_name, query):
     return _get_site(site_name).search_title(query)
 
 
+def title_cover(site_name, title_id, cover_ext):
+    return _get_site(site_name).title_cover(title_id, cover_ext)
+
+
+def title_source_url(site_name, title_id):
+    return _get_site(site_name).title_source_url(title_id)
+
+
 def search_title_all_sites(query):
     """
     Returns dict in the form of {site_name: List[Title]}
     I should really look into proper type annotations huh.
     """
-    return {
-        site_name: search_title(site_name, query)
-        for site_name in ("mangasee", "mangadex")
-    }
+    return {site_name: search_title(site_name, query) for site_name in ("mangasee",)}

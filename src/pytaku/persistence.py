@@ -37,7 +37,7 @@ def save_title(title):
         {
             "id": title["id"],
             "name": title["name"],
-            "site": "mangadex",
+            "site": title["site"],
             "cover_ext": title["cover_ext"],
             "chapters": json.dumps(title["chapters"]),
             "alt_names": json.dumps(title["alt_names"]),

@@ -23,6 +23,7 @@ Stuff I follow
 .cover {
   border: 1px solid #777;
   margin-right: .5rem;
+  max-width: 150px;
 }
 .cover:hover {
   box-shadow: 0 0 3px black;
@@ -48,6 +49,7 @@ Stuff I follow
 .chapter:last-child::after {
   content: '← resume here';
   background-color: cornsilk;
+  white-space: nowrap;
 }
 
 .group {
@@ -73,7 +75,7 @@ Stuff I follow
   <div>
     <a href="{{ title_url }}">
       <img class="cover"
-           src="https://mangadex.org/images/manga/{{ title['id'] }}.large.jpg"
+           src="{{ title['cover'] }}"
            alt="{{ title['name'] }}" />
     </a>
   </div>

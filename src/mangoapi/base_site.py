@@ -20,6 +20,14 @@ class Site(ABC):
     def search_title(self, query):
         pass
 
+    @abstractmethod
+    def title_cover(self, title_id, cover_ext):
+        pass
+
+    @abstractmethod
+    def title_source_url(self, title_id):
+        pass
+
     # optional abstract method
     def login(self, username, password):
         raise NotImplementedError()

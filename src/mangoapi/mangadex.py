@@ -95,6 +95,12 @@ class Mangadex(Site):
         assert md_resp.status_code == 200, md_resp.text
         return dict(md_resp.cookies)
 
+    def title_cover(self, title_id, cover_ext):
+        return f"https://mangadex.org/images/manga/{title_id}.{cover_ext}"
+
+    def title_source_url(self, title_id):
+        return f"https://mangadex.org/manga/{title_id}"
+
 
 # Titles regex slightly adapted from https://github.com/md-y/mangadex-full-api
 # Thanks!

@@ -27,7 +27,13 @@ from .persistence import (
     unfollow,
     verify_username_password,
 )
-from .source_sites import get_chapter, get_title, search_title_all_sites
+from .source_sites import (
+    get_chapter,
+    get_title,
+    search_title_all_sites,
+    title_cover,
+    title_source_url,
+)
 
 config.load()
 
@@ -50,6 +56,8 @@ def home_view():
 @require_login
 def follows_view():
     titles = get_followed_titles(session["user"]["id"])
+    for title in titles:
+        title["cover"] = title_cover(title["site"], title["id"], title["cover_ext"])
     return render_template("follows.html", titles=titles)
 
 
@@ -169,12 +177,14 @@ def title_view(site, title_id):
     title = load_title(site, title_id, user_id=user_id)
     if not title:
         print("Getting title", title_id)
-        title = get_title(title_id)
+        title = get_title(site, title_id)
         print("Saving title", title_id, "to db")
         save_title(title)
     else:
         print("Loading title", title_id, "from db")
     title["site"] = site
+    title["cover"] = title_cover(site, title_id, title["cover_ext"])
+    title["source_url"] = title_source_url(site, title_id)
     return render_template("title.html", **title)
 
 

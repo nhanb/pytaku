@@ -1,9 +1,15 @@
 import json
+import re
 
 import apsw
 import requests
 
 from mangoapi.base_site import Site
+
+regexes = {
+    "title_name": re.compile(r"<title>\s*([^|]+) | MangaSee</title>"),
+    "title_chapters": re.compile(r"vm\.Chapters = (\[[^\]]+\])"),
+}
 
 
 class Mangasee(Site):
@@ -13,7 +19,30 @@ class Mangasee(Site):
         self.keyval_store = keyval_store
 
     def get_title(self, title_id):
-        pass
+        resp = requests.get(f"https://mangasee123.com/manga/{title_id}", timeout=3)
+        assert resp.status_code == 200
+        html = resp.text
+        name = regexes["title_name"].search(html).group(1).strip()
+        chapters_str = regexes["title_chapters"].search(html).group(1)
+        chapters = [
+            {
+                "id": ch["Chapter"],
+                "name": ch["ChapterName"],
+                "volume": "",
+                "groups": [],
+                **_parse_chapter_number(ch["Chapter"]),
+            }
+            for ch in json.loads(chapters_str)
+        ]
+        return {
+            "id": title_id,
+            "name": name,
+            "site": "mangasee",
+            "cover_ext": "jpg",
+            "chapters": chapters,
+            "alt_names": [],
+            "descriptions": [],
+        }
 
     def get_chapter(self, chapter_id):
         pass
@@ -60,6 +89,12 @@ class Mangasee(Site):
             for row in self.search_table.search(query)
         ]
 
+    def title_cover(self, title_id, cover_ext):
+        return f"https://cover.mangabeast01.com/cover/{title_id}.jpg"
+
+    def title_source_url(self, title_id):
+        return f"https://mangasee123.com/manga/{title_id}"
+
 
 class SearchTable:
     def __init__(self, titles: list):
@@ -84,3 +119,27 @@ class SearchTable:
         return self.db.cursor().execute(
             "SELECT id, name FROM titles(?) ORDER BY rank;", (query,)
         )
+
+
+def _parse_chapter_number(e):
+    """
+    Mangasee author tries to be clever with obtuse chapter numbers that must be decoded
+    via javascript:
+
+        (vm.ChapterDisplay = function (e) {
+        var t = parseInt(e.slice(1, -1)),
+            n = e[e.length - 1];
+        return 0 == n ? t : t + "." + n;
+        })
+
+        Example: vm.ChapterDisplay('100625') === '62.5'
+
+    No idea why tbh.
+    """
+    major = int(e[1:-1])
+    minor = int(e[-1])
+    return {
+        "num_major": major,
+        "num_minor": minor,
+        "number": str(major) if not minor else f"{major}.{minor}",
+    }
