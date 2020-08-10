@@ -69,11 +69,13 @@ def migrate(overwrite_latest_schema=True):
         cursor = conn.cursor()
 
         # Backup first
-        now = datetime.datetime.utcnow().isoformat("T", "milliseconds")
-        backup_filename = f"db_backup_{now}.sqlite3"
-        print(f"Backup up to {backup_filename}...", end="")
-        cursor.execute("VACUUM main INTO ?;", (backup_filename,))
-        print(" done")
+        current_version = _get_current_version()
+        if current_version != 0:
+            now = datetime.datetime.utcnow().isoformat("T", "milliseconds")
+            backup_filename = f"db_backup_v{current_version}_{now}.sqlite3"
+            print(f"Backup up to {backup_filename}...", end="")
+            cursor.execute("VACUUM main INTO ?;", (backup_filename,))
+            print(" done")
 
         # Start migrations
         # NOTE: this is NOT done in a transaction.

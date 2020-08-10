@@ -34,7 +34,7 @@ CREATE TABLE keyval_store (
     value text not null,
     updated_at text default (datetime('now'))
 );
-CREATE TABLE chapter (
+CREATE TABLE IF NOT EXISTS "chapter" (
     id text,
     title_id text,
     site text,
@@ -50,7 +50,7 @@ CREATE TABLE chapter (
     unique(site, title_id, id),
     unique(site, title_id, num_major, num_minor)
 );
-CREATE TABLE read (
+CREATE TABLE IF NOT EXISTS "read" (
     user_id integer not null,
     site text not null,
     title_id text, -- nullable to accomodate existing mangadex rows, urgh.
