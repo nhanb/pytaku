@@ -69,6 +69,5 @@ tasks:
         systemctl --user daemon-reload &&
         systemctl --user restart pytaku &&
         systemctl --user restart pytaku-scheduler &&
-        rm pytaku*.whl &&
         echo 'All done.'
       "
