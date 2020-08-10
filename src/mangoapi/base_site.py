@@ -25,6 +25,10 @@ class Site(ABC):
         pass
 
     @abstractmethod
+    def title_thumbnail(self, title_id):
+        pass
+
+    @abstractmethod
     def title_source_url(self, title_id):
         pass
 

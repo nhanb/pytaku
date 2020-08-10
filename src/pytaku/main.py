@@ -33,6 +33,7 @@ from .source_sites import (
     search_title_all_sites,
     title_cover,
     title_source_url,
+    title_thumbnail,
 )
 
 config.load()
@@ -57,7 +58,7 @@ def home_view():
 def follows_view():
     titles = get_followed_titles(session["user"]["id"])
     for title in titles:
-        title["cover"] = title_cover(title["site"], title["id"], title["cover_ext"])
+        title["thumbnail"] = title_thumbnail(title["site"], title["id"])
     return render_template("follows.html", titles=titles)
 
 

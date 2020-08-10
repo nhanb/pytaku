@@ -42,6 +42,10 @@ def title_cover(site_name, title_id, cover_ext):
     return _get_site(site_name).title_cover(title_id, cover_ext)
 
 
+def title_thumbnail(site_name, title_id):
+    return _get_site(site_name).title_thumbnail(title_id)
+
+
 def title_source_url(site_name, title_id):
     return _get_site(site_name).title_source_url(title_id)
 

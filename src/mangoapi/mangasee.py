@@ -1,9 +1,9 @@
 import json
 import re
 
-import apsw
 import requests
 
+import apsw
 from mangoapi.base_site import Site
 
 regexes = {
@@ -120,6 +120,9 @@ class Mangasee(Site):
         ]
 
     def title_cover(self, title_id, cover_ext):
+        return self.title_thumbnail(title_id)
+
+    def title_thumbnail(self, title_id):
         return f"https://cover.mangabeast01.com/cover/{title_id}.jpg"
 
     def title_source_url(self, title_id):

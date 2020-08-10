@@ -98,6 +98,9 @@ class Mangadex(Site):
     def title_cover(self, title_id, cover_ext):
         return f"https://mangadex.org/images/manga/{title_id}.{cover_ext}"
 
+    def title_thumbnail(self, title_id):
+        return f"https://mangadex.org/images/manga/{title_id}.large.jpg"
+
     def title_source_url(self, title_id):
         return f"https://mangadex.org/manga/{title_id}"
 
