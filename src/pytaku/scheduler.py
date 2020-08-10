@@ -41,6 +41,6 @@ class UpdateOutdatedSeries(Worker):
     def run(self):
         for title in find_outdated_titles():
             print(f"Updating title {title['id']} from {title['site']}...", end="")
-            updated_title = get_title(title["id"])
+            updated_title = get_title(title["site"], title["id"])
             save_title(updated_title)
             print(" done")
