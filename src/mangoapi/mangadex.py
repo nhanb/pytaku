@@ -19,6 +19,7 @@ class Mangadex(Site):
         title = {
             "id": title_id,
             "name": md_json["manga"]["title"],
+            "site": "mangadex",
             "cover_ext": cover_ext,
             "alt_names": md_json["manga"]["alt_names"],
             "descriptions": md_json["manga"]["description"].split("\r\n\r\n"),
@@ -50,6 +51,7 @@ class Mangadex(Site):
         chapter = {
             "id": chapter_id,
             "title_id": md_json["manga_id"],
+            "site": "mangadex",
             "name": md_json["title"],
             "pages": [f"{img_path}/{page}" for page in md_json["page_array"]],
             "groups": _extract_groups(md_json),

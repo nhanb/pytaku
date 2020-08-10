@@ -66,6 +66,7 @@ class Mangasee(Site):
         result = {
             "id": chapter_id,
             "title_id": title_id,
+            "site": "mangasee",
             "name": chapter_data["ChapterName"] or "",
             "pages": [
                 _generate_img_src(img_server, title_id, chapter_data["Chapter"], p)

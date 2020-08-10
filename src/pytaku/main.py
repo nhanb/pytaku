@@ -58,7 +58,10 @@ def home_view():
 def follows_view():
     titles = get_followed_titles(session["user"]["id"])
     for title in titles:
-        title["thumbnail"] = title_thumbnail(title["site"], title["id"])
+        thumbnail = title_thumbnail(title["site"], title["id"])
+        if title["site"] == "mangadex":
+            thumbnail = url_for("proxy_view", b64_url=_encode_proxy_url(thumbnail))
+        title["thumbnail"] = thumbnail
     return render_template("follows.html", titles=titles)
 
 
@@ -183,8 +186,11 @@ def title_view(site, title_id):
         save_title(title)
     else:
         print("Loading title", title_id, "from db")
-    title["site"] = site
     title["cover"] = title_cover(site, title_id, title["cover_ext"])
+    if site == "mangadex":
+        title["cover"] = url_for(
+            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
+        )
     title["source_url"] = title_source_url(site, title_id)
     return render_template("title.html", **title)
 
@@ -225,6 +231,12 @@ def search_view():
     results = {}
     if query:
         results = search_title_all_sites(query)
+
+    if "mangadex" in results:
+        for title in results["mangadex"]:
+            title["thumbnail"] = url_for(
+                "proxy_view", b64_url=_encode_proxy_url(title["thumbnail"])
+            )
     return render_template("search.html", results=results, query=query)
 
 
@@ -252,7 +264,7 @@ def _decode_proxy_url(b64_url):
 def _is_manga_img_url(
     url,
     pattern=re.compile(
-        r"^https://([\w_-]+\.)?(mangadex\.org/data|mangabeast\d{0,4}.com/manga)/"
+        r"^https://([\w_-]+\.)?(mangadex\.org/(data|images)|mangabeast\d{0,4}.com/manga)/"
     ),
 ):
     return pattern.match(url)

@@ -1,7 +1,8 @@
 import json
 
-import apsw
 import argon2
+
+import apsw
 
 from .database.common import run_sql, run_sql_on_demand
 
@@ -135,7 +136,7 @@ def save_chapter(chapter):
 def load_chapter(site, title_id, chapter_id):
     result = run_sql(
         """
-        SELECT id, title_id, num_major, num_minor, name, pages, groups, is_webtoon
+        SELECT id, title_id, site, num_major, num_minor, name, pages, groups, is_webtoon
         FROM chapter
         WHERE site=? AND title_id=? AND id=?;
         """,
