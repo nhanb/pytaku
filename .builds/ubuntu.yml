@@ -63,12 +63,12 @@ tasks:
       scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 contrib/systemd/*.service pytaku@dev.pytaku.com:/home/pytaku/.config/systemd/user/
       # Install & restart serivces
       ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com "
-        ~/.local/bin/pip install --user pytaku*.whl
-        cd ~/pytaku
-        pytaku-migrate
-        systemctl --user daemon-reload
-        systemctl --user restart pytaku
-        systemctl --user restart pytaku-scheduler
-        rm pytaku*.whl
+        ~/.local/bin/pip install --user pytaku*.whl &&
+        cd ~/pytaku &&
+        ~/.local/bin/pytaku-migrate &&
+        systemctl --user daemon-reload &&
+        systemctl --user restart pytaku &&
+        systemctl --user restart pytaku-scheduler &&
+        rm pytaku*.whl &&
         echo 'All done.'
       "
