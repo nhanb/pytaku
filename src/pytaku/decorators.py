@@ -5,27 +5,6 @@ from flask import redirect, request, session, url_for
 from .persistence import read, unread
 
 
-def ensure_session_version(f, CURRENT_VERSION=1):
-    """
-    Increment CURRENT_VERSION to nuke all current sessions.
-    Useful for when I try to change session structure or something. Maybe.
-    """
-
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if (
-            not session.get("version")
-            or not isinstance(session["version"], int)
-            or session["version"] < CURRENT_VERSION
-        ):
-            session.clear()
-            session["version"] = CURRENT_VERSION
-            return redirect("/")
-        return f(*args, **kwargs)
-
-    return decorated_function
-
-
 def require_login(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
