@@ -208,12 +208,17 @@ def chapter_view(site, title_id, chapter_id):
 
     # YIIIIKES
     title = load_title(site, title_id)
+    title["cover"] = title_cover(site, title_id, title["cover_ext"])
+    if site == "mangadex":
+        title["cover"] = url_for(
+            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
+        )
     prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
     chapter["prev_chapter"] = prev_chapter
     chapter["next_chapter"] = next_chapter
 
     chapter["site"] = site
-    return render_template("chapter.html", **chapter)
+    return render_template("chapter.html", title=title, **chapter)
 
 
 @app.route("/search")
@@ -240,7 +245,7 @@ def proxy_view(b64_url):
         return "Nope", 400
     md_resp = requests.get(url)
     resp = make_response(md_resp.content, md_resp.status_code)
-    resp.headers.extend(**md_resp.headers)
+    resp.headers["Content-Type"] = md_resp.headers["Content-Type"]
     return resp
 
 
