@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<meta property="og:title" content="{{ name }} - Pytaku" />
+<meta property="og:title" content="{{ name }}" />
 <meta property="og:image" content="{{ cover }}" />
 <meta property="og:description" content="{{ descriptions | join('\n') or '(no description)' }}" />
 
@@ -45,7 +45,9 @@
 </div>
 
 <img class="cover" src="{{ cover }}" alt="cover" />
-<p class="description">{{ descriptions | join('\n') }}</p>
+{% for desc in descriptions %}
+<p class="description">{{ desc }}</p>
+{% endfor %}
 
 {% if chapters %}
 <table>

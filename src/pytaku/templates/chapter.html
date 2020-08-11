@@ -5,7 +5,7 @@ Chapter {{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}{% if name %
 {% endblock %}
 
 {% block head %}
-<meta property="og:title" content="{{ title['name'] }} {{ self.title() }} - Pytaku" />
+<meta property="og:title" content="{{ title['name'] }} {{ self.title() }}" />
 <meta property="og:image" content="{{ title['cover'] }}" />
 <meta property="og:description" content="{{ title['descriptions'] | join('\n') or '(no description)' }}" />
 
