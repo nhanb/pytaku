@@ -9,6 +9,9 @@ from mangoapi.base_site import Site
 regexes = {
     "title_name": re.compile(r"<title>\s*([^|]+) | MangaSee</title>"),
     "title_chapters": re.compile(r"vm\.Chapters = (\[[^\]]+\])"),
+    "title_desc": re.compile(
+        r"<span +class=\"mlabel\">Description:</span>[^<]+<div[^>]*>([^<]+)<"
+    ),
     "chapter_title_name": re.compile(r'vm\.IndexName = "([^"]+)"'),
     "chapter_data": re.compile(r"vm\.CurChapter = (\{[^\}]+\})"),
     "chapter_img_server": re.compile(r'vm\.CurPathName = "([^"]+)"'),
@@ -26,6 +29,7 @@ class Mangasee(Site):
         assert resp.status_code == 200
         html = resp.text
         name = regexes["title_name"].search(html).group(1).strip()
+        desc = regexes["title_desc"].search(html).group(1).strip()
         chapters_str = regexes["title_chapters"].search(html).group(1)
         chapters = []
         for ch in json.loads(chapters_str):
@@ -46,7 +50,7 @@ class Mangasee(Site):
             "cover_ext": "jpg",
             "chapters": chapters,
             "alt_names": [],
-            "descriptions": [],
+            "descriptions": [desc],
         }
 
     def get_chapter(self, title_id, chapter_id):
