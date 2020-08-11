@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<meta property="og:title" content="{{ name }} - Pytaku" />
+<meta property="og:image" content="{{ cover }}" />
+<meta property="og:description" content="{{ descriptions | join('\n') }}" />
+
 <style>
   .cover {
     width: 400px;
@@ -41,6 +45,7 @@
 </div>
 
 <img class="cover" src="{{ cover }}" alt="cover" />
+<p class="description">{{ descriptions | join('\n') }}</p>
 
 {% if chapters %}
 <table>

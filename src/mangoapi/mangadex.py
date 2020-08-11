@@ -1,3 +1,4 @@
+import html
 import re
 
 import requests
@@ -22,7 +23,9 @@ class Mangadex(Site):
             "site": "mangadex",
             "cover_ext": cover_ext,
             "alt_names": md_json["manga"]["alt_names"],
-            "descriptions": md_json["manga"]["description"].split("\r\n\r\n"),
+            "descriptions": html.unescape(md_json["manga"]["description"]).split(
+                "\r\n\r\n"
+            ),
             "chapters": [
                 {
                     "id": str(chap_id),
