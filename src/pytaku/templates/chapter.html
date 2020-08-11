@@ -7,7 +7,7 @@ Chapter {{ num_major }}{% if num_minor %}.{{ num_minor }}{% endif %}{% if name %
 {% block head %}
 <meta property="og:title" content="{{ title['name'] }} {{ self.title() }} - Pytaku" />
 <meta property="og:image" content="{{ title['cover'] }}" />
-<meta property="og:description" content="{{ title['descriptions'] | join('\n') }}" />
+<meta property="og:description" content="{{ title['descriptions'] | join('\n') or '(no description)' }}" />
 
 {% if next_chapter %}
 <link rel="prefetch" href="{{ url_for('chapter_view', site=site, title_id=title_id, chapter_id=next_chapter['id'])}}">
