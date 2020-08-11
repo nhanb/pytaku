@@ -1,8 +1,7 @@
 import json
 
-import argon2
-
 import apsw
+import argon2
 
 from .database.common import run_sql, run_sql_on_demand
 
@@ -117,7 +116,15 @@ def save_chapter(chapter):
         :pages,
         :groups,
         :is_webtoon
-    );
+    ) ON CONFLICT (id, title_id, site) DO UPDATE SET
+        num_major=excluded.num_major,
+        num_minor=excluded.num_minor,
+        name=excluded.name,
+        pages=excluded.pages,
+        groups=excluded.groups,
+        is_webtoon=excluded.is_webtoon,
+        updated_at=datetime('now')
+    ;
     """,
         {
             "id": chapter["id"],
@@ -133,12 +140,13 @@ def save_chapter(chapter):
     )
 
 
-def load_chapter(site, title_id, chapter_id):
+def load_chapter(site, title_id, chapter_id, ignore_old=True):
+    updated_at = "datetime('now', '-1 days')" if ignore_old else "'1980-01-01'"
     result = run_sql(
-        """
+        f"""
         SELECT id, title_id, site, num_major, num_minor, name, pages, groups, is_webtoon
         FROM chapter
-        WHERE site=? AND title_id=? AND id=?;
+        WHERE site=? AND title_id=? AND id=? AND updated_at > {updated_at};
         """,
         (site, title_id, chapter_id),
     )

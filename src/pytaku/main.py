@@ -195,7 +195,6 @@ def chapter_view(site, title_id, chapter_id):
     if not chapter:
         print("Getting chapter", chapter_id)
         chapter = get_chapter(site, title_id, chapter_id)
-        chapter["site"] = site
         save_chapter(chapter)
     else:
         print("Loading chapter", chapter_id, "from db")

@@ -8,7 +8,7 @@ now = datetime.now
 
 
 def main_loop():
-    workers = [UpdateOutdatedSeries()]
+    workers = [UpdateOutdatedTitles()]
 
     while True:
         for worker in workers:
@@ -35,7 +35,7 @@ class Worker:
         self.last_run = now()
 
 
-class UpdateOutdatedSeries(Worker):
+class UpdateOutdatedTitles(Worker):
     interval = timedelta(hours=2)
 
     def run(self):
