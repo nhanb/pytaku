@@ -1,4 +1,5 @@
 /debug.py
+/test_secrets.json
 __pycache__
 *.pyc
 *.json

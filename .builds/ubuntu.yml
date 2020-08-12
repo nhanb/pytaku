@@ -7,6 +7,8 @@ secrets:
   - 8c42b8a6-d1b7-4af7-82f2-b8f1b6e085e2
   # ssh key for dev.pytaku.com:
   - 2d6e3246-5adc-41c2-bebe-01dacda9d0c8
+  # ~/pytaku.conf.json:
+  - d18b6657-ac13-4413-8349-8ef262142545
 
 environment:
   # Ugly hack to prepend to PATH:
@@ -34,6 +36,17 @@ tasks:
       source ~/venv/bin/activate
       curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -o get-poetry.py
       python get-poetry.py -y
+      cd pytaku
+      poetry install
+      pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
+            --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
+            --global-option=build --global-option=--enable-all-extensions
+
+  - test: |
+      cd pytaku
+      source ~/venv/bin/activate
+      mv ~/pytaku.conf.json ./
+      pytest
 
   - build: |
       cd pytaku

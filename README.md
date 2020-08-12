@@ -41,6 +41,10 @@ pytaku-dev -p 8000  # development webserver
 pytaku-scheduler  # scheduled tasks e.g. update titles
 ```
 
+## Tests
+
+Can be run with just `pytest`. It needs a pytaku.conf.json as well.
+
 # Production
 
 ```sh

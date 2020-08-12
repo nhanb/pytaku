@@ -53,7 +53,7 @@ class Mangadex(Site):
 
         chapter = {
             "id": chapter_id,
-            "title_id": md_json["manga_id"],
+            "title_id": str(md_json["manga_id"]),
             "site": "mangadex",
             "name": md_json["title"],
             "pages": [f"{img_path}/{page}" for page in md_json["page_array"]],
@@ -133,7 +133,7 @@ def _parse_chapter_number(string):
 
 def _extract_groups(chap):
     return [
-        group.strip()
+        html.unescape(group.strip())
         for group in [chap["group_name"], chap["group_name_2"], chap["group_name_3"]]
         if group
     ]
