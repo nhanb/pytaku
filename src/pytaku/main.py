@@ -1,10 +1,14 @@
 import base64
+import json
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import timedelta
+from typing import List, Tuple
 
 import requests
 from flask import (
     Flask,
+    flash,
     make_response,
     redirect,
     render_template,
@@ -19,6 +23,7 @@ from .persistence import (
     follow,
     get_followed_titles,
     get_prev_next_chapters,
+    import_follows,
     load_chapter,
     load_title,
     register_user,
@@ -40,7 +45,9 @@ config.load()
 
 app = Flask(__name__)
 app.config.update(
-    SECRET_KEY=config.FLASK_SECRET_KEY, PERMANENT_SESSION_LIFETIME=timedelta(days=365),
+    SECRET_KEY=config.FLASK_SECRET_KEY,
+    PERMANENT_SESSION_LIFETIME=timedelta(days=365),
+    MAX_CONTENT_LENGTH=10 * 1024 * 1024,  # max 10MiB payload
 )
 
 
@@ -263,3 +270,95 @@ def _is_manga_img_url(
     ),
 ):
     return pattern.match(url)
+
+
+@app.route("/import", methods=["GET", "POST"])
+@require_login
+def import_view():
+    if request.method == "POST":
+
+        # check if the post request has the file part
+        if "tachiyomi" not in request.files:
+            flash("No file part")
+            return redirect(request.url)
+        file = request.files["tachiyomi"]
+
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == "":
+            flash("No selected file")
+            return redirect(request.url)
+
+        if file:
+            text = file.read()
+            site_title_pairs = read_tachiyomi_follows(text)
+            if site_title_pairs is None:
+                flash("Malformed input file.")
+                return redirect(request.url)
+
+            # First fetch & save titles if they're not already in db
+            ensure_titles(site_title_pairs)
+
+            # Then follow them all
+            for site, title_id in site_title_pairs:
+                follow(session["user"]["id"], site, title_id)
+
+            # Mark them all as "read" too.
+            print("TODO")
+
+            flash(f"Added {len(site_title_pairs)} follows.")
+
+    return render_template("import.html")
+
+
+def read_tachiyomi_follows(text: str) -> List[Tuple[str, str]]:
+    try:
+        data = json.loads(text)
+        mangadex_id = None
+        mangasee_id = None
+        for extension in data["extensions"]:
+            id, name = extension.split(":")
+            if name == "MangaDex":
+                mangadex_id = int(id)
+            elif name == "Mangasee":
+                mangasee_id = int(id)
+        assert mangadex_id and mangasee_id
+
+        results = []
+        for manga in data["mangas"]:
+            path = manga["manga"][0]
+            site_id = manga["manga"][2]
+            if site_id == mangadex_id:
+                site = "mangadex"
+                title_id = path[len("/manga/") : -1]
+            elif site_id == mangasee_id:
+                site = "mangasee"
+                title_id = path[len("/manga/") :]
+            else:
+                continue
+            results.append((site, title_id))
+
+        return results
+
+    except Exception:  # yikes
+        import traceback
+
+        traceback.print_exc()
+        return None
+
+
+def ensure_titles(site_title_pairs: List[Tuple[str, str]]):
+    new_titles = [
+        (site, title_id)
+        for site, title_id in site_title_pairs
+        if load_title(site, title_id) is None  # again, n+1 queries are fine in sqlite
+    ]
+    print(f"Fetching {len(new_titles)} new titles out of {len(site_title_pairs)}.")
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        futures = [
+            executor.submit(get_title, site, title_id) for site, title_id in new_titles
+        ]
+        for future in as_completed(futures):
+            title = future.result()
+            save_title(title)
+            print(f"Saved {title['site']}: {title['name']}")

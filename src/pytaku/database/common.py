@@ -34,3 +34,7 @@ def run_sql(*args, **kwargs):
 
 def run_sql_on_demand(*args, **kwargs):
     return get_conn().cursor().execute(*args, **kwargs)
+
+
+def run_sql_many(*args, **kwargs):
+    return get_conn().cursor().executemany(*args, **kwargs)

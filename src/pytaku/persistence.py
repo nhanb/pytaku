@@ -1,9 +1,10 @@
 import json
+from typing import List, Tuple
 
 import apsw
 import argon2
 
-from .database.common import run_sql, run_sql_on_demand
+from .database.common import run_sql, run_sql_many, run_sql_on_demand
 
 
 def save_title(title):
@@ -214,7 +215,10 @@ def verify_username_password(username, password):
 
 def follow(user_id, site, title_id):
     run_sql(
-        "INSERT INTO follow (user_id, site, title_id) VALUES (?, ?, ?);",
+        """
+        INSERT INTO follow (user_id, site, title_id) VALUES (?, ?, ?)
+        ON CONFLICT DO NOTHING;
+        """,
         (user_id, site, title_id),
     )
 
@@ -321,3 +325,12 @@ class KeyvalStore:
             """,
             (key, value),
         )
+
+
+def import_follows(user_id: int, site_title_pairs: List[Tuple[str, str]]):
+    run_sql_many(
+        """
+        INSERT INTO follow (user_id, site, title_id) VALUES (?, ?, ?);
+        """,
+        [(user_id, site, title_id) for site, title_id in site_title_pairs],
+    )
