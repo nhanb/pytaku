@@ -332,5 +332,5 @@ def import_follows(user_id: int, site_title_pairs: List[Tuple[str, str]]):
         """
         INSERT INTO follow (user_id, site, title_id) VALUES (?, ?, ?);
         """,
-        [(user_id, site, title_id) for site, title_id in site_title_pairs],
+        ((user_id, site, title_id) for site, title_id in site_title_pairs),
     )

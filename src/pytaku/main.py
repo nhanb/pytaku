@@ -284,7 +284,7 @@ def import_view():
         file = request.files["tachiyomi"]
 
         # if user does not select file, browser also
-        # submit an empty part without filename
+        # submits an empty part without filename
         if file.filename == "":
             flash("No selected file")
             return redirect(request.url)
@@ -300,11 +300,7 @@ def import_view():
             ensure_titles(site_title_pairs)
 
             # Then follow them all
-            for site, title_id in site_title_pairs:
-                follow(session["user"]["id"], site, title_id)
-
-            # Mark them all as "read" too.
-            print("TODO")
+            import_follows(session["user"]["id"], site_title_pairs)
 
             flash(f"Added {len(site_title_pairs)} follows.")
 
