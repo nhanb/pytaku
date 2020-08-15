@@ -10,16 +10,15 @@ progress and new chapter updates. Its design goals are:
 - Self-host friendly - if you have a UNIX-like server with python3.7+ and can
   run `pip install`, you're good.
 
-- Optional javascript - it should work **well** without javascript, but
-  javascript enablers should still get extra UX goodies.
-
 - Phone/tablet friendly - although I hardly read any webtoons these days so the
   phone experience may not be as polished.
 
 - KISSFFS, or **K**eep **I**t rea**S**onably **S**imple you **F**-ing
   architecture **F**etishi**S**ts! Oftentimes I have enough practice on
   industrial grade power tools at work so at home I want a change of pace.
-  Flask + raw SQL has been surprisingly comfy.
+  Flask + raw SQL has been surprisingly comfy. On the other side, mithril.js
+  seems to be a no-frills, stable SPA lib made by a person who knows what
+  they're doing so let's see how that goes.
 
 # Development
 
