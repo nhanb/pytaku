@@ -1,4 +1,3 @@
-/* Look & feel */
 :root {
   --btn-red: #ef4f39;
   --btn-red-bottom: #b94434;
@@ -13,19 +12,26 @@
   --body-padding: 0.5rem;
 
   font-size: 100%;
-  font-family: sans-serif;
+  font-family: "Ubuntu", sans-serif;
   overflow-y: scroll;
+  line-height: 1.2rem;
 }
 
-html {
-  touch-action: manipulation;
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 h1 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
   font-size: 2rem;
-  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
 }
 
 table {
@@ -107,108 +113,4 @@ p {
   filter: none;
   cursor: default;
   opacity: 0.5;
-}
-.button > img {
-  height: 1rem;
-}
-
-/* Grid layout */
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  padding: var(--body-padding);
-}
-nav > * {
-  margin-right: 1rem;
-  margin-top: 0.2rem;
-  margin-bottom: 0.2rem;
-}
-nav > *:last-child {
-  margin-right: 0;
-}
-
-.logo {
-  width: 150px;
-}
-.logo img {
-  max-width: 100%;
-  display: block;
-}
-
-.search {
-  display: flex;
-}
-
-.links {
-  margin-left: auto; /* to pull to the right */
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-.links > * {
-  margin-right: 1rem;
-}
-.links > *:last-child {
-  margin-right: 0;
-}
-.links a * {
-  vertical-align: middle;
-}
-
-/* Component-specific styling */
-
-nav {
-  background-color: var(--bg-black);
-}
-
-.search input {
-  border: 0;
-  border-radius: var(--border-radius) 0 0 var(--border-radius);
-}
-.search button {
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
-}
-
-.links a {
-  color: white;
-  text-decoration: none;
-}
-.links a:hover {
-  text-decoration: underline;
-}
-
-.content {
-  padding: var(--body-padding);
-}
-.content > * {
-  display: block;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-footer {
-  padding: 1rem var(--body-padding) var(--body-padding) var(--body-padding);
-  line-height: 1.5em;
-  opacity: 0.7;
-}
-footer a {
-  color: inherit;
-}
-
-/* sticky footer */
-html,
-body {
-  height: 100%;
-}
-body {
-  display: flex;
-  flex-direction: column;
-}
-.content {
-  flex: 1 0 auto;
-}
-footer {
-  flex-shrink: 0;
 }

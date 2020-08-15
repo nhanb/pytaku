@@ -1,0 +1,49 @@
+{# vim: ft=htmldjango
+#}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="/static/favicon.png">
+
+    <title>{% block title %} {% endblock %} - Pytaku</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='minireset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='feathericons/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lookandfeel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='spa.css') }}">
+
+    {% if open_graph %}
+    <meta property="og:title" content="{{ open_graph['title'] }}">
+    <meta property="og:image" content="{{ open_graph['image'] }}">
+    <meta property="og:description" content="{{ open_graph['description'] }}">
+    {% endif %}
+
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    <div id="spa-root">
+      <noscript>
+        <p>Please enable JavaScript to use Pytaku.</p>
+        <p>It's snappy and doesn't do anything spooky to your browser. Pinky promise!</p>
+      </noscript>
+    </div>
+
+    <footer>
+      <p>Pytaku is <a href="https://git.sr.ht/~nhanb/pytaku">free and open source software</a>.</p>
+      <p>
+        <strong>This is a test instance.</strong>
+        Database may be wiped. Bugs may be present.<br>
+        Your favorite mangaka may never recover from his
+        <a href="https://junk.imnhan.com/hunter_x_idol.jpg">idol addiction</a>
+        and your favorite series may never finish.
+      </p>
+    </footer>
+
+    <script>const initialState = "{{ initial_state }}";</script>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+  </body>
+</html>

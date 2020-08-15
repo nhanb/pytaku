@@ -51,13 +51,6 @@ app.config.update(
 )
 
 
-@app.route("/")
-def home_view():
-    if session.get("user"):
-        return redirect(url_for("follows_view"))
-    return render_template("old/home.html")
-
-
 @app.route("/following", methods=["GET"])
 @require_login
 def follows_view():
@@ -358,3 +351,19 @@ def ensure_titles(site_title_pairs: List[Tuple[str, str]]):
             title = future.result()
             save_title(title)
             print(f"Saved {title['site']}: {title['name']}")
+
+
+"""
+New Mithril-based SPA views follow
+"""
+
+
+@app.route("/")
+@app.route("/h")
+def home_view():
+    return render_template("spa.html")
+
+
+@app.route("/f")
+def f_view():
+    return render_template("spa.html")
