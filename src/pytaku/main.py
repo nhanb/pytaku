@@ -55,7 +55,7 @@ app.config.update(
 def home_view():
     if session.get("user"):
         return redirect(url_for("follows_view"))
-    return render_template("home.html")
+    return render_template("old/home.html")
 
 
 @app.route("/following", methods=["GET"])
@@ -67,7 +67,7 @@ def follows_view():
         if title["site"] == "mangadex":
             thumbnail = url_for("proxy_view", b64_url=_encode_proxy_url(thumbnail))
         title["thumbnail"] = thumbnail
-    return render_template("follows.html", titles=titles)
+    return render_template("old/follows.html", titles=titles)
 
 
 @app.route("/follow/<site>/<title_id>", methods=["POST"])
@@ -129,7 +129,7 @@ def auth_view():
                     status_code = 200
             return (
                 render_template(
-                    "auth.html",
+                    "old/auth.html",
                     register_username=username,
                     register_password=password,
                     register_confirm_password=confirm_password,
@@ -159,7 +159,7 @@ def auth_view():
 
             return (
                 render_template(
-                    "auth.html",
+                    "old/auth.html",
                     login_username=username,
                     login_password=password,
                     login_remember=remember,
@@ -170,7 +170,7 @@ def auth_view():
             )
 
     # Just a plain ol' GET request:
-    return render_template("auth.html")
+    return render_template("old/auth.html")
 
 
 @app.route("/m/<site>/<title_id>")
@@ -192,7 +192,7 @@ def title_view(site, title_id):
             "proxy_view", b64_url=_encode_proxy_url(title["cover"])
         )
     title["source_url"] = title_source_url(site, title_id)
-    return render_template("title.html", **title)
+    return render_template("old/title.html", **title)
 
 
 @app.route("/m/<site>/<title_id>/<chapter_id>")
@@ -224,7 +224,7 @@ def chapter_view(site, title_id, chapter_id):
     chapter["next_chapter"] = next_chapter
 
     chapter["site"] = site
-    return render_template("chapter.html", title=title, **chapter)
+    return render_template("old/chapter.html", title=title, **chapter)
 
 
 @app.route("/search")
@@ -239,7 +239,7 @@ def search_view():
             title["thumbnail"] = url_for(
                 "proxy_view", b64_url=_encode_proxy_url(title["thumbnail"])
             )
-    return render_template("search.html", results=results, query=query)
+    return render_template("old/search.html", results=results, query=query)
 
 
 @app.route("/proxy/<b64_url>")
@@ -304,7 +304,7 @@ def import_view():
 
             flash(f"Added {len(site_title_pairs)} follows.")
 
-    return render_template("import.html")
+    return render_template("old/import.html")
 
 
 def read_tachiyomi_follows(text: str) -> List[Tuple[str, str]]:
