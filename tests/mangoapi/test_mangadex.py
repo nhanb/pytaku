@@ -1,7 +1,6 @@
-import os
+from pytaku.conf import config
 
 from mangoapi.mangadex import Mangadex
-from pytaku.conf import config
 
 
 def test_get_title():

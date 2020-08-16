@@ -1,12 +1,20 @@
 import functools
 from abc import ABC, abstractmethod
 
+import requests
+
 
 class Site(ABC):
     def __init__(self):
-        self._cookies = None
         self.username = None
         self.password = None
+        self.is_logged_in = False
+        self.session = requests.Session()
+        self.session.headers.update(
+            {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+            }
+        )
 
     @abstractmethod
     def get_title(self, title_id):
@@ -45,10 +53,12 @@ def requires_login(func):
 
     @functools.wraps(func)
     def wrapper(self, *args, **kwargs):
-        if self._cookies is None:
+        # TODO: replace is_logged_in flag check with actual "if rejected then try
+        # logging in" logic, just in case login cookies expire.
+        if not self.is_logged_in:
             assert self.username
             assert self.password
-            self._cookies = self.login(self.username, self.password)
+            self.login(self.username, self.password)
         return func(self, *args, **kwargs)
 
     return wrapper

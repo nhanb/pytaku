@@ -1,15 +1,13 @@
 import html
 import re
 
-import requests
-
 from mangoapi.base_site import Site, requires_login
 
 
 class Mangadex(Site):
     def get_title(self, title_id):
         url = f"https://mangadex.org/api/?id={title_id}&type=manga"
-        md_resp = requests.get(url)
+        md_resp = self.session.get(url)
         assert md_resp.status_code == 200, md_resp.text
         md_json = md_resp.json()
         assert md_json["status"] == "OK"
@@ -41,7 +39,7 @@ class Mangadex(Site):
         return title
 
     def get_chapter(self, title_id, chapter_id):
-        md_resp = requests.get(
+        md_resp = self.session.get(
             f"https://mangadex.org/api/?id={chapter_id}&type=chapter&saver=0"
         )
         assert md_resp.status_code == 200, md_resp.text
@@ -65,9 +63,7 @@ class Mangadex(Site):
 
     @requires_login
     def search_title(self, query):
-        md_resp = requests.get(
-            f"https://mangadex.org/quick_search/{query}", cookies=self._cookies,
-        )
+        md_resp = self.session.get(f"https://mangadex.org/quick_search/{query}")
         assert md_resp.status_code == 200, md_resp.text
 
         matches = TITLES_PATTERN.findall(md_resp.text)
@@ -83,22 +79,19 @@ class Mangadex(Site):
         return titles
 
     def login(self, username, password):
-        """
-        Returns cookies of a logged in user.
-        """
         form_data = {
             "login_username": username,
             "login_password": password,
             "two_factor": "",
             "remember_me": "1",
         }
-        md_resp = requests.post(
+        md_resp = self.session.post(
             "https://mangadex.org/ajax/actions.ajax.php?function=login",
             data=form_data,
             headers={"X-Requested-With": "XMLHttpRequest"},
         )
         assert md_resp.status_code == 200, md_resp.text
-        return dict(md_resp.cookies)
+        self.is_logged_in = True
 
     def title_cover(self, title_id, cover_ext):
         return f"https://mangadex.org/images/manga/{title_id}.{cover_ext}"
