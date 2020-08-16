@@ -6,40 +6,17 @@ from datetime import timedelta
 from typing import List, Tuple
 
 import requests
-from flask import (
-    Flask,
-    flash,
-    make_response,
-    redirect,
-    render_template,
-    request,
-    session,
-    url_for,
-)
+from flask import (Flask, flash, jsonify, make_response, redirect,
+                   render_template, request, session, url_for)
 
 from .conf import config
 from .decorators import require_login, toggle_has_read
-from .persistence import (
-    follow,
-    get_followed_titles,
-    get_prev_next_chapters,
-    import_follows,
-    load_chapter,
-    load_title,
-    register_user,
-    save_chapter,
-    save_title,
-    unfollow,
-    verify_username_password,
-)
-from .source_sites import (
-    get_chapter,
-    get_title,
-    search_title_all_sites,
-    title_cover,
-    title_source_url,
-    title_thumbnail,
-)
+from .persistence import (follow, get_followed_titles, get_prev_next_chapters,
+                          import_follows, load_chapter, load_title,
+                          register_user, save_chapter, save_title, unfollow,
+                          verify_username_password)
+from .source_sites import (get_chapter, get_title, search_title_all_sites,
+                           title_cover, title_source_url, title_thumbnail)
 
 config.load()
 
@@ -360,10 +337,53 @@ New Mithril-based SPA views follow
 
 @app.route("/")
 @app.route("/h")
+@app.route("/a")
+@app.route("/f")
 def home_view():
     return render_template("spa.html")
 
 
-@app.route("/f")
-def f_view():
-    return render_template("spa.html")
+@app.route("/api/register", methods=["POST"])
+def api_register():
+    username = request.json["username"].strip()
+    password = request.json["password"]
+    message = None
+    if not (username and password):
+        message = "Empty field(s) spotted. Protip: spaces don't count."
+        status_code = 400
+    elif (
+        len(username) < 2
+        or len(username) > 15
+        or len(password) < 5
+        or len(password) > 50
+    ):
+        message = "Invalid username/password length. Username length should be 2~15, password 5~50."
+        status_code = 400
+    else:  # success!
+        err = register_user(username, password)
+        if err:
+            message = err
+            status_code = 400
+        else:
+            message = "Registration successful! You can login now."
+            status_code = 200
+    return (jsonify({"message": message}), status_code)
+
+
+@app.route("/api/login", methods=["POST"])
+def api_login():
+    username = request.json["username"].strip()
+    password = request.json["password"]
+    remember = request.json["remember"]
+
+    if not (username and password):
+        return (
+            jsonify({"message": "Empty field(s) spotted. Protip: spaces don't count."}),
+            400,
+        )
+
+    user_id = verify_username_password(username, password)
+    if user_id:
+        return jsonify({"user_id": user_id}), 200
+    else:
+        return jsonify({"message": "Wrong username/password combination."}), 400

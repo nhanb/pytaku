@@ -1,9 +1,13 @@
 /* Navbar */
 nav {
   background-color: var(--bg-black);
-  padding: var(--body-padding);
+  padding: 0 var(--body-padding);
   display: flex;
   flex-wrap: wrap;
+}
+nav > * {
+  margin: var(--body-padding) 0;
+  flex: 1 auto 0;
 }
 .nav--logo {
   width: 150px;
@@ -17,14 +21,21 @@ nav {
   display: inline-flex;
   align-items: stretch;
 }
+.nav--search-form > input {
+  width: 15rem;
+}
 .nav--link {
   color: white;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  padding: 0 0.5rem;
+  line-height: 1.5rem;
 }
 .nav--link:hover {
-  text-decoration: underline;
+  color: black;
+  background-color: white;
+  border-radius: 4px;
 }
 .nav--link:last-child {
   margin-left: auto;
@@ -67,4 +78,38 @@ body {
 }
 footer {
   flex-shrink: 0;
+}
+
+/* Authentication route */
+
+.auth.content {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: auto;
+  justify-content: space-evenly;
+}
+.auth--form {
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  max-width: 100%;
+}
+.auth--form > * {
+  margin-bottom: 0.8rem;
+}
+.auth--form > h1 {
+  margin-bottom: 1.5rem;
+}
+.auth--checkbox-label {
+  display: flex;
+}
+#auth--remember {
+  margin-right: 0.3rem;
+}
+.auth--form--message-success {
+  color: green;
+}
+.auth--form--message-error {
+  color: red;
 }

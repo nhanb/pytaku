@@ -43,7 +43,7 @@
     </footer>
 
     <script>const initialState = "{{ initial_state }}";</script>
-    <script src="https://unpkg.com/mithril/mithril.js"></script>
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendored/mithril.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='spa.js') }}"></script>
   </body>
 </html>
