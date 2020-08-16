@@ -1,8 +1,10 @@
 import json
+import secrets
 from typing import List, Tuple
 
-import apsw
 import argon2
+
+import apsw
 
 from .database.common import run_sql, run_sql_many, run_sql_on_demand
 
@@ -335,3 +337,56 @@ def import_follows(user_id: int, site_title_pairs: List[Tuple[str, str]]):
         """,
         ((user_id, site, title_id) for site, title_id in site_title_pairs),
     )
+
+
+def create_token(user_id, remember=False):
+    lifespan = "+365 days" if remember else "+1 day"
+    token = secrets.token_urlsafe(64)
+    run_sql(
+        """
+        INSERT INTO token (user_id, token, lifespan) VALUES (?,?,?);
+        """,
+        (user_id, token, lifespan),
+    )
+    return token
+
+
+def verify_token(user_id, token):
+    """
+    Checks if there's a matching token that hasn't exceeded its lifespan.
+    If there's a match, refreshes its last_accessed_at value, effectively expanding
+    its life.
+    """
+    result = run_sql(
+        """
+        SELECT 1 FROM token
+        WHERE user_id=? AND token=?
+          AND datetime(last_accessed_at, lifespan) > datetime('now');
+        """,
+        (user_id, token),
+    )
+    is_success = len(result) == 1
+    if is_success:
+        run_sql(
+            """
+            UPDATE token SET last_accessed_at = datetime('now')
+            WHERE user_id=? AND token=?;
+            """,
+            (user_id, token),
+        )
+    return is_success
+
+
+def get_username(user_id):
+    result = run_sql("SELECT username FROM user WHERE id=?;", (user_id,))
+    assert len(result) == 1
+    return result[0]
+
+
+def delete_token(user_id, token):
+    num_deleted = run_sql(
+        "DELETE FROM token WHERE user_id=? AND token=?",
+        (user_id, token),
+        return_num_affected=True,
+    )
+    return num_deleted

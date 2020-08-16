@@ -14,7 +14,7 @@ progress and new chapter updates. Its design goals are:
   phone experience may not be as polished.
 
 - KISSFFS, or **K**eep **I**t rea**S**onably **S**imple you **F**-ing
-  architecture **F**etishi**S**ts! Oftentimes I have enough practice on
+  architecture/tooling **F**etishi**S**ts! Oftentimes I have enough practice on
   industrial grade power tools at work so at home I want a change of pace.
   Flask + raw SQL has been surprisingly comfy. On the other side, mithril.js
   seems to be a no-frills, stable SPA lib made by a person who knows what

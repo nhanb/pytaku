@@ -1,6 +1,10 @@
 /* Top-level Components */
+import { Auth } from "./models.js";
 
 const Home = {
+  oncreate: (vnode) => {
+    document.title = "Pytaku";
+  },
   view: (vnode) => {
     return m("div.main", [
       m(Navbar),
@@ -13,21 +17,23 @@ const Home = {
 };
 
 function Authentication(initialVNode) {
-  let loginUsername = "admin";
-  let loginPassword = "admin";
-  let rememberMe = false;
-  let loginErrorMessage = "";
-
-  let registerUsername = "admin";
-  let registerPassword = "admin";
-  let confirmPassword = "admin";
-  let registerMessage = "";
-  let registerSuccess = false;
+  let loginUsername;
+  let loginPassword;
+  let rememberMe;
+  let loginErrorMessage;
+  let registerUsername;
+  let registerPassword;
+  let confirmPassword;
+  let registerMessage;
+  let registerSuccess;
 
   let registering = false;
   let loggingIn = false;
 
   return {
+    oncreate: (vnode) => {
+      document.title = "Authentication - Pytaku";
+    },
     view: (vnode) => {
       return m("div.main", [
         m(Navbar),
@@ -52,10 +58,14 @@ function Authentication(initialVNode) {
                 })
                   .then((result) => {
                     loggingIn = false;
-                    console.log("Success:", result);
-                    alert("TODO");
+                    let userId = result.user_id;
+                    let token = result.token;
+                    let username = loginUsername;
+                    Auth.saveLoginResults({ userId, username, token });
+                    m.route.set("/");
                   })
                   .catch((e) => {
+                    console.log(e);
                     loggingIn = false;
                     loginErrorMessage = e.response.message;
                   });
@@ -191,32 +201,62 @@ function Authentication(initialVNode) {
   };
 }
 
-const Navbar = {
-  view: (vnode) => {
-    return m("nav", [
-      m(m.route.Link, { class: "nav--logo", href: "/" }, [
-        m("img.nav--logo--img", {
-          src: "/static/pytaku.svg",
-          alt: "home",
-        }),
-      ]),
-      m("form.nav--search-form", [
-        m("input", { placeholder: "search title name" }),
-        m("button", { type: "submit" }, [m("i.icon.icon-search")]),
-      ]),
-      m(m.route.Link, { class: "nav--link", href: "/a" }, [
-        m("i.icon.icon-log-in"),
-        "login / register",
-      ]),
-    ]);
-  },
-};
+function Navbar(initialVNode) {
+  let isLoggingOut = false;
+  return {
+    view: (vnode) => {
+      let userLink;
+      if (Auth.isLoggedIn()) {
+        userLink = m("span.nav--greeting", [
+          "Welcome, ",
+          m("b", Auth.username),
+          " ",
+          m(
+            "button",
+            {
+              onclick: (ev) => {
+                isLoggingOut = true;
+                m.redraw();
+                Auth.logout();
+              },
+              disabled: isLoggingOut ? "disabled" : null,
+            },
+            [
+              m("i.icon.icon-log-out"),
+              isLoggingOut ? " logging out" : " logout",
+            ]
+          ),
+        ]);
+      } else {
+        userLink = m(m.route.Link, { class: "nav--link", href: "/a" }, [
+          m("i.icon.icon-log-in"),
+          "login / register",
+        ]);
+      }
+
+      return m("nav", [
+        m(m.route.Link, { class: "nav--logo", href: "/" }, [
+          m("img.nav--logo--img", {
+            src: "/static/pytaku.svg",
+            alt: "home",
+          }),
+        ]),
+        m("form.nav--search-form", [
+          m("input", { placeholder: "search title name" }),
+          m("button", { type: "submit" }, [m("i.icon.icon-search")]),
+        ]),
+        userLink,
+      ]);
+    },
+  };
+}
 
 /* Entry point */
 
-root = document.getElementById("spa-root");
+const root = document.getElementById("spa-root");
 m.route.prefix = "";
 m.route(root, "/h", {
   "/h": Home,
   "/a": Authentication,
 });
+Auth.init();

@@ -28,8 +28,11 @@ def get_conn():
     return _conn
 
 
-def run_sql(*args, **kwargs):
-    return list(run_sql_on_demand(*args, **kwargs))
+def run_sql(*args, return_num_affected=False, **kwargs):
+    cursor = run_sql_on_demand(*args, **kwargs)
+    if return_num_affected:
+        return cursor.execute("select changes();").fetchone()
+    return list(cursor)
 
 
 def run_sql_on_demand(*args, **kwargs):

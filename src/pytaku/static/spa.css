@@ -24,6 +24,13 @@ nav > * {
 .nav--search-form > input {
   width: 15rem;
 }
+.nav--greeting {
+  color: white;
+  align-items: center;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .nav--link {
   color: white;
   text-decoration: none;
@@ -93,6 +100,7 @@ footer {
   display: inline-flex;
   flex-direction: column;
   margin: 0.5rem;
+  width: 300px;
   max-width: 100%;
 }
 .auth--form > * {

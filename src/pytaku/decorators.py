@@ -1,7 +1,9 @@
 from functools import wraps
 
-from flask import redirect, request, session, url_for
+from flask import jsonify, redirect, request, session, url_for
+from itsdangerous import SignatureExpired, URLSafeTimedSerializer
 
+from .conf import config
 from .persistence import read, unread
 
 
@@ -11,6 +13,25 @@ def require_login(f):
         if session.get("user") is None:
             return redirect(url_for("auth_view", next=request.url))
         return f(*args, **kwargs)
+
+    return decorated_function
+
+
+def require_token(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = request.headers.get("Pytaku-Token")
+        if not token:
+            return jsonify({"message": "Please provide Pytaku-Token header."}), 401
+        s = URLSafeTimedSerializer(config.FLASK_SECRET_KEY, salt="access_token")
+        try:
+            user_id = s.loads(token)
+        except SignatureExpired:
+            return jsonify({"message": "Token expired."}), 401
+        except Exception:
+            return jsonify({"message": "Malformed token."}), 401
+
+        return f(*args, user_id=user_id, **kwargs)
 
     return decorated_function
 

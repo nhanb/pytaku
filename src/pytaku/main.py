@@ -6,17 +6,45 @@ from datetime import timedelta
 from typing import List, Tuple
 
 import requests
-from flask import (Flask, flash, jsonify, make_response, redirect,
-                   render_template, request, session, url_for)
+from flask import (
+    Flask,
+    flash,
+    jsonify,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 from .conf import config
 from .decorators import require_login, toggle_has_read
-from .persistence import (follow, get_followed_titles, get_prev_next_chapters,
-                          import_follows, load_chapter, load_title,
-                          register_user, save_chapter, save_title, unfollow,
-                          verify_username_password)
-from .source_sites import (get_chapter, get_title, search_title_all_sites,
-                           title_cover, title_source_url, title_thumbnail)
+from .persistence import (
+    create_token,
+    delete_token,
+    follow,
+    get_followed_titles,
+    get_prev_next_chapters,
+    get_username,
+    import_follows,
+    load_chapter,
+    load_title,
+    register_user,
+    save_chapter,
+    save_title,
+    unfollow,
+    verify_token,
+    verify_username_password,
+)
+from .source_sites import (
+    get_chapter,
+    get_title,
+    search_title_all_sites,
+    title_cover,
+    title_source_url,
+    title_thumbnail,
+)
 
 config.load()
 
@@ -383,7 +411,29 @@ def api_login():
         )
 
     user_id = verify_username_password(username, password)
-    if user_id:
-        return jsonify({"user_id": user_id}), 200
-    else:
-        return jsonify({"message": "Wrong username/password combination."}), 400
+    if not user_id:
+        return jsonify({"message": "Wrong username/password combination."}), 401
+
+    token = create_token(user_id, remember)
+    return jsonify({"user_id": user_id, "token": token}), 200
+
+
+@app.route("/api/verify-token", methods=["POST"])
+def api_verify_token():
+    user_id = request.json["user_id"]
+    token = request.json["token"]
+    is_valid = verify_token(user_id, token)
+    if not is_valid:
+        return jsonify({"message": "Invalid token."}), 401
+    return {"username": get_username(user_id)}, 200
+
+
+@app.route("/api/logout", methods=["POST"])
+def api_logout():
+    # TODO: should probably be using auth http header like other APIs
+    user_id = request.json["user_id"]
+    token = request.json["token"]
+    num_deleted = delete_token(user_id, token)
+    if num_deleted != 1:
+        return jsonify({"message": "Invalid token."}), 401
+    return "{}", 200
