@@ -435,4 +435,10 @@ def api_logout():
 @app.route("/api/follows", methods=["GET"])
 @require_token
 def api_follows():
-    return jsonify({"message": "TODO"})
+    titles = get_followed_titles(request.user_id)
+    for title in titles:
+        thumbnail = title_thumbnail(title["site"], title["id"])
+        if title["site"] == "mangadex":
+            thumbnail = url_for("proxy_view", b64_url=_encode_proxy_url(thumbnail))
+        title["thumbnail"] = thumbnail
+    return jsonify({"titles": titles})
