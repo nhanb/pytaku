@@ -350,7 +350,7 @@ def create_token(user_id, remember=False):
     return token
 
 
-def verify_token(user_id, token):
+def verify_token(token):
     """
     Checks if there's a matching token that hasn't exceeded its lifespan.
     If there's a match, refreshes its last_accessed_at value, effectively expanding
@@ -358,22 +358,19 @@ def verify_token(user_id, token):
     """
     result = run_sql(
         """
-        SELECT 1 FROM token
-        WHERE user_id=? AND token=?
+        SELECT user_id FROM token
+        WHERE token=?
           AND datetime(last_accessed_at, lifespan) > datetime('now');
         """,
-        (user_id, token),
+        (token,),
     )
-    is_success = len(result) == 1
-    if is_success:
+    user_id = result[0] if len(result) == 1 else None
+    if user_id:
         run_sql(
-            """
-            UPDATE token SET last_accessed_at = datetime('now')
-            WHERE user_id=? AND token=?;
-            """,
-            (user_id, token),
+            "UPDATE token SET last_accessed_at = datetime('now') WHERE token=?;",
+            (token,),
         )
-    return is_success
+    return user_id
 
 
 def get_username(user_id):
@@ -382,11 +379,9 @@ def get_username(user_id):
     return result[0]
 
 
-def delete_token(user_id, token):
+def delete_token(token):
     num_deleted = run_sql(
-        "DELETE FROM token WHERE user_id=? AND token=?",
-        (user_id, token),
-        return_num_affected=True,
+        "DELETE FROM token WHERE token=?;", (token,), return_num_affected=True,
     )
     return num_deleted
 

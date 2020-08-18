@@ -16,7 +16,13 @@ function Navbar(initialVNode) {
               onclick: (ev) => {
                 isLoggingOut = true;
                 m.redraw();
-                Auth.logout();
+                Auth.logout()
+                  .then(() => {
+                    m.route.set("/");
+                  })
+                  .finally(() => {
+                    isLoggingOut = false;
+                  });
               },
               disabled: isLoggingOut ? "disabled" : null,
             },
@@ -34,12 +40,16 @@ function Navbar(initialVNode) {
       }
 
       return m("nav", [
-        m(m.route.Link, { class: "nav--logo", href: "/" }, [
-          m("img.nav--logo--img", {
-            src: "/static/pytaku.svg",
-            alt: "home",
-          }),
-        ]),
+        m(
+          m.route.Link,
+          { class: "nav--logo", href: Auth.isLoggedIn() ? "/f" : "/" },
+          [
+            m("img.nav--logo--img", {
+              src: "/static/pytaku.svg",
+              alt: "home",
+            }),
+          ]
+        ),
         m("form.nav--search-form", [
           m("input", { placeholder: "search title name" }),
           m("button", { type: "submit" }, [m("i.icon.icon-search")]),
@@ -49,4 +59,11 @@ function Navbar(initialVNode) {
     },
   };
 }
-export { Navbar };
+
+const Layout = {
+  view: (vnode) => {
+    return m("div.main", [m(Navbar), vnode.children]);
+  },
+};
+
+export default Layout;

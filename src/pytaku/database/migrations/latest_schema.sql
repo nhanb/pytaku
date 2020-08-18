@@ -63,11 +63,10 @@ CREATE TABLE IF NOT EXISTS "read" (
 );
 CREATE TABLE token (
     user_id integer not null,
-    token text not null,
+    token text unique not null,
     created_at text not null default (datetime('now')),
     last_accessed_at text not null default (datetime('now')),
     lifespan text not null, -- '+1 day', '+365 days', etc.
 
-    foreign key (user_id) references user (id),
-    unique(user_id, token)
+    foreign key (user_id) references user (id)
 );

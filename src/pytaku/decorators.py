@@ -1,10 +1,8 @@
 from functools import wraps
 
 from flask import jsonify, redirect, request, session, url_for
-from itsdangerous import SignatureExpired, URLSafeTimedSerializer
 
-from .conf import config
-from .persistence import read, unread
+from .persistence import read, unread, verify_token
 
 
 def require_login(f):
@@ -20,18 +18,22 @@ def require_login(f):
 def require_token(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        token = request.headers.get("Pytaku-Token")
-        if not token:
-            return jsonify({"message": "Please provide Pytaku-Token header."}), 401
-        s = URLSafeTimedSerializer(config.FLASK_SECRET_KEY, salt="access_token")
-        try:
-            user_id = s.loads(token)
-        except SignatureExpired:
-            return jsonify({"message": "Token expired."}), 401
-        except Exception:
-            return jsonify({"message": "Malformed token."}), 401
+        header = request.headers.get("Authorization")
+        if not header or not header.startswith("Bearer "):
+            return (
+                jsonify({"message": "Missing `Authorization: Bearer <token>` header."}),
+                401,
+            )
 
-        return f(*args, user_id=user_id, **kwargs)
+        token = header[len("Bearer ") :]
+        user_id = verify_token(token)
+        if user_id is None:
+            return jsonify({"message": "Invalid token."}), 401
+
+        request.token = token
+        request.user_id = user_id
+
+        return f(*args, **kwargs)
 
     return decorated_function
 

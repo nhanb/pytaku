@@ -19,7 +19,7 @@ from flask import (
 )
 
 from .conf import config
-from .decorators import require_login, toggle_has_read
+from .decorators import require_login, require_token, toggle_has_read
 from .persistence import (
     create_token,
     delete_token,
@@ -34,7 +34,6 @@ from .persistence import (
     save_chapter,
     save_title,
     unfollow,
-    verify_token,
     verify_username_password,
 )
 from .source_sites import (
@@ -418,22 +417,22 @@ def api_login():
     return jsonify({"user_id": user_id, "token": token}), 200
 
 
-@app.route("/api/verify-token", methods=["POST"])
+@app.route("/api/verify-token", methods=["GET"])
+@require_token
 def api_verify_token():
-    user_id = request.json["user_id"]
-    token = request.json["token"]
-    is_valid = verify_token(user_id, token)
-    if not is_valid:
-        return jsonify({"message": "Invalid token."}), 401
-    return {"username": get_username(user_id)}, 200
+    return {"user_id": request.user_id, "username": get_username(request.user_id)}, 200
 
 
 @app.route("/api/logout", methods=["POST"])
+@require_token
 def api_logout():
-    # TODO: should probably be using auth http header like other APIs
-    user_id = request.json["user_id"]
-    token = request.json["token"]
-    num_deleted = delete_token(user_id, token)
+    num_deleted = delete_token(request.token)
     if num_deleted != 1:
         return jsonify({"message": "Invalid token."}), 401
     return "{}", 200
+
+
+@app.route("/api/follows", methods=["GET"])
+@require_token
+def api_follows():
+    return jsonify({"message": "TODO"})
