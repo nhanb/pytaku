@@ -1,14 +1,18 @@
 import time
 from datetime import datetime, timedelta
 
-from .persistence import find_outdated_titles, save_title
+from .persistence import (
+    delete_expired_tokens,
+    find_outdated_titles,
+    save_title,
+)
 from .source_sites import get_title
 
 now = datetime.now
 
 
 def main_loop():
-    workers = [UpdateOutdatedTitles()]
+    workers = [UpdateOutdatedTitles(), DeleteExpiredTokens()]
 
     while True:
         for worker in workers:
@@ -44,3 +48,12 @@ class UpdateOutdatedTitles(Worker):
             updated_title = get_title(title["site"], title["id"])
             save_title(updated_title)
             print(" done")
+
+
+class DeleteExpiredTokens(Worker):
+    interval = timedelta(days=1)
+
+    def run(self):
+        num_deleted = delete_expired_tokens()
+        if num_deleted > 0:
+            print("Deleted", num_deleted, "tokens")

@@ -2,9 +2,8 @@ import json
 import secrets
 from typing import List, Tuple
 
-import argon2
-
 import apsw
+import argon2
 
 from .database.common import run_sql, run_sql_many, run_sql_on_demand
 
@@ -387,6 +386,17 @@ def delete_token(user_id, token):
     num_deleted = run_sql(
         "DELETE FROM token WHERE user_id=? AND token=?",
         (user_id, token),
+        return_num_affected=True,
+    )
+    return num_deleted
+
+
+def delete_expired_tokens():
+    num_deleted = run_sql(
+        """
+        DELETE FROM token
+        WHERE datetime(last_accessed_at, lifespan) < datetime('now');
+        """,
         return_num_affected=True,
     )
     return num_deleted
