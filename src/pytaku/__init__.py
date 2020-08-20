@@ -35,6 +35,7 @@ def dev():
 
 def migrate():
     import argparse
+
     from .database.migrator import migrate
 
     argparser = argparse.ArgumentParser()

@@ -1,11 +1,8 @@
 import time
+from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 
-from .persistence import (
-    delete_expired_tokens,
-    find_outdated_titles,
-    save_title,
-)
+from .persistence import delete_expired_tokens, find_outdated_titles, save_title
 from .source_sites import get_title
 
 now = datetime.now
@@ -23,7 +20,7 @@ def main_loop():
         time.sleep(5)
 
 
-class Worker:
+class Worker(ABC):
     interval = timedelta(days=1)
 
     def __init__(self):
@@ -32,8 +29,9 @@ class Worker:
     def should_run(self):
         return now() - self.last_run >= self.interval
 
+    @abstractmethod
     def run(self):
-        raise NotImplementedError()
+        pass
 
     def after_run(self):
         self.last_run = now()

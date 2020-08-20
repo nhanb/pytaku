@@ -6,7 +6,6 @@ from pathlib import Path
 from . import migrations
 from .common import DBNAME, get_conn, run_sql
 
-
 """
 Forward-only DB migration scheme held together by duct tape.
 
