@@ -44,6 +44,11 @@ pytaku-scheduler  # scheduled tasks e.g. update titles
 
 Can be run with just `pytest`. It needs a pytaku.conf.json as well.
 
+## Code QA tools
+
+- Python: black, isort, flake8 without mccabe
+- JavaScript: jshint, prettier
+
 # Production
 
 ```sh
