@@ -89,4 +89,35 @@ const Auth = {
   },
 };
 
-export { Auth };
+const SearchModel = {
+  query: "",
+  result: {},
+  cache: {},
+  isLoading: true,
+  performSearch: (query) => {
+    SearchModel.query = query;
+    if (SearchModel.cache[query]) {
+      SearchModel.result = SearchModel.cache[query];
+    } else {
+      SearchModel.isLoading = true;
+      m.redraw();
+      m.request({
+        method: "GET",
+        url: "/api/search/:query",
+        params: { query },
+      })
+        .then((resp) => {
+          SearchModel.cache[query] = resp;
+          SearchModel.result = resp;
+        })
+        .catch((err) => {
+          console.log("TODO", err);
+        })
+        .finally(() => {
+          SearchModel.isLoading = false;
+        });
+    }
+  },
+};
+
+export { Auth, SearchModel };

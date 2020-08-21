@@ -1,7 +1,5 @@
 import { Auth } from "../models.js";
-
-const truncate = (input) =>
-  input.length > 20 ? `${input.substring(0, 20)}...` : input;
+import { LoadingMessage, truncate } from "../utils.js";
 
 function fullChapterName(chapter) {
   let result = "Chapter " + chapter.num_major;
@@ -51,7 +49,7 @@ const Title = {
               [
                 fullChapterName(chapter),
                 chapter.groups.map((group) => {
-                  m("span.follows--group", truncate(group));
+                  m("span.follows--group", truncate(group, 20));
                 }),
               ]
             )
@@ -93,10 +91,7 @@ function Follows(initialVNode) {
       let content = "";
 
       if (isLoading) {
-        return m(
-          "div.content",
-          m("h2.blink", [m("i.icon.icon-loader.spin"), " loading..."])
-        );
+        return m("div.content", m(LoadingMessage));
       }
 
       if (titles.length === 0) {

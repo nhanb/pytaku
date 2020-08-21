@@ -366,7 +366,9 @@ New Mithril-based SPA views follow
 @app.route("/h")
 @app.route("/a")
 @app.route("/f")
-def home_view():
+@app.route("/s")
+@app.route("/s/<query>")
+def home_view(query=None):
     return render_template("spa.html")
 
 
@@ -442,3 +444,15 @@ def api_follows():
             thumbnail = url_for("proxy_view", b64_url=_encode_proxy_url(thumbnail))
         title["thumbnail"] = thumbnail
     return jsonify({"titles": titles})
+
+
+@app.route("/api/search/<query>", methods=["GET"])
+def api_search(query):
+    results = search_title_all_sites(query)
+
+    if "mangadex" in results:
+        for title in results["mangadex"]:
+            title["thumbnail"] = url_for(
+                "proxy_view", b64_url=_encode_proxy_url(title["thumbnail"])
+            )
+    return results

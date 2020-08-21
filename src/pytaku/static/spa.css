@@ -220,3 +220,32 @@ footer {
   display: inline-block;
   font-style: italic;
 }
+
+/* Search route */
+.search--site-heading {
+  text-transform: capitalize;
+}
+.search--results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.search--result {
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid var(--bg-black);
+  margin: 0 1rem 1rem 0;
+  background-color: var(--bg-black);
+  color: white;
+  text-decoration: none;
+  max-width: 150px;
+}
+.search--result span {
+  padding: 0.5rem;
+  width: 0;
+  min-width: 100%;
+}
+
+.search--result-text {
+  margin-bottom: 1rem;
+}

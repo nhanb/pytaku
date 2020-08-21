@@ -1,7 +1,8 @@
-import { Auth } from "./models.js";
+import { Auth, SearchModel } from "./models.js";
 
 function Navbar(initialVNode) {
   let isLoggingOut = false;
+
   return {
     view: (vnode) => {
       let userLink;
@@ -50,10 +51,24 @@ function Navbar(initialVNode) {
             }),
           ]
         ),
-        m("form.nav--search-form", [
-          m("input", { placeholder: "search title name" }),
-          m("button", { type: "submit" }, [m("i.icon.icon-search")]),
-        ]),
+        m(
+          "form.nav--search-form",
+          {
+            onsubmit: (ev) => {
+              ev.preventDefault();
+              m.route.set("/s/:query", { query: SearchModel.query });
+            },
+          },
+          [
+            m("input[placeholder=search manga title]", {
+              onchange: (ev) => {
+                SearchModel.query = ev.target.value;
+              },
+              value: SearchModel.query,
+            }),
+            m("button[type=submit]", [m("i.icon.icon-search")]),
+          ]
+        ),
         userLink,
       ]);
     },
