@@ -1,24 +1,10 @@
 import { Auth } from "../models.js";
-import { LoadingMessage, truncate } from "../utils.js";
-
-function fullChapterName(chapter) {
-  let result = "Chapter " + chapter.num_major;
-  if (chapter.num_minor) {
-    result += "." + chapter.num_minor;
-  }
-  if (chapter.volume) {
-    result += " Volume " + chapter.volume;
-  }
-  if (chapter.name) {
-    result += " - " + chapter.name;
-  }
-  return result;
-}
+import { LoadingMessage, fullChapterName, Chapter } from "../utils.js";
 
 const Title = {
   view: (vnode) => {
     const title = vnode.attrs.title;
-    const numChaptersToDisplay = 4;
+    const numChaptersToDisplay = 3;
 
     return m(
       "div.follows--title" + (title.chapters.length === 0 ? ".empty" : ""),
@@ -39,21 +25,11 @@ const Title = {
                 `and ${title.chapters.length - numChaptersToDisplay} more...`
               )
             : "",
-          title.chapters.slice(-numChaptersToDisplay).map((chapter) =>
-            m(
-              m.route.Link,
-              {
-                href: `/m/${title.site}/${title.id}/${chapter.id}`,
-                class: "follows--chapter",
-              },
-              [
-                fullChapterName(chapter),
-                chapter.groups.map((group) => {
-                  m("span.follows--group", truncate(group, 20));
-                }),
-              ]
-            )
-          ),
+          title.chapters
+            .slice(-numChaptersToDisplay)
+            .map((chapter) =>
+              m(Chapter, { site: title.site, titleId: title.id, chapter })
+            ),
         ]),
       ]
     );

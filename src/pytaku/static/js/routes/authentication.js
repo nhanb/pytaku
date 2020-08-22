@@ -1,4 +1,5 @@
 import { Auth } from "../models.js";
+import { Button } from "../utils.js";
 
 function Authentication(initialVNode) {
   let loginUsername;
@@ -84,16 +85,13 @@ function Authentication(initialVNode) {
               }),
               " Remember me",
             ]),
-            m(
-              "button[type=submit]",
-              {
-                disabled: loggingIn ? "disabled" : null,
-              },
-              [
-                m("i.icon.icon-log-in"),
-                loggingIn ? " Logging in..." : " Log in",
-              ]
-            ),
+            m(Button, {
+              type: "submit",
+              disabled: loggingIn ? "disabled" : null,
+              text: loggingIn ? " Logging in..." : " Log in",
+              icon: "log-in",
+              color: "blue",
+            }),
             m("p.auth--form--error-message", loginErrorMessage),
           ]
         ),
@@ -162,16 +160,13 @@ function Authentication(initialVNode) {
                 },
               }
             ),
-            m(
-              "button[type=submit]",
-              {
-                disabled: registering ? "disabled" : null,
-              },
-              [
-                m("i.icon.icon-user-plus"),
-                registering ? " Registering..." : " Register",
-              ]
-            ),
+            m(Button, {
+              type: "submit",
+              disabled: registering ? "disabled" : null,
+              text: registering ? " Registering..." : " Register",
+              icon: "user-plus",
+              color: "green",
+            }),
             m(
               "p",
               {

@@ -45,7 +45,6 @@ nav {
 }
 nav > * {
   margin: var(--body-padding) 0;
-  flex: 1 auto 0;
 }
 .nav--logo {
   width: 150px;
@@ -68,6 +67,11 @@ nav > * {
   margin-left: auto;
   margin-top: auto;
   margin-bottom: auto;
+  display: flex;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
+.nav--greeting > button {
+  margin-left: 0.5rem;
 }
 .nav--link {
   color: white;
@@ -165,7 +169,6 @@ footer {
 .follows--title {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   margin-bottom: var(--body-padding);
   background-color: #efefef;
 }
@@ -221,6 +224,22 @@ footer {
   font-style: italic;
 }
 
+@media (max-width: 399px) {
+  .follows--title {
+    flex-direction: column;
+  }
+  .follows--cover {
+    border: none;
+    margin: 0.5rem;
+    margin-bottom: 0;
+    max-width: 100%;
+    max-height: 250px;
+  }
+  .follows--chapters {
+    padding: 0.5rem;
+  }
+}
+
 /* Search route */
 .search--site-heading {
   text-transform: capitalize;
@@ -248,4 +267,32 @@ footer {
 
 .search--result-text {
   margin-bottom: 1rem;
+}
+
+/* Title route */
+.title--cover {
+  width: 400px;
+  border: 1px solid black;
+}
+
+.title--details {
+  margin: 1rem 0;
+}
+
+/* Components defined in utils */
+.utils--chapter {
+  margin-bottom: 0.5rem;
+}
+.utils--chapter > a {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.utils--chapter--group {
+  font-size: 0.7rem;
+  line-height: 0.8rem;
+  padding: 0.2rem;
+  margin-left: 0.3rem;
+  border-radius: 2px;
+  border: 1px solid #aaa;
+  background-color: #eee;
 }

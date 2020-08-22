@@ -1,4 +1,5 @@
 import { Auth, SearchModel } from "./models.js";
+import { Button } from "./utils.js";
 
 function Navbar(initialVNode) {
   let isLoggingOut = false;
@@ -8,30 +9,24 @@ function Navbar(initialVNode) {
       let userLink;
       if (Auth.isLoggedIn()) {
         userLink = m("span.nav--greeting", [
-          "Welcome, ",
-          m("b", Auth.username),
-          " ",
-          m(
-            "button",
-            {
-              onclick: (ev) => {
-                isLoggingOut = true;
-                m.redraw();
-                Auth.logout()
-                  .then(() => {
-                    m.route.set("/");
-                  })
-                  .finally(() => {
-                    isLoggingOut = false;
-                  });
-              },
-              disabled: isLoggingOut ? "disabled" : null,
+          m("span", ["Welcome, ", m("b", Auth.username)]),
+          m(Button, {
+            text: isLoggingOut ? " logging out" : " logout",
+            icon: "log-out",
+            color: "red",
+            onclick: (ev) => {
+              isLoggingOut = true;
+              m.redraw();
+              Auth.logout()
+                .then(() => {
+                  m.route.set("/");
+                })
+                .finally(() => {
+                  isLoggingOut = false;
+                });
             },
-            [
-              m("i.icon.icon-log-out"),
-              isLoggingOut ? " logging out" : " logout",
-            ]
-          ),
+            disabled: isLoggingOut ? "disabled" : null,
+          }),
         ]);
       } else {
         userLink = m(m.route.Link, { class: "nav--link", href: "/a" }, [
@@ -66,7 +61,7 @@ function Navbar(initialVNode) {
               },
               value: SearchModel.query,
             }),
-            m("button[type=submit]", [m("i.icon.icon-search")]),
+            m(Button, { color: "red", icon: "search", type: "submit" }),
           ]
         ),
         userLink,

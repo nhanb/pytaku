@@ -4,6 +4,7 @@ import Authentication from "./routes/authentication.js";
 import Home from "./routes/home.js";
 import Follows from "./routes/follows.js";
 import Search from "./routes/search.js";
+import Title from "./routes/title.js";
 
 Auth.init().then(() => {
   const root = document.getElementById("spa-root");
@@ -49,6 +50,16 @@ Auth.init().then(() => {
             // ^ set a key here to reinitialize Search component on route
             // change. Without it, Search.oninit would only trigger once on
             // first full page load.
+          })
+        ),
+    },
+    "/m/:site/:titleId": {
+      render: (vnode) =>
+        m(
+          Layout,
+          m(Title, {
+            site: vnode.attrs.site,
+            titleId: vnode.attrs.titleId,
           })
         ),
     },

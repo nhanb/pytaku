@@ -19,7 +19,7 @@ from flask import (
 )
 
 from .conf import config
-from .decorators import require_login, require_token, toggle_has_read
+from .decorators import process_token, require_login, toggle_has_read
 from .persistence import (
     create_token,
     delete_token,
@@ -168,28 +168,6 @@ def auth_view():
 
     # Just a plain ol' GET request:
     return render_template("old/auth.html")
-
-
-@app.route("/m/<site>/<title_id>")
-@toggle_has_read
-def title_view(site, title_id):
-    user = session.get("user", None)
-    user_id = user["id"] if user else None
-    title = load_title(site, title_id, user_id=user_id)
-    if not title:
-        print("Getting title", title_id)
-        title = get_title(site, title_id)
-        print("Saving title", title_id, "to db")
-        save_title(title)
-    else:
-        print("Loading title", title_id, "from db")
-    title["cover"] = title_cover(site, title_id, title["cover_ext"])
-    if site == "mangadex":
-        title["cover"] = url_for(
-            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
-        )
-    title["source_url"] = title_source_url(site, title_id)
-    return render_template("old/title.html", **title)
 
 
 @app.route("/m/<site>/<title_id>/<chapter_id>")
@@ -372,6 +350,44 @@ def home_view(query=None):
     return render_template("spa.html")
 
 
+def _title(site, title_id, user_id=None):
+    title = load_title(site, title_id, user_id=user_id)
+    if not title:
+        print("Getting title", title_id)
+        title = get_title(site, title_id)
+        print("Saving title", title_id, "to db")
+        save_title(title)
+    else:
+        print("Loading title", title_id, "from db")
+    title["cover"] = title_cover(site, title_id, title["cover_ext"])
+    if site == "mangadex":
+        title["cover"] = url_for(
+            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
+        )
+    title["source_url"] = title_source_url(site, title_id)
+    return title
+
+
+@app.route("/m/<site>/<title_id>")
+def spa_title_view(site, title_id):
+    title = _title(site, title_id)
+    return render_template(
+        "spa.html",
+        open_graph={
+            "title": title["name"],
+            "image": title["cover"],
+            "description": "\n".join(title["descriptions"]),
+        },
+    )
+
+
+@app.route("/api/title/<site>/<title_id>", methods=["GET"])
+@process_token(required=False)
+def api_title(site, title_id):
+    title = _title(site, title_id, user_id=request.user_id)
+    return title
+
+
 @app.route("/api/register", methods=["POST"])
 def api_register():
     username = request.json["username"].strip()
@@ -420,13 +436,13 @@ def api_login():
 
 
 @app.route("/api/verify-token", methods=["GET"])
-@require_token
+@process_token(required=True)
 def api_verify_token():
     return {"user_id": request.user_id, "username": get_username(request.user_id)}, 200
 
 
 @app.route("/api/logout", methods=["POST"])
-@require_token
+@process_token(required=True)
 def api_logout():
     num_deleted = delete_token(request.token)
     if num_deleted != 1:
@@ -435,7 +451,7 @@ def api_logout():
 
 
 @app.route("/api/follows", methods=["GET"])
-@require_token
+@process_token(required=True)
 def api_follows():
     titles = get_followed_titles(request.user_id)
     for title in titles:
