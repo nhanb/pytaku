@@ -542,7 +542,6 @@ def api_read():
 
     if reads:
         for r in reads:
-            print(">> reading", request.user_id, r)
             read(
                 request.user_id, r["site"], r["title_id"], r["chapter_id"],
             )
@@ -553,4 +552,7 @@ def api_read():
             )
     # TODO: rewrite read/unread to do bulk updates instead of n+1 queries like these.
     # ... Or maybe not. SQLite doesn't mind.
+
+    # Also TODO: maybe a separate "read all from title" API would be cleaner & easier on
+    # FE side.
     return {}
