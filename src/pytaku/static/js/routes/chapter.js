@@ -5,6 +5,32 @@ const LoadingPlaceholder = {
   view: () => m("h2", [m("i.icon.icon-loader.spin")]),
 };
 
+const RetryImgButton = {
+  view: (vnode) => {
+    return m(Button, {
+      text: "Errored. Try again?",
+      color: "red",
+      onclick: (ev) => {
+        const { page } = vnode.attrs;
+        page.status = ImgStatus.LOADING;
+        // Cheat: append to src so the element's key is
+        // different, forcing mithril to redraw.
+        // Chose `?` here because it will just be stripped by
+        // flask's path parser.
+        page.src = page.src.endsWith("?")
+          ? page.src.slice(0, -1)
+          : page.src + "?";
+      },
+    });
+  },
+};
+
+const ImgStatus = {
+  LOADING: "loading",
+  SUCCEEDED: "succeeded",
+  FAILED: "failed",
+};
+
 function Chapter(initialVNode) {
   let isLoading = false;
   let chapter = {};
@@ -12,10 +38,12 @@ function Chapter(initialVNode) {
   let pendingPages = [];
 
   function loadNextPage() {
-    loadedPages.push({
-      completed: false,
-      src: pendingPages.splice(0, 1)[0],
-    });
+    if (pendingPages.length > 0) {
+      loadedPages.push({
+        status: ImgStatus.LOADING,
+        src: pendingPages.splice(0, 1)[0],
+      });
+    }
   }
 
   return {
@@ -101,17 +129,35 @@ function Chapter(initialVNode) {
               (chapter.is_webtoon ? " chapter--webtoon" : ""),
           },
           [
-            loadedPages.map((page) => [
-              m("img", {
-                src: page.src,
-                style: { display: page.completed ? "block" : "none" },
-                onload: (ev) => {
-                  page.completed = true;
-                  loadNextPage();
-                },
-              }),
-              page.completed ? "" : m(LoadingPlaceholder),
-            ]),
+            loadedPages.map((page, pageIndex) =>
+              m("div", { key: page.src }, [
+                m("img", {
+                  src: page.src,
+                  style: {
+                    display:
+                      page.status === ImgStatus.SUCCEEDED ? "block" : "none",
+                  },
+                  onload: (ev) => {
+                    page.status = ImgStatus.SUCCEEDED;
+                    loadNextPage();
+                  },
+                  onerror: (ev) => {
+                    page.status = ImgStatus.FAILED;
+                    loadNextPage();
+                  },
+                }),
+                page.status === ImgStatus.LOADING
+                  ? m(LoadingPlaceholder)
+                  : null,
+                page.status === ImgStatus.FAILED
+                  ? m(
+                      "div",
+                      { style: { "margin-bottom": ".5rem" } },
+                      m(RetryImgButton, { page })
+                    )
+                  : null,
+              ])
+            ),
             pendingPages.map((page) => m(LoadingPlaceholder)),
           ]
         ),

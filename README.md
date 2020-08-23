@@ -17,8 +17,8 @@ progress and new chapter updates. Its design goals are:
   architecture/tooling **F**etishi**S**ts! Oftentimes I have enough practice on
   industrial grade power tools at work so at home I want a change of pace.
   Flask + raw SQL has been surprisingly comfy. On the other side, mithril.js
-  seems to be a no-frills, stable SPA lib made by a person who knows what
-  they're doing so let's see how that goes.
+  provides a good baseline of SPA functionality without having to pull in the
+  Rube Goldberg machine that is """modern""" JS devtools.
 
 # Development
 
