@@ -60,6 +60,10 @@ nav > * {
 }
 .nav--search-form > input {
   width: 15rem;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.nav--search-form > button {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 .nav--greeting {
   color: white;
