@@ -5,6 +5,7 @@ import Home from "./routes/home.js";
 import Follows from "./routes/follows.js";
 import Search from "./routes/search.js";
 import Title from "./routes/title.js";
+import Chapter from "./routes/chapter.js";
 
 Auth.init().then(() => {
   const root = document.getElementById("spa-root");
@@ -60,6 +61,18 @@ Auth.init().then(() => {
           m(Title, {
             site: vnode.attrs.site,
             titleId: vnode.attrs.titleId,
+          })
+        ),
+    },
+    "/m/:site/:titleId/:chapterId": {
+      render: (vnode) =>
+        m(
+          Layout,
+          m(Chapter, {
+            site: vnode.attrs.site,
+            titleId: vnode.attrs.titleId,
+            chapterId: vnode.attrs.chapterId,
+            key: vnode.attrs.chapterId,
           })
         ),
     },

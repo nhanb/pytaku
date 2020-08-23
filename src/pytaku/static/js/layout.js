@@ -72,7 +72,7 @@ function Navbar(initialVNode) {
 
 const Layout = {
   view: (vnode) => {
-    return m("div.main", [m(Navbar), vnode.children]);
+    return [m(Navbar), vnode.children];
   },
 };
 

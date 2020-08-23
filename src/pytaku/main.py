@@ -19,7 +19,7 @@ from flask import (
 )
 
 from .conf import config
-from .decorators import process_token, require_login, toggle_has_read
+from .decorators import process_token, require_login
 from .persistence import (
     create_token,
     delete_token,
@@ -55,6 +55,20 @@ app.config.update(
 )
 
 
+def _chapter_name(chapter: dict):
+    result = ""
+    if chapter.get("num_major") is not None:
+        result += "Ch. " if chapter.get("volume") else "Chapter "
+        result += str(chapter["num_major"])
+    if chapter.get("num_minor"):
+        result += '.{chapter["num_minor"]}'
+    if chapter.get("volume"):
+        result += f"Vol. {chapter['volume']}"
+    if chapter.get("name"):
+        result += f" - {chapter['name']}"
+    return result
+
+
 @app.route("/following", methods=["GET"])
 @require_login
 def follows_view():
@@ -71,14 +85,14 @@ def follows_view():
 @require_login
 def follow_view(site, title_id):
     follow(session["user"]["id"], site, title_id)
-    return redirect(url_for("title_view", site=site, title_id=title_id))
+    return redirect(url_for("spa_title_view", site=site, title_id=title_id))
 
 
 @app.route("/unfollow/<site>/<title_id>", methods=["POST"])
 @require_login
 def unfollow_view(site, title_id):
     unfollow(session["user"]["id"], site, title_id)
-    return redirect(url_for("title_view", site=site, title_id=title_id))
+    return redirect(url_for("spa_title_view", site=site, title_id=title_id))
 
 
 @app.route("/logout", methods=["POST"])
@@ -168,38 +182,6 @@ def auth_view():
 
     # Just a plain ol' GET request:
     return render_template("old/auth.html")
-
-
-@app.route("/m/<site>/<title_id>/<chapter_id>")
-@toggle_has_read
-def chapter_view(site, title_id, chapter_id):
-    chapter = load_chapter(site, title_id, chapter_id)
-    if not chapter:
-        print("Getting chapter", chapter_id)
-        chapter = get_chapter(site, title_id, chapter_id)
-        save_chapter(chapter)
-    else:
-        print("Loading chapter", chapter_id, "from db")
-
-    if site in ("mangadex", "mangasee"):
-        chapter["pages"] = [
-            url_for("proxy_view", b64_url=_encode_proxy_url(p))
-            for p in chapter["pages"]
-        ]
-
-    # YIIIIKES
-    title = load_title(site, title_id)
-    title["cover"] = title_cover(site, title_id, title["cover_ext"])
-    if site == "mangadex":
-        title["cover"] = url_for(
-            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
-        )
-    prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
-    chapter["prev_chapter"] = prev_chapter
-    chapter["next_chapter"] = next_chapter
-
-    chapter["site"] = site
-    return render_template("old/chapter.html", title=title, **chapter)
 
 
 @app.route("/search")
@@ -381,11 +363,71 @@ def spa_title_view(site, title_id):
     )
 
 
+@app.route("/m/<site>/<title_id>/<chapter_id>")
+def spa_chapter_view(site, title_id, chapter_id):
+    chapter = load_chapter(site, title_id, chapter_id)
+    if not chapter:
+        print("Getting chapter", chapter_id)
+        chapter = get_chapter(site, title_id, chapter_id)
+        save_chapter(chapter)
+    else:
+        print("Loading chapter", chapter_id, "from db")
+
+    # YIIIIKES
+    title = load_title(site, title_id)
+    title["cover"] = title_cover(site, title_id, title["cover_ext"])
+    if site == "mangadex":
+        title["cover"] = url_for(
+            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
+        )
+
+    chapter["site"] = site
+    return render_template(
+        "spa.html",
+        open_graph={
+            "title": f'{_chapter_name(chapter)} - {title["name"]}',
+            "image": title["cover"],
+            "description": "\n".join(title["descriptions"]),
+        },
+    )
+
+
 @app.route("/api/title/<site>/<title_id>", methods=["GET"])
 @process_token(required=False)
 def api_title(site, title_id):
     title = _title(site, title_id, user_id=request.user_id)
     return title
+
+
+@app.route("/api/chapter/<site>/<title_id>/<chapter_id>", methods=["GET"])
+@process_token(required=False)
+def api_chapter(site, title_id, chapter_id):
+    chapter = load_chapter(site, title_id, chapter_id)
+    if not chapter:
+        print("Getting chapter", chapter_id)
+        chapter = get_chapter(site, title_id, chapter_id)
+        save_chapter(chapter)
+    else:
+        print("Loading chapter", chapter_id, "from db")
+
+    if site in ("mangadex", "mangasee"):
+        chapter["pages"] = [
+            url_for("proxy_view", b64_url=_encode_proxy_url(p))
+            for p in chapter["pages"]
+        ]
+
+    # YIIIIKES
+    title = load_title(site, title_id)
+    title["cover"] = title_cover(site, title_id, title["cover_ext"])
+    if site == "mangadex":
+        title["cover"] = url_for(
+            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
+        )
+    prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
+    chapter["prev_chapter"] = prev_chapter
+    chapter["next_chapter"] = next_chapter
+    chapter["site"] = site
+    return chapter
 
 
 @app.route("/api/register", methods=["POST"])

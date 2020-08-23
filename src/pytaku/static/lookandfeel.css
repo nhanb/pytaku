@@ -28,6 +28,7 @@ h4 {
 
 h1 {
   font-size: 2rem;
+  line-height: 2rem;
 }
 
 h2 {
@@ -60,7 +61,6 @@ p {
 
 button,
 a.touch-friendly {
-  display: inline-block;
   user-select: none;
   margin: 0;
   display: inline-flex;
@@ -77,10 +77,12 @@ button {
   background-color: var(--btn-gray);
   border-bottom: 4px solid var(--btn-gray-bottom);
 }
-button > i {
+button > *,
+a.touch-friendly > * {
   margin-right: 0.3rem;
 }
-button > i:last-child {
+button > *:last-child,
+a.touch-friendly > *:last-child {
   margin-right: 0;
 }
 button:hover {
@@ -115,7 +117,7 @@ button[disabled]:active {
 }
 a.touch-friendly {
   background-color: white;
-  color: inherit;
+  color: black;
   border: 1px solid #aaa;
   text-decoration: none;
   border-bottom: 4px solid grey;

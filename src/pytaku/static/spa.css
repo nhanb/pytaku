@@ -94,8 +94,13 @@ nav > * {
 }
 
 /* Route content common styling */
+#spa-root {
+  display: flex;
+  flex-direction: column;
+}
 .content {
   padding: var(--body-padding);
+  flex-grow: 1;
 }
 .content > * {
   display: block;
@@ -277,6 +282,38 @@ footer {
 
 .title--details {
   margin: 1rem 0;
+}
+
+/* Chapter route */
+.chapter.content {
+  padding: var(--body-padding) 0;
+  text-align: center;
+  background-color: #444;
+  color: white;
+}
+
+.chapter--pages img {
+  display: block;
+  margin: 0 auto 0.7rem auto;
+}
+.chapter--pages.chapter--webtoon img {
+  margin: 0 auto;
+}
+
+.chapter--buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.chapter--buttons > a,
+.chapter--buttons > button {
+  margin-right: 0.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.chapter--buttons > a:last-child,
+.chapter--buttons > button:last-child {
+  margin-right: 0;
 }
 
 /* Components defined in utils */
