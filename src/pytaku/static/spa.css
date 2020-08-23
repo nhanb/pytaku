@@ -287,6 +287,9 @@ footer {
 .title--details {
   margin: 1rem 0;
 }
+.title--details > * {
+  margin-right: 0.3rem;
+}
 
 /* Chapter route */
 .chapter.content {
@@ -327,7 +330,7 @@ footer {
 .utils--chapter.read > a:before {
   content: "🗹";
   color: green;
-  margin-right: 0.2rem;
+  margin-right: 0.4rem;
   font-weight: bold;
 }
 .utils--chapter > a {

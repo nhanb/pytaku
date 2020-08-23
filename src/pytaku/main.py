@@ -542,12 +542,13 @@ def api_read():
 
     if reads:
         for r in reads:
+            print(">> reading", request.user_id, r)
             read(
                 request.user_id, r["site"], r["title_id"], r["chapter_id"],
             )
     if unreads:
         for u in unreads:
-            read(
+            unread(
                 request.user_id, u["site"], u["title_id"], u["chapter_id"],
             )
     # TODO: rewrite read/unread to do bulk updates instead of n+1 queries like these.

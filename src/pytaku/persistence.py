@@ -80,10 +80,9 @@ def load_title(site, title_id, user_id=None):
                 """
                 SELECT r.chapter_id
                 FROM read r
-                  INNER JOIN chapter c ON c.id = r.chapter_id AND c.site = r.site
                 WHERE r.user_id = ?
-                  AND c.title_id = ?
-                  AND c.site = ?
+                  AND r.title_id = ?
+                  AND r.site = ?
                 ORDER BY r.updated_at;
                 """,
                 (user_id, title["id"], title["site"]),
@@ -248,27 +247,18 @@ def get_followed_titles(user_id):
 
         # n+1 queries cuz I don't give a f- actually I do, but sqlite's cool with it:
         # https://www.sqlite.org/np1queryprob.html
-        chapters_i_finished = run_sql_on_demand(
+        chapters_i_finished = run_sql(
             """
-            SELECT r.chapter_id
-            FROM read r
-                INNER JOIN chapter c ON c.id = r.chapter_id AND c.site = r.site
-            WHERE r.user_id = ?
-                AND c.title_id = ?
-                AND c.site = ?
-            ORDER BY c.num_major desc, c.num_minor desc;
+            SELECT chapter_id
+            FROM read
+            WHERE user_id = ?
+              AND title_id = ?
+              AND site = ?;
             """,
             (user_id, t["id"], t["site"]),
         )
-        # Cut off chapter list:
-        # only show chapters newer than the latest chapter that user has finished.
-        # Running a loop here instead of just picking the one latest finished chapter
-        # because source site may have deleted said chapter.
-        for finished_chapter_id in chapters_i_finished:
-            for i, ch in enumerate(chapters):
-                if finished_chapter_id == ch["id"]:
-                    chapters = chapters[:i]
-                    break
+        # Only show chapters that user hasn't read
+        chapters = [ch for ch in chapters if ch["id"] not in chapters_i_finished]
 
         t["chapters"] = chapters
 

@@ -4,7 +4,9 @@ import { LoadingMessage, Button, fullChapterName, Chapter } from "../utils.js";
 function Title(initialVNode) {
   let isLoading = false;
   let isTogglingFollow = false;
+  let isMarkingAllAsRead = false;
   let title = {};
+  let allAreRead;
 
   return {
     oninit: (vnode) => {
@@ -29,6 +31,15 @@ function Title(initialVNode) {
         });
     },
     view: (vnode) => {
+      if (!isLoading && Auth.isLoggedIn()) {
+        allAreRead = true;
+        for (let chap of title.chapters) {
+          if (!chap.is_read) {
+            allAreRead = false;
+            break;
+          }
+        }
+      }
       return m(
         "div.content",
         isLoading
@@ -37,40 +48,82 @@ function Title(initialVNode) {
               m("h1", title.name),
               m("div.title--details", [
                 Auth.isLoggedIn()
-                  ? m(Button, {
-                      icon: "bookmark",
-                      disabled: isTogglingFollow ? "disabled" : null,
-                      text: isTogglingFollow
-                        ? "submitting..."
-                        : title.is_following
-                        ? "following"
-                        : "follow",
-                      color: title.is_following ? "red" : "green",
-                      title: title.is_following
-                        ? "Click to unfollow"
-                        : "Click to follow",
-                      onclick: (ev) => {
-                        isTogglingFollow = true;
-                        m.redraw();
-                        Auth.request({
-                          method: "POST",
-                          url: "/api/follow",
-                          body: {
-                            site: title.site,
-                            title_id: title.id,
-                            follow: !title.is_following,
-                          },
-                        })
-                          .then((resp) => {
-                            title.is_following = resp.follow;
+                  ? [
+                      m(Button, {
+                        icon: "bookmark",
+                        disabled: isTogglingFollow ? "disabled" : null,
+                        text: isTogglingFollow
+                          ? "submitting..."
+                          : title.is_following
+                          ? "following"
+                          : "follow",
+                        color: title.is_following ? "red" : "green",
+                        title: title.is_following
+                          ? "Click to unfollow"
+                          : "Click to follow",
+                        onclick: (ev) => {
+                          isTogglingFollow = true;
+                          m.redraw();
+                          Auth.request({
+                            method: "POST",
+                            url: "/api/follow",
+                            body: {
+                              site: title.site,
+                              title_id: title.id,
+                              follow: !title.is_following,
+                            },
                           })
-                          .finally(() => {
-                            isTogglingFollow = false;
-                          });
-                      },
-                    })
+                            .then((resp) => {
+                              title.is_following = resp.follow;
+                            })
+                            .finally(() => {
+                              isTogglingFollow = false;
+                            });
+                        },
+                      }),
+                      m(Button, {
+                        icon: "eye",
+                        disabled:
+                          isMarkingAllAsRead || allAreRead ? "disabled" : null,
+                        text: isMarkingAllAsRead
+                          ? "submitting..."
+                          : allAreRead
+                          ? "no new chapters"
+                          : "read all",
+                        color: "green",
+                        title: allAreRead
+                          ? null
+                          : "Click to mark all chapters as read",
+                        onclick: (ev) => {
+                          isMarkingAllAsRead = true;
+                          m.redraw();
+                          Auth.request({
+                            method: "POST",
+                            url: "/api/read",
+                            body: {
+                              read: title.chapters
+                                .filter((ch) => !ch.is_read)
+                                .map((ch) => {
+                                  return {
+                                    site: title.site,
+                                    title_id: title.id,
+                                    chapter_id: ch.id,
+                                  };
+                                }),
+                            },
+                          })
+                            .then((resp) => {
+                              title.chapters.forEach((chap) => {
+                                chap.is_read = true;
+                              });
+                            })
+                            .finally(() => {
+                              isMarkingAllAsRead = false;
+                            });
+                        },
+                      }),
+                    ]
                   : null,
-                " ",
                 m(
                   "a.touch-friendly[title=Go to source site][target=_blank]",
                   { href: title.source_url },

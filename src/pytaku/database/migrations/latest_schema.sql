@@ -50,17 +50,6 @@ CREATE TABLE IF NOT EXISTS "chapter" (
     unique(site, title_id, id),
     unique(site, title_id, num_major, num_minor)
 );
-CREATE TABLE IF NOT EXISTS "read" (
-    user_id integer not null,
-    site text not null,
-    title_id text, -- nullable to accomodate existing mangadex rows, urgh.
-    chapter_id text not null,
-    updated_at text default (datetime('now')),
-
-    foreign key (user_id) references user (id),
-    foreign key (site, title_id, chapter_id) references chapter (site, title_id, id),
-    unique(user_id, site, title_id, chapter_id)
-);
 CREATE TABLE token (
     user_id integer not null,
     token text unique not null,
@@ -69,4 +58,14 @@ CREATE TABLE token (
     lifespan text not null, -- '+1 day', '+365 days', etc.
 
     foreign key (user_id) references user (id)
+);
+CREATE TABLE IF NOT EXISTS "read" (
+    user_id integer not null,
+    site text not null,
+    title_id text, -- nullable to accomodate existing mangadex rows, urgh.
+    chapter_id text not null,
+    updated_at text default (datetime('now')),
+
+    foreign key (user_id) references user (id),
+    unique(user_id, site, title_id, chapter_id)
 );
