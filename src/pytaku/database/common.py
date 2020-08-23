@@ -24,6 +24,14 @@ def get_conn():
         _conn = apsw.Connection(DBNAME)
         # Apparently you need to enable this pragma per connection:
         _conn.cursor().execute("PRAGMA foreign_keys = ON;")
+        # No idea what the default db busy timeout is, but apparently it's super strict:
+        # got BusyError almost consistently when clicking "finish" on latest chapter,
+        # making FE send both a "read" and "get title" request at roughly the same time.
+        # It still makes no sense though, since "get title" is supposedly a read-only
+        # operation and only "read" is a write. According to docs, WAL mode allows 1
+        # writer and unlimited readers at the same time. WTF guys?
+        # But anyway, until I can get to the bottom of it, let's slap on a band-aid:
+        _conn.setbusytimeout(1000)
         _conn.setrowtrace(_row_trace)
     return _conn
 
