@@ -103,20 +103,35 @@ function Chapter(initialVNode) {
           },
           [m("i.icon.icon-list"), m("span", " chapter list")]
         ),
-        next
-          ? m(
-              m.route.Link,
-              {
-                class: "touch-friendly",
-                href: `/m/${site}/${titleId}/${next.id}`,
-              },
-              [m("span", "next"), m("i.icon.icon-chevrons-right")]
-            )
-          : m(Button, {
-              text: "next",
-              icon: "chevrons-right",
-              disabled: true,
-            }),
+        m(
+          m.route.Link,
+          {
+            class: "touch-friendly",
+            href: next
+              ? `/m/${site}/${titleId}/${next.id}`
+              : `/m/${site}/${titleId}`,
+            onclick: (ev) => {
+              Auth.request({
+                method: "POST",
+                url: "/api/read",
+                body: {
+                  read: [
+                    {
+                      site,
+                      title_id: titleId,
+                      chapter_id: chapter.id,
+                    },
+                  ],
+                },
+              });
+              return true;
+            },
+          },
+          [
+            m("span", next ? "next" : "finish"),
+            m("i.icon.icon-" + (next ? "chevrons-right" : "check-circle")),
+          ]
+        ),
       ]);
       return m("div.chapter.content", [
         m("h1", fullChapterName(chapter)),

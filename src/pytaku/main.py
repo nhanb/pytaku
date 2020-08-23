@@ -30,10 +30,12 @@ from .persistence import (
     import_follows,
     load_chapter,
     load_title,
+    read,
     register_user,
     save_chapter,
     save_title,
     unfollow,
+    unread,
     verify_username_password,
 )
 from .source_sites import (
@@ -529,3 +531,25 @@ def api_follow():
         unfollow(request.user_id, site, title_id)
 
     return jsonify({"follow": should_follow})
+
+
+@app.route("/api/read", methods=["POST"])
+@process_token(required=True)
+def api_read():
+    reads = request.json.get("read") or []
+    unreads = request.json.get("unread") or []
+    assert reads or unreads
+
+    if reads:
+        for r in reads:
+            read(
+                request.user_id, r["site"], r["title_id"], r["chapter_id"],
+            )
+    if unreads:
+        for u in unreads:
+            read(
+                request.user_id, u["site"], u["title_id"], u["chapter_id"],
+            )
+    # TODO: rewrite read/unread to do bulk updates instead of n+1 queries like these.
+    # ... Or maybe not. SQLite doesn't mind.
+    return {}

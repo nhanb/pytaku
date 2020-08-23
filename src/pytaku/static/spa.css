@@ -324,6 +324,12 @@ footer {
 .utils--chapter {
   margin-bottom: 0.5rem;
 }
+.utils--chapter.read > a:before {
+  content: "🗹";
+  color: green;
+  margin-right: 0.2rem;
+  font-weight: bold;
+}
 .utils--chapter > a {
   padding-left: 0.5rem;
   padding-right: 0.5rem;

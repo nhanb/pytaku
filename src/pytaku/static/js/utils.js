@@ -19,7 +19,7 @@ const Button = {
 
 const Chapter = {
   view: (vnode) =>
-    m("div.utils--chapter", [
+    m("div.utils--chapter" + (vnode.attrs.chapter.is_read ? " read" : ""), [
       m(
         m.route.Link,
         {
