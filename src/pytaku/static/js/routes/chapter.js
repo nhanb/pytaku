@@ -111,19 +111,21 @@ function Chapter(initialVNode) {
               ? `/m/${site}/${titleId}/${next.id}`
               : `/m/${site}/${titleId}`,
             onclick: (ev) => {
-              Auth.request({
-                method: "POST",
-                url: "/api/read",
-                body: {
-                  read: [
-                    {
-                      site,
-                      title_id: titleId,
-                      chapter_id: chapter.id,
-                    },
-                  ],
-                },
-              });
+              if (Auth.isLoggedIn()) {
+                Auth.request({
+                  method: "POST",
+                  url: "/api/read",
+                  body: {
+                    read: [
+                      {
+                        site,
+                        title_id: titleId,
+                        chapter_id: chapter.id,
+                      },
+                    ],
+                  },
+                });
+              }
               return true;
             },
           },
