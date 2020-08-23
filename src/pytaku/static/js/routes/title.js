@@ -3,6 +3,7 @@ import { LoadingMessage, Button, fullChapterName, Chapter } from "../utils.js";
 
 function Title(initialVNode) {
   let isLoading = false;
+  let isTogglingFollow = false;
   let title = {};
 
   return {
@@ -37,9 +38,36 @@ function Title(initialVNode) {
               m("div.title--details", [
                 Auth.isLoggedIn()
                   ? m(Button, {
-                      text: "Follow",
                       icon: "bookmark",
-                      color: "green",
+                      disabled: isTogglingFollow ? "disabled" : null,
+                      text: isTogglingFollow
+                        ? "submitting..."
+                        : title.is_following
+                        ? "following"
+                        : "follow",
+                      color: title.is_following ? "red" : "green",
+                      title: title.is_following
+                        ? "Click to unfollow"
+                        : "Click to follow",
+                      onclick: (ev) => {
+                        isTogglingFollow = true;
+                        m.redraw();
+                        Auth.request({
+                          method: "POST",
+                          url: "/api/follow",
+                          body: {
+                            site: title.site,
+                            title_id: title.id,
+                            follow: !title.is_following,
+                          },
+                        })
+                          .then((resp) => {
+                            title.is_following = resp.follow;
+                          })
+                          .finally(() => {
+                            isTogglingFollow = false;
+                          });
+                      },
                     })
                   : null,
                 " ",

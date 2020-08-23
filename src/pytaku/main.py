@@ -514,3 +514,18 @@ def api_search(query):
                 "proxy_view", b64_url=_encode_proxy_url(title["thumbnail"])
             )
     return results
+
+
+@app.route("/api/follow", methods=["POST"])
+@process_token(required=True)
+def api_follow():
+    should_follow = request.json["follow"]
+    site = request.json["site"]
+    title_id = request.json["title_id"]
+
+    if should_follow:
+        follow(request.user_id, site, title_id)
+    else:
+        unfollow(request.user_id, site, title_id)
+
+    return jsonify({"follow": should_follow})

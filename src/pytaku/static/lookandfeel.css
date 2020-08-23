@@ -114,6 +114,7 @@ button[disabled]:active {
   filter: none;
   cursor: default;
   opacity: 0.5;
+  color: #222;
 }
 a.touch-friendly {
   background-color: white;
