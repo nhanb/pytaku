@@ -1,9 +1,22 @@
 import { Auth } from "../models.js";
 import { LoadingMessage, fullChapterName, Button } from "../utils.js";
 
+const LoadingPlaceholder = {
+  view: () => m("h2", [m("i.icon.icon-loader.spin")]),
+};
+
 function Chapter(initialVNode) {
   let isLoading = false;
   let chapter = {};
+  let loadedPages = [];
+  let pendingPages = [];
+
+  function loadNextPage() {
+    loadedPages.push({
+      completed: false,
+      src: pendingPages.splice(0, 1)[0],
+    });
+  }
 
   return {
     oninit: (vnode) => {
@@ -22,8 +35,10 @@ function Chapter(initialVNode) {
         },
       })
         .then((resp) => {
-          chapter = resp;
           document.title = fullChapterName(chapter);
+          chapter = resp;
+          pendingPages = chapter.pages;
+          loadNextPage();
         })
         .finally(() => {
           isLoading = false;
@@ -82,9 +97,23 @@ function Chapter(initialVNode) {
           "div",
           {
             class:
-              "chapter--pages" + chapter.is_webtoon ? " chapter--webtoon" : "",
+              "chapter--pages" +
+              (chapter.is_webtoon ? " chapter--webtoon" : ""),
           },
-          [chapter.pages.map((page) => m("img", { src: page }))]
+          [
+            loadedPages.map((page) => [
+              m("img", {
+                src: page.src,
+                style: { display: page.completed ? "block" : "none" },
+                onload: (ev) => {
+                  page.completed = true;
+                  loadNextPage();
+                },
+              }),
+              page.completed ? "" : m(LoadingPlaceholder),
+            ]),
+            pendingPages.map((page) => m(LoadingPlaceholder)),
+          ]
         ),
         buttons,
       ]);
