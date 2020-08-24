@@ -1,4 +1,10 @@
 {
   "laxbreak": true,
-  "esversion": 6
+  "esversion": 6,
+  "strict": "implied",
+  "browser": true,
+  "globals": {
+    "m": true,
+    "console": true
+  }
 }

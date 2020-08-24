@@ -51,7 +51,6 @@ function Follows(initialVNode) {
           titles = resp.titles;
         })
         .catch((err) => {
-          alert("TODO");
           console.log(err);
         })
         .finally(() => {

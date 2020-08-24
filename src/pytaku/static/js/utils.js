@@ -6,10 +6,7 @@ const Button = {
   view: (vnode) =>
     m(
       "button",
-      {
-        class: vnode.attrs.color || "",
-        ...vnode.attrs,
-      },
+      Object.assign({ class: vnode.attrs.color || "" }, vnode.attrs),
       [
         vnode.attrs.icon ? m(`i.icon.icon-${vnode.attrs.icon}`) : null,
         vnode.attrs.text ? m("span", vnode.attrs.text) : null,
@@ -33,7 +30,6 @@ const Chapter = {
           ),
         ]
       ),
-      ,
     ]),
 };
 
