@@ -82,13 +82,13 @@ function Title(initialVNode) {
                         },
                       }),
                       m(Button, {
-                        icon: "eye",
+                        icon: "check-square",
                         disabled:
                           isMarkingAllAsRead || allAreRead ? "disabled" : null,
                         text: isMarkingAllAsRead
                           ? "submitting..."
                           : allAreRead
-                          ? "no new chapters"
+                          ? "all read!"
                           : "read all",
                         color: "green",
                         title: allAreRead

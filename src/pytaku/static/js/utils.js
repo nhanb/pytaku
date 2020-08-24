@@ -16,7 +16,7 @@ const Button = {
 
 const Chapter = {
   view: (vnode) =>
-    m("div.utils--chapter" + (vnode.attrs.chapter.is_read ? " read" : ""), [
+    m("div.utils--chapter", [
       m(
         m.route.Link,
         {
@@ -24,6 +24,9 @@ const Chapter = {
           class: "touch-friendly",
         },
         [
+          vnode.attrs.chapter.is_read
+            ? m("i.icon.icon-check-square.utils--chapter--read-icon")
+            : null,
           m("span", fullChapterName(vnode.attrs.chapter)),
           vnode.attrs.chapter.groups.map((group) =>
             m("span.utils--chapter--group", truncate(group, 20))
