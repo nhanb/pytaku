@@ -79,6 +79,8 @@ tasks:
         ~/.local/bin/pip install --user pytaku*.whl &&
         cd ~/pytaku &&
         ~/.local/bin/pytaku-migrate &&
+        rm -r static &&
+        cp -r ~/.local/lib/python3.7/site-packages/pytaku/static ./ &&
         systemctl --user daemon-reload &&
         systemctl --user restart pytaku &&
         systemctl --user restart pytaku-scheduler &&
