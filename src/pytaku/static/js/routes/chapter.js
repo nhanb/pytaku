@@ -66,6 +66,9 @@ function Chapter(initialVNode) {
           document.title = fullChapterName(chapter);
           chapter = resp;
           pendingPages = chapter.pages;
+          // start loading pages, 3 at a time:
+          loadNextPage();
+          loadNextPage();
           loadNextPage();
         })
         .finally(() => {
