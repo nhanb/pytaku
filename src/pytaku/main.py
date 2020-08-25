@@ -303,11 +303,20 @@ def read_tachiyomi_follows(text: str) -> List[Tuple[str, str]]:
 
 
 def ensure_titles(site_title_pairs: List[Tuple[str, str]]):
-    new_titles = [
-        (site, title_id)
-        for site, title_id in site_title_pairs
-        if load_title(site, title_id) is None  # again, n+1 queries are fine in sqlite
-    ]
+    """
+    Fetch and save titles that are not already in db.
+    Returns a list of title dicts, both old and new.
+    """
+    title_dicts = []
+    new_titles = []
+
+    for site, title_id in site_title_pairs:
+        existing_title = load_title(site, title_id)
+        if existing_title is None:  # again, n+1 queries are fine in sqlite
+            new_titles.append((site, title_id))
+        else:
+            title_dicts.append(existing_title)
+
     print(f"Fetching {len(new_titles)} new titles out of {len(site_title_pairs)}.")
     with ThreadPoolExecutor(max_workers=3) as executor:
         futures = [
@@ -317,6 +326,9 @@ def ensure_titles(site_title_pairs: List[Tuple[str, str]]):
             title = future.result()
             save_title(title)
             print(f"Saved {title['site']}: {title['name']}")
+            title_dicts.append(title)
+
+    return title_dicts
 
 
 """
@@ -330,6 +342,7 @@ New Mithril-based SPA views follow
 @app.route("/f")
 @app.route("/s")
 @app.route("/s/<query>")
+@app.route("/i")
 def home_view(query=None):
     return render_template("spa.html")
 
@@ -556,3 +569,36 @@ def api_read():
     # Also TODO: maybe a separate "read all from title" API would be cleaner & easier on
     # FE side.
     return {}
+
+
+@app.route("/api/import", methods=["POST"])
+@process_token(required=True)
+def api_import():
+    # check if the post request has the file part
+    if "tachiyomi" not in request.files:
+        return jsonify({"message": "No file provided"}), 400
+    file = request.files["tachiyomi"]
+
+    # if user does not select file, browser also
+    # submits an empty part without filename
+    if file.filename == "":
+        return jsonify({"message": "No selected file"}), 400
+
+    if file:
+        text = file.read()
+        site_title_pairs = read_tachiyomi_follows(text)
+        if site_title_pairs is None:
+            return jsonify({"message": "Malformed file."}), 400
+
+        # First fetch & save titles if they're not already in db
+        titles = ensure_titles(site_title_pairs)
+
+        # Then follow them all
+        import_follows(request.user_id, site_title_pairs)
+
+        # Mark all chapters as read too
+        for title in titles:
+            for chapter in title["chapters"]:
+                read(request.user_id, title["site"], title["id"], chapter["id"])
+
+        return jsonify({"message": f"Added {len(site_title_pairs)} follows."})

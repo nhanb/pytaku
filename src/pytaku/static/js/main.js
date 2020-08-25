@@ -6,6 +6,7 @@ import Follows from "./routes/follows.js";
 import Search from "./routes/search.js";
 import Title from "./routes/title.js";
 import Chapter from "./routes/chapter.js";
+import Importer from "./routes/importer.js";
 
 Auth.init().then(() => {
   const root = document.getElementById("spa-root");
@@ -75,6 +76,16 @@ Auth.init().then(() => {
             key: vnode.attrs.chapterId,
           })
         ),
+    },
+    "/i": {
+      onmatch: () => {
+        if (Auth.isLoggedIn()) {
+          return Importer;
+        } else {
+          m.route.set("/a", null, { replace: true });
+        }
+      },
+      render: (vnode) => m(Layout, vnode),
     },
   });
 });

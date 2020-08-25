@@ -70,10 +70,14 @@ function Follows(initialVNode) {
       }
 
       if (titles.length === 0) {
-        return m(
-          "div.content",
-          "You're not following any title yet. Try searching for some."
-        );
+        return m("div.content", [
+          m("p", "You're not following any title yet. Try searching for some."),
+          m("p", [
+            "Migrating from Tachiyomi? ",
+            m(m.route.Link, { href: "/i" }, "Use the importer"),
+            "!",
+          ]),
+        ]);
       }
 
       return m("div.content", [titles.map((title) => m(Title, { title }))]);

@@ -349,3 +349,16 @@ footer {
 .utils--chapter--read-icon {
   color: green;
 }
+
+/* Tachiyomi importer */
+input[type="file"].importer--filepicker {
+  border: 2px solid black;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+}
+.importer--success {
+  color: green;
+}
+.importer--failure {
+  color: red;
+}

@@ -1,5 +1,3 @@
-import { Auth } from "../models.js";
-
 const Home = {
   oncreate: (vnode) => {
     document.title = "Pytaku";

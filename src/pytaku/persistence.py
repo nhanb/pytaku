@@ -5,7 +5,7 @@ from typing import List, Tuple
 import apsw
 import argon2
 
-from .database.common import run_sql, run_sql_many, run_sql_on_demand
+from .database.common import run_sql, run_sql_many
 
 
 def save_title(title):
