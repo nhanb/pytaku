@@ -5,6 +5,10 @@ const LoadingPlaceholder = {
   view: () => m("h2", [m("i.icon.icon-loader.spin")]),
 };
 
+const PendingPlaceholder = {
+  view: () => m("h2", [m("i.icon.icon-loader")]),
+};
+
 const RetryImgButton = {
   view: (vnode) => {
     return m(Button, {
@@ -178,7 +182,7 @@ function Chapter(initialVNode) {
                   : null,
               ])
             ),
-            pendingPages.map((page) => m(LoadingPlaceholder)),
+            pendingPages.map((page) => m(PendingPlaceholder)),
           ]
         ),
         buttons,
