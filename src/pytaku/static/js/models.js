@@ -1,7 +1,18 @@
+function readCookie(cookieString) {
+  // This is terrible and wrong but it's enough for what we need i.e. just get
+  // the damn token.
+  const result = {};
+  cookieString.split(";").forEach((pair) => {
+    const [key, val] = pair.split("=");
+    result[key] = val;
+  });
+  return result;
+}
+
 const Auth = {
   username: sessionStorage.getItem("username"),
   userId: sessionStorage.getItem("userId"),
-  token: localStorage.getItem("token"),
+  token: readCookie(document.cookie).token || null,
   isLoggedIn: () => Auth.username !== null && Auth.userId !== null,
   init: () => {
     // Already logged in, probably from another tab:
@@ -21,7 +32,6 @@ const Auth = {
       .request({
         method: "GET",
         url: "/api/verify-token",
-        headers: { Authorization: `Bearer ${Auth.token}` },
       })
       .then((result) => {
         // Success! Set user info for this session now
@@ -41,21 +51,8 @@ const Auth = {
   },
 
   saveLoginResults: ({ userId, username, token, remember }) => {
-    // FIXME: currently, even when remember=false we're still storing the token
-    // in localStorage, simply because sessionStorage isn't shared across tabs.
-    // Unfortunately this means when user logs in without checking "remember
-    // me", the token will still linger in localstorage after browser is
-    // closed, and if an adversary reopens browser within the token's
-    // server-enforced lifespan (1 day), then user is pwned.
-    //
-    // Either that or we stick to sessionStorage and forget multitab support.
-    // _OR_ we do a convoluted song and dance with storage events:
-    // > https://stackoverflow.com/a/32766809
-    //
-    // 0 days since web APIs last made me sad.
     sessionStorage.setItem("userId", userId);
     sessionStorage.setItem("username", username);
-    localStorage.setItem("token", token);
     Auth.userId = userId;
     Auth.username = username;
     Auth.token = token;
@@ -77,15 +74,16 @@ const Auth = {
     Auth.username = null;
     Auth.token = null;
     Auth.userId = null;
-    localStorage.clear();
     sessionStorage.clear();
   },
 
   request: (options) => {
-    if (Auth.isLoggedIn()) {
-      options.headers = { Authorization: `Bearer ${Auth.token}` };
-    }
-    return m.request(options);
+    return m.request(options).catch((err) => {
+      if (err.code == 401) {
+        Auth.clearCredentials();
+      }
+      throw err;
+    });
   },
 };
 

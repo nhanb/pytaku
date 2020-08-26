@@ -9,15 +9,11 @@ def process_token(required=True):
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
-            header = request.headers.get("Authorization")
-            if not header or not header.startswith("Bearer "):
+            token = request.cookies.get("token")
+            if not token:
                 if required:
                     return (
-                        jsonify(
-                            {
-                                "message": "Missing `Authorization: Bearer <token>` header."
-                            }
-                        ),
+                        jsonify({"message": "Missing 'token' cookie."}),
                         401,
                     )
                 else:
@@ -25,7 +21,6 @@ def process_token(required=True):
                     request.user_id = None
                     return f(*args, **kwargs)
 
-            token = header[len("Bearer ") :]
             user_id = verify_token(token)
             if user_id is None:
                 return jsonify({"message": "Invalid token."}), 401

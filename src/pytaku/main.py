@@ -309,7 +309,11 @@ def api_login():
         return jsonify({"message": "Wrong username/password combination."}), 401
 
     token = create_token(user_id, remember)
-    return jsonify({"user_id": user_id, "token": token}), 200
+    resp = make_response(jsonify({"user_id": user_id, "token": token}))
+    resp.set_cookie(
+        "token", token, max_age=31536000 if remember else None, samesite="Strict"
+    )
+    return resp
 
 
 @app.route("/api/verify-token", methods=["GET"])
@@ -324,7 +328,9 @@ def api_logout():
     num_deleted = delete_token(request.token)
     if num_deleted != 1:
         return jsonify({"message": "Invalid token."}), 401
-    return "{}", 200
+    resp = make_response("{}", 200)
+    resp.set_cookie("token", "", expires=0)
+    return resp
 
 
 @app.route("/api/follows", methods=["GET"])
