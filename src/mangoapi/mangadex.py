@@ -7,8 +7,7 @@ from mangoapi.base_site import Site, requires_login
 class Mangadex(Site):
     def get_title(self, title_id):
         url = f"https://mangadex.org/api/?id={title_id}&type=manga"
-        md_resp = self.session.get(url)
-        assert md_resp.status_code == 200, md_resp.text
+        md_resp = self.http_get(url)
         md_json = md_resp.json()
         assert md_json["status"] == "OK"
 
@@ -39,10 +38,9 @@ class Mangadex(Site):
         return title
 
     def get_chapter(self, title_id, chapter_id):
-        md_resp = self.session.get(
+        md_resp = self.http_get(
             f"https://mangadex.org/api/?id={chapter_id}&type=chapter&saver=0"
         )
-        assert md_resp.status_code == 200, md_resp.text
         md_json = md_resp.json()
         assert md_json["status"] == "OK"
 
@@ -63,8 +61,7 @@ class Mangadex(Site):
 
     @requires_login
     def search_title(self, query):
-        md_resp = self.session.get(f"https://mangadex.org/quick_search/{query}")
-        assert md_resp.status_code == 200, md_resp.text
+        md_resp = self.http_get(f"https://mangadex.org/quick_search/{query}")
 
         matches = TITLES_PATTERN.findall(md_resp.text)
         titles = [
@@ -85,12 +82,11 @@ class Mangadex(Site):
             "two_factor": "",
             "remember_me": "1",
         }
-        md_resp = self.session.post(
+        self.http_post(
             "https://mangadex.org/ajax/actions.ajax.php?function=login",
             data=form_data,
             headers={"X-Requested-With": "XMLHttpRequest"},
         )
-        assert md_resp.status_code == 200, md_resp.text
         self.is_logged_in = True
 
     def title_cover(self, title_id, cover_ext):

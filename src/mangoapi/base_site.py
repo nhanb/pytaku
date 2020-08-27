@@ -3,14 +3,16 @@ from abc import ABC, abstractmethod
 
 import requests
 
+from .exceptions import SourceSite5xxError, SourceSiteUnexpectedError
+
 
 class Site(ABC):
     def __init__(self):
         self.username = None
         self.password = None
         self.is_logged_in = False
-        self.session = requests.Session()
-        self.session.headers.update(
+        self._session = requests.Session()
+        self._session.headers.update(
             {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
             }
@@ -43,6 +45,23 @@ class Site(ABC):
     # optional abstract method
     def login(self, username, password):
         raise NotImplementedError()
+
+    def _http_request(self, method, *args, **kwargs):
+        request_func = getattr(self._session, method)
+        resp = request_func(*args, **kwargs)
+
+        if 500 <= resp.status_code <= 599:
+            raise SourceSite5xxError(resp.text)
+        elif resp.status_code != 200:
+            raise SourceSiteUnexpectedError(resp.status_code, resp.text)
+
+        return resp
+
+    def http_get(self, *args, **kwargs):
+        return self._http_request("get", *args, **kwargs)
+
+    def http_post(self, *args, **kwargs):
+        return self._http_request("post", *args, **kwargs)
 
 
 def requires_login(func):

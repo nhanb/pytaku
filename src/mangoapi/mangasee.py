@@ -25,8 +25,7 @@ class Mangasee(Site):
         self.keyval_store = keyval_store
 
     def get_title(self, title_id):
-        resp = self.session.get(f"https://mangasee123.com/manga/{title_id}", timeout=3)
-        assert resp.status_code == 200
+        resp = self.http_get(f"https://mangasee123.com/manga/{title_id}", timeout=3)
         html = resp.text
         name = regexes["title_name"].search(html).group(1).strip()
         desc = regexes["title_desc"].search(html).group(1).strip()
@@ -54,10 +53,9 @@ class Mangasee(Site):
         }
 
     def get_chapter(self, title_id, chapter_id):
-        resp = self.session.get(
+        resp = self.http_get(
             f"https://mangasee123.com/read-online/{title_id}-chapter-{chapter_id}.html"
         )
-        assert resp.status_code == 200
         html = resp.text
 
         title_id = regexes["chapter_title_name"].search(html).group(1)
@@ -108,7 +106,7 @@ class Mangasee(Site):
                 )
             if not titles:
                 print("Fetching mangasee title list...", end="")
-                resp = self.session.get("https://mangasee123.com/_search.php")
+                resp = self.http_get("https://mangasee123.com/_search.php")
                 print(" done")
                 titles = resp.json()
                 self.keyval_store.set("mangasee_titles", resp.text)
