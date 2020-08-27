@@ -81,6 +81,8 @@ const Auth = {
     return m.request(options).catch((err) => {
       if (err.code == 401) {
         Auth.clearCredentials();
+      } else if (err.code == 500) {
+        alert(err.response.message);
       }
       throw err;
     });

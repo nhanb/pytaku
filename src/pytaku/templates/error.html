@@ -1,0 +1,17 @@
+{# vim: ft=htmldjango
+#}
+{% extends "spa.html" %}
+{% block title %}{{ message }}{% endblock %}
+{% block body %}
+<div class="content">
+  <h1>{{ message }}</h1>
+  <p>Error code: {{ code }}</p>
+  <h2>Details:</h2>
+  <ul>
+    {% for key, val in detail.items() %}
+    <li>{{ key }}: {{ val }}</li>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}

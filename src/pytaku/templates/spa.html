@@ -24,6 +24,8 @@
   </head>
 
   <body>
+    {% block body %}
+
     <div id="spa-root">
       <noscript>
         <p>Please enable JavaScript to use Pytaku.</p>
@@ -45,5 +47,7 @@
     <script>const initialState = "{{ initial_state }}";</script>
     <script src="{{ url_for('static', filename='vendored/mithril.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}" type="module"></script>
+
+    {% endblock %}
   </body>
 </html>

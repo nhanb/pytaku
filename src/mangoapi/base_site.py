@@ -3,7 +3,11 @@ from abc import ABC, abstractmethod
 
 import requests
 
-from .exceptions import SourceSite5xxError, SourceSiteUnexpectedError
+from .exceptions import (
+    SourceSite5xxError,
+    SourceSiteTimeoutError,
+    SourceSiteUnexpectedError,
+)
 
 
 class Site(ABC):
@@ -46,18 +50,21 @@ class Site(ABC):
     def login(self, username, password):
         raise NotImplementedError()
 
-    def _http_request(self, method, *args, **kwargs):
+    def _http_request(self, method, url, *args, **kwargs):
         request_func = getattr(self._session, method)
 
         if "timeout" not in kwargs:
             kwargs["timeout"] = 5
 
-        resp = request_func(*args, **kwargs)
+        try:
+            resp = request_func(url, *args, **kwargs)
+        except requests.exceptions.Timeout:
+            raise SourceSiteTimeoutError(url)
 
         if 500 <= resp.status_code <= 599:
-            raise SourceSite5xxError(resp.text)
+            raise SourceSite5xxError(url, resp.status_code, resp.text)
         elif resp.status_code != 200:
-            raise SourceSiteUnexpectedError(resp.status_code, resp.text)
+            raise SourceSiteUnexpectedError(url, resp.status_code, resp.text)
 
         return resp
 

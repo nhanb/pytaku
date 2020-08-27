@@ -10,7 +10,7 @@ import requests
 from flask import Flask, jsonify, make_response, render_template, request, url_for
 
 from .conf import config
-from .decorators import process_token
+from .decorators import handle_source_site_errors, process_token
 from .persistence import (
     create_token,
     delete_token,
@@ -209,6 +209,7 @@ def _title(site, title_id, user_id=None):
 
 
 @app.route("/m/<site>/<title_id>")
+@handle_source_site_errors("html")
 def spa_title_view(site, title_id):
     title = _title(site, title_id)
     return render_template(
@@ -222,6 +223,7 @@ def spa_title_view(site, title_id):
 
 
 @app.route("/m/<site>/<title_id>/<chapter_id>")
+@handle_source_site_errors("html")
 def spa_chapter_view(site, title_id, chapter_id):
     chapter = load_chapter(site, title_id, chapter_id)
     if not chapter:
@@ -252,6 +254,7 @@ def spa_chapter_view(site, title_id, chapter_id):
 
 @app.route("/api/title/<site>/<title_id>", methods=["GET"])
 @process_token(required=False)
+@handle_source_site_errors("json")
 def api_title(site, title_id):
     title = _title(site, title_id, user_id=request.user_id)
     return title
@@ -259,6 +262,7 @@ def api_title(site, title_id):
 
 @app.route("/api/chapter/<site>/<title_id>/<chapter_id>", methods=["GET"])
 @process_token(required=False)
+@handle_source_site_errors("json")
 def api_chapter(site, title_id, chapter_id):
     chapter = load_chapter(site, title_id, chapter_id)
     if not chapter:
@@ -382,6 +386,7 @@ def api_search(query):
 
 @app.route("/api/follow", methods=["POST"])
 @process_token(required=True)
+@handle_source_site_errors("json")
 def api_follow():
     should_follow = request.json["follow"]
     site = request.json["site"]
@@ -405,12 +410,18 @@ def api_read():
     if reads:
         for r in reads:
             read(
-                request.user_id, r["site"], r["title_id"], r["chapter_id"],
+                request.user_id,
+                r["site"],
+                r["title_id"],
+                r["chapter_id"],
             )
     if unreads:
         for u in unreads:
             unread(
-                request.user_id, u["site"], u["title_id"], u["chapter_id"],
+                request.user_id,
+                u["site"],
+                u["title_id"],
+                u["chapter_id"],
             )
     # TODO: rewrite read/unread to do bulk updates instead of n+1 queries like these.
     # ... Or maybe not. SQLite doesn't mind.
@@ -422,6 +433,7 @@ def api_read():
 
 @app.route("/api/import", methods=["POST"])
 @process_token(required=True)
+@handle_source_site_errors("json")
 def api_import():
     # check if the post request has the file part
     if "tachiyomi" not in request.files:
