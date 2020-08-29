@@ -34,22 +34,6 @@ CREATE TABLE keyval_store (
     value text not null,
     updated_at text default (datetime('now'))
 );
-CREATE TABLE IF NOT EXISTS "chapter" (
-    id text,
-    title_id text,
-    site text,
-    num_major integer,
-    num_minor integer,
-    name text,
-    pages text,
-    groups text,
-    updated_at text default (datetime('now')),
-    is_webtoon boolean,
-
-    foreign key (title_id, site) references title (id, site),
-    unique(site, title_id, id),
-    unique(site, title_id, num_major, num_minor)
-);
 CREATE TABLE token (
     user_id integer not null,
     token text unique not null,
@@ -68,4 +52,19 @@ CREATE TABLE IF NOT EXISTS "read" (
 
     foreign key (user_id) references user (id),
     unique(user_id, site, title_id, chapter_id)
+);
+CREATE TABLE IF NOT EXISTS "chapter"(
+    id text,
+    title_id text,
+    site text,
+    num_major integer,
+    num_minor integer,
+    name text,
+    pages text,
+    groups text,
+    updated_at text default (datetime('now')),
+    is_webtoon boolean,
+
+    foreign key (title_id, site) references title (id, site),
+    unique(site, title_id, id)
 );
