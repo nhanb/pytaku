@@ -1,7 +1,12 @@
 import time
+import traceback
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 from pathlib import Path
+
+from requests.exceptions import ReadTimeout
+
+from mangoapi.exceptions import SourceSite5xxError
 
 from .conf import config
 from .persistence import delete_expired_tokens, find_outdated_titles, save_title
@@ -17,8 +22,13 @@ def main_loop():
         for worker in workers:
             if worker.should_run():
                 print("Running", worker.__class__.__name__)
-                worker.run()
-                worker.after_run()
+                try:
+                    worker.run()
+                    worker.after_run()
+                except Exception:
+                    stacktrace = traceback.format_exc()
+                    print(stacktrace)
+                    worker.after_error(stacktrace)
         time.sleep(5)
 
 
@@ -27,6 +37,7 @@ class Worker(ABC):
 
     def __init__(self):
         self.last_run = datetime(1, 1, 1)
+        self.error_count = 0
 
     def should_run(self):
         return now() - self.last_run >= self.interval
@@ -38,6 +49,15 @@ class Worker(ABC):
     def after_run(self):
         self.last_run = now()
 
+    def after_error(self, stacktrace):
+        # TODO: email or send stacktrace to an ops chat channel or something
+        self.error_count += 1
+
+        # If failed repeatedly: give up this run
+        if self.error_count > 3:
+            self.last_run = now()
+            self.error_count = 0
+
 
 class UpdateOutdatedTitles(Worker):
     interval = timedelta(hours=2)
@@ -45,9 +65,12 @@ class UpdateOutdatedTitles(Worker):
     def run(self):
         for title in find_outdated_titles():
             print(f"Updating title {title['id']} from {title['site']}...", end="")
-            updated_title = get_title(title["site"], title["id"])
-            save_title(updated_title)
-            print(" done")
+            try:
+                updated_title = get_title(title["site"], title["id"])
+                save_title(updated_title)
+                print(" done")
+            except (SourceSite5xxError, ReadTimeout) as e:
+                print(" skipped because of server error:", str(e))
 
 
 class DeleteExpiredTokens(Worker):
