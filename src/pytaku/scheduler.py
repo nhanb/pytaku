@@ -1,7 +1,9 @@
 import time
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
+from pathlib import Path
 
+from .conf import config
 from .persistence import delete_expired_tokens, find_outdated_titles, save_title
 from .source_sites import get_title
 
@@ -9,7 +11,7 @@ now = datetime.now
 
 
 def main_loop():
-    workers = [UpdateOutdatedTitles(), DeleteExpiredTokens()]
+    workers = [UpdateOutdatedTitles(), DeleteExpiredTokens(), PruneProxyCache()]
 
     while True:
         for worker in workers:
@@ -55,3 +57,47 @@ class DeleteExpiredTokens(Worker):
         num_deleted = delete_expired_tokens()
         if num_deleted > 0:
             print("Deleted", num_deleted, "tokens")
+
+
+class PruneProxyCache(Worker):
+    """
+    If proxy cache dir size exceeds config.PROXY_CACHE_MAX_SIZE,
+    delete files that are older than config.PROXY_CACHE_MAX_AGE.
+
+    Only applies for FilesystemStorage.
+    TODO: update this accordingly when a new Storage class is introduced.
+    """
+
+    interval = timedelta(days=1)
+
+    def run(self):
+        cache_dir = Path(config.PROXY_CACHE_DIR)
+        cache_size = get_dir_size(cache_dir)
+
+        if cache_size <= config.PROXY_CACHE_MAX_SIZE:
+            return
+
+        now = time.time()
+        files_deleted = 0
+        bytes_deleted = 0
+        for child in cache_dir.iterdir():
+            if child.is_file():
+                stat = child.stat()
+                modified_at = stat.st_mtime
+                if (now - modified_at) > config.PROXY_CACHE_MAX_AGE:
+                    child.unlink()  # yes this means delete
+                    files_deleted += 1
+                    bytes_deleted += stat.st_size
+
+        if files_deleted > 0:
+            in_mb = bytes_deleted / 1024 / 1024
+            print(f"Deleted {files_deleted} files ({in_mb:.2f} MiB).")
+        else:
+            print("Deleted nothing.")
+
+
+def get_dir_size(path: Path):
+    """
+    In bytes.
+    """
+    return sum(f.stat().st_size for f in path.glob("**/*") if f.is_file())

@@ -1,3 +1,4 @@
+/proxy_cache
 /debug.py
 /test_secrets.json
 __pycache__

@@ -3,6 +3,7 @@ import json
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import timedelta
+from pathlib import Path
 from typing import List, Tuple
 
 import requests
@@ -36,6 +37,7 @@ from .source_sites import (
     title_source_url,
     title_thumbnail,
 )
+from .storages import storage
 
 config.load()
 
@@ -61,19 +63,6 @@ def _chapter_name(chapter: dict):
     return result
 
 
-@app.route("/proxy/<b64_url>")
-def proxy_view(b64_url):
-    """Fine I'll do it"""
-    url = _decode_proxy_url(b64_url)
-    if not _is_manga_img_url(url):
-        print("Invalid img url:", url)
-        return "Nope", 400
-    md_resp = requests.get(url)
-    resp = make_response(md_resp.content, md_resp.status_code)
-    resp.headers["Content-Type"] = md_resp.headers["Content-Type"]
-    return resp
-
-
 def _encode_proxy_url(url):
     return base64.urlsafe_b64encode(url.encode()).decode()
 
@@ -89,6 +78,40 @@ def _is_manga_img_url(
     ),
 ):
     return pattern.match(url)
+
+
+@app.route("/proxy/<b64_url>")
+def proxy_view(b64_url):
+    """
+    Cached proxy for images (manga cover/page). Motivations:
+        - get around source site's hotlinking protection
+        - keep working even when source site is down
+        - be a polite netizen in general
+    """
+    url = _decode_proxy_url(b64_url)
+    if not _is_manga_img_url(url):
+        print("Invalid img url:", url)
+        return "Nope", 400
+
+    cached_file_path = Path(config.PROXY_CACHE_DIR) / b64_url
+    cached_headers_path = cached_file_path.with_suffix(".headers.json")
+
+    if not (storage.exists(cached_file_path) and storage.exists(cached_headers_path)):
+        md_resp = requests.get(url)
+        status_code = md_resp.status_code
+        body = md_resp.content
+        headers = {"Content-Type": md_resp.headers["content-type"]}
+        if status_code == 200:
+            storage.save(cached_headers_path, json.dumps(headers).encode())
+            storage.save(cached_file_path, md_resp.content)
+    else:
+        status_code = 200
+        body = storage.read(cached_file_path)
+        headers = json.loads(storage.read(cached_headers_path))
+
+    headers["Cache-Control"] = "max-age=31536000"
+
+    return body, status_code, headers
 
 
 def read_tachiyomi_follows(text: str) -> List[Tuple[str, str]]:

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pytaku"
-version = "0.3.7"
+version = "0.3.8"
 description = "Self-hostable web-based manga reader"
 authors = ["Bùi Thành Nhân <hi@imnhan.com>"]
 license = "AGPL-3.0-only"
