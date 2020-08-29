@@ -42,11 +42,11 @@ tasks:
             --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
             --global-option=build --global-option=--enable-all-extensions
 
-  - test: |
-      cd pytaku
-      source ~/venv/bin/activate
-      mv ~/pytaku.conf.json ./
-      pytest
+  #- test: |
+      #cd pytaku
+      #source ~/venv/bin/activate
+      #mv ~/pytaku.conf.json ./
+      #pytest
 
   - build: |
       cd pytaku
