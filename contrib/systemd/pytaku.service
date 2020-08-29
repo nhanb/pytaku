@@ -12,6 +12,7 @@ Description=Pytaku server
 Environment="PYTHONUNBUFFERED=1"
 ExecStart=/bin/bash -c 'export PATH=$PATH:$HOME/.local/bin; pytaku -w 10 -b 0.0.0.0:5001'
 WorkingDirectory=/home/pytaku/pytaku
+Restart=always
 
 [Install]
 WantedBy=default.target

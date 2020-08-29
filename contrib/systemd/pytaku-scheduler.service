@@ -12,6 +12,7 @@ Description=Pytaku scheduler
 Environment="PYTHONUNBUFFERED=1"
 ExecStart=/home/pytaku/.local/bin/pytaku-scheduler
 WorkingDirectory=/home/pytaku/pytaku
+Restart=always
 
 [Install]
 WantedBy=default.target
