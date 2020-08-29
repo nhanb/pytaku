@@ -25,7 +25,7 @@ class Mangasee(Site):
         self.keyval_store = keyval_store
 
     def get_title(self, title_id):
-        resp = self.http_get(f"https://mangasee123.com/manga/{title_id}", timeout=3)
+        resp = self.http_get(f"https://mangasee123.com/manga/{title_id}")
         html = resp.text
         name = regexes["title_name"].search(html).group(1).strip()
         desc = regexes["title_desc"].search(html).group(1).strip()
@@ -102,7 +102,7 @@ class Mangasee(Site):
             titles = None
             if self.keyval_store:
                 titles = json.loads(
-                    self.keyval_store.get("mangasee_titles", "null", since="-1 day")
+                    self.keyval_store.get("mangasee_titles", "null", since="-20 day")
                 )
             if not titles:
                 print("Fetching mangasee title list...", end="")

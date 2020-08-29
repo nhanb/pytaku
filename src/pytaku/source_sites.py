@@ -1,3 +1,6 @@
+import traceback
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 from mangoapi import get_site_class
 
 from .conf import config
@@ -55,7 +58,27 @@ def search_title_all_sites(query):
     Returns dict in the form of {site_name: List[Title]}
     I should really look into proper type annotations huh.
     """
-    return {
-        site_name: search_title(site_name, query)
-        for site_name in ("mangasee", "mangadex")
-    }
+    site_names = ("mangasee", "mangadex")
+    results = {}
+
+    def safe_search(site_name, query):
+        try:
+            return search_title(site_name, query)
+        except Exception:
+            print(f"{site_name}'s search function shat the bed:")
+            traceback.print_exc()
+            return []
+
+    # Concurrently search from multiple sites.
+    # Obviously network I/O bound so a thread pool is appropriate enough.
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        future_to_site_name = {
+            executor.submit(safe_search, site_name, query): site_name
+            for site_name in site_names
+        }
+        for future in as_completed(future_to_site_name):
+            site_results = future.result()
+            site_name = future_to_site_name[future]
+            results[site_name] = site_results
+
+    return results

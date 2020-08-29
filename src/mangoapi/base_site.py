@@ -48,6 +48,10 @@ class Site(ABC):
 
     def _http_request(self, method, *args, **kwargs):
         request_func = getattr(self._session, method)
+
+        if "timeout" not in kwargs:
+            kwargs["timeout"] = 5
+
         resp = request_func(*args, **kwargs)
 
         if 500 <= resp.status_code <= 599:
