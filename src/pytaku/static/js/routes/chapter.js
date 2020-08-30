@@ -54,7 +54,7 @@ function Chapter(initialVNode) {
       });
     } else if (chapter.next_chapter && nextChapterPromise === null) {
       /* Once all pages of this chapter have been loaded,
-       * preload the next chapter one page at a time
+       * preload the next chapter
        */
       nextChapterPromise = ChapterModel.get({
         site,
@@ -63,6 +63,8 @@ function Chapter(initialVNode) {
       }).then((nextChapter) => {
         console.log("Preloading next chapter:", fullChapterName(nextChapter));
         nextChapterPendingPages = nextChapter.pages.slice();
+        // Apparently preloading one at a time was too slow so let's go with 2.
+        preloadNextChapterPage();
         preloadNextChapterPage();
       });
     }
@@ -72,8 +74,6 @@ function Chapter(initialVNode) {
     if (nextChapterPendingPages !== null) {
       if (nextChapterPendingPages.length > 0) {
         nextChapterLoadedPages.push(nextChapterPendingPages.splice(0, 1)[0]);
-      } else {
-        console.log("Completely preloaded next chapter.");
       }
     }
   }
