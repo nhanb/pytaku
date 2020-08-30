@@ -175,14 +175,22 @@ footer {
 
 /* Follows route */
 
+.follows.content {
+  display: flex;
+  flex-wrap: wrap;
+}
 .follows--title {
   display: flex;
   flex-direction: row;
   margin-bottom: var(--body-padding);
+}
+.follows--title.non-empty {
+  flex-basis: 100%;
   background-color: #efefef;
 }
 .follows--title.empty {
   display: inline-flex;
+  flex-grow: 1;
 }
 .follows--title.empty .chapters {
   display: none;

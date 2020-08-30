@@ -7,12 +7,18 @@ const Title = {
     const numChaptersToDisplay = 3;
 
     return m(
-      "div.follows--title" + (title.chapters.length === 0 ? ".empty" : ""),
+      "div.follows--title" +
+        (title.chapters.length === 0 ? ".empty" : ".non-empty"),
       [
         m("div", [
-          m(m.route.Link, { href: `/m/${title.site}/${title.id}` }, [
-            m("img.follows--cover", { src: title.thumbnail, alt: title.name }),
-          ]),
+          m(
+            m.route.Link,
+            {
+              href: `/m/${title.site}/${title.id}`,
+              title: `${title.name} - ${title.site}`,
+            },
+            [m("img.follows--cover", { src: title.thumbnail, alt: title.name })]
+          ),
         ]),
         m("div.follows--chapters", [
           title.chapters.length > numChaptersToDisplay
@@ -80,7 +86,9 @@ function Follows(initialVNode) {
         ]);
       }
 
-      return m("div.content", [titles.map((title) => m(Title, { title }))]);
+      return m("div.follows.content", [
+        titles.map((title) => m(Title, { title })),
+      ]);
     },
   };
 }
