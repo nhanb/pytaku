@@ -80,6 +80,11 @@ def _is_manga_img_url(
     return pattern.match(url)
 
 
+def proxied(url) -> str:
+    path = url_for("proxy_view", b64_url=_encode_proxy_url(url))
+    return config.PROXY_PREFIX + path
+
+
 @app.route("/proxy/<b64_url>")
 def proxy_view(b64_url):
     """
@@ -201,9 +206,7 @@ def _title(site, title_id, user_id=None):
         print("Loading title", title_id, "from db")
     title["cover"] = title_cover(site, title_id, title["cover_ext"])
     if site == "mangadex":
-        title["cover"] = url_for(
-            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
-        )
+        title["cover"] = proxied(title["cover"])
     title["source_url"] = title_source_url(site, title_id)
     return title
 
@@ -237,9 +240,7 @@ def spa_chapter_view(site, title_id, chapter_id):
     title = load_title(site, title_id)
     title["cover"] = title_cover(site, title_id, title["cover_ext"])
     if site == "mangadex":
-        title["cover"] = url_for(
-            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
-        )
+        title["cover"] = proxied(title["cover"])
 
     chapter["site"] = site
     return render_template(
@@ -273,18 +274,13 @@ def api_chapter(site, title_id, chapter_id):
         print("Loading chapter", chapter_id, "from db")
 
     if site in ("mangadex", "mangasee"):
-        chapter["pages"] = [
-            url_for("proxy_view", b64_url=_encode_proxy_url(p))
-            for p in chapter["pages"]
-        ]
+        chapter["pages"] = [proxied(p) for p in chapter["pages"]]
 
     # YIIIIKES
     title = load_title(site, title_id)
     title["cover"] = title_cover(site, title_id, title["cover_ext"])
     if site == "mangadex":
-        title["cover"] = url_for(
-            "proxy_view", b64_url=_encode_proxy_url(title["cover"])
-        )
+        title["cover"] = proxied(title["cover"])
     prev_chapter, next_chapter = get_prev_next_chapters(title, chapter)
     chapter["prev_chapter"] = prev_chapter
     chapter["next_chapter"] = next_chapter
@@ -367,7 +363,7 @@ def api_follows():
     for title in titles:
         thumbnail = title_thumbnail(title["site"], title["id"])
         if title["site"] == "mangadex":
-            thumbnail = url_for("proxy_view", b64_url=_encode_proxy_url(thumbnail))
+            thumbnail = proxied(thumbnail)
         title["thumbnail"] = thumbnail
     return jsonify({"titles": titles})
 
@@ -378,9 +374,7 @@ def api_search(query):
 
     if "mangadex" in results:
         for title in results["mangadex"]:
-            title["thumbnail"] = url_for(
-                "proxy_view", b64_url=_encode_proxy_url(title["thumbnail"])
-            )
+            title["thumbnail"] = proxied(title["thumbnail"])
     return results
 
 
