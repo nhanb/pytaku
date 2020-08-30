@@ -120,4 +120,37 @@ const SearchModel = {
   },
 };
 
-export { Auth, SearchModel };
+const ChapterModel = {
+  cache: {},
+
+  cacheGet: (site, titleId, chapterId) => {
+    const key = [site, titleId, chapterId].join(",");
+    return ChapterModel.cache[key] || null;
+  },
+  cacheSet: (site, titleId, chapterId, value) => {
+    const key = [site, titleId, chapterId].join(",");
+    ChapterModel.cache[key] = value;
+  },
+
+  get: ({ site, titleId, chapterId }) => {
+    // Returns a promise.
+    // Tries to return cached data first, if that fails then send http request
+    // and save cache on success.
+
+    const cached = ChapterModel.cacheGet(site, titleId, chapterId);
+    if (cached) {
+      return Promise.resolve(cached);
+    }
+
+    return Auth.request({
+      method: "GET",
+      url: "/api/chapter/:site/:titleId/:chapterId",
+      params: { site, titleId, chapterId },
+    }).then((chapter) => {
+      ChapterModel.cacheSet(site, titleId, chapterId, chapter);
+      return chapter;
+    });
+  },
+};
+
+export { Auth, SearchModel, ChapterModel };

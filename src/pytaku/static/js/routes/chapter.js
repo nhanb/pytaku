@@ -1,4 +1,4 @@
-import { Auth } from "../models.js";
+import { Auth, ChapterModel } from "../models.js";
 import { LoadingMessage, fullChapterName, Button } from "../utils.js";
 
 const LoadingPlaceholder = {
@@ -41,35 +41,64 @@ function Chapter(initialVNode) {
   let loadedPages = [];
   let pendingPages = [];
 
+  let site, titleId; // these are written on init
+  let nextChapterPromise = null;
+  let nextChapterPendingPages = null;
+  let nextChapterLoadedPage = "";
+
   function loadNextPage() {
     if (pendingPages.length > 0) {
       loadedPages.push({
         status: ImgStatus.LOADING,
         src: pendingPages.splice(0, 1)[0],
       });
+    } else if (chapter.next_chapter && nextChapterPromise === null) {
+      /* Once all pages of this chapter have been loaded,
+       * preload the next chapter one page at a time
+       */
+      nextChapterPromise = ChapterModel.get({
+        site,
+        titleId,
+        chapterId: chapter.next_chapter.id,
+      }).then((nextChapter) => {
+        console.log("Preloading next chapter:", fullChapterName(nextChapter));
+        nextChapterPendingPages = nextChapter.pages.slice();
+        preloadNextChapterPage();
+      });
+    }
+  }
+
+  function preloadNextChapterPage() {
+    if (nextChapterPendingPages !== null) {
+      if (nextChapterPendingPages.length > 0) {
+        nextChapterLoadedPage = nextChapterPendingPages.splice(0, 1)[0];
+      } else {
+        console.log("Completely preloaded next chapter.");
+      }
     }
   }
 
   return {
     oninit: (vnode) => {
       document.title = "Manga chapter";
+      site = vnode.attrs.site;
+      titleId = vnode.attrs.titleId;
 
       isLoading = true;
       m.redraw();
 
-      Auth.request({
-        method: "GET",
-        url: "/api/chapter/:site/:titleId/:chapterId",
-        params: {
-          site: vnode.attrs.site,
-          titleId: vnode.attrs.titleId,
-          chapterId: vnode.attrs.chapterId,
-        },
+      ChapterModel.get({
+        site: vnode.attrs.site,
+        titleId: vnode.attrs.titleId,
+        chapterId: vnode.attrs.chapterId,
       })
         .then((resp) => {
           chapter = resp;
           document.title = fullChapterName(chapter);
-          pendingPages = chapter.pages;
+
+          // Clone array here to avoid mutating the model
+          pendingPages = chapter.pages.slice();
+
           // start loading pages, 3 at a time:
           loadNextPage();
           loadNextPage();
@@ -186,6 +215,12 @@ function Chapter(initialVNode) {
           ]
         ),
         buttons,
+        m("img.chapter--preloader", {
+          style: { display: "none" },
+          onload: preloadNextChapterPage,
+          onerror: preloadNextChapterPage,
+          src: nextChapterLoadedPage,
+        }),
       ]);
     },
   };
