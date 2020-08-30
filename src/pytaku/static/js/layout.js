@@ -9,11 +9,12 @@ function Navbar(initialVNode) {
       let userLink;
       if (Auth.isLoggedIn()) {
         userLink = m("span.nav--greeting", [
-          m("span", ["Welcome, ", m("b", Auth.username)]),
+          m("span", ["Hi ", m("b", Auth.username)]),
           m(Button, {
             text: isLoggingOut ? " logging out" : " logout",
             icon: "log-out",
             color: "red",
+            title: "Log out",
             onclick: (ev) => {
               isLoggingOut = true;
               m.redraw();
@@ -40,6 +41,10 @@ function Navbar(initialVNode) {
           m.route.Link,
           { class: "nav--logo", href: Auth.isLoggedIn() ? "/f" : "/" },
           [
+            m("img.nav--logo--favicon", {
+              src: "/static/favicon.svg",
+              alt: "home",
+            }),
             m("img.nav--logo--img", {
               src: "/static/pytaku.svg",
               alt: "home",

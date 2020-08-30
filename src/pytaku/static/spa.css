@@ -41,18 +41,21 @@ nav {
   background-color: var(--bg-black);
   padding: 0 var(--body-padding);
   display: flex;
-  flex-wrap: wrap;
 }
 nav > * {
   margin: var(--body-padding) 0;
 }
 .nav--logo {
-  width: 150px;
   margin-right: var(--body-padding);
+  flex: 0 0 150px;
 }
-.nav--logo--img {
+.nav--logo--img,
+.nav--logo--favicon {
   max-width: 100%;
   display: block;
+}
+.nav--logo--favicon {
+  display: none;
 }
 .nav--search-form {
   display: inline-flex;
@@ -73,6 +76,7 @@ nav > * {
   margin-bottom: auto;
   display: flex;
   padding: 0.5rem 0 0.5rem 0.5rem;
+  text-align: right;
 }
 .nav--greeting > button {
   margin-left: 0.5rem;
@@ -95,6 +99,43 @@ nav > * {
 }
 .nav--link i {
   margin-right: 0.3rem;
+}
+
+@media (max-width: 679px) {
+  .nav--search-form > input {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 539px) {
+  .nav--greeting > button > i {
+    margin: 0;
+  }
+  .nav--greeting > button > span {
+    display: none;
+  }
+  .nav--logo--img {
+    display: none;
+  }
+  .nav--logo--favicon {
+    display: inline;
+  }
+  .nav--logo {
+    flex: 0 0 43px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .nav--search-form {
+    flex-basis: 100%;
+  }
+  .nav--search-form > input {
+    width: 5rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  .nav--link:last-child {
+    margin-left: 0.5rem;
+  }
 }
 
 /* Route content common styling */
