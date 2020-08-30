@@ -341,9 +341,20 @@ footer {
 
 .title--details {
   margin: 1rem 0;
+  display: flex;
 }
 .title--details > * {
   margin-right: 0.3rem;
+  flex-shrink: 1;
+}
+
+@media (max-width: 399px) {
+  .title--details {
+    flex-direction: column;
+  }
+  .title--details > * {
+    margin: 0 0 0.3rem 0;
+  }
 }
 
 /* Chapter route */
@@ -376,6 +387,14 @@ footer {
 .chapter--buttons > a:last-child,
 .chapter--buttons > button:last-child {
   margin-right: 0;
+}
+
+@media (max-width: 349px) {
+  .chapter--buttons > a,
+  .chapter--buttons > button {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 
 /* Components defined in utils */
