@@ -44,7 +44,7 @@ function Chapter(initialVNode) {
   let site, titleId; // these are written on init
   let nextChapterPromise = null;
   let nextChapterPendingPages = null;
-  let nextChapterLoadedPage = "";
+  let nextChapterLoadedPages = [];
 
   function loadNextPage() {
     if (pendingPages.length > 0) {
@@ -71,7 +71,7 @@ function Chapter(initialVNode) {
   function preloadNextChapterPage() {
     if (nextChapterPendingPages !== null) {
       if (nextChapterPendingPages.length > 0) {
-        nextChapterLoadedPage = nextChapterPendingPages.splice(0, 1)[0];
+        nextChapterLoadedPages.push(nextChapterPendingPages.splice(0, 1)[0]);
       } else {
         console.log("Completely preloaded next chapter.");
       }
@@ -215,12 +215,14 @@ function Chapter(initialVNode) {
           ]
         ),
         buttons,
-        m("img.chapter--preloader", {
-          style: { display: "none" },
-          onload: preloadNextChapterPage,
-          onerror: preloadNextChapterPage,
-          src: nextChapterLoadedPage,
-        }),
+        nextChapterLoadedPages.map((page) =>
+          m("img.chapter--preloader", {
+            style: { display: "none" },
+            onload: preloadNextChapterPage,
+            onerror: preloadNextChapterPage,
+            src: page,
+          })
+        ),
       ]);
     },
   };
