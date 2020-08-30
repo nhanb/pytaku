@@ -9,7 +9,7 @@ function Navbar(initialVNode) {
       let userLink;
       if (Auth.isLoggedIn()) {
         userLink = m("span.nav--greeting", [
-          m("span", ["Hi ", m("b", Auth.username)]),
+          m("span", ["Welcome, ", m("b", Auth.username)]),
           m(Button, {
             text: isLoggingOut ? " logging out" : " logout",
             icon: "log-out",
