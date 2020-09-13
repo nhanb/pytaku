@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pytaku"
-version = "0.3.19"
+version = "0.3.20"
 description = "Self-hostable web-based manga reader"
 authors = ["Bùi Thành Nhân <hi@imnhan.com>"]
 license = "AGPL-3.0-only"
@@ -8,6 +8,9 @@ packages = [
     { include = "pytaku", from = "src" },
     { include = "mangoapi", from = "src" },
 ]
+# Compiled js bundle dir is in gitignore, which poetry also reads.
+# Therefore, it needs to be specifically whitelisted here:
+include = ["src/pytaku/static/js/*"]
 
 [tool.poetry.scripts]
 pytaku = "pytaku:serve"
