@@ -7,3 +7,4 @@ __pycache__
 *.sqlite3*
 *.egg-info
 /dist/
+/src/pytaku/static/js/

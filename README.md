@@ -23,6 +23,8 @@ progress and new chapter updates. Its design goals are:
 # Development
 
 ```sh
+## Backend ##
+
 poetry install
 pip install --upgrade pip
 pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
@@ -38,6 +40,18 @@ pytaku-migrate
 # run 2 processes:
 pytaku-dev -p 8000  # development webserver
 pytaku-scheduler  # scheduled tasks e.g. update titles
+
+
+## Frontend ##
+
+sudo pacman -S entr  # to watch source files
+npm install -g --prefix ~/.node_modules esbuild # to bundle js
+
+# Listen for changes in js-src dir, automatically build minified bundle:
+find src/pytaku/js-src -name '*.js' | entr -r \
+     esbuild src/pytaku/js-src/main.js \
+     --bundle --sourcemap --minify \
+     --outfile=src/pytaku/static/js/main.min.js
 ```
 
 ## Tests

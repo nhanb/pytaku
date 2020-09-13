@@ -21,6 +21,7 @@ packages:
   - python3.7-dev
   - python3.7-venv
   - python3-pip
+  - npm
 
 tasks:
   - mirror-to-github: |
@@ -52,6 +53,11 @@ tasks:
       cd pytaku
       source ~/venv/bin/activate
       poetry build
+      npm install -g --prefix ~/.node_modules esbuild
+      ~/.node_modules/bin/esbuild \
+        src/pytaku/js-src/main.js \
+        --bundle --sourcemap --minify \
+        --outfile=src/pytaku/static/js/main.min.js
 
   # Builds.sr.ht doesn't support tag or even branch detection yet:
   # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
