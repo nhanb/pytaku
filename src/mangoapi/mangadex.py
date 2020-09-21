@@ -1,5 +1,6 @@
 import html
 import re
+import time
 
 from mangoapi.base_site import Site, requires_login
 
@@ -13,6 +14,8 @@ class Mangadex(Site):
 
         cover = md_json["manga"]["cover_url"].split("/")[-1]
         cover_ext = cover[cover.find(".") + 1 : cover.rfind("?")]
+
+        current_timestamp = time.time()
 
         title = {
             "id": title_id,
@@ -32,7 +35,12 @@ class Mangadex(Site):
                     **_parse_chapter_number(chap["chapter"]),
                 }
                 for chap_id, chap in md_json.get("chapter", {}).items()
-                if chap["lang_code"] == "gb" and chap["group_name"] != "MangaPlus"
+                if chap["lang_code"] == "gb"
+                and chap["group_name"] != "MangaPlus"
+                and chap["timestamp"] <= current_timestamp
+                # ^ Chapter may be listed but with access delayed for a certain amount
+                # of time set by uploader, in which case we just filter it out. God I
+                # hate this generation of Patreon "scanlators".
             ],
         }
         return title
