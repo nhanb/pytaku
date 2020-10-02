@@ -1,6 +1,5 @@
-from pytaku.conf import config
-
 from mangoapi.mangadex import Mangadex
+from pytaku.conf import config
 
 
 def test_get_title():
@@ -85,35 +84,19 @@ def test_get_title():
 
 def test_get_chapter():
     chap = Mangadex().get_chapter("doesn't matter", "696882")
+    pages = chap.pop("pages")
     assert chap == {
         "id": "696882",
         "title_id": "12088",
         "site": "mangadex",
         "name": "Extras",
-        "pages": [
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S1.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S2.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S3.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S4.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S5.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S6.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S7.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S8.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S9.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S10.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S11.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S12.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S13.jpg",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S14.jpg",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S15.png",
-            "https://s5.mangadex.org/data/39174bff8c88758a125c32710730223c/S16.png",
-        ],
         "groups": ["Träumerei Scans", "GlassChair"],
         "is_webtoon": False,
         "number": "81.5",
         "num_major": 81,
         "num_minor": 5,
     }
+    assert len(pages) == 16
 
 
 def test_search():

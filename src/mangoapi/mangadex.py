@@ -52,7 +52,16 @@ class Mangadex(Site):
         md_json = md_resp.json()
         assert md_json["status"] == "OK"
 
-        server = md_json.get("server_fallback") or md_json["server"]
+        # 'server' value points to a likely temporary MangaDex@Home instance, while
+        # 'server_fallback' would be MD's own server e.g. s5.mangadex.org...
+        # The latter may be down (like, literally at the time of writing), so for now
+        # let's prioritize the MD@Home server.
+        # I don't know how stable MD@Home links are, but it probably won't matter,
+        # since `persistence.load_chapter()` will re-fetch if existing db record is more
+        # than 1 day old anyway.
+        # TODO: A more robust solution is to save both links to db, but I'm not in the
+        # mood for it atm.
+        server = md_json["server"] or md_json.get("server_fallback")
         img_path = f"{server}{md_json['hash']}"
 
         chapter = {

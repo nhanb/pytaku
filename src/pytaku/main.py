@@ -74,7 +74,11 @@ def _decode_proxy_url(b64_url):
 def _is_manga_img_url(
     url,
     pattern=re.compile(
-        r"^https://([\w_-]+\.)?(mangadex\.org/(data|images)|mangabeast\d{0,4}.com/manga)/"
+        r"^https://("
+        r"([\w-]+\.)?(mangadex\.org/(data|images)|mangabeast\d{0,4}.com/manga)/"
+        r"|"
+        r"([\w-]+\.)+mangadex\.network:\d{2,6}/[\w-]+/data/"
+        r")"
     ),
 ):
     return pattern.match(url)
@@ -105,7 +109,11 @@ def proxy_view(b64_url):
         md_resp = requests.get(url)
         status_code = md_resp.status_code
         body = md_resp.content
-        headers = {"Content-Type": md_resp.headers["content-type"]}
+        # Normal responsible adults would always include the Content-Type header,
+        # but it's MangaDex@Home we're talking about so ofc they wouldn't.
+        # Therefore, watch out for that empty case:
+        content_type = md_resp.headers.get("content-type")
+        headers = {"Content-Type": content_type} if content_type else {}
         if status_code == 200:
             storage.save(cached_headers_path, json.dumps(headers).encode())
             storage.save(cached_file_path, md_resp.content)
