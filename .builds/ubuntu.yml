@@ -36,7 +36,11 @@ tasks:
       python3.7 -m venv ~/venv
       source ~/venv/bin/activate
       curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -o get-poetry.py
-      python get-poetry.py -y
+      # Apparently the spanking new poetry 1.1 has a bug where the wheel
+      # distribution won't honor pyproject's `include` setting, leaving out our
+      # built js assets (tar.gz file does work correctly though).
+      # Let's pin it to 1.0 for now.
+      python get-poetry.py -y --version 1.0.10
       cd pytaku
       poetry install
       pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
