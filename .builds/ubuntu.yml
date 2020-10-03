@@ -25,12 +25,13 @@ packages:
 
 tasks:
   - mirror-to-github: |
-      cd pytaku
+      git clone --mirror https://git.sr.ht/~nhanb/pytaku mirror
+      cd mirror
       mkdir -p ~/.ssh
       echo -e "\nHost github.com\n  IdentityFile /home/build/.ssh/89816c8b-4416-4a78-84ee-3ad77b485912\n  IdentitiesOnly yes\n  BatchMode yes" >> ~/.ssh/config
       echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==" >> ~/.ssh/known_hosts
       git remote add github git@github.com:nhanb/pytaku.git
-      git push -f github '*:*' --follow-tags
+      git push --mirror github
 
   - setup: |
       python3.7 -m venv ~/venv
