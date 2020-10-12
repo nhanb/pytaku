@@ -60,6 +60,6 @@ def test_search_title():
             "id": "Sayonara-Football",
             "name": "Sayonara Football",
             "site": "mangasee",
-            "thumbnail": "https://cover.mangabeast01.com/cover/Sayonara-Football.jpg",
+            "thumbnail": "https://cover.nep.li/cover/Sayonara-Football.jpg",
         }
     ]

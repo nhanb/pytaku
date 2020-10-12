@@ -117,7 +117,7 @@ class Mangasee(Site):
                 "id": row[0],
                 "name": row[1],
                 "site": "mangasee",
-                "thumbnail": f"https://cover.mangabeast01.com/cover/{row[0]}.jpg",
+                "thumbnail": f"https://cover.nep.li/cover/{row[0]}.jpg",
             }
             for row in self.search_table.search(query)
         ]
@@ -126,7 +126,7 @@ class Mangasee(Site):
         return self.title_thumbnail(title_id)
 
     def title_thumbnail(self, title_id):
-        return f"https://cover.mangabeast01.com/cover/{title_id}.jpg"
+        return f"https://cover.nep.li/cover/{title_id}.jpg"
 
     def title_source_url(self, title_id):
         return f"https://mangasee123.com/manga/{title_id}"
@@ -148,13 +148,13 @@ class SearchTable:
             rows.append((id, name, " ".join(alt_names)))
 
         cursor.executemany(
-            "INSERT INTO titles(id, name, alt_names) VALUES(?,?,?);", rows,
+            "INSERT INTO titles(id, name, alt_names) VALUES(?,?,?);", rows
         )
 
     def search(self, query):
         query = '"' + query.replace('"', '""') + '"'
         return self.db.cursor().execute(
-            "SELECT id, name FROM titles WHERE titles MATCH ? ORDER BY rank;", (query,),
+            "SELECT id, name FROM titles WHERE titles MATCH ? ORDER BY rank;", (query,)
         )
 
 

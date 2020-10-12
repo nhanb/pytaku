@@ -371,7 +371,7 @@ def get_username(user_id):
 
 def delete_token(token):
     num_deleted = run_sql(
-        "DELETE FROM token WHERE token=?;", (token,), return_num_affected=True,
+        "DELETE FROM token WHERE token=?;", (token,), return_num_affected=True
     )
     return num_deleted
 
