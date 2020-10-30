@@ -29,6 +29,7 @@ def test_get_title():
 def test_get_chapter():
     chapter = Mangasee().get_chapter("Yu-Yu-Hakusho", "63.5")
     pages = chapter.pop("pages")
+    pages_alt = chapter.pop("pages_alt")
     assert chapter == {
         "groups": [],
         "id": "63.5",
@@ -42,6 +43,7 @@ def test_get_chapter():
     }
     assert pages[0] == "https://s1.mangabeast01.com/manga/Yu-Yu-Hakusho/0063.5-001.png"
     assert pages[-1] == "https://s1.mangabeast01.com/manga/Yu-Yu-Hakusho/0063.5-031.png"
+    assert pages_alt == []
 
 
 def test_search_title():

@@ -35,6 +35,29 @@ const ImgStatus = {
   FAILED: "failed",
 };
 
+function FallbackableImg(initialVNode) {
+  let currentSrc;
+  return {
+    oninit: (vnode) => {
+      currentSrc = vnode.attrs.src;
+    },
+    view: (vnode) => {
+      return m("img", {
+        src: currentSrc,
+        style: vnode.attrs.style,
+        onload: vnode.attrs.onload,
+        onerror: (ev) => {
+          if (currentSrc === vnode.attrs.src && vnode.attrs.altsrc !== null) {
+            currentSrc = vnode.attrs.altsrc;
+          } else {
+            vnode.attrs.onerror(ev);
+          }
+        },
+      });
+    },
+  };
+}
+
 function Chapter(initialVNode) {
   let isLoading = false;
   let chapter = {};
@@ -48,9 +71,11 @@ function Chapter(initialVNode) {
 
   function loadNextPage() {
     if (pendingPages.length > 0) {
+      let [src, altsrc] = pendingPages.splice(0, 1)[0];
       loadedPages.push({
         status: ImgStatus.LOADING,
-        src: pendingPages.splice(0, 1)[0],
+        src,
+        altsrc,
       });
     } else if (chapter.next_chapter && nextChapterPromise === null) {
       /* Once all pages of this chapter have been loaded,
@@ -62,7 +87,15 @@ function Chapter(initialVNode) {
         chapterId: chapter.next_chapter.id,
       }).then((nextChapter) => {
         console.log("Preloading next chapter:", fullChapterName(nextChapter));
-        nextChapterPendingPages = nextChapter.pages.slice();
+        if (nextChapter.pages_alt.length > 0) {
+          nextChapterPendingPages = nextChapter.pages.map((page, i) => {
+            return [page, nextChapter.pages_alt[i]];
+          });
+        } else {
+          nextChapterPendingPages = nextChapter.pages.map((page) => {
+            return [page, null];
+          });
+        }
         // Apparently preloading one at a time was too slow so let's go with 2.
         preloadNextChapterPage();
         preloadNextChapterPage();
@@ -73,7 +106,8 @@ function Chapter(initialVNode) {
   function preloadNextChapterPage() {
     if (nextChapterPendingPages !== null) {
       if (nextChapterPendingPages.length > 0) {
-        nextChapterLoadedPages.push(nextChapterPendingPages.splice(0, 1)[0]);
+        const [src, altsrc] = nextChapterPendingPages.splice(0, 1)[0];
+        nextChapterLoadedPages.push({ src, altsrc });
       }
     }
   }
@@ -96,8 +130,16 @@ function Chapter(initialVNode) {
           chapter = resp;
           document.title = fullChapterName(chapter);
 
-          // Clone array here to avoid mutating the model
-          pendingPages = chapter.pages.slice();
+          // "zip" pages & pages_alt into pendingPages
+          if (chapter.pages_alt.length > 0) {
+            pendingPages = chapter.pages.map((page, i) => {
+              return [page, chapter.pages_alt[i]];
+            });
+          } else {
+            pendingPages = chapter.pages.map((page) => {
+              return [page, null];
+            });
+          }
 
           // start loading pages, 3 at a time:
           loadNextPage();
@@ -184,8 +226,9 @@ function Chapter(initialVNode) {
           [
             loadedPages.map((page, pageIndex) =>
               m("div", { key: page.src }, [
-                m("img", {
+                m(FallbackableImg, {
                   src: page.src,
+                  altsrc: page.altsrc,
                   style: {
                     display:
                       page.status === ImgStatus.SUCCEEDED ? "block" : "none",
@@ -211,16 +254,17 @@ function Chapter(initialVNode) {
                   : null,
               ])
             ),
-            pendingPages.map((page) => m(PendingPlaceholder)),
+            pendingPages.map(() => m(PendingPlaceholder)),
           ]
         ),
         buttons,
         nextChapterLoadedPages.map((page) =>
-          m("img.chapter--preloader", {
+          m(FallbackableImg, {
             style: { display: "none" },
             onload: preloadNextChapterPage,
             onerror: preloadNextChapterPage,
-            src: page,
+            src: page.src,
+            altsrc: page.altsrc,
           })
         ),
       ]);

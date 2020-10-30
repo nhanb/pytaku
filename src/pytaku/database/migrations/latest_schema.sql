@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS "chapter"(
     pages text,
     groups text,
     updated_at text default (datetime('now')),
-    is_webtoon boolean,
+    is_webtoon boolean, pages_alt text not null default '[]',
 
     foreign key (title_id, site) references title (id, site),
     unique(site, title_id, id)

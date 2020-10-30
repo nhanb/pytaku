@@ -105,6 +105,7 @@ def save_chapter(chapter):
         num_minor,
         name,
         pages,
+        pages_alt,
         groups,
         is_webtoon
     ) VALUES (
@@ -115,6 +116,7 @@ def save_chapter(chapter):
         :num_minor,
         :name,
         :pages,
+        :pages_alt,
         :groups,
         :is_webtoon
     ) ON CONFLICT (id, title_id, site) DO UPDATE SET
@@ -122,6 +124,7 @@ def save_chapter(chapter):
         num_minor=excluded.num_minor,
         name=excluded.name,
         pages=excluded.pages,
+        pages_alt=excluded.pages_alt,
         groups=excluded.groups,
         is_webtoon=excluded.is_webtoon,
         updated_at=datetime('now')
@@ -135,6 +138,7 @@ def save_chapter(chapter):
             "num_minor": chapter.get("num_minor"),
             "name": chapter["name"],
             "pages": json.dumps(chapter["pages"]),
+            "pages_alt": json.dumps(chapter["pages_alt"]),
             "groups": json.dumps(chapter["groups"]),
             "is_webtoon": chapter["is_webtoon"],
         },
@@ -145,7 +149,7 @@ def load_chapter(site, title_id, chapter_id, ignore_old=True):
     updated_at = "datetime('now', '-1 days')" if ignore_old else "'1980-01-01'"
     result = run_sql(
         f"""
-        SELECT id, title_id, site, num_major, num_minor, name, pages, groups, is_webtoon
+        SELECT id, title_id, site, num_major, num_minor, name, pages, pages_alt, groups, is_webtoon
         FROM chapter
         WHERE site=? AND title_id=? AND id=? AND updated_at > {updated_at};
         """,
@@ -158,6 +162,7 @@ def load_chapter(site, title_id, chapter_id, ignore_old=True):
     else:
         chapter = result[0]
         chapter["pages"] = json.loads(chapter["pages"])
+        chapter["pages_alt"] = json.loads(chapter["pages_alt"])
         chapter["groups"] = json.loads(chapter["groups"])
         return chapter
 

@@ -52,24 +52,37 @@ class Mangadex(Site):
         md_json = md_resp.json()
         assert md_json["status"] == "OK"
 
-        # 'server' value points to a likely temporary MangaDex@Home instance, while
-        # 'server_fallback' would be MD's own server e.g. s5.mangadex.org...
-        # The latter may be down (like, literally at the time of writing), so for now
-        # let's prioritize the MD@Home server.
-        # I don't know how stable MD@Home links are, but it probably won't matter,
-        # since `persistence.load_chapter()` will re-fetch if existing db record is more
-        # than 1 day old anyway.
-        # TODO: A more robust solution is to save both links to db, but I'm not in the
-        # mood for it atm.
-        server = md_json["server"] or md_json.get("server_fallback")
-        img_path = f"{server}{md_json['hash']}"
+        # 2 cases:
+        # - If 'server_fallback' is absent, it means 'server' points to MD's own server
+        #   e.g. s5.mangadex.org...
+        # - Otherwise, 'server' points to a likely ephemeral MD@H node, while
+        # 'server_fallback' now points to MD's own server.
+        #
+        # MD's own links apparently go dead sometimes, but MD@H links seem to expire
+        # quickly all the time, so it's probably a good idea to store both anyway.
+
+        server_fallback = md_json.get("server_fallback")
+        if server_fallback:
+            md_server = server_fallback
+            mdah_server = md_json["server"]
+        else:
+            md_server = md_json["server"]
+            mdah_server = None
 
         chapter = {
             "id": chapter_id,
             "title_id": str(md_json["manga_id"]),
             "site": "mangadex",
             "name": md_json["title"],
-            "pages": [f"{img_path}/{page}" for page in md_json["page_array"]],
+            "pages": [
+                f"{md_server}{md_json['hash']}/{page}" for page in md_json["page_array"]
+            ],
+            "pages_alt": [
+                f"{mdah_server}{md_json['hash']}/{page}"
+                for page in md_json["page_array"]
+            ]
+            if mdah_server
+            else [],
             "groups": _extract_groups(md_json),
             "is_webtoon": md_json["long_strip"] == 1,
             **_parse_chapter_number(md_json["chapter"]),

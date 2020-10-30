@@ -283,6 +283,7 @@ def api_chapter(site, title_id, chapter_id):
 
     if site in ("mangadex", "mangasee"):
         chapter["pages"] = [proxied(p) for p in chapter["pages"]]
+        chapter["pages_alt"] = [proxied(p) for p in chapter["pages_alt"]]
 
     # YIIIIKES
     title = load_title(site, title_id)

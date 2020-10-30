@@ -85,6 +85,7 @@ def test_get_title():
 def test_get_chapter():
     chap = Mangadex().get_chapter("doesn't matter", "696882")
     pages = chap.pop("pages")
+    pages_alt = chap.pop("pages_alt")
     assert chap == {
         "id": "696882",
         "title_id": "12088",
@@ -97,6 +98,7 @@ def test_get_chapter():
         "num_minor": 5,
     }
     assert len(pages) == 16
+    assert len(pages_alt) == 16
 
 
 def test_search():

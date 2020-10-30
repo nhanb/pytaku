@@ -74,6 +74,7 @@ class Mangasee(Site):
                 _generate_img_src(img_server, title_id, chapter_data["Chapter"], p)
                 for p in range(1, num_pages + 1)
             ],
+            "pages_alt": [],
             "groups": [],
             "is_webtoon": False,
             **numbers,

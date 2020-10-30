@@ -44,11 +44,11 @@ pytaku-scheduler  # scheduled tasks e.g. update titles
 
 ## Frontend ##
 
-sudo pacman -S entr  # to watch source files
+doas pacman -S entr  # to watch source files
 npm install -g --prefix ~/.node_modules esbuild # to bundle js
 
 # Listen for changes in js-src dir, automatically build minified bundle:
-find src/pytaku/js-src -name '*.js' | entr -r \
+find src/pytaku/js-src -name '*.js' | entr -rc \
      esbuild src/pytaku/js-src/main.js \
      --bundle --sourcemap --minify \
      --outfile=src/pytaku/static/js/main.min.js
@@ -62,6 +62,11 @@ Can be run with just `pytest`. It needs a pytaku.conf.json as well.
 
 - Python: black, isort, flake8 without mccabe
 - JavaScript: jshint, prettier
+
+```sh
+doas pacman python-black python-isort flake8 prettier
+npm install -g --prefix ~/.node_modules jshint
+```
 
 # Production
 
