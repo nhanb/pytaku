@@ -75,7 +75,7 @@ def _is_manga_img_url(
     url,
     pattern=re.compile(
         r"^https://("
-        r"([\w-]+\.)?(mangadex\.org/(data|images)|mangabeast\d{0,4}.com/manga)/"
+        r"([\w-]+\.)?(mangadex\.org/(data|images)|(mangabeast\d{0,4}.com|hot\.granpulse\.us)/manga)/"
         r"|"
         r"([\w-]+\.)+mangadex\.network:\d{2,6}/[\w-]+/data/"
         r")"
