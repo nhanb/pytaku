@@ -19,6 +19,7 @@ from .persistence import (
     get_prev_next_chapters,
     get_username,
     import_follows,
+    is_manga_page_url,
     load_chapter,
     load_title,
     read,
@@ -73,15 +74,14 @@ def _decode_proxy_url(b64_url):
 
 def _is_manga_img_url(
     url,
-    pattern=re.compile(
-        r"^https://("
-        r"([\w-]+\.)?(mangadex\.org/(data|images)|(mangabeast\d{0,4}.com|hot\.granpulse\.us|fan-official\.eorzea\.us|fan-complete\.ivalice\.us)/manga)/"
-        r"|"
-        r"([\w-]+\.)+mangadex\.network:\d{2,6}/[\w-]+/data/"
-        r")"
-    ),
+    cover_pattern=re.compile(r"^https://([\w-]+\.)?mangadex\.org/images"),
 ):
-    return pattern.match(url)
+    """
+    Check if either a cover or page img url.
+    """
+    # Mangasee has god knows how many domains for manga page images, so we can't just
+    # do a regex check, but need to query our db instead.
+    return cover_pattern.match(url) or is_manga_page_url(url)
 
 
 def proxied(url) -> str:

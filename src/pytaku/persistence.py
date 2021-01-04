@@ -390,3 +390,17 @@ def delete_expired_tokens():
         return_num_affected=True,
     )
     return num_deleted
+
+
+def is_manga_page_url(url):
+    """
+    Checks if url exists in db as a page image.
+    This is currently used to avoid abuse of our /proxy/ endpoint.
+    """
+    result = run_sql(
+        """
+        SELECT 1 FROM chapter, json_each(pages) WHERE value = ? LIMIT 1;
+        """,
+        (url,),
+    )
+    return len(result) == 1
