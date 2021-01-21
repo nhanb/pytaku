@@ -361,7 +361,7 @@ def api_logout():
     if num_deleted != 1:
         return jsonify({"message": "Invalid token."}), 401
     resp = make_response("{}", 200)
-    resp.set_cookie("token", "", expires=0)
+    resp.set_cookie("token", "", expires=0, samesite="Strict")
     return resp
 
 
