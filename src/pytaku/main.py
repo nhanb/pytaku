@@ -294,6 +294,7 @@ def api_chapter(site, title_id, chapter_id):
     chapter["prev_chapter"] = prev_chapter
     chapter["next_chapter"] = next_chapter
     chapter["site"] = site
+    chapter["is_webtoon"] = title["is_webtoon"]
     return chapter
 
 

@@ -10,12 +10,19 @@ def _row_trace(cursor, row):
     Customize each result row's representation:
     - If query only asks for 1 field, return that result directly instead of tuple
     - If more than 1 field, return dict instead of tuple
+    - Because SQLite stores booleans as 0 or 1, convert them to proper python bools
     """
     desc = cursor.getdescription()
     if len(desc) == 1:
         return row[0]
     else:
-        return {k[0]: row[i] for i, k in enumerate(desc)}
+        result = {}
+        for i, (col_name, col_type) in enumerate(desc):
+            value = row[i]
+            if col_type == "boolean":
+                value = bool(value)
+            result[col_name] = value
+        return result
 
 
 def get_conn():
