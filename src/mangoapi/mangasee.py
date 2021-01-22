@@ -47,6 +47,7 @@ class Mangasee(Site):
             "name": name,
             "site": "mangasee",
             "cover_ext": "jpg",
+            "is_webtoon": False,
             "chapters": chapters,
             "alt_names": [],
             "descriptions": [desc],
@@ -76,7 +77,6 @@ class Mangasee(Site):
             ],
             "pages_alt": [],
             "groups": [],
-            "is_webtoon": False,
             **numbers,
         }
         return result

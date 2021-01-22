@@ -9,7 +9,7 @@ CREATE TABLE title (
     chapters text,
     alt_names text,
     descriptions text,
-    updated_at text default (datetime('now')),
+    updated_at text default (datetime('now')), is_webtoon boolean not null default false,
 
     unique(id, site)
 );
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS "read" (
     foreign key (user_id) references user (id),
     unique(user_id, site, title_id, chapter_id)
 );
-CREATE TABLE IF NOT EXISTS "chapter"(
+CREATE TABLE IF NOT EXISTS "chapter" (
     id text,
     title_id text,
     site text,
@@ -63,8 +63,7 @@ CREATE TABLE IF NOT EXISTS "chapter"(
     pages text,
     groups text,
     updated_at text default (datetime('now')),
-    is_webtoon boolean, pages_alt text not null default '[]',
-
+    pages_alt text not null default '[]',
     foreign key (title_id, site) references title (id, site),
     unique(site, title_id, id)
 );

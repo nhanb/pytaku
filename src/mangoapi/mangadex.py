@@ -5,6 +5,7 @@ import time
 from mangoapi.base_site import Site, requires_login
 
 MANGAPLUS_GROUP_ID = 9097
+LONG_STRIP_TAG_ID = 36
 
 
 class Mangadex(Site):
@@ -30,6 +31,7 @@ class Mangadex(Site):
             "cover_ext": cover_ext,
             "alt_names": manga["altTitles"],
             "descriptions": html.unescape(manga["description"]).split("\r\n\r\n"),
+            "is_webtoon": LONG_STRIP_TAG_ID in manga["tags"],
             "chapters": [
                 {
                     "id": str(chap["id"]),
@@ -89,8 +91,6 @@ class Mangadex(Site):
             if mdah_server
             else [],
             "groups": [html.unescape(group["name"]) for group in data["groups"]],
-            # TODO: longStrip doesn't exist in v2 API yet. Nagging for it on Discord.
-            "is_webtoon": bool(data.get("longString")),
             **_parse_chapter_number(data["chapter"]),
         }
         return chapter

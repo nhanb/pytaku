@@ -10,6 +10,7 @@ def test_get_title():
         "site": "mangadex",
         "cover_ext": "jpg",
         "alt_names": ["Adiós al fútbol", "さよならフットボール", "再见足球"],
+        "is_webtoon": False,
         "descriptions": [
             "Nozomi wants to enter the newcomer's competition. But the coach is against it, because their club is a boy's football club and she's... a she. Will she be able to enter the match she wants to play in?"
         ],
@@ -82,6 +83,11 @@ def test_get_title():
     }
 
 
+def test_get_title_webtoon():
+    title = Mangadex().get_title("1")
+    assert title["is_webtoon"] is True
+
+
 def test_get_chapter():
     chap = Mangadex().get_chapter("doesn't matter", "696882")
     pages = chap.pop("pages")
@@ -92,7 +98,6 @@ def test_get_chapter():
         "site": "mangadex",
         "name": "Extras",
         "groups": ["Träumerei Scans", "GlassChair"],
-        "is_webtoon": False,
         "number": "81.5",
         "num_major": 81,
         "num_minor": 5,
