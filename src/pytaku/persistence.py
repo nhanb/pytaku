@@ -19,7 +19,8 @@ def save_title(title):
         is_webtoon,
         chapters,
         alt_names,
-        descriptions
+        descriptions,
+        descriptions_format
     ) VALUES (
         :id,
         :name,
@@ -28,7 +29,8 @@ def save_title(title):
         :is_webtoon,
         :chapters,
         :alt_names,
-        :descriptions
+        :descriptions,
+        :descriptions_format
     ) ON CONFLICT (id, site) DO UPDATE SET
         name=excluded.name,
         cover_ext=excluded.cover_ext,
@@ -36,6 +38,7 @@ def save_title(title):
         chapters=excluded.chapters,
         alt_names=excluded.alt_names,
         descriptions=excluded.descriptions,
+        descriptions_format=excluded.descriptions_format,
         updated_at=datetime('now')
     ;
     """,
@@ -48,6 +51,7 @@ def save_title(title):
             "chapters": json.dumps(title["chapters"]),
             "alt_names": json.dumps(title["alt_names"]),
             "descriptions": json.dumps(title["descriptions"]),
+            "descriptions_format": title["descriptions_format"],
         },
     )
 
@@ -55,7 +59,8 @@ def save_title(title):
 def load_title(site, title_id, user_id=None):
     result = run_sql(
         """
-        SELECT id, name, site, cover_ext, is_webtoon, chapters, alt_names, descriptions
+        SELECT id, name, site, cover_ext, is_webtoon, chapters, alt_names, descriptions,
+               descriptions_format
         FROM title
         WHERE id = ?
           AND site = ?;

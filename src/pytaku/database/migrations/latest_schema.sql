@@ -9,7 +9,7 @@ CREATE TABLE title (
     chapters text,
     alt_names text,
     descriptions text,
-    updated_at text default (datetime('now')), is_webtoon boolean not null default false,
+    updated_at text default (datetime('now')), is_webtoon boolean not null default false, descriptions_format text not null default 'text',
 
     unique(id, site)
 );

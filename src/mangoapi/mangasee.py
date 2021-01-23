@@ -51,6 +51,7 @@ class Mangasee(Site):
             "chapters": chapters,
             "alt_names": [],
             "descriptions": [desc],
+            "descriptions_format": "text",
         }
 
     def get_chapter(self, title_id, chapter_id):

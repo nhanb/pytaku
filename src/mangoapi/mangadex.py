@@ -2,10 +2,17 @@ import html
 import re
 import time
 
+import bbcode
+
 from mangoapi.base_site import Site, requires_login
 
 MANGAPLUS_GROUP_ID = 9097
 LONG_STRIP_TAG_ID = 36
+
+_bbparser = bbcode.Parser()
+_bbparser.add_simple_formatter(
+    "spoiler", "<details><summary>Spoiler</summary>%(value)s</details>"
+)
 
 
 class Mangadex(Site):
@@ -30,7 +37,12 @@ class Mangadex(Site):
             "site": "mangadex",
             "cover_ext": cover_ext,
             "alt_names": manga["altTitles"],
-            "descriptions": html.unescape(manga["description"]).split("\r\n\r\n"),
+            "descriptions": [
+                _bbparser.format(paragraph)
+                for paragraph in html.unescape(manga["description"]).split("\r\n")
+                if paragraph.strip()
+            ],
+            "descriptions_format": "html",
             "is_webtoon": LONG_STRIP_TAG_ID in manga["tags"],
             "chapters": [
                 {

@@ -347,6 +347,10 @@ footer {
   margin-right: 0.3rem;
   flex-shrink: 1;
 }
+.title--descriptions {
+  background-color: #eee;
+  padding: 0.5em;
+}
 
 @media (max-width: 399px) {
   .title--details {

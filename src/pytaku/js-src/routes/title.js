@@ -131,7 +131,14 @@ function Title(initialVNode) {
                 ),
               ]),
               m("img.title--cover[alt=cover]", { src: title.cover }),
-              title.descriptions.map((desc) => m("p", desc)),
+              m(".title--descriptions", {}, [
+                title.descriptions.map((desc) =>
+                  m(
+                    "p",
+                    title.descriptions_format === "html" ? m.trust(desc) : desc
+                  )
+                ),
+              ]),
               title.chapters
                 ? title.chapters.map((chapter) =>
                     m(Chapter, { site: title.site, titleId: title.id, chapter })
