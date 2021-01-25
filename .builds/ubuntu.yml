@@ -67,13 +67,13 @@ tasks:
   # Builds.sr.ht doesn't support tag or even branch detection yet:
   # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
   # So here I manually check for it:
-  - check-publish: |
+  - check-master: |
       cd pytaku
-      git describe --exact-match HEAD || complete-build
-
-  - publish: |
-      cd pytaku
-      poetry publish
+      # Stop if not master branch, meaning we're automatically deploying to
+      # dev server for every push to master.
+      if [ "$(git rev-parse master)" != "$(git rev-parse HEAD)" ]; then \
+        complete-build; \
+      fi
 
   - deploy-dev: |
       cd pytaku
@@ -87,7 +87,7 @@ tasks:
       scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 contrib/systemd/*.service pytaku@dev.pytaku.com:/home/pytaku/.config/systemd/user/
       # Install & restart serivces
       ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com "
-        ~/.local/bin/pip install --user pytaku*.whl &&
+        ~/.local/bin/pip install --user --force-reinstall pytaku*.whl &&
         cd ~/pytaku &&
         ~/.local/bin/pytaku-migrate &&
         rm -r static &&
@@ -97,3 +97,13 @@ tasks:
         systemctl --user restart pytaku-scheduler &&
         echo 'All done.'
       "
+
+  - check-tag: |
+      # Stop if HEAD is not a tagged commit.
+      cd pytaku
+      git describe --exact-match HEAD || complete-build
+
+  - publish: |
+      cd pytaku
+      source ~/venv/bin/activate
+      poetry publish
