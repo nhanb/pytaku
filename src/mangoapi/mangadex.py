@@ -38,9 +38,7 @@ class Mangadex(Site):
             "cover_ext": cover_ext,
             "alt_names": manga["altTitles"],
             "descriptions": [
-                _bbparser.format(paragraph)
-                for paragraph in html.unescape(manga["description"]).split("\r\n")
-                if paragraph.strip()
+                _bbparser.format(html.unescape(manga["description"]).strip())
             ],
             "descriptions_format": "html",
             "is_webtoon": LONG_STRIP_TAG_ID in manga["tags"],
