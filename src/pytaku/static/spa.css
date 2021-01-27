@@ -347,9 +347,27 @@ footer {
   margin-right: 0.3rem;
   flex-shrink: 1;
 }
+
 .title--descriptions {
   background-color: #eee;
   padding: 0.5em;
+}
+.title--descriptions details + br {
+  display: none;
+  /* Mangadex tweak:
+   *
+   * Their "spoiler" implementation is an inline button which doesn't naturally
+   * have a line break, so description writers usually compensate by 2 <brs>.
+   *
+   * Ours is a bog standard <details> tag which already causes a natural line
+   * break, adding to the 2 <br>s causing too much vertical whitespace. This
+   * selector practically throws out the first <br> to make it look the same as
+   * kissmanga's.
+   *
+   * Maybe the <br> should be removed in mangadex source site logic instead.
+   * TODO: revisit this choice when a new source site with rich text
+   * description is implemented.
+   */
 }
 
 @media (max-width: 399px) {
