@@ -402,10 +402,14 @@ def is_manga_page_url(url):
     Checks if url exists in db as a page image.
     This is currently used to avoid abuse of our /proxy/ endpoint.
     """
-    result = run_sql(
-        """
-        SELECT 1 FROM chapter, json_each(pages) WHERE value = ? LIMIT 1;
-        """,
-        (url,),
-    )
-    return len(result) == 1
+    is_page = run_sql(
+        "SELECT 1 FROM chapter, json_each(pages) WHERE value = ? LIMIT 1;", (url,)
+    ) == [1]
+    if is_page:
+        return True
+
+    is_page_alt = run_sql(
+        "SELECT 1 FROM chapter, json_each(pages_alt) WHERE value = ? LIMIT 1;", (url,)
+    ) == [1]
+
+    return is_page_alt
