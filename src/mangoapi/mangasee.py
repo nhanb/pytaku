@@ -13,7 +13,7 @@ regexes = {
     ),
     "chapter_title_name": re.compile(r'vm\.IndexName = "([^"]+)"'),
     "chapter_data": re.compile(r"vm\.CurChapter = (\{[^\}]+\})"),
-    "chapter_img_server": re.compile(r'vm\.CurPathName = "([^"]+)"'),
+    "chapter_img_server": re.compile(r'vm\.CurPathNamez? = "([^"]+)"'),
 }
 
 
