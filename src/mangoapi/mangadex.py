@@ -27,7 +27,10 @@ class Mangadex(Site):
         groups_dict = {group["id"]: group["name"] for group in groups}
 
         cover = manga["mainCover"].split("/")[-1]
-        cover_ext = cover[cover.find(".") + 1 : cover.rfind("?")]
+        ext_start_index = cover.find(".") + 1
+        url_params_index = cover.rfind("?")
+        ext_end_index = url_params_index if url_params_index != -1 else None
+        cover_ext = cover[ext_start_index:ext_end_index]
 
         current_timestamp = time.time()
 

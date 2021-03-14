@@ -88,6 +88,11 @@ def test_get_title_webtoon():
     assert title["is_webtoon"] is True
 
 
+def test_get_title_no_url_params():
+    title = Mangadex().get_title("23801")
+    assert title["cover_ext"] == "jpg"
+
+
 def test_get_chapter():
     chap = Mangadex().get_chapter("doesn't matter", "696882")
     pages = chap.pop("pages")
