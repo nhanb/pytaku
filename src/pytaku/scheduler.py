@@ -2,6 +2,7 @@ import time
 import traceback
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
+from json.decoder import JSONDecodeError
 from pathlib import Path
 
 from requests.exceptions import ReadTimeout
@@ -69,8 +70,8 @@ class UpdateOutdatedTitles(Worker):
                 updated_title = get_title(title["site"], title["id"])
                 save_title(updated_title)
                 print(" done")
-            except (SourceSite5xxError, ReadTimeout) as e:
-                print(" skipped because of server error:", str(e))
+            except (SourceSite5xxError, ReadTimeout, JSONDecodeError) as e:
+                print(" skipped because of server error:", e.__class__.__name__, str(e))
 
 
 class DeleteExpiredTokens(Worker):
