@@ -35,7 +35,7 @@ class Mangasee(Site):
             numbers = _parse_chapter_number(ch["Chapter"])
             chapters.append(
                 {
-                    "id": numbers["number"],
+                    "id": numbers["raw_id"],
                     "name": ch["ChapterName"],
                     "volume": "",
                     "groups": [],
@@ -55,17 +55,20 @@ class Mangasee(Site):
         }
 
     def get_chapter(self, title_id, chapter_id):
-        resp = self.http_get(
-            f"https://mangasee123.com/read-online/{title_id}-chapter-{chapter_id}.html"
-        )
+        numbers = _parse_chapter_number(chapter_id)
+        index = chapter_id[0]
+        suffix = "" if index == "1" else f"-index-{index}"
+        url = f"https://mangasee123.com/read-online/{title_id}-chapter-{numbers['number']}{suffix}.html"
+        print(">>", url)
+        resp = self.http_get(url)
         html = resp.text
 
         title_id = regexes["chapter_title_name"].search(html).group(1)
         chapter_data = json.loads(regexes["chapter_data"].search(html).group(1))
         num_pages = int(chapter_data["Page"])
+        directory = chapter_data["Directory"]
         img_server = regexes["chapter_img_server"].search(html).group(1)
-
-        numbers = _parse_chapter_number(chapter_data["Chapter"])
+        img_server = regexes["chapter_img_server"].search(html).group(1)
 
         result = {
             "id": chapter_id,
@@ -73,7 +76,9 @@ class Mangasee(Site):
             "site": "mangasee",
             "name": chapter_data["ChapterName"] or "",
             "pages": [
-                _generate_img_src(img_server, title_id, chapter_data["Chapter"], p)
+                _generate_img_src(
+                    img_server, title_id, chapter_data["Chapter"], directory, p
+                )
                 for p in range(1, num_pages + 1)
             ],
             "pages_alt": [],
@@ -180,13 +185,35 @@ def _parse_chapter_number(e):
     result = {
         "num_major": major,
         "number": str(major) if not minor else f"{major}.{minor}",
+        "raw_id": e,
     }
     if minor:
         result["num_minor"] = minor
     return result
 
 
-def _generate_img_src(img_srv, title_id, chapter_id, page):
+def _chapter_url(e):
+    """
+    Yet another bright idea:
+
+        (vm.ChapterURLEncode = function (e) {
+            Index = "";
+            var t = e.substring(0, 1);
+            1 != t && (Index = "-index-" + t);
+            var n = parseInt(e.slice(1, -1)),
+            m = "",
+            a = e[e.length - 1];
+            return (
+            0 != a && (m = "." + a),
+            "-chapter-" + n + m + Index + vm.PageOne + ".html"
+            );
+        }),
+
+    e.g. vm.ChapterURLEncode("201420") === "-chapter-142-index-2-page-1.html"
+    """
+
+
+def _generate_img_src(img_srv, title_id, chapter_id, directory, page):
     """
     Chapter ID padding logic:
 
@@ -206,4 +233,8 @@ def _generate_img_src(img_srv, title_id, chapter_id, page):
         padded_chapter = chapter
     else:
         padded_chapter = f"{chapter}.{odd}"
-    return f"https://{img_srv}/manga/{title_id}/{padded_chapter}-{page:03d}.png"
+
+    directory = f"{directory}/" if directory else ""
+    return (
+        f"https://{img_srv}/manga/{title_id}/{directory}{padded_chapter}-{page:03d}.png"
+    )
