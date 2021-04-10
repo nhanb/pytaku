@@ -98,7 +98,6 @@ def proxy_view(b64_url):
         - be a polite netizen in general
     """
     url = _decode_proxy_url(b64_url)
-    print("Proxying url:", url)
     if not _is_manga_img_url(url):
         print("Invalid img url:", url)
         return "Nope", 400

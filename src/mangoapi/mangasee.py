@@ -59,7 +59,6 @@ class Mangasee(Site):
         index = chapter_id[0]
         suffix = "" if index == "1" else f"-index-{index}"
         url = f"https://mangasee123.com/read-online/{title_id}-chapter-{numbers['number']}{suffix}.html"
-        print(">>", url)
         resp = self.http_get(url)
         html = resp.text
 

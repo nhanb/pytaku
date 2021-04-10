@@ -1,5 +1,4 @@
 import subprocess
-from typing import List, Tuple
 
 from mangoapi.mangasee import Mangasee
 from pytaku.database.common import get_conn, run_sql
@@ -8,10 +7,7 @@ from pytaku.persistence import save_title
 ms = Mangasee()
 
 
-def fetch_title(title_id: str) -> List[Tuple[str, str]]:
-    """
-    Each tuple is (old_id, new_id)
-    """
+def fetch_title(title_id: str):
     title = ms.get_title(title_id)
     updates = [(title_id, ch["number"], ch["id"]) for ch in title["chapters"]]
     return title, updates
