@@ -272,7 +272,16 @@ def get_followed_titles(user_id):
 
         t["chapters"] = chapters
 
-    return sorted(titles, key=lambda t: len(t["chapters"]), reverse=True)
+    def sort_key_func(title):
+        """
+        Prioritize titles that:
+        - Have unread chapters
+        - Are from mangasee (because mangadex is currently broken)
+        """
+        has_chapters = 1 if len(title["chapters"]) > 0 else 0
+        return (has_chapters, title["site"])
+
+    return sorted(titles, key=sort_key_func, reverse=True)
 
 
 def read(user_id, site, title_id, chapter_id):
