@@ -23,21 +23,18 @@ packages:
 
 tasks:
   - setup: |
-      python3.7 -m venv ~/venv
-      source ~/venv/bin/activate
-      curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -o get-poetry.py
-      python3.7 get-poetry.py -y --version 1.1.6
+      python3.7 -m pip install pipx
+      python3.7 -m pipx install poetry==1.1.6
       cd pytaku
       poetry install --no-dev
-      pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
+      poetry run pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
             --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
             --global-option=build --global-option=--enable-all-extensions
 
   #- test: |
       #cd pytaku
-      #source ~/venv/bin/activate
       #mv ~/pytaku.conf.json ./
-      #pytest
+      #poetry run pytest
 
   - build: |
       cd pytaku
@@ -46,7 +43,6 @@ tasks:
         src/pytaku/js-src/main.js \
         --bundle --sourcemap --minify \
         --outfile=src/pytaku/static/js/main.min.js
-      source ~/venv/bin/activate
       poetry build
 
   # Builds.sr.ht doesn't support tag or even branch detection yet:
