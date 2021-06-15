@@ -11,12 +11,20 @@ from .exceptions import (
 )
 
 
+def create_session():
+    return cloudscraper.create_scraper(
+        {
+            "mobile": False,
+        }
+    )
+
+
 class Site(ABC):
     def __init__(self):
         self.username = None
         self.password = None
         self.is_logged_in = False
-        self._session = cloudscraper.create_scraper(browser="chrome")
+        self._session = create_session()
 
     @abstractmethod
     def get_title(self, title_id):
@@ -47,15 +55,17 @@ class Site(ABC):
         raise NotImplementedError()
 
     def _http_request(self, method, url, *args, **kwargs):
-        request_func = getattr(self._session, method)
-
         if "timeout" not in kwargs:
             kwargs["timeout"] = 5
 
+        request_func = getattr(self._session, method)
         try:
             resp = request_func(url, *args, **kwargs)
         except requests.exceptions.Timeout:
             raise SourceSiteTimeoutError(url)
+
+        if resp.status_code == 403:
+            self._session = create_session()
 
         if 500 <= resp.status_code <= 599:
             raise SourceSite5xxError(url, resp.status_code, resp.text)

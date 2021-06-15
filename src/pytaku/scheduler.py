@@ -1,3 +1,4 @@
+import random
 import time
 import traceback
 from abc import ABC, abstractmethod
@@ -66,7 +67,7 @@ class UpdateOutdatedTitles(Worker):
     def run(self):
         for title in find_outdated_titles():
             if title["site"] == "mangadex":
-                print(f"Skipped title {title['id']} from {title['site']}.")
+                # print(f"Skipped title {title['id']} from {title['site']}.")
                 continue
 
             print(f"Updating title {title['id']} from {title['site']}...", end="")
@@ -74,6 +75,8 @@ class UpdateOutdatedTitles(Worker):
                 updated_title = get_title(title["site"], title["id"])
                 save_title(updated_title)
                 print(" done")
+                if title["site"] == "mangasee":
+                    time.sleep(random.randint(5, 10))
             except (SourceSite5xxError, ReadTimeout, JSONDecodeError) as e:
                 print(" skipped because of server error:", e.__class__.__name__, str(e))
 
