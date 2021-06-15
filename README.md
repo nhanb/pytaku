@@ -24,6 +24,7 @@ progress and new chapter updates. Its design goals are:
 
 ```sh
 ## Backend ##
+doas pacman -S nodejs  # used by cloudscraper to bypass Cloudflare
 
 poetry install
 pip install --upgrade pip
@@ -71,6 +72,7 @@ npm install -g --prefix ~/.node_modules jshint
 # Production
 
 ```sh
+sudo apt install nodejs  # used by cloudscraper to bypass Cloudflare
 pip install --user --upgrade pip
 pip install --user pytaku
 pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \

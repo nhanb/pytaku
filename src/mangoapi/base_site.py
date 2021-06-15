@@ -1,6 +1,7 @@
 import functools
 from abc import ABC, abstractmethod
 
+import cloudscraper
 import requests
 
 from .exceptions import (
@@ -15,12 +16,7 @@ class Site(ABC):
         self.username = None
         self.password = None
         self.is_logged_in = False
-        self._session = requests.Session()
-        self._session.headers.update(
-            {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
-            }
-        )
+        self._session = cloudscraper.create_scraper(browser="chrome")
 
     @abstractmethod
     def get_title(self, title_id):

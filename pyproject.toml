@@ -27,6 +27,7 @@ requests = "^2.24.0"
 goodconf = "^1.0.0"
 argon2-cffi = "^20.1.0"
 bbcode = "^1.1.0"
+cloudscraper = "^1.2.58"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.1"
