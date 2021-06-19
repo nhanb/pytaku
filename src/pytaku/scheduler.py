@@ -76,7 +76,7 @@ class UpdateOutdatedTitles(Worker):
                 save_title(updated_title)
                 print(" done")
                 if title["site"] == "mangasee":
-                    time.sleep(random.randint(5, 10))
+                    time.sleep(2)
             except (SourceSite5xxError, ReadTimeout, JSONDecodeError) as e:
                 print(" skipped because of server error:", e.__class__.__name__, str(e))
 

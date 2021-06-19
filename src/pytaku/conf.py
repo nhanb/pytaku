@@ -14,5 +14,9 @@ class Config(GoodConf):
     PROXY_CACHE_MAX_SIZE = Value(default=1024 * 1024 * 1024 * 5)  # 5GiB in bytes
     PROXY_CACHE_MAX_AGE = Value(default=3600 * 24 * 2)  # 2 days in seconds
 
+    FAASPROXY_NETLOC = Value()
+    FAASPROXY_PATH = Value()
+    FAASPROXY_KEY = Value()
+
 
 config = Config(default_files=["pytaku.conf.json"])

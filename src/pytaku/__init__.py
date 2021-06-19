@@ -56,6 +56,7 @@ def generate_config():
 
 
 def scheduler():
+    config.load()
     from .scheduler import main_loop
 
     main_loop()

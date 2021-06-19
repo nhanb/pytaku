@@ -1,8 +1,11 @@
 import functools
 from abc import ABC, abstractmethod
+from urllib.parse import urlparse
 
 import cloudscraper
 import requests
+
+from pytaku.conf import config
 
 from .exceptions import (
     SourceSite5xxError,
@@ -55,8 +58,20 @@ class Site(ABC):
         raise NotImplementedError()
 
     def _http_request(self, method, url, *args, **kwargs):
+        headers = kwargs.get("headers", {})
         if "timeout" not in kwargs:
             kwargs["timeout"] = 5
+
+        # Proxy shit
+        parsed_url = urlparse(url)
+        url = parsed_url._replace(
+            netloc=config.FAASPROXY_NETLOC,
+            scheme="https",
+            path=config.FAASPROXY_PATH + parsed_url.path,
+        ).geturl()
+        headers["Faasproxy-Target-Host"] = parsed_url.netloc
+        headers["Faasproxy-Key"] = config.FAASPROXY_KEY
+        kwargs["headers"] = headers
 
         request_func = getattr(self._session, method)
         try:
