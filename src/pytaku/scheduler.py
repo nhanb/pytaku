@@ -1,4 +1,3 @@
-import random
 import time
 import traceback
 from abc import ABC, abstractmethod
@@ -65,7 +64,9 @@ class UpdateOutdatedTitles(Worker):
     interval = timedelta(hours=2)
 
     def run(self):
-        for title in find_outdated_titles():
+        outdated_titles = find_outdated_titles()
+        print(f"Found {len(outdated_titles)} outdated titles")
+        for title in outdated_titles:
             if title["site"] == "mangadex":
                 # print(f"Skipped title {title['id']} from {title['site']}.")
                 continue

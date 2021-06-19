@@ -302,7 +302,7 @@ def unread(user_id, site, title_id, chapter_id):
     )
 
 
-def find_outdated_titles(since="-6 hours"):
+def find_outdated_titles(since="-12 hours"):
     return run_sql(
         "SELECT id, site FROM title WHERE updated_at <= datetime('now', ?);", (since,)
     )
