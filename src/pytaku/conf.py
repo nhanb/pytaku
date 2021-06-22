@@ -8,6 +8,8 @@ class Config(GoodConf):
     MANGADEX_PASSWORD = Value()
     FLASK_SECRET_KEY = Value(initial=lambda: token_urlsafe(50))
 
+    MANGA_HOURS_UNTIL_OUTDATED = Value(default=6)
+
     PROXY_PREFIX = Value(default="")
     # ^ use this to e.g. point to a CDN's domain
     PROXY_CACHE_DIR = Value(default="proxy_cache")

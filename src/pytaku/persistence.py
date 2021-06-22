@@ -5,6 +5,7 @@ from typing import List, Tuple
 import apsw
 import argon2
 
+from .conf import config
 from .database.common import run_sql, run_sql_many
 
 
@@ -302,7 +303,7 @@ def unread(user_id, site, title_id, chapter_id):
     )
 
 
-def find_outdated_titles(since="-12 hours"):
+def find_outdated_titles(since=f"-{config.MANGA_HOURS_UNTIL_OUTDATED} hours"):
     return run_sql(
         "SELECT id, site FROM title WHERE updated_at <= datetime('now', ?);", (since,)
     )
