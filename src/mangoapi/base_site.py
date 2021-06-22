@@ -65,12 +65,12 @@ class Site(ABC):
         # Proxy shit
         parsed_url = urlparse(url)
         url = parsed_url._replace(
-            netloc=config.FAASPROXY_NETLOC,
+            netloc=config.OUTGOING_PROXY_NETLOC,
             scheme="https",
-            path=config.FAASPROXY_PATH + parsed_url.path,
         ).geturl()
-        headers["Faasproxy-Target-Host"] = parsed_url.netloc
-        headers["Faasproxy-Key"] = config.FAASPROXY_KEY
+        headers["X-Proxy-Target-Host"] = parsed_url.netloc
+        headers["X-Proxy-Key"] = config.OUTGOING_PROXY_KEY
+        headers["X-Proxy-Scheme"] = parsed_url.scheme
         kwargs["headers"] = headers
 
         request_func = getattr(self._session, method)
