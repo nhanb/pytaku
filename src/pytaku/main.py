@@ -74,7 +74,7 @@ def _decode_proxy_url(b64_url):
 
 def _is_manga_img_url(
     url,
-    cover_pattern=re.compile(r"^https://([\w-]+\.)?mangadex\.org/images"),
+    cover_pattern=re.compile(r"^https://([\w-]+\.)?mangadex\.org/(images|covers)"),
 ):
     """
     Check if either a cover or page img url.

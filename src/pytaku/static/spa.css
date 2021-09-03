@@ -335,7 +335,7 @@ footer {
 
 /* Title route */
 .title--cover {
-  width: 400px;
+  max-width: 400px;
   border: 1px solid black;
 }
 

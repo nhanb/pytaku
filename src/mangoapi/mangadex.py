@@ -1,13 +1,12 @@
 import html
 import re
-import time
 
 import bbcode
 
-from mangoapi.base_site import Site, requires_login
+from mangoapi.base_site import Site
 
 MANGAPLUS_GROUP_ID = 9097
-LONG_STRIP_TAG_ID = 36
+WEB_COMIC_TAG_ID = "e197df38-d0e7-43b5-9b09-2842d0c326dd"
 
 _bbparser = bbcode.Parser()
 _bbparser.add_simple_formatter(
@@ -17,129 +16,136 @@ _bbparser.add_simple_formatter(
 
 class Mangadex(Site):
     def get_title(self, title_id):
-        url = f"https://mangadex.org/api/v2/manga/{title_id}?include=chapters"
-        md_resp = self.http_get(url)
+        md_resp = self.http_get(
+            f"https://api.mangadex.org/manga/{title_id}",
+            params={"includes[]": "cover_art"},
+        )
+        assert md_resp.status_code == 200
         md_json = md_resp.json()
-        assert md_json["status"] == "OK"
-        manga = md_json["data"]["manga"]
-        chapters = md_json["data"]["chapters"]
-        groups = md_json["data"]["groups"]
-        groups_dict = {group["id"]: group["name"] for group in groups}
+        attrs = md_json["data"]["attributes"]
 
-        cover = manga["mainCover"].split("/")[-1]
-        ext_start_index = cover.find(".") + 1
-        url_params_index = cover.rfind("?")
-        ext_end_index = url_params_index if url_params_index != -1 else None
-        cover_ext = cover[ext_start_index:ext_end_index]
+        is_web_comic = False
+        for tag in attrs["tags"]:
+            if tag["id"] == WEB_COMIC_TAG_ID:
+                is_web_comic = True
+                break
 
-        current_timestamp = time.time()
+        cover = None
+        for rel in md_json["relationships"]:
+            if rel["type"] == "cover_art":
+                cover = rel["attributes"]["fileName"]
 
         title = {
             "id": title_id,
-            "name": manga["title"],
+            "name": attrs["title"]["en"],
             "site": "mangadex",
-            "cover_ext": cover_ext,
-            "alt_names": manga["altTitles"],
+            "cover_ext": cover,
+            "alt_names": [alt["en"] for alt in attrs["altTitles"]],
             "descriptions": [
-                _bbparser.format(html.unescape(manga["description"]).strip())
+                _bbparser.format(html.unescape(attrs["description"]["en"]).strip())
             ],
             "descriptions_format": "html",
-            "is_webtoon": LONG_STRIP_TAG_ID in manga["tags"],
-            "chapters": [
-                {
-                    "id": str(chap["id"]),
-                    "name": chap["title"],
-                    "volume": int(chap["volume"]) if chap["volume"] else None,
-                    "groups": [
-                        html.unescape(groups_dict[group_id])
-                        for group_id in chap["groups"]
-                    ],
-                    **_parse_chapter_number(chap["chapter"]),
-                }
-                for chap in chapters
-                if chap["language"] == "gb"
-                and MANGAPLUS_GROUP_ID not in chap["groups"]
-                and chap["timestamp"] <= current_timestamp
-                # ^ Chapter may be listed but with access delayed for a certain amount
-                # of time set by uploader, in which case we just filter it out. God I
-                # hate this generation of Patreon "scanlators".
-            ],
+            "is_webtoon": is_web_comic,
+            "chapters": self.get_chapters_list(title_id),
         }
         return title
 
-    def get_chapter(self, title_id, chapter_id):
-        md_resp = self.http_get(
-            f"https://mangadex.org/api/v2/chapter/{chapter_id}?saver=0"
+    def get_chapters_list(self, title_id):
+        resp = self.http_get(
+            f"https://api.mangadex.org/manga/{title_id}/aggregate",
+            params={"translatedLanguage[]": "en"},
         )
+        assert resp.status_code == 200
+        volumes: dict = resp.json()["volumes"]
+        chapters = []
+
+        # Counting on python's spanking new key-order-preserving dicts here.
+        # But WHY THE ACTUAL FUCK would you (mangadex) depend on JSON's key-value pairs ordering?
+        # A JSON object's keys is supposed to be unordered FFS.
+        # If it actually becomes a problem I'll do chapter sorting later. Soon. Ish.
+        for vol in volumes.values():
+            chapters += [
+                {
+                    "id": chap["id"],
+                    "name": "",
+                    "groups": [],  # TODO
+                    "volume": None if vol["volume"] == "none" else int(vol["volume"]),
+                    **_parse_chapter_number(chap["chapter"]),
+                }
+                for chap in vol["chapters"].values()  # again, fucking yikes
+            ]
+
+        return chapters
+
+    def get_chapter(self, title_id, chapter_id):
+        md_resp = self.http_get(f"https://api.mangadex.org/chapter/{chapter_id}")
+        assert md_resp.status_code == 200
         md_json = md_resp.json()
-        assert md_json["status"] == "OK"
         data = md_json["data"]
 
-        # 2 cases:
-        # - If 'serverFallback' is absent, it means 'server' points to MD's own server
-        #   e.g. s5.mangadex.org...
-        # - Otherwise, 'server' points to a likely ephemeral MD@H node, while
-        # 'serverFallback' now points to MD's own server.
-        #
-        # MD's own links apparently go dead sometimes, but MD@H links seem to expire
-        # quickly all the time, so it's probably a good idea to store both anyway.
+        title_id = None
+        for rel in data["relationships"]:
+            if rel["type"] == "manga":
+                title_id = rel["id"]
+                break
 
-        server_fallback = data.get("serverFallback")
-        if server_fallback:
-            md_server = server_fallback
-            mdah_server = data["server"]
-        else:
-            md_server = data["server"]
-            mdah_server = None
+        chapter_hash = data["attributes"]["hash"]
+        filenames = data["attributes"]["data"]
+        md_server = "https://uploads.mangadex.org"
+
+        mdah_server = self._get_md_at_home_server(chapter_id)
+        if mdah_server != md_server:
+            print(">> MDAH-server:", mdah_server)
 
         chapter = {
             "id": chapter_id,
-            "title_id": str(data["mangaId"]),
+            "title_id": title_id,
             "site": "mangadex",
-            "name": data["title"],
-            "pages": [f"{md_server}{data['hash']}/{page}" for page in data["pages"]],
+            "name": data["attributes"]["title"],
+            "pages": [
+                f"{md_server}/data/{chapter_hash}/{filename}" for filename in filenames
+            ],
             "pages_alt": [
-                f"{mdah_server}{data['hash']}/{page}" for page in data["pages"]
+                f"{mdah_server}/data/{chapter_hash}/{filename}"
+                for filename in filenames
             ]
-            if mdah_server
+            if mdah_server is not None and mdah_server != md_server
             else [],
-            "groups": [html.unescape(group["name"]) for group in data["groups"]],
-            **_parse_chapter_number(data["chapter"]),
+            "groups": [],  # TODO
+            **_parse_chapter_number(data["attributes"]["chapter"]),
         }
         return chapter
 
-    @requires_login
-    def search_title(self, query):
-        md_resp = self.http_get(f"https://mangadex.org/quick_search/{query}")
+    def _get_md_at_home_server(self, chapter_id):
+        resp = self.http_get(f"https://api.mangadex.org/at-home/server/{chapter_id}")
+        return resp.json()["baseUrl"] if resp.status_code == 200 else None
 
-        matches = TITLES_PATTERN.findall(md_resp.text)
-        titles = [
-            {
-                "id": id,
-                "name": name.strip(),
-                "site": "mangadex",
-                "thumbnail": f"https://mangadex.org/images/manga/{id}.large.jpg",
-            }
-            for id, name in matches
-        ]
+    def search_title(self, query):
+        params = {"limit": 100, "title": query, "includes[]": "cover_art"}
+        md_resp = self.http_get("https://api.mangadex.org/manga", params=params)
+        assert md_resp.status_code == 200
+        results = md_resp.json()["results"]
+
+        titles = []
+        for result in results:
+            data = result["data"]
+            cover = None
+            for rel in result["relationships"]:
+                if rel["type"] == "cover_art":
+                    cover = rel["attributes"]["fileName"]
+            titles.append(
+                {
+                    "id": data["id"],
+                    "name": data["attributes"]["title"]["en"],
+                    "site": "mangadex",
+                    "thumbnail": f"https://uploads.mangadex.org/covers/{data['id']}/{cover}.256.jpg",
+                }
+            )
+
         return titles
 
-    def login(self, username, password):
-        form_data = {
-            "login_username": username,
-            "login_password": password,
-            "two_factor": "",
-            "remember_me": "1",
-        }
-        self.http_post(
-            "https://mangadex.org/ajax/actions.ajax.php?function=login",
-            data=form_data,
-            headers={"X-Requested-With": "XMLHttpRequest"},
-        )
-        self.is_logged_in = True
-
     def title_cover(self, title_id, cover_ext):
-        return f"https://mangadex.org/images/manga/{title_id}.{cover_ext}"
+        return f"https://uploads.mangadex.org/covers/{title_id}/{cover_ext}.256.jpg"
 
     def title_thumbnail(self, title_id):
         return f"https://mangadex.org/images/manga/{title_id}.large.jpg"
@@ -156,7 +162,7 @@ TITLES_PATTERN = re.compile(
 
 
 def _parse_chapter_number(string):
-    if string == "":
+    if string == "none":
         # most likely a oneshot
         return {"number": ""}
     nums = string.split(".")
