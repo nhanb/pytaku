@@ -382,10 +382,12 @@ def api_follows():
 def api_search(query):
     results = search_title_all_sites(query)
 
-    if "mangadex" in results:
-        for title in results["mangadex"]:
-            title["thumbnail"] = proxied(title["thumbnail"])
-    return results
+    for result in results:
+        if result["site"] == "mangadex":
+            for title in result["titles"]:
+                title["thumbnail"] = proxied(title["thumbnail"])
+            break
+    return {"results": results}
 
 
 @app.route("/api/follow", methods=["POST"])

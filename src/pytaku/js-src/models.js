@@ -107,8 +107,8 @@ const SearchModel = {
         params: { query },
       })
         .then((resp) => {
-          SearchModel.cache[query] = resp;
-          SearchModel.result = resp;
+          SearchModel.cache[query] = resp.results;
+          SearchModel.result = resp.results;
         })
         .catch((err) => {
           console.log("TODO", err);

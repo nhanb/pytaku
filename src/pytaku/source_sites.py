@@ -59,7 +59,7 @@ def search_title_all_sites(query):
     I should really look into proper type annotations huh.
     """
     site_names = ("mangasee", "mangadex")
-    results = {}
+    results = []
 
     def safe_search(site_name, query):
         try:
@@ -79,6 +79,6 @@ def search_title_all_sites(query):
         for future in as_completed(future_to_site_name):
             site_results = future.result()
             site_name = future_to_site_name[future]
-            results[site_name] = site_results
+            results.append({"site": site_name, "titles": site_results})
 
     return results

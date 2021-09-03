@@ -11,7 +11,7 @@ const Search = {
       "div.content",
       SearchModel.isLoading
         ? m(LoadingMessage)
-        : Object.entries(SearchModel.result).map(([site, titles]) =>
+        : SearchModel.result.map(({ site, titles }) =>
             m("div", [
               m("h1.search--site-heading", site),
               titles
