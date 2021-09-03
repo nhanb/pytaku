@@ -8,3 +8,5 @@ __pycache__
 *.egg-info
 /dist/
 /src/pytaku/static/js/
+/*.csv
+/*.log
