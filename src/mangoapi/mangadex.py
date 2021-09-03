@@ -35,15 +35,19 @@ class Mangadex(Site):
             if rel["type"] == "cover_art":
                 cover = rel["attributes"]["fileName"]
 
+        descriptions = attrs["description"]
+        if "en" in descriptions:
+            description = descriptions["en"]
+        else:
+            description = list(descriptions.values())[0]
+
         title = {
             "id": title_id,
-            "name": attrs["title"]["en"],
+            "name": list(attrs["title"].values())[0],
             "site": "mangadex",
             "cover_ext": cover,
-            "alt_names": [alt["en"] for alt in attrs["altTitles"]],
-            "descriptions": [
-                _bbparser.format(html.unescape(attrs["description"]["en"]).strip())
-            ],
+            "alt_names": [list(alt.values())[0] for alt in attrs["altTitles"]],
+            "descriptions": [_bbparser.format(html.unescape(description).strip())],
             "descriptions_format": "html",
             "is_webtoon": is_web_comic,
             "chapters": self.get_chapters_list(title_id),
@@ -59,21 +63,29 @@ class Mangadex(Site):
         volumes: dict = resp.json()["volumes"]
         chapters = []
 
-        # Counting on python's spanking new key-order-preserving dicts here.
-        # But WHY THE ACTUAL FUCK would you (mangadex) depend on JSON's key-value pairs ordering?
-        # A JSON object's keys is supposed to be unordered FFS.
-        # If it actually becomes a problem I'll do chapter sorting later. Soon. Ish.
+        # If there are no volumes, it's an empty list.
+        # But if there are actual volumes, it's a dict.
+        if type(volumes) is list:
+            return []
         for vol in volumes.values():
-            chapters += [
-                {
-                    "id": chap["id"],
-                    "name": "",
-                    "groups": [],  # TODO
-                    "volume": None if vol["volume"] == "none" else int(vol["volume"]),
-                    **_parse_chapter_number(chap["chapter"]),
-                }
-                for chap in vol["chapters"].values()  # again, fucking yikes
-            ]
+            # Counting on python's spanking new key-order-preserving dicts here.
+            # But WHY THE ACTUAL FUCK would you (mangadex) depend on JSON's key-value
+            # pairs ordering?  A JSON object's keys is supposed to be unordered FFS.
+            # If it actually becomes a problem I'll do chapter sorting later. Soon. Ish.
+            chapters += (
+                [
+                    {
+                        "id": chap["id"],
+                        "name": "",
+                        "groups": [],  # TODO
+                        "volume": vol["volume"],
+                        **_parse_chapter_number(chap["chapter"]),
+                    }
+                    for chap in vol["chapters"].values()  # again, fucking yikes
+                ]
+                if type(vol["chapters"]) is dict
+                else []
+            )
 
         return chapters
 
@@ -121,7 +133,12 @@ class Mangadex(Site):
         return resp.json()["baseUrl"] if resp.status_code == 200 else None
 
     def search_title(self, query):
-        params = {"limit": 100, "title": query, "includes[]": "cover_art"}
+        params = {
+            "limit": 100,
+            "title": query,
+            "includes[]": "cover_art",
+            "order[relevance]": "desc",
+        }
         md_resp = self.http_get("https://api.mangadex.org/manga", params=params)
         assert md_resp.status_code == 200
         results = md_resp.json()["results"]
@@ -147,8 +164,8 @@ class Mangadex(Site):
     def title_cover(self, title_id, cover_ext):
         return f"https://uploads.mangadex.org/covers/{title_id}/{cover_ext}.256.jpg"
 
-    def title_thumbnail(self, title_id):
-        return f"https://mangadex.org/images/manga/{title_id}.large.jpg"
+    def title_thumbnail(self, title_id, cover_ext):
+        return f"https://uploads.mangadex.org/covers/{title_id}/{cover_ext}.256.jpg"
 
     def title_source_url(self, title_id):
         return f"https://mangadex.org/manga/{title_id}"
@@ -162,9 +179,9 @@ TITLES_PATTERN = re.compile(
 
 
 def _parse_chapter_number(string):
-    if string == "none":
+    if string in (None, "none"):
         # most likely a oneshot
-        return {"number": ""}
+        return {"number": "0.0", "num_major": 0, "num_minor": 0}
     nums = string.split(".")
     count = len(nums)
     assert count == 1 or count == 2

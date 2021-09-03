@@ -46,7 +46,7 @@ class Site(ABC):
         pass
 
     @abstractmethod
-    def title_thumbnail(self, title_id):
+    def title_thumbnail(self, title_id, cover_ext):
         pass
 
     @abstractmethod

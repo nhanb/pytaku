@@ -67,11 +67,10 @@ class UpdateOutdatedTitles(Worker):
         outdated_titles = find_outdated_titles()
         print(f"Found {len(outdated_titles)} outdated titles")
         for title in outdated_titles:
-            if title["site"] == "mangadex":
-                # print(f"Skipped title {title['id']} from {title['site']}.")
-                continue
-
-            print(f"Updating title {title['id']} from {title['site']}...", end="")
+            print(
+                f"Updating title {title['id']} - {title['name'][:36]} from {title['site']}...",
+                end="",
+            )
             try:
                 updated_title = get_title(title["site"], title["id"])
                 save_title(updated_title)

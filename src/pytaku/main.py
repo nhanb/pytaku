@@ -371,7 +371,7 @@ def api_logout():
 def api_follows():
     titles = get_followed_titles(request.user_id)
     for title in titles:
-        thumbnail = title_thumbnail(title["site"], title["id"])
+        thumbnail = title_thumbnail(title["site"], title["id"], title["cover_ext"])
         if title["site"] == "mangadex":
             thumbnail = proxied(thumbnail)
         title["thumbnail"] = thumbnail
