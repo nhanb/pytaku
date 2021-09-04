@@ -1,4 +1,3 @@
-import functools
 from abc import ABC, abstractmethod
 from urllib.parse import urlparse
 
@@ -24,9 +23,6 @@ def create_session():
 
 class Site(ABC):
     def __init__(self):
-        self.username = None
-        self.password = None
-        self.is_logged_in = False
         self._session = create_session()
 
     @abstractmethod
@@ -94,22 +90,3 @@ class Site(ABC):
 
     def http_post(self, *args, **kwargs):
         return self._http_request("post", *args, **kwargs)
-
-
-def requires_login(func):
-    """
-    Decorator designed for use on a Site's instance methods.
-    It ensures cookies are ready before running the method.
-    """
-
-    @functools.wraps(func)
-    def wrapper(self, *args, **kwargs):
-        # TODO: replace is_logged_in flag check with actual "if rejected then try
-        # logging in" logic, just in case login cookies expire.
-        if not self.is_logged_in:
-            assert self.username
-            assert self.password
-            self.login(self.username, self.password)
-        return func(self, *args, **kwargs)
-
-    return wrapper

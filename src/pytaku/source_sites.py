@@ -3,7 +3,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from mangoapi import get_site_class
 
-from .conf import config
 from .persistence import KeyvalStore
 
 """
@@ -21,10 +20,7 @@ def _get_site(name):
         site_class = get_site_class(name)
         assert site_class is not None
         site = site_class()
-        if name == "mangadex":
-            site.username = config.MANGADEX_USERNAME
-            site.password = config.MANGADEX_PASSWORD
-        elif name == "mangasee":
+        if name == "mangasee":
             site.keyval_store = KeyvalStore
     return site
 
