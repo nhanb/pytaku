@@ -129,7 +129,7 @@ class Mangasee(Site):
         ]
 
     def title_cover(self, title_id, cover_ext):
-        return self.title_thumbnail(title_id)
+        return self.title_thumbnail(title_id, cover_ext)
 
     def title_thumbnail(self, title_id, cover_ext):
         return f"https://cover.nep.li/cover/{title_id}.jpg"
