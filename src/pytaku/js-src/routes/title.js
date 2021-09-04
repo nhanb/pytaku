@@ -6,6 +6,7 @@ function Title(initialVNode) {
   let isTogglingFollow = false;
   let isMarkingAllAsRead = false;
   let isMarkingAllAsUnread = false;
+  let isMarkingPreviousAsRead = false;
   let title = {};
   let allAreRead;
   let allAreUnread;
@@ -202,8 +203,63 @@ function Title(initialVNode) {
                 ),
               ]),
               title.chapters
-                ? title.chapters.map((chapter) =>
-                    m(Chapter, { site: title.site, titleId: title.id, chapter })
+                ? title.chapters.map((chapter, index) =>
+                    m(".title--chapter-row", [
+                      m(Button, {
+                        icon: isMarkingPreviousAsRead
+                          ? "loader"
+                          : "chevrons-down",
+                        color: "grey",
+                        title: "Mark all read up to this chapter",
+                        disabled: isMarkingPreviousAsRead ? "disabled" : null,
+                        onclick: (ev) => {
+                          const confirmed = window.confirm(
+                            "Do you surely want to mark all chapters up to this point as read?"
+                          );
+                          if (!confirmed) return;
+
+                          isMarkingPreviousAsRead = true;
+                          m.redraw();
+
+                          const chaptersToMark = title.chapters
+                            .slice(index)
+                            .filter((ch) => !ch.is_read);
+
+                          if (chaptersToMark.length == 0) {
+                            isMarkingPreviousAsRead = false;
+                            m.redraw();
+                            return;
+                          }
+
+                          Auth.request({
+                            method: "POST",
+                            url: "/api/read",
+                            body: {
+                              read: chaptersToMark.map((ch) => {
+                                return {
+                                  site: title.site,
+                                  title_id: title.id,
+                                  chapter_id: ch.id,
+                                };
+                              }),
+                            },
+                          })
+                            .then((resp) => {
+                              chaptersToMark.forEach((chap) => {
+                                chap.is_read = true;
+                              });
+                            })
+                            .finally(() => {
+                              isMarkingPreviousAsRead = false;
+                            });
+                        },
+                      }),
+                      m(Chapter, {
+                        site: title.site,
+                        titleId: title.id,
+                        chapter,
+                      }),
+                    ])
                   )
                 : m("p", "This one has no chapters."),
             ]

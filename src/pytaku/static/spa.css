@@ -370,6 +370,15 @@ footer {
    */
 }
 
+.title--chapter-row {
+  display: flex;
+  flex-direction: vertical;
+}
+.title--chapter-row > button {
+  margin-bottom: 0.5rem;
+  margin-right: 0.2rem;
+}
+
 @media (max-width: 399px) {
   .title--details {
     flex-direction: column;

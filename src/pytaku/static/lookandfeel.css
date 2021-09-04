@@ -108,6 +108,10 @@ button.green {
   background-color: var(--btn-green);
   border-bottom: 4px solid var(--btn-green-bottom);
 }
+button.grey {
+  background-color: #6f6f6f;
+  border-bottom: 4px solid #444;
+}
 button.blue {
   background-color: var(--btn-blue);
   border-bottom: 4px solid var(--btn-blue-bottom);
