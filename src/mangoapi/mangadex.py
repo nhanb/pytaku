@@ -78,7 +78,9 @@ class Mangadex(Site):
                         "id": chap["id"],
                         "name": "",
                         "groups": [],  # TODO
-                        "volume": vol["volume"],
+                        "volume": vol["volume"]
+                        if vol["volume"] not in (None, "none")
+                        else "",
                         **_parse_chapter_number(chap["chapter"]),
                     }
                     for chap in vol["chapters"].values()  # again, fucking yikes
