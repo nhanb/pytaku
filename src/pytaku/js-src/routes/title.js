@@ -5,8 +5,10 @@ function Title(initialVNode) {
   let isLoading = false;
   let isTogglingFollow = false;
   let isMarkingAllAsRead = false;
+  let isMarkingAllAsUnread = false;
   let title = {};
   let allAreRead;
+  let allAreUnread;
 
   return {
     oninit: (vnode) => {
@@ -33,9 +35,14 @@ function Title(initialVNode) {
     view: (vnode) => {
       if (!isLoading && Auth.isLoggedIn()) {
         allAreRead = true;
+        allAreUnread = true;
         for (let chap of title.chapters) {
           if (!chap.is_read) {
             allAreRead = false;
+          } else {
+            allAreUnread = false;
+          }
+          if (allAreRead === false && allAreUnread === false) {
             break;
           }
         }
@@ -95,6 +102,12 @@ function Title(initialVNode) {
                           ? null
                           : "Click to mark all chapters as read",
                         onclick: (ev) => {
+                          const confirmed = window.confirm(
+                            "Do you surely want to read all chapters?"
+                          );
+                          if (!confirmed) {
+                            return;
+                          }
                           isMarkingAllAsRead = true;
                           m.redraw();
                           Auth.request({
@@ -119,6 +132,55 @@ function Title(initialVNode) {
                             })
                             .finally(() => {
                               isMarkingAllAsRead = false;
+                            });
+                        },
+                      }),
+                      m(Button, {
+                        icon: "x-square",
+                        disabled:
+                          isMarkingAllAsUnread || allAreUnread
+                            ? "disabled"
+                            : null,
+                        text: isMarkingAllAsUnread
+                          ? "submitting..."
+                          : allAreUnread
+                          ? "all unread!"
+                          : "unread all",
+                        color: "white",
+                        title: allAreUnread
+                          ? null
+                          : "Click to mark all chapters as unread",
+                        onclick: (ev) => {
+                          const confirmed = window.confirm(
+                            "Do you surely want to unread all chapters?"
+                          );
+                          if (!confirmed) {
+                            return;
+                          }
+                          isMarkingAllAsUnread = true;
+                          m.redraw();
+                          Auth.request({
+                            method: "POST",
+                            url: "/api/read",
+                            body: {
+                              unread: title.chapters
+                                .filter((ch) => ch.is_read)
+                                .map((ch) => {
+                                  return {
+                                    site: title.site,
+                                    title_id: title.id,
+                                    chapter_id: ch.id,
+                                  };
+                                }),
+                            },
+                          })
+                            .then((resp) => {
+                              title.chapters.forEach((chap) => {
+                                chap.is_read = false;
+                              });
+                            })
+                            .finally(() => {
+                              isMarkingAllAsUnread = false;
                             });
                         },
                       }),

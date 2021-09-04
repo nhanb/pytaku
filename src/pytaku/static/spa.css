@@ -379,6 +379,12 @@ footer {
   }
 }
 
+@media (min-width: 400px) and (max-width: 500px) {
+  .title--details i {
+    display: none;
+  }
+}
+
 /* Chapter route */
 .chapter.content {
   padding: var(--body-padding) 0;
