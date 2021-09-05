@@ -6,10 +6,11 @@ function Title(initialVNode) {
   let isTogglingFollow = false;
   let isMarkingAllAsRead = false;
   let isMarkingAllAsUnread = false;
-  let isMarkingPreviousAsRead = false;
+  let isMarkingAsReadStartingFrom = null;
   let title = {};
   let allAreRead;
   let allAreUnread;
+  let readUpTo;
 
   return {
     oninit: (vnode) => {
@@ -37,14 +38,15 @@ function Title(initialVNode) {
       if (!isLoading && Auth.isLoggedIn()) {
         allAreRead = true;
         allAreUnread = true;
-        for (let chap of title.chapters) {
-          if (!chap.is_read) {
-            allAreRead = false;
-          } else {
+        readUpTo = title.chapters.length; // biggest index + 1
+
+        for (var i = title.chapters.length - 1; i >= 0; i--) {
+          const chap = title.chapters[i];
+          if (chap.is_read) {
+            if (readUpTo === i + 1) readUpTo = i;
             allAreUnread = false;
-          }
-          if (allAreRead === false && allAreUnread === false) {
-            break;
+          } else {
+            allAreRead = false;
           }
         }
       }
@@ -104,7 +106,7 @@ function Title(initialVNode) {
                           : "Click to mark all chapters as read",
                         onclick: (ev) => {
                           const confirmed = window.confirm(
-                            "Do you surely want to read all chapters?"
+                            "Are you sure you want to read all chapters?"
                           );
                           if (!confirmed) {
                             return;
@@ -153,7 +155,7 @@ function Title(initialVNode) {
                           : "Click to mark all chapters as unread",
                         onclick: (ev) => {
                           const confirmed = window.confirm(
-                            "Do you surely want to unread all chapters?"
+                            "Are you sure you want to unread all chapters?"
                           );
                           if (!confirmed) {
                             return;
@@ -205,55 +207,63 @@ function Title(initialVNode) {
               title.chapters
                 ? title.chapters.map((chapter, index) =>
                     m(".title--chapter-row", [
-                      m(Button, {
-                        icon: isMarkingPreviousAsRead
-                          ? "loader"
-                          : "chevrons-down",
-                        color: "grey",
-                        title: "Mark all read up to this chapter",
-                        disabled: isMarkingPreviousAsRead ? "disabled" : null,
-                        onclick: (ev) => {
-                          const confirmed = window.confirm(
-                            "Do you surely want to mark all chapters up to this point as read?"
-                          );
-                          if (!confirmed) return;
+                      index < readUpTo
+                        ? m(Button, {
+                            icon:
+                              isMarkingAsReadStartingFrom !== null &&
+                              index >= isMarkingAsReadStartingFrom
+                                ? "loader"
+                                : "chevrons-down",
+                            color: "green",
+                            title: "Mark all read up to this chapter",
+                            disabled:
+                              isMarkingAsReadStartingFrom !== null &&
+                              index >= isMarkingAsReadStartingFrom
+                                ? "disabled"
+                                : null,
+                            onclick: (ev) => {
+                              const confirmed = window.confirm(
+                                "Are you sure you want to mark all chapters up to this point as read?"
+                              );
+                              if (!confirmed) return;
 
-                          isMarkingPreviousAsRead = true;
-                          m.redraw();
+                              isMarkingAsReadStartingFrom = index;
+                              m.redraw();
 
-                          const chaptersToMark = title.chapters
-                            .slice(index)
-                            .filter((ch) => !ch.is_read);
+                              const chaptersToMark = title.chapters
+                                .slice(index)
+                                .filter((ch) => !ch.is_read);
 
-                          if (chaptersToMark.length == 0) {
-                            isMarkingPreviousAsRead = false;
-                            m.redraw();
-                            return;
-                          }
+                              if (chaptersToMark.length == 0) {
+                                isMarkingAsReadStartingFrom = null;
+                                m.redraw();
+                                return;
+                              }
 
-                          Auth.request({
-                            method: "POST",
-                            url: "/api/read",
-                            body: {
-                              read: chaptersToMark.map((ch) => {
-                                return {
-                                  site: title.site,
-                                  title_id: title.id,
-                                  chapter_id: ch.id,
-                                };
-                              }),
+                              Auth.request({
+                                method: "POST",
+                                url: "/api/read",
+                                body: {
+                                  read: chaptersToMark.map((ch) => {
+                                    return {
+                                      site: title.site,
+                                      title_id: title.id,
+                                      chapter_id: ch.id,
+                                    };
+                                  }),
+                                },
+                              })
+                                .then((resp) => {
+                                  chaptersToMark.forEach((chap) => {
+                                    chap.is_read = true;
+                                  });
+                                })
+                                .finally(() => {
+                                  isMarkingAsReadStartingFrom = null;
+                                });
                             },
                           })
-                            .then((resp) => {
-                              chaptersToMark.forEach((chap) => {
-                                chap.is_read = true;
-                              });
-                            })
-                            .finally(() => {
-                              isMarkingPreviousAsRead = false;
-                            });
-                        },
-                      }),
+                        : null,
                       m(Chapter, {
                         site: title.site,
                         titleId: title.id,
