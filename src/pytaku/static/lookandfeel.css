@@ -116,6 +116,9 @@ button.blue {
   background-color: var(--btn-blue);
   border-bottom: 4px solid var(--btn-blue-bottom);
 }
+a.touch-friendly.disabled,
+a.touch-friendly.disabled:hover,
+a.touch-friendly.disabled:active,
 button[disabled],
 button[disabled]:hover,
 button[disabled]:active {

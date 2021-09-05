@@ -60,6 +60,7 @@ function FallbackableImg(initialVNode) {
 
 function Chapter(initialVNode) {
   let isLoading = false;
+  let isMarkingLastChapterAsRead = false;
   let chapter = {};
   let loadedPages = [];
   let pendingPages = [];
@@ -112,6 +113,94 @@ function Chapter(initialVNode) {
     }
   }
 
+  function markChapterAsRead(site, titleId, chapterId) {
+    return Auth.request({
+      method: "POST",
+      url: "/api/read",
+      body: {
+        read: [
+          {
+            site,
+            title_id: titleId,
+            chapter_id: chapterId,
+          },
+        ],
+      },
+    });
+  }
+
+  function buttonsView(site, prev, next) {
+    const nextRoute = next
+      ? `/m/${site}/${titleId}/${next.id}`
+      : `/m/${site}/${titleId}`;
+
+    return m("div.chapter--buttons", [
+      prev
+        ? m(
+            m.route.Link,
+            {
+              class: "touch-friendly",
+              href: `/m/${site}/${titleId}/${prev.id}`,
+            },
+            [m("i.icon.icon-chevrons-left"), m("span", "prev")]
+          )
+        : m(Button, {
+            text: "prev",
+            icon: "chevrons-left",
+            disabled: true,
+          }),
+      m(
+        m.route.Link,
+        {
+          class: "touch-friendly",
+          href: `/m/${site}/${titleId}`,
+        },
+        [m("i.icon.icon-list"), m("span", " chapter list")]
+      ),
+      m(
+        m.route.Link,
+        {
+          class:
+            "touch-friendly" + (isMarkingLastChapterAsRead ? " disabled" : ""),
+          href: nextRoute,
+          disabled: isMarkingLastChapterAsRead,
+          onclick: (ev) => {
+            if (Auth.isLoggedIn()) {
+              if (next) {
+                markChapterAsRead(site, titleId, chapter.id);
+              } else {
+                // If this is the last chapter, make sure to only transition
+                // to next route (title details) after the "mark chapter as
+                // read" request is done, so that we don't end up showing the
+                // last chapter as still unread in the title details route.
+                ev.preventDefault();
+                isMarkingLastChapterAsRead = true;
+                m.redraw();
+                markChapterAsRead(site, titleId, chapter.id).finally(() => {
+                  isMarkingLastChapterAsRead = false; // proly unnecessary
+                  m.route.set(nextRoute);
+                });
+              }
+            }
+          },
+        },
+        [
+          m(
+            "span",
+            next
+              ? "next"
+              : isMarkingLastChapterAsRead
+              ? "finishing..."
+              : "finish"
+          ),
+          isMarkingLastChapterAsRead
+            ? null
+            : m("i.icon.icon-" + (next ? "chevrons-right" : "check-circle")),
+        ]
+      ),
+    ]);
+  }
+
   return {
     oninit: (vnode) => {
       document.title = "Manga chapter";
@@ -158,64 +247,10 @@ function Chapter(initialVNode) {
       const { site, titleId } = vnode.attrs;
       const prev = chapter.prev_chapter;
       const next = chapter.next_chapter;
-      const buttons = m("div.chapter--buttons", [
-        prev
-          ? m(
-              m.route.Link,
-              {
-                class: "touch-friendly",
-                href: `/m/${site}/${titleId}/${prev.id}`,
-              },
-              [m("i.icon.icon-chevrons-left"), m("span", "prev")]
-            )
-          : m(Button, {
-              text: "prev",
-              icon: "chevrons-left",
-              disabled: true,
-            }),
-        m(
-          m.route.Link,
-          {
-            class: "touch-friendly",
-            href: `/m/${site}/${titleId}`,
-          },
-          [m("i.icon.icon-list"), m("span", " chapter list")]
-        ),
-        m(
-          m.route.Link,
-          {
-            class: "touch-friendly",
-            href: next
-              ? `/m/${site}/${titleId}/${next.id}`
-              : `/m/${site}/${titleId}`,
-            onclick: (ev) => {
-              if (Auth.isLoggedIn()) {
-                Auth.request({
-                  method: "POST",
-                  url: "/api/read",
-                  body: {
-                    read: [
-                      {
-                        site,
-                        title_id: titleId,
-                        chapter_id: chapter.id,
-                      },
-                    ],
-                  },
-                });
-              }
-              return true;
-            },
-          },
-          [
-            m("span", next ? "next" : "finish"),
-            m("i.icon.icon-" + (next ? "chevrons-right" : "check-circle")),
-          ]
-        ),
-      ]);
+
       return m("div.chapter.content", [
         m("h1", fullChapterName(chapter)),
-        buttons,
+        buttonsView(site, prev, next),
         m(
           "div",
           {
@@ -257,7 +292,7 @@ function Chapter(initialVNode) {
             pendingPages.map(() => m(PendingPlaceholder)),
           ]
         ),
-        buttons,
+        buttonsView(site, prev, next),
         nextChapterLoadedPages.map((page) =>
           m(FallbackableImg, {
             style: { display: "none" },

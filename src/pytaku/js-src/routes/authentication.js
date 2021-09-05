@@ -64,7 +64,6 @@ function Authentication(initialVNode) {
             m("input[placeholder=username][name=username][required]", {
               value: loginUsername,
               oninput: (e) => {
-                console.log("username onInput:", e.target.value);
                 loginUsername = e.target.value;
               },
             }),
@@ -73,7 +72,6 @@ function Authentication(initialVNode) {
               {
                 value: loginPassword,
                 oninput: (e) => {
-                  console.log("password onInput: size", e.target.value.length);
                   loginPassword = e.target.value;
                 },
               }
