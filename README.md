@@ -20,6 +20,10 @@ progress and new chapter updates. Its design goals are:
   provides a good baseline of SPA functionality without having to pull in the
   Rube Goldberg machine that is """modern""" JS devtools.
 
+# Keyboard shortcuts
+
+On Chapter page, press `?` to show keyboard shortcuts.
+
 # Development
 
 ```sh

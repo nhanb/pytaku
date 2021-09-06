@@ -1,6 +1,11 @@
 import { Auth, ChapterModel } from "../models.js";
 import { LoadingMessage, fullChapterName, Button } from "../utils.js";
 
+const KEYCODE_PLUS = 43;
+const KEYCODE_MINUS = 45;
+const KEYCODE_ZERO = 48;
+const KEYCODE_QUESTION_MARK = 63;
+
 const LoadingPlaceholder = {
   view: () => m("h2", [m("i.icon.icon-loader.spin")]),
 };
@@ -69,6 +74,29 @@ function Chapter(initialVNode) {
   let nextChapterPromise = null;
   let nextChapterPendingPages = null;
   let nextChapterLoadedPages = [];
+
+  let imgMaxWidth = 100; // in percent
+
+  function onKeyPress(event) {
+    switch (event.keyCode) {
+      case KEYCODE_PLUS:
+        imgMaxWidth += 20;
+        break;
+      case KEYCODE_MINUS:
+        if (imgMaxWidth > 20) imgMaxWidth -= 20;
+        break;
+      case KEYCODE_ZERO:
+        imgMaxWidth = 100;
+        break;
+      case KEYCODE_QUESTION_MARK:
+        window.alert(`Keyboard shortcuts:
+    + to increase page size
+    - to decrease page size
+    0 (zero) to reset page size`);
+        break;
+    }
+    m.redraw();
+  }
 
   function loadNextPage() {
     if (pendingPages.length > 0) {
@@ -202,6 +230,12 @@ function Chapter(initialVNode) {
   }
 
   return {
+    oncreate: (vnode) => {
+      document.addEventListener("keypress", onKeyPress);
+    },
+    onremove: (vnode) => {
+      document.removeEventListener("keypress", onKeyPress);
+    },
     oninit: (vnode) => {
       document.title = "Manga chapter";
       site = vnode.attrs.site;
@@ -267,6 +301,7 @@ function Chapter(initialVNode) {
                   style: {
                     display:
                       page.status === ImgStatus.SUCCEEDED ? "block" : "none",
+                    maxWidth: `${imgMaxWidth}%`,
                   },
                   onload: (ev) => {
                     page.status = ImgStatus.SUCCEEDED;
