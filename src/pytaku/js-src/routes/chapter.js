@@ -1,5 +1,12 @@
 import { Auth, ChapterModel } from "../models.js";
-import { LoadingMessage, fullChapterName, Button } from "../utils.js";
+import {
+  LoadingMessage,
+  FallbackableImg,
+  fullChapterName,
+  Button,
+  RetryImgButton,
+  ImgStatus,
+} from "../utils.js";
 
 const KEYCODE_PLUS = 43;
 const KEYCODE_MINUS = 45;
@@ -13,55 +20,6 @@ const LoadingPlaceholder = {
 const PendingPlaceholder = {
   view: () => m("h2", [m("i.icon.icon-loader")]),
 };
-
-const RetryImgButton = {
-  view: (vnode) => {
-    return m(Button, {
-      text: "Errored. Try again?",
-      color: "red",
-      onclick: (ev) => {
-        const { page } = vnode.attrs;
-        page.status = ImgStatus.LOADING;
-        // Cheat: append to src so the element's key is
-        // different, forcing mithril to redraw.
-        // Chose `?` here because it will just be stripped by
-        // flask's path parser.
-        page.src = page.src.endsWith("?")
-          ? page.src.slice(0, -1)
-          : page.src + "?";
-      },
-    });
-  },
-};
-
-const ImgStatus = {
-  LOADING: "loading",
-  SUCCEEDED: "succeeded",
-  FAILED: "failed",
-};
-
-function FallbackableImg(initialVNode) {
-  let currentSrc;
-  return {
-    oninit: (vnode) => {
-      currentSrc = vnode.attrs.src;
-    },
-    view: (vnode) => {
-      return m("img", {
-        src: currentSrc,
-        style: vnode.attrs.style,
-        onload: vnode.attrs.onload,
-        onerror: (ev) => {
-          if (currentSrc === vnode.attrs.src && vnode.attrs.altsrc !== null) {
-            currentSrc = vnode.attrs.altsrc;
-          } else {
-            vnode.attrs.onerror(ev);
-          }
-        },
-      });
-    },
-  };
-}
 
 function Chapter(initialVNode) {
   let isLoading = false;

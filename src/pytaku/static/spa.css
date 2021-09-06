@@ -434,6 +434,24 @@ footer {
   }
 }
 
+/* E-ink Chapter route */
+
+.e-ink-chapter--prev-page,
+.e-ink-chapter--next-page {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+}
+.e-ink-chapter--prev-page {
+  left: 0;
+  right: 50%;
+}
+.e-ink-chapter--next-page {
+  right: 0;
+  left: 50%;
+}
+
 /* Components defined in utils */
 .utils--chapter {
   margin-bottom: 0.5rem;

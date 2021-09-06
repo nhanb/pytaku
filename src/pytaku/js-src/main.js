@@ -6,6 +6,7 @@ import Follows from "./routes/follows.js";
 import Search from "./routes/search.js";
 import Title from "./routes/title.js";
 import Chapter from "./routes/chapter.js";
+import EInkChapter from "./routes/eink-chapter.js";
 import Importer from "./routes/importer.js";
 
 Auth.init().then(() => {
@@ -69,7 +70,7 @@ Auth.init().then(() => {
       render: (vnode) =>
         m(
           Layout,
-          m(Chapter, {
+          m(EInkChapter, {
             site: vnode.attrs.site,
             titleId: vnode.attrs.titleId,
             chapterId: vnode.attrs.chapterId,
