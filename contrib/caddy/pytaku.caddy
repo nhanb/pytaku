@@ -1,12 +1,12 @@
-dev.pytaku.com
-
-route {
-    # Assumes static dir has been synced to /home/pytaku/pytaku/static
-    # and the caddy user has permission to read it
-    file_server /static/* {
-        root /home/pytaku/pytaku
-        #browse
+pytaku.imnhan.com {
+    route {
+        # Assumes static dir has been synced to /home/pytaku/pytaku/static
+        # and the caddy user has permission to read it
+        file_server /static/* {
+            root /home/pytaku/pytaku
+            #browse
+        }
+        reverse_proxy /* localhost:5001
+        encode zstd gzip
     }
-    reverse_proxy /* localhost:5001
-    encode zstd gzip
 }

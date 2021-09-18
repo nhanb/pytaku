@@ -1,9 +1,9 @@
-image: ubuntu/bionic
+image: debian/bullseye
 
 secrets:
   # PyPI token for pytaku:
   - 8c42b8a6-d1b7-4af7-82f2-b8f1b6e085e2
-  # ssh key for dev.pytaku.com:
+  # ssh key for pytaku.imnhan.com:
   - 2d6e3246-5adc-41c2-bebe-01dacda9d0c8
   # ~/pytaku.conf.json:
   - d18b6657-ac13-4413-8349-8ef262142545
@@ -16,20 +16,17 @@ environment:
 
 packages:
   - curl
-  - python3.7-dev
-  - python3.7-venv
   - python3-pip
-  - npm
+  - python3-apsw
+  - python3-venv
+  - esbuild
 
 tasks:
   - setup: |
-      python3.7 -m pip install pipx
-      python3.7 -m pipx install poetry==1.1.6
-      cd pytaku
-      poetry install --no-dev
-      poetry run pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
-            --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
-            --global-option=build --global-option=--enable-all-extensions
+      pip3 install pipx
+      python3 -m pipx install poetry==1.1.6
+      #cd pytaku
+      #poetry install --no-dev
 
   #- test: |
       #cd pytaku
@@ -38,8 +35,7 @@ tasks:
 
   - build: |
       cd pytaku
-      npm install -g --prefix ~/.node_modules esbuild
-      ~/.node_modules/bin/esbuild \
+      esbuild \
         src/pytaku/js-src/main.js \
         --bundle --sourcemap --minify \
         --outfile=src/pytaku/static/js/main.min.js
@@ -58,24 +54,22 @@ tasks:
 
   - deploy-dev: |
       cd pytaku
-      echo "dev.pytaku.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAQ1jWerB3GUGRhaZZzgpRyCSwo7PRi1cPbokaAwwsAKts1dkXSdCtR9xoTXKdvhASX5xafdzHZqbyFzpc0RleM=" >> ~/.ssh/known_hosts
+      echo "pytaku.imnhan.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBpDNzSaWLPXnb2XaGNgvlNnEcVbdrUUWHfBcuzJ1DyDU2fa+f1ojSFddfNMBrSRpU0GAPfpDoky6en866WH4gw=" >> ~/.ssh/known_hosts
+
       # Clean up old stuff just in case
-      ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com 'rm -f /home/pytaku/pytaku*.whl'
+      ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@pytaku.imnhan.com 'rm -f /home/pytaku/pytaku*.whl'
       # Copy wheel & systemd service files over.
       # I'm not installing pytaku from pypi here because it may
       # take a loooong time for the new version to appear.
-      scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 dist/pytaku*.whl pytaku@dev.pytaku.com:/home/pytaku/
-      scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 contrib/systemd/*.service pytaku@dev.pytaku.com:/home/pytaku/.config/systemd/user/
+      scp -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 dist/pytaku*.whl pytaku@pytaku.imnhan.com:/home/pytaku/
       # Install & restart serivces
-      ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@dev.pytaku.com "
-        ~/.local/bin/pip install --user --force-reinstall pytaku*.whl &&
+      ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@pytaku.imnhan.com "
+        pip3 install --user --force-reinstall pytaku*.whl &&
         cd ~/pytaku &&
         ~/.local/bin/pytaku-migrate &&
         rm -r static &&
-        cp -r ~/.local/lib/python3.7/site-packages/pytaku/static ./ &&
-        systemctl --user daemon-reload &&
-        systemctl --user restart pytaku &&
-        systemctl --user restart pytaku-scheduler &&
+        cp -r ~/.local/lib/python3.9/site-packages/pytaku/static ./ &&
+        sudo systemctl restart pytaku pytaku-scheduler &&
         echo 'All done.'
       "
 

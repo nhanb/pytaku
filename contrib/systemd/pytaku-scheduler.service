@@ -1,18 +1,15 @@
-# this goes in ~/.config/systemd/user/pytaku-scheduler.service
-
-# systemctl --user daemon-reload
-# systemctl --user enable pytaku-scheduler
-# systemctl --user restart pytaku-scheduler
-# loginctl enable-linger <username>
-
 [Unit]
 Description=Pytaku scheduler
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
 
 [Service]
 Environment="PYTHONUNBUFFERED=1"
-ExecStart=/home/pytaku/.local/bin/pytaku-scheduler
+Restart=on-abnormal
+User=pytaku
+Group=pytaku
 WorkingDirectory=/home/pytaku/pytaku
-Restart=always
+ExecStart=/home/pytaku/.local/bin/pytaku-scheduler
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
