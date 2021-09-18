@@ -56,7 +56,8 @@ def migrate(overwrite_latest_schema=True):
     if not Path(DBNAME).is_file():
         run_sql("PRAGMA journal_mode = WAL;")
 
-    with resources.path(migrations, "") as migrations_dir:
+    with resources.path(migrations, "__init__.py") as migrations_dir:
+        migrations_dir = migrations_dir.parent
         pending_migrations = _get_pending_migrations(migrations_dir)
         if not pending_migrations:
             print("Nothing to migrate.")
