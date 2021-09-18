@@ -31,7 +31,7 @@ class Mangadex(Site):
                 break
 
         cover = None
-        for rel in md_json["relationships"]:
+        for rel in md_json["data"]["relationships"]:
             if rel["type"] == "cover_art":
                 cover = rel["attributes"]["fileName"]
 
@@ -143,11 +143,11 @@ class Mangadex(Site):
         }
         md_resp = self.http_get("https://api.mangadex.org/manga", params=params)
         assert md_resp.status_code == 200
-        results = md_resp.json()["results"]
+        results = md_resp.json()["data"]
 
         titles = []
         for result in results:
-            data = result["data"]
+            data = result
             cover = None
             for rel in result["relationships"]:
                 if rel["type"] == "cover_art":
