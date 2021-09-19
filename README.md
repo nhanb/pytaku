@@ -32,8 +32,8 @@ doas pacman -S nodejs  # used by cloudscraper to bypass Cloudflare
 
 poetry install
 pip install --upgrade pip
-pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
-      --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
+pip install https://github.com/rogerbinns/apsw/releases/download/3.34.0-r1/apsw-3.34.0-r1.zip \
+      --global-option=fetch --global-option=--version --global-option=3.34.0 --global-option=--all \
       --global-option=build --global-option=--enable-all-extensions
 
 pytaku-generate-config > pytaku.conf.json
@@ -59,6 +59,18 @@ find src/pytaku/js-src -name '*.js' | entr -rc \
      --outfile=src/pytaku/static/js/main.min.js
 ```
 
+### Dumb proxy
+
+Eventually mangasee started using a somewhat aggressive cloudflare protection
+so cloudscraper alone is not enough (looks like our IP got blacklisted or
+throttled all the time), so now I have to send requests through a crappy
+[GAE-based proxy](https://git.sr.ht/~nhanb/gae-proxy). You'll need to spin up
+your own proxy instance (Google App Engine free tier is enough for personal
+use), then fill out OUTGOING_PROXY_NETLOC and OUTGOING_PROXY_KEY accordingly.
+
+Yes it's not a standards-compliant http(s) proxy so you can't just use yours. I
+chose the cheapest (free) way to get a somewhat reliable IP-rotating proxy.
+
 ## Tests
 
 Can be run with just `pytest`. It needs a pytaku.conf.json as well.
@@ -75,13 +87,13 @@ npm install -g --prefix ~/.node_modules jshint
 
 # Production
 
+This assumes Debian 11, consequently targeting python 3.9.
+
 ```sh
-sudo apt install nodejs  # used by cloudscraper to bypass Cloudflare
-pip install --user --upgrade pip
-pip install --user pytaku
-pip install https://github.com/rogerbinns/apsw/releases/download/3.32.2-r1/apsw-3.32.2-r1.zip \
-      --global-option=fetch --global-option=--version --global-option=3.32.2 --global-option=--all \
-      --global-option=build --global-option=--enable-all-extensions
+# nodejs is used by cloudscraper to bypass Cloudflare
+sudo apt install nodejs python3-pip python3-apsw
+pip3 install --user pytaku
+# now make sure ~/.local/bin is in your $PATH so pytaku commands are usable
 
 pytaku-generate-config > pytaku.conf.json
 # fill stuff as needed
@@ -93,18 +105,25 @@ pytaku-migrate
 pytaku -w 7  # production web server - args are passed as-is to gunicorn
 pytaku-scheduler  # scheduled tasks e.g. update titles
 
+# don't forget to setup your proxy, same as in development:
+# https://git.sr.ht/~nhanb/gae-proxy
+
 # upgrades:
-pip install --user --upgrade pytaku
+pip3 install --user --upgrade pytaku
 pytaku-migrate
 # then restart `pytaku` & `pytaku-scheduler` processes
 ```
 
-I don't have to remind you to properly set up a firewall and a TLS-terminating
-reverse proxy e.g. nginx/caddy, right?
+If you're exposing your instance to the internet, I don't have to remind you to
+properly set up a firewall and a TLS-terminating reverse proxy e.g.
+nginx/caddy, right?
+
+Alternatively, just setup [tailscale](https://tailscale.com/) and let them
+worry about access control and end-to-end encryption for you.
 
 # LICENSE
 
-Copyright (C) 2020  Bùi Thành Nhân
+Copyright (C) 2021  Bùi Thành Nhân
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License version 3 as published by

@@ -40,6 +40,7 @@ tasks:
         --bundle --sourcemap --minify \
         --outfile=src/pytaku/static/js/main.min.js
       poetry build
+      cp dist/*.whl pytaku.whl
 
   # Builds.sr.ht doesn't support tag or even branch detection yet:
   # > https://todo.sr.ht/~sircmpwn/builds.sr.ht/170
@@ -81,3 +82,6 @@ tasks:
   - publish: |
       cd pytaku
       poetry publish
+
+artifacts:
+  - pytaku/pytaku.whl
