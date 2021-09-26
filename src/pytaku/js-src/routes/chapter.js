@@ -5,6 +5,10 @@ const KEYCODE_PLUS = 43;
 const KEYCODE_MINUS = 45;
 const KEYCODE_ZERO = 48;
 const KEYCODE_QUESTION_MARK = 63;
+const KEYCODE_J = 106;
+const KEYCODE_K = 107;
+const KEYCODE_H = 104;
+const KEYCODE_L = 108;
 
 const LoadingPlaceholder = {
   view: () => m("h2", [m("i.icon.icon-loader.spin")]),
@@ -78,6 +82,8 @@ function Chapter(initialVNode) {
   let pageMaxWidth = 100; // in percent
 
   function onKeyPress(event) {
+    if (event.target.tagName === "INPUT") return;
+
     switch (event.keyCode) {
       case KEYCODE_PLUS:
         if (pageMaxWidth <= 85) pageMaxWidth += 15;
@@ -92,8 +98,28 @@ function Chapter(initialVNode) {
         window.alert(`Keyboard shortcuts:
     - to decrease page size
     + to increase page size (max 100%)
-    0 (zero) to reset page size`);
+    0 (zero) to reset page size
+    j to scroll down
+    k to scroll up
+    h to go to previous chapter
+    l to go to next chapter`);
         break;
+      case KEYCODE_J:
+        window.scrollBy({ top: 350, behavior: "smooth" });
+        break;
+      case KEYCODE_K:
+        window.scrollBy({ top: -350, behavior: "smooth" });
+        break;
+      case KEYCODE_H:
+        document.querySelector(".chapter--prev-button").click();
+        break;
+      case KEYCODE_L:
+        document.querySelector(".chapter--next-button").click();
+        break;
+      /*
+      default:
+        console.log("Keycode:", event.keyCode);
+      */
     }
     m.redraw();
   }
@@ -167,12 +193,13 @@ function Chapter(initialVNode) {
         ? m(
             m.route.Link,
             {
-              class: "touch-friendly",
+              class: "touch-friendly chapter--prev-button",
               href: `/m/${site}/${titleId}/${prev.id}`,
             },
             [m("i.icon.icon-chevrons-left"), m("span", "prev")]
           )
         : m(Button, {
+            class: "chapter--prev-button",
             text: "prev",
             icon: "chevrons-left",
             disabled: true,
@@ -189,7 +216,8 @@ function Chapter(initialVNode) {
         m.route.Link,
         {
           class:
-            "touch-friendly" + (isMarkingLastChapterAsRead ? " disabled" : ""),
+            "touch-friendly chapter--next-button" +
+            (isMarkingLastChapterAsRead ? " disabled" : ""),
           href: nextRoute,
           disabled: isMarkingLastChapterAsRead,
           onclick: (ev) => {
