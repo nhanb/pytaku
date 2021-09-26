@@ -402,9 +402,11 @@ footer {
   color: white;
 }
 
-.chapter--pages img {
-  display: block;
+.chapter--page-container {
+  transition-duration: 0.2s;
   margin: 0 auto 0.7rem auto;
+  display: flex;
+  justify-content: center;
 }
 .chapter--pages.chapter--webtoon img {
   margin: 0 auto;

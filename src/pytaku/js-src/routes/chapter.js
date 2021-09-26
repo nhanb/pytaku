@@ -75,23 +75,23 @@ function Chapter(initialVNode) {
   let nextChapterPendingPages = null;
   let nextChapterLoadedPages = [];
 
-  let imgMaxWidth = 100; // in percent
+  let pageMaxWidth = 100; // in percent
 
   function onKeyPress(event) {
     switch (event.keyCode) {
       case KEYCODE_PLUS:
-        imgMaxWidth += 20;
+        if (pageMaxWidth <= 85) pageMaxWidth += 15;
         break;
       case KEYCODE_MINUS:
-        if (imgMaxWidth > 20) imgMaxWidth -= 20;
+        if (pageMaxWidth > 15) pageMaxWidth -= 15;
         break;
       case KEYCODE_ZERO:
-        imgMaxWidth = 100;
+        pageMaxWidth = 100;
         break;
       case KEYCODE_QUESTION_MARK:
         window.alert(`Keyboard shortcuts:
-    + to increase page size
     - to decrease page size
+    + to increase page size (max 100%)
     0 (zero) to reset page size`);
         break;
     }
@@ -294,35 +294,45 @@ function Chapter(initialVNode) {
           },
           [
             loadedPages.map((page, pageIndex) =>
-              m("div", { key: page.src }, [
-                m(FallbackableImg, {
-                  src: page.src,
-                  altsrc: page.altsrc,
+              m(
+                "div.chapter--page-container",
+                {
+                  key: page.src,
                   style: {
-                    display:
-                      page.status === ImgStatus.SUCCEEDED ? "block" : "none",
-                    maxWidth: `${imgMaxWidth}%`,
+                    width: `${pageMaxWidth}%`,
+                    backgroundColor:
+                      pageMaxWidth === 100 ? "transparent" : "#333",
                   },
-                  onload: (ev) => {
-                    page.status = ImgStatus.SUCCEEDED;
-                    loadNextPage();
-                  },
-                  onerror: (ev) => {
-                    page.status = ImgStatus.FAILED;
-                    loadNextPage();
-                  },
-                }),
-                page.status === ImgStatus.LOADING
-                  ? m(LoadingPlaceholder)
-                  : null,
-                page.status === ImgStatus.FAILED
-                  ? m(
-                      "div",
-                      { style: { "margin-bottom": ".5rem" } },
-                      m(RetryImgButton, { page })
-                    )
-                  : null,
-              ])
+                },
+                [
+                  m(FallbackableImg, {
+                    src: page.src,
+                    altsrc: page.altsrc,
+                    style: {
+                      display:
+                        page.status === ImgStatus.SUCCEEDED ? "inline" : "none",
+                    },
+                    onload: (ev) => {
+                      page.status = ImgStatus.SUCCEEDED;
+                      loadNextPage();
+                    },
+                    onerror: (ev) => {
+                      page.status = ImgStatus.FAILED;
+                      loadNextPage();
+                    },
+                  }),
+                  page.status === ImgStatus.LOADING
+                    ? m(LoadingPlaceholder)
+                    : null,
+                  page.status === ImgStatus.FAILED
+                    ? m(
+                        "div",
+                        { style: { "margin-bottom": ".5rem" } },
+                        m(RetryImgButton, { page })
+                      )
+                    : null,
+                ]
+              )
             ),
             pendingPages.map(() => m(PendingPlaceholder)),
           ]
