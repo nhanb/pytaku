@@ -28,8 +28,6 @@ On Chapter page, press `?` to show keyboard shortcuts.
 
 ```sh
 ## Backend ##
-doas pacman -S nodejs  # used by cloudscraper to bypass Cloudflare
-
 poetry install
 pip install --upgrade pip
 pip install https://github.com/rogerbinns/apsw/releases/download/3.34.0-r1/apsw-3.34.0-r1.zip \
@@ -49,7 +47,7 @@ pytaku-scheduler  # scheduled tasks e.g. update titles
 
 ## Frontend ##
 
-doas pacman -S entr  # to watch source files
+sudo pacman -S entr  # to watch source files
 npm install -g --prefix ~/.node_modules esbuild # to bundle js
 
 # Listen for changes in js-src dir, automatically build minified bundle:
@@ -81,17 +79,24 @@ Can be run with just `pytest`. It needs a pytaku.conf.json as well.
 - JavaScript: jshint, prettier
 
 ```sh
-doas pacman python-black python-isort flake8 prettier
+sudo pacman python-black python-isort flake8 prettier
 npm install -g --prefix ~/.node_modules jshint
 ```
 
 # Production
 
-This assumes Debian 11, consequently targeting python 3.9.
+I'm running my instance on Debian 11, but any unix-like environment with these
+should work:
+
+- python3.7+
+- apws (on Debian, simply install the `python3-apsw` package)
+- the rest are all pypi packages that should be automatically installed when
+  you run `pip install pytaku`
+
+The following is a step-by-step guide on Debian 11.
 
 ```sh
-# nodejs is used by cloudscraper to bypass Cloudflare
-sudo apt install nodejs python3-pip python3-apsw
+sudo apt install python3-pip python3-apsw
 pip3 install --user pytaku
 # now make sure ~/.local/bin is in your $PATH so pytaku commands are usable
 
@@ -118,12 +123,13 @@ If you're exposing your instance to the internet, I don't have to remind you to
 properly set up a firewall and a TLS-terminating reverse proxy e.g.
 nginx/caddy, right?
 
-Alternatively, just setup [tailscale](https://tailscale.com/) and let them
-worry about access control and end-to-end encryption for you.
+Alternatively, just setup a personal [tailscale](https://tailscale.com/)
+network and let them worry about access control and end-to-end encryption for
+you.
 
 # LICENSE
 
-Copyright (C) 2021  Bùi Thành Nhân
+Copyright (C) 2021 Bùi Thành Nhân
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License version 3 as published by
