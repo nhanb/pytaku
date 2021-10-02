@@ -1,4 +1,5 @@
-Live demo: https://dev.pytaku.com (db may be hosed any time, also expect bugs)
+Live demo: https://pytaku.imnhan.com
+(db may be hosed any time, also expect bugs)
 
 Production instance coming When It's Ready (tm).
 
@@ -89,7 +90,7 @@ I'm running my instance on Debian 11, but any unix-like environment with these
 should work:
 
 - python3.7+
-- apws (on Debian, simply install the `python3-apsw` package)
+- apsw (on Debian, simply install the `python3-apsw` package)
 - the rest are all pypi packages that should be automatically installed when
   you run `pip install pytaku`
 
