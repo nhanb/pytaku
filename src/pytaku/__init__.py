@@ -60,3 +60,22 @@ def scheduler():
     from .scheduler import main_loop
 
     main_loop()
+
+
+def collect_static():
+    from sys import argv
+
+    if len(argv) != 2:
+        print("Usage: pytaku-collect-static path/to/static/dir")
+        print("A 'static' dir will be created inside the provided path.")
+        exit(1)
+
+    import importlib.resources
+    from pathlib import Path
+    from shutil import copytree
+
+    destination = Path(argv[1]) / "static"
+
+    with importlib.resources.path("pytaku", "__init__.py") as pytaku_path:
+        copytree(pytaku_path.parent / "static", destination)
+    print(f"Static files copied to {destination}")

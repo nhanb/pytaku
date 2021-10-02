@@ -127,6 +127,21 @@ Alternatively, just setup a personal [tailscale](https://tailscale.com/)
 network and let them worry about access control and end-to-end encryption for
 you.
 
+## Optional optimization
+
+With the setup above, you're serving static assets using gunicorn, which is not
+ideal performance-wise. For private usage this doesn't really matter. However,
+if you want to properly serve static assets using nginx and the like, you can
+copy all static assets into a designated directory with:
+
+```sh
+pytaku-collect-static target_dir
+```
+
+This will copy all assets into `target_dir/static`. You can now instruct
+nginx/caddy/etc. to serve this dir on `/static/*` paths. There's an example
+caddyfile to do this in the ./contrib/ dir.
+
 # LICENSE
 
 Copyright (C) 2021 Bùi Thành Nhân

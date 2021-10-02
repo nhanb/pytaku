@@ -69,7 +69,8 @@ tasks:
         cd ~/pytaku &&
         ~/.local/bin/pytaku-migrate &&
         rm -r static &&
-        cp -r ~/.local/lib/python3.9/site-packages/pytaku/static ./ &&
+        ~/.local/bin/pytaku-collect-static . &&
+        tree ./static &&
         sudo systemctl restart pytaku pytaku-scheduler &&
         echo 'All done.'
       "
