@@ -102,14 +102,17 @@ class Mangadex(Site):
             if rel["type"] == "manga":
                 title_id = rel["id"]
                 break
-
-        chapter_hash = data["attributes"]["hash"]
-        filenames = data["attributes"]["data"]
+        # chapter_hash = data["attributes"]["hash"]
+        # filenames = data["attributes"]["data"]
         md_server = "https://uploads.mangadex.org"
 
-        mdah_server = self._get_md_at_home_server(chapter_id)
-        if mdah_server != md_server:
-            print(">> MDAH-server:", mdah_server)
+        mdah_api_url = f"https://api.mangadex.org/at-home/server/{chapter_id}"
+        mdah_resp = self.http_get(mdah_api_url)
+        assert mdah_resp.status_code == 200, f"Failed request to {mdah_api_url}"
+        mdah_data = mdah_resp.json()
+        mdah_server = mdah_data["baseUrl"]
+        chapter_hash = mdah_data["chapter"]["hash"]
+        filenames = mdah_data["chapter"]["data"]
 
         chapter = {
             "id": chapter_id,
@@ -129,10 +132,6 @@ class Mangadex(Site):
             **_parse_chapter_number(data["attributes"]["chapter"]),
         }
         return chapter
-
-    def _get_md_at_home_server(self, chapter_id):
-        resp = self.http_get(f"https://api.mangadex.org/at-home/server/{chapter_id}")
-        return resp.json()["baseUrl"] if resp.status_code == 200 else None
 
     def search_title(self, query):
         params = {
