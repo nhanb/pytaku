@@ -36,7 +36,9 @@ class Mangadex(Site):
                 cover = rel["attributes"]["fileName"]
 
         descriptions = attrs["description"]
-        if "en" in descriptions:
+        if not descriptions:
+            description = ""
+        elif "en" in descriptions:
             description = descriptions["en"]
         else:
             description = list(descriptions.values())[0]
@@ -47,7 +49,9 @@ class Mangadex(Site):
             "site": "mangadex",
             "cover_ext": cover,
             "alt_names": [list(alt.values())[0] for alt in attrs["altTitles"]],
-            "descriptions": [_bbparser.format(html.unescape(description).strip())],
+            "descriptions": [_bbparser.format(html.unescape(description).strip())]
+            if description
+            else [],
             "descriptions_format": "html",
             "is_webtoon": is_web_comic,
             "chapters": self.get_chapters_list(title_id),

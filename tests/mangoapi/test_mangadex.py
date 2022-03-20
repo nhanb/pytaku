@@ -19,6 +19,7 @@ def test_get_title():
             "恶魔奶爸",
             "惡魔奶爸",
             "바알세불",
+            "बेलजेबब",
         ],
         "descriptions_format": "html",
         "is_webtoon": False,
@@ -61,29 +62,37 @@ def test_get_chapter():
 def test_search():
     md = Mangadex()
     results = md.search_title("beelzebub")
-    assert results == [
-        {
-            "id": "8af3ad21-3e7e-4fb5-b344-d0044ec154fc",
-            "name": "Beelzebub",
-            "site": "mangadex",
-            "thumbnail": "https://uploads.mangadex.org/covers/8af3ad21-3e7e-4fb5-b344-d0044ec154fc/bab3ccbf-7479-4117-ad92-4dedced54ceb.jpg.256.jpg",
-        },
-        {
-            "id": "72378871-9afc-47bd-902f-0d8116adb390",
-            "name": "Beelzebub - Digital Colored Comics",
-            "site": "mangadex",
-            "thumbnail": "https://uploads.mangadex.org/covers/72378871-9afc-47bd-902f-0d8116adb390/c8b9b385-b7b9-4101-bf71-4f0d66fc35ff.jpg.256.jpg",
-        },
-        {
-            "id": "b4320039-9b91-44a7-a60d-c7ba8c0684e7",
-            "name": "Beelzebub-jou no Oki ni Mesu mama.",
-            "site": "mangadex",
-            "thumbnail": "https://uploads.mangadex.org/covers/b4320039-9b91-44a7-a60d-c7ba8c0684e7/ed566a45-c9f2-4f7e-84f8-ae7fc328ab15.jpg.256.jpg",
-        },
-        {
-            "id": "a453af66-0dac-4966-b246-b37c96b27245",
-            "name": "Makai kara Kita Maid-san",
-            "site": "mangadex",
-            "thumbnail": "https://uploads.mangadex.org/covers/a453af66-0dac-4966-b246-b37c96b27245/7e50b22d-b027-4ee1-bd15-94f05fa6cecb.jpg.256.jpg",
-        },
-    ]
+    assert sorted(results, key=lambda x: x["name"]) == sorted(
+        [
+            {
+                "id": "8af3ad21-3e7e-4fb5-b344-d0044ec154fc",
+                "name": "Beelzebub",
+                "site": "mangadex",
+                "thumbnail": "https://uploads.mangadex.org/covers/8af3ad21-3e7e-4fb5-b344-d0044ec154fc/bab3ccbf-7479-4117-ad92-4dedced54ceb.jpg.256.jpg",
+            },
+            {
+                "id": "72378871-9afc-47bd-902f-0d8116adb390",
+                "name": "Beelzebub - Digital Colored Comics",
+                "site": "mangadex",
+                "thumbnail": "https://uploads.mangadex.org/covers/72378871-9afc-47bd-902f-0d8116adb390/c8b9b385-b7b9-4101-bf71-4f0d66fc35ff.jpg.256.jpg",
+            },
+            {
+                "id": "b4320039-9b91-44a7-a60d-c7ba8c0684e7",
+                "name": "Beelzebub-jou no Oki ni Mesu mama.",
+                "site": "mangadex",
+                "thumbnail": "https://uploads.mangadex.org/covers/b4320039-9b91-44a7-a60d-c7ba8c0684e7/dc879d3e-5cfd-4651-ab79-6fa6b37d9664.jpg.256.jpg",
+            },
+            {
+                "id": "a453af66-0dac-4966-b246-b37c96b27245",
+                "name": "Makai kara Kita Maid-san",
+                "site": "mangadex",
+                "thumbnail": "https://uploads.mangadex.org/covers/a453af66-0dac-4966-b246-b37c96b27245/7e50b22d-b027-4ee1-bd15-94f05fa6cecb.jpg.256.jpg",
+            },
+        ],
+        key=lambda x: x["name"],
+    )
+
+
+def test_get_title_with_empty_descriptions():
+    title = Mangadex().get_title("fc102424-d94b-4a1b-98bc-d5062cd768d6")
+    assert title["descriptions"] == []
