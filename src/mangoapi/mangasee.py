@@ -123,7 +123,7 @@ class Mangasee(Site):
                 "id": row[0],
                 "name": row[1],
                 "site": "mangasee",
-                "thumbnail": f"https://cover.nep.li/cover/{row[0]}.jpg",
+                "thumbnail": f"https://temp.compsci88.com/cover/{row[0]}.jpg",
             }
             for row in self.search_table.search(query)
         ]
@@ -132,7 +132,7 @@ class Mangasee(Site):
         return self.title_thumbnail(title_id, cover_ext)
 
     def title_thumbnail(self, title_id, cover_ext):
-        return f"https://cover.nep.li/cover/{title_id}.jpg"
+        return f"https://temp.compsci88.com/cover/{title_id}.jpg"
 
     def title_source_url(self, title_id):
         return f"https://mangasee123.com/manga/{title_id}"

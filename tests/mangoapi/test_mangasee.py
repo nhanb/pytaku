@@ -65,6 +65,6 @@ def test_search_title():
             "id": "Sayonara-Football",
             "name": "Sayonara, Football",
             "site": "mangasee",
-            "thumbnail": "https://cover.nep.li/cover/Sayonara-Football.jpg",
+            "thumbnail": "https://temp.compsci88.com/cover/Sayonara-Football.jpg",
         }
     ]
