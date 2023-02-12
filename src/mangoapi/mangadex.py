@@ -173,7 +173,7 @@ class Mangadex(Site):
         return f"https://uploads.mangadex.org/covers/{title_id}/{cover_ext}.256.jpg"
 
     def title_source_url(self, title_id):
-        return f"https://mangadex.org/manga/{title_id}"
+        return f"https://mangadex.org/title/{title_id}"
 
 
 # Titles regex slightly adapted from https://github.com/md-y/mangadex-full-api
