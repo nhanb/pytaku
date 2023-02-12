@@ -87,6 +87,12 @@ npm install -g --prefix ~/.node_modules jshint
 
 # Production
 
+**Gotcha:** mangasee image servers will timeout if you try to download images
+via ipv6, so you'll need to disable IPv6 on your VM. It's unfortunate that
+python-requests [doesn't][https://github.com/psf/requests/issues/1691] have an
+official way to specify ipv4/ipv6 on its API, and I'm too lazy to figure out
+alternatives.
+
 I'm running my instance on Debian 11, but any unix-like environment with these
 should work:
 
