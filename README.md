@@ -30,11 +30,6 @@ On Chapter page, press `?` to show keyboard shortcuts.
 ```sh
 ## Backend ##
 poetry install
-pip install --upgrade pip
-pip install https://github.com/rogerbinns/apsw/releases/download/3.34.0-r1/apsw-3.34.0-r1.zip \
-      --global-option=fetch --global-option=--version --global-option=3.34.0 --global-option=--all \
-      --global-option=build --global-option=--enable-all-extensions
-# (using apsw 3.34 here to match the version on debian 11)
 
 pytaku-generate-config > pytaku.conf.json
 # fill stuff as needed
@@ -97,14 +92,13 @@ I'm running my instance on Debian 11, but any unix-like environment with these
 should work:
 
 - python3.7+
-- apsw (on Debian, simply install the `python3-apsw` package)
 - the rest are all pypi packages that should be automatically installed when
   you run `pip install pytaku`
 
 The following is a step-by-step guide on Debian 11.
 
 ```sh
-sudo apt install python3-pip python3-apsw
+sudo apt install python3-pip
 pip3 install --user pytaku
 # now make sure ~/.local/bin is in your $PATH so pytaku commands are usable
 

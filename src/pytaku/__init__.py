@@ -29,7 +29,7 @@ def dev():
 
     subprocess.run(
         command,
-        env={"FLASK_ENV": "development", "FLASK_APP": "pytaku.main:app", **os.environ},
+        env={"FLASK_DEBUG": "1", "FLASK_APP": "pytaku.main:app", **os.environ},
     )
 
 
