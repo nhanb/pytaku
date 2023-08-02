@@ -7,7 +7,7 @@ from pathlib import Path
 
 from requests.exceptions import ReadTimeout
 
-from mangoapi.exceptions import SourceSite5xxError
+from mangoapi.exceptions import SourceSite5xxError, SourceSite404Error
 
 from .conf import config
 from .persistence import delete_expired_tokens, find_outdated_titles, save_title
@@ -77,7 +77,13 @@ class UpdateOutdatedTitles(Worker):
                 print(" done")
                 if title["site"] == "mangasee":
                     time.sleep(2)
-            except (SourceSite5xxError, ReadTimeout, JSONDecodeError) as e:
+            except (
+                # TODO: on 404, maybe delete title that's no longer on source site?
+                SourceSite404Error,
+                SourceSite5xxError,
+                ReadTimeout,
+                JSONDecodeError,
+            ) as e:
                 print(" skipped because of server error:", e.__class__.__name__, str(e))
 
 

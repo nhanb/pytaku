@@ -13,5 +13,10 @@ class SourceSite5xxError(SourceSiteResponseError):
     pass
 
 
+class SourceSite404Error(SourceSiteResponseError):
+    def __init__(self, url, response_text):
+        super().__init__(url, 404, response_text)
+
+
 class SourceSiteUnexpectedError(SourceSiteResponseError):
     pass

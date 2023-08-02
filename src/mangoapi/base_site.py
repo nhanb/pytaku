@@ -7,6 +7,7 @@ from pytaku.conf import config
 
 from .exceptions import (
     SourceSite5xxError,
+    SourceSite404Error,
     SourceSiteTimeoutError,
     SourceSiteUnexpectedError,
 )
@@ -79,6 +80,8 @@ class Site(ABC):
 
         if 500 <= resp.status_code <= 599:
             raise SourceSite5xxError(url, resp.status_code, resp.text)
+        elif resp.status_code == 404:
+            raise SourceSite404Error(url, resp.text)
         elif resp.status_code != 200:
             raise SourceSiteUnexpectedError(url, resp.status_code, resp.text)
 
