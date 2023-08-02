@@ -55,7 +55,7 @@ tasks:
 
   - deploy-dev: |
       cd pytaku
-      echo "pytaku.imnhan.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBpDNzSaWLPXnb2XaGNgvlNnEcVbdrUUWHfBcuzJ1DyDU2fa+f1ojSFddfNMBrSRpU0GAPfpDoky6en866WH4gw=" >> ~/.ssh/known_hosts
+      echo "pytaku.imnhan.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEoJxAQAJiP9qq134LAWn0aGKRkZT1gEUfQY5+JJdM3/" >> ~/.ssh/known_hosts
 
       # Clean up old stuff just in case
       ssh -i ~/.ssh/2d6e3246-5adc-41c2-bebe-01dacda9d0c8 pytaku@pytaku.imnhan.com 'rm -f /home/pytaku/pytaku*.whl'
