@@ -1,0 +1,17 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #333;
+    color: #eee;
+  }
+
+  footer {
+    background-color: var(--bg-black);
+    color: #eee;
+    border: none;
+  }
+
+  .follows--title.non-empty,
+  .title--descriptions {
+    background-color: #555;
+  }
+}
