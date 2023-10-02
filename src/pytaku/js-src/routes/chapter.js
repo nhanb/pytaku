@@ -79,20 +79,25 @@ function Chapter(initialVNode) {
   let nextChapterPendingPages = null;
   let nextChapterLoadedPages = [];
 
-  let pageMaxWidth = 100; // in percent
+  const pageMaxWidthKey = "chapter--pageMaxWidth";
+  // in percent:
+  let pageMaxWidth = Number(sessionStorage.getItem(pageMaxWidthKey) || "100");
 
   function onKeyPress(event) {
     if (event.target.tagName === "INPUT") return;
 
     switch (event.keyCode) {
       case KEYCODE_PLUS:
-        if (pageMaxWidth <= 85) pageMaxWidth += 15;
+        if (pageMaxWidth <= 90) pageMaxWidth += 10;
+        sessionStorage.setItem(pageMaxWidthKey, pageMaxWidth.toString());
         break;
       case KEYCODE_MINUS:
-        if (pageMaxWidth > 15) pageMaxWidth -= 15;
+        if (pageMaxWidth > 20) pageMaxWidth -= 10;
+        sessionStorage.setItem(pageMaxWidthKey, pageMaxWidth.toString());
         break;
       case KEYCODE_ZERO:
         pageMaxWidth = 100;
+        sessionStorage.setItem(pageMaxWidthKey, pageMaxWidth.toString());
         break;
       case KEYCODE_QUESTION_MARK:
         window.alert(`Keyboard shortcuts:
@@ -196,7 +201,7 @@ function Chapter(initialVNode) {
               class: "touch-friendly chapter--prev-button",
               href: `/m/${site}/${titleId}/${prev.id}`,
             },
-            [m("i.icon.icon-chevrons-left"), m("span", "prev")]
+            [m("i.icon.icon-chevrons-left"), m("span", "prev")],
           )
         : m(Button, {
             class: "chapter--prev-button",
@@ -210,7 +215,7 @@ function Chapter(initialVNode) {
           class: "touch-friendly",
           href: `/m/${site}/${titleId}`,
         },
-        [m("i.icon.icon-list"), m("span", " chapter list")]
+        [m("i.icon.icon-list"), m("span", " chapter list")],
       ),
       m(
         m.route.Link,
@@ -247,12 +252,12 @@ function Chapter(initialVNode) {
               ? "next"
               : isMarkingLastChapterAsRead
               ? "finishing..."
-              : "finish"
+              : "finish",
           ),
           isMarkingLastChapterAsRead
             ? null
             : m("i.icon.icon-" + (next ? "chevrons-right" : "check-circle")),
-        ]
+        ],
       ),
     ]);
   }
@@ -356,14 +361,14 @@ function Chapter(initialVNode) {
                     ? m(
                         "div",
                         { style: { "margin-bottom": ".5rem" } },
-                        m(RetryImgButton, { page })
+                        m(RetryImgButton, { page }),
                       )
                     : null,
-                ]
-              )
+                ],
+              ),
             ),
             pendingPages.map(() => m(PendingPlaceholder)),
-          ]
+          ],
         ),
         buttonsView(site, prev, next),
         nextChapterLoadedPages.map((page) =>
@@ -373,7 +378,7 @@ function Chapter(initialVNode) {
             onerror: preloadNextChapterPage,
             src: page.src,
             altsrc: page.altsrc,
-          })
+          }),
         ),
       ]);
     },
