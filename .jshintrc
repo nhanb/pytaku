@@ -1,6 +1,6 @@
 {
   "laxbreak": true,
-  "esversion": 6,
+  "esversion": 8,
   "strict": "implied",
   "browser": true,
   "globals": {

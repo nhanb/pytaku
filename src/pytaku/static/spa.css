@@ -256,36 +256,12 @@ footer {
   padding: 0.5rem 0.5rem 0.5rem 0;
 }
 
-.follows--chapter {
-  display: block;
-  margin-bottom: 0.5rem;
-  background-color: white;
-  border: 1px solid #999;
-  padding: 6px;
-  border-radius: 5px;
-  text-decoration: none;
-  color: black;
-}
-.follows--chapter:hover {
-  background-color: #eee;
-}
-.follows--chapter:last-child::after {
-  content: "← resume here";
-  background-color: cornsilk;
-  white-space: nowrap;
-}
-
 .follows--group {
   font-size: 0.9em;
   background-color: #ddd;
   border-radius: 3px;
   white-space: nowrap;
   padding: 2px 5px;
-}
-
-.follows--more {
-  display: inline-block;
-  font-style: italic;
 }
 
 @media (max-width: 399px) {

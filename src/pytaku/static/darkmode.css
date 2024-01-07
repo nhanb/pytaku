@@ -14,4 +14,8 @@
   .title--descriptions {
     background-color: #555;
   }
+
+  a.touch-friendly {
+    background-color: silver;
+  }
 }

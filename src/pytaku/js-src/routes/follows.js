@@ -17,27 +17,37 @@ const Title = {
               href: `/m/${title.site}/${title.id}`,
               title: `${title.name} - ${title.site}`,
             },
-            [m("img.follows--cover", { src: title.thumbnail, alt: title.name })]
+            [
+              m("img.follows--cover", {
+                src: title.thumbnail,
+                alt: title.name,
+              }),
+            ],
           ),
         ]),
         m("div.follows--chapters", [
           title.chapters.length > numChaptersToDisplay
-            ? m(
-                m.route.Link,
-                {
-                  href: `/m/${title.site}/${title.id}`,
-                  class: "follows--chapter follows--more",
-                },
-                `and ${title.chapters.length - numChaptersToDisplay} more...`
-              )
+            ? m("div.utils--chapter", [
+                m(
+                  m.route.Link,
+                  {
+                    href: `/m/${title.site}/${title.id}`,
+                    style: {
+                      "font-style": "italic",
+                    },
+                    class: "touch-friendly",
+                  },
+                  `and ${title.chapters.length - numChaptersToDisplay} more...`,
+                ),
+              ])
             : "",
           title.chapters
             .slice(-numChaptersToDisplay)
             .map((chapter) =>
-              m(Chapter, { site: title.site, titleId: title.id, chapter })
+              m(Chapter, { site: title.site, titleId: title.id, chapter }),
             ),
         ]),
-      ]
+      ],
     );
   },
 };
