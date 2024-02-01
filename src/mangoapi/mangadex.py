@@ -59,39 +59,36 @@ class Mangadex(Site):
         return title
 
     def get_chapters_list(self, title_id):
-        resp = self.http_get(
-            f"https://api.mangadex.org/manga/{title_id}/aggregate",
-            params={"translatedLanguage[]": "en"},
-        )
-        assert resp.status_code == 200
-        volumes: dict = resp.json()["volumes"]
         chapters = []
-
-        # If there are no volumes, it's an empty list.
-        # But if there are actual volumes, it's a dict.
-        if type(volumes) is list:
-            return []
-        for vol in volumes.values():
-            # Counting on python's spanking new key-order-preserving dicts here.
-            # But WHY THE ACTUAL FUCK would you (mangadex) depend on JSON's key-value
-            # pairs ordering?  A JSON object's keys is supposed to be unordered FFS.
-            # If it actually becomes a problem I'll do chapter sorting later. Soon. Ish.
-            chapters += (
-                [
-                    {
-                        "id": chap["id"],
-                        "name": "",
-                        "groups": [],  # TODO
-                        "volume": vol["volume"]
-                        if vol["volume"] not in (None, "none")
-                        else "",
-                        **_parse_chapter_number(chap["chapter"]),
-                    }
-                    for chap in vol["chapters"].values()  # again, fucking yikes
-                ]
-                if type(vol["chapters"]) is dict
-                else []
+        offset = 0
+        limit = 100  # max allowed by mangadex api; will be 400 if we try any higher
+        while True:
+            resp = self.http_get(
+                "https://api.mangadex.org/chapter",
+                params={
+                    "manga": title_id,
+                    "translatedLanguage[]": "en",
+                    "order[chapter]": "desc",
+                    "offset": offset,
+                    "limit": limit,
+                },
             )
+            assert resp.status_code == 200
+            body = resp.json()
+            chapters += [
+                {
+                    "id": chap["id"],
+                    "name": chap["attributes"]["title"],
+                    "groups": [],  # TODO
+                    "volume": chap["attributes"]["volume"],
+                    **_parse_chapter_number(chap["attributes"]["chapter"]),
+                }
+                for chap in body["data"]
+            ]
+
+            offset += limit
+            if len(chapters) < limit or offset >= body["total"]:
+                break
 
         return chapters
 

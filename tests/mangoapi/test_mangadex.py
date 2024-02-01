@@ -25,14 +25,22 @@ def test_get_title():
         "is_webtoon": False,
     }
 
-    assert len(chapters) == 252
+    assert len(chapters) == 251
     assert chapters[1] == {
         "id": "dfd3fd5a-a20f-460f-b726-e9cb168bfe3d",
-        "name": "",
+        "name": "Love Blooms in The Season of Partings",
         "volume": "28",
         "groups": [],
         "number": "245",
         "num_major": 245,
+    }
+    assert chapters[-1] == {
+        "groups": [],
+        "id": "91ee8504-db4e-4b67-ac89-8fb291f67f7e",
+        "name": "I Picked up the Devil King",
+        "num_major": 1,
+        "number": "1",
+        "volume": "1",
     }
 
 
