@@ -61,7 +61,7 @@ def search_title_all_sites(query):
         try:
             return search_title(site_name, query)
         except Exception:
-            print(f"{site_name}'s search function shat the bed:")
+            print(f"{site_name}'s search function shat the bed for query [{query}]:")
             traceback.print_exc()
             return []
 
