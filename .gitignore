@@ -10,3 +10,4 @@ __pycache__
 /src/pytaku/static/js/
 /*.csv
 /*.log
+/.envrc
