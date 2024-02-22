@@ -74,7 +74,7 @@ class UpdateOutdatedTitles(Worker):
             try:
                 updated_title = get_title(title["site"], title["id"])
                 save_title(updated_title)
-                print(" done")
+                print(f" done ({updated_title['chapters'][0]['number']})")
                 if title["site"] == "mangasee":
                     time.sleep(2)
             except (
