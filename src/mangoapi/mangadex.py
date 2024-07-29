@@ -188,7 +188,7 @@ def _parse_chapter_number(string):
     count = len(nums)
     assert count == 1 or count == 2
     result = {"number": string}
-    result["num_major"] = int(nums[0])
+    result["num_major"] = nums[0]
     if count == 2:
-        result["num_minor"] = int(nums[1])
+        result["num_minor"] = nums[1]
     return result

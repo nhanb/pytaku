@@ -5,9 +5,8 @@ from datetime import datetime, timedelta
 from json.decoder import JSONDecodeError
 from pathlib import Path
 
-from requests.exceptions import ReadTimeout
-
 from mangoapi.exceptions import SourceSite5xxError, SourceSite404Error
+from requests.exceptions import ReadTimeout
 
 from .conf import config
 from .persistence import delete_expired_tokens, find_outdated_titles, save_title
@@ -74,7 +73,8 @@ class UpdateOutdatedTitles(Worker):
             try:
                 updated_title = get_title(title["site"], title["id"])
                 save_title(updated_title)
-                print(f" done ({updated_title['chapters'][0]['number']})")
+                chapters = updated_title["chapters"]
+                print(f" done ({chapters and chapters[0]['number']})")
                 if title["site"] == "mangasee":
                     time.sleep(2)
             except (
