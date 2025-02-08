@@ -1,7 +1,6 @@
 import base64
 import json
 import re
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import timedelta
 from pathlib import Path
 from typing import List, Tuple
@@ -179,15 +178,10 @@ def ensure_titles(site_title_pairs: List[Tuple[str, str]]):
             title_dicts.append(existing_title)
 
     print(f"Fetching {len(new_titles)} new titles out of {len(site_title_pairs)}.")
-    with ThreadPoolExecutor(max_workers=3) as executor:
-        futures = [
-            executor.submit(get_title, site, title_id) for site, title_id in new_titles
-        ]
-        for future in as_completed(futures):
-            title = future.result()
-            save_title(title)
-            print(f"Saved {title['site']}: {title['name']}")
-            title_dicts.append(title)
+    for i, (site, title_id) in enumerate(new_titles):
+        title = get_title(site, title_id)
+        save_title(title)
+        print(f"{i}. Saved {title['name']}")
 
     return title_dicts
 
@@ -254,7 +248,7 @@ def spa_chapter_view(site, title_id, chapter_id):
     return render_template(
         "spa.html",
         open_graph={
-            "title": f'{_chapter_name(chapter)} - {title["name"]}',
+            "title": f"{_chapter_name(chapter)} - {title['name']}",
             "image": title["cover"],
             "description": "\n".join(title["descriptions"]),
         },

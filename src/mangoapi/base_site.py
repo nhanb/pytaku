@@ -56,7 +56,9 @@ class Site(ABC):
     def _http_request(self, method, url, *args, **kwargs):
         headers = kwargs.get("headers", {})
         if "timeout" not in kwargs:
-            kwargs["timeout"] = 5
+            kwargs["timeout"] = 15
+
+        # print(">>", url, args, kwargs)
 
         # Proxy shit
         parsed_url = urlparse(url)

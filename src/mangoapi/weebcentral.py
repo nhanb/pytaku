@@ -5,11 +5,17 @@ from mangoapi.base_site import Site
 
 regexes = {
     "title_name": re.compile(r"<title>\s*([^|]+) | Weeb Central</title>"),
+    "title_chapter_id": re.compile(
+        r'a href="https:\/\/weebcentral.com\/chapters\/([A-Z0-9]+)"'
+    ),
     "title_chapters": re.compile(
-        r'a href="https:\/\/weebcentral.com\/chapters\/([A-Z0-9]+)"(.|\n)+?\>Chapter (([0-9]+)(\.([0-9])+)?)\<'
+        r'href="https://weebcentral\.com/chapters/([0-9A-Z]+)".*?>(.*?(([0-9]+)(\.([0-9])+)?))</a>'
+    ),
+    "title_current_chapter": re.compile(
+        r'<button id="selected_chapter".*?>(.*?(([0-9]+)(\.([0-9])+)?))</button>'
     ),
     "title_desc": re.compile(r"<strong>Description<\/strong>\w*[^<]+<p[^>]*>([^<]+)<"),
-    "chapter_number": re.compile(r"<span>Chapter (([0-9]+)(\.([0-9]+))?)</span>"),
+    "chapter_number": re.compile(r"<span>(.*?(([0-9]+)(\.([0-9])+)?))</span>"),
     "chapter_imgs": re.compile(r'<img\s+src="(https?://.*?)"'),
     "search_data": re.compile(
         r'<a href="https://weebcentral.com/series/([A-Z0-9]+)/(\n|.)+?alt="(.+?) cover"'
@@ -27,42 +33,67 @@ class Weebcentral(Site):
     def get_title(self, title_id):
         resp = self.http_get(f"https://weebcentral.com/series/{title_id}")
         html = resp.text
-        name = unescape(regexes["title_name"].search(html).group(1)).strip()
+        title_name = unescape(regexes["title_name"].search(html).group(1)).strip()
         desc = unescape(regexes["title_desc"].search(html).group(1)).strip()
+
+        # Originally I scraped the "Show All Chapters" AJAX endpoint to get all
+        # chapters, but that endpoint is too slow and even times out on Martial Peak
+        # which has 3500+ chapters, so I switched to the "chapter select" endpoint
+        # instead.
+
+        # The chapter-select endpoint requires a current_chapter url param, so let's
+        # pick the last one (typically Chapter 1), which is more stable than picking the
+        # latest chapter that can change between requests (unlikely but it doesn't hurt
+        # to be foolproof).
+        chapter_1_id = regexes["title_chapter_id"].findall(html)[-1]
         chapters_html = self.http_get(
-            f"https://weebcentral.com/series/{title_id}/full-chapter-list"
+            f"https://weebcentral.com/series/{title_id}/chapter-select?current_chapter={chapter_1_id}&current_page=0"
         ).text
 
         chapters = [
             {
                 "id": chap_id,
-                "name": "",
+                "name": name,
                 "volume": "",
                 "groups": [],
                 "num_major": int(num_major),
                 "num_minor": int(num_minor) if num_minor else 0,
                 "number": number,
             }
-            for chap_id, _, number, num_major, _, num_minor in regexes[
+            for chap_id, name, number, num_major, _, num_minor in regexes[
                 "title_chapters"
             ].findall(chapters_html)
         ]
 
+        chapter_1_data = regexes["title_current_chapter"].search(chapters_html).groups()
+        name, number, num_major, _, num_minor = chapter_1_data
+        chapters.append(
+            {
+                "id": chapter_1_id,
+                "name": name,
+                "volume": "",
+                "groups": [],
+                "num_major": int(num_major),
+                "num_minor": int(num_minor) if num_minor else 0,
+                "number": number,
+            }
+        )
+
         return {
             "id": title_id,
-            "name": name,
+            "name": title_name,
             "site": "weebcentral",
             "cover_ext": "webp",
             "is_webtoon": False,
             "chapters": chapters,
             "alt_names": [],
-            "descriptions": [desc],
+            "descriptions": desc.split("\n\n"),
             "descriptions_format": "text",
         }
 
     def get_chapter(self, title_id, chapter_id):
         html = self.http_get(f"https://weebcentral.com/chapters/{chapter_id}").text
-        number, num_major, _, num_minor = (
+        name, number, num_major, _, num_minor = (
             regexes["chapter_number"].search(html).groups()
         )
 
@@ -75,7 +106,7 @@ class Weebcentral(Site):
             "id": chapter_id,
             "title_id": title_id,
             "site": "weebcentral",
-            "name": "",
+            "name": name,
             "pages": pages,
             "pages_alt": [],
             "groups": [],
