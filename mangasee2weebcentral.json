@@ -1,0 +1,4173 @@
+{
+    "Hunter-X-Hunter": {
+        "exact_match": "1",
+        "ms_id": "Hunter-X-Hunter",
+        "ms_name": "Hunter x Hunter",
+        "wc_id": "01J76XY7EXQV9RE9KQ3JYE0WZ9",
+        "wc_name": "Hunter x Hunter"
+    },
+    "Grand-Blue": {
+        "exact_match": "1",
+        "ms_id": "Grand-Blue",
+        "ms_name": "Grand Blue",
+        "wc_id": "01J76XYBWA1TEW2EBDYC9E3C9G",
+        "wc_name": "Grand Blue"
+    },
+    "Nidome-No-Jinsei-Wo-Isekai-De": {
+        "exact_match": "1",
+        "ms_id": "Nidome-No-Jinsei-Wo-Isekai-De",
+        "ms_name": "Nidome no Jinsei wo Isekai de",
+        "wc_id": "01J76XYCAW1GQM236CCCW8HX2V",
+        "wc_name": "Nidome no Jinsei wo Isekai de"
+    },
+    "Spy-X-Family": {
+        "exact_match": "1",
+        "ms_id": "Spy-X-Family",
+        "ms_name": "Spy x Family",
+        "wc_id": "01J76XYCYJ0P680SKX3QZ0NQD7",
+        "wc_name": "Spy x Family"
+    },
+    "The-Heroic-Legend-Of-Arslan": {
+        "exact_match": "1",
+        "ms_id": "The-Heroic-Legend-Of-Arslan",
+        "ms_name": "The Heroic Legend of Arslan",
+        "wc_id": "01J76XY9DZ1RHVX3C9DR9FDBMW",
+        "wc_name": "The Heroic Legend of Arslan"
+    },
+    "Ajin": {
+        "exact_match": "1",
+        "ms_id": "Ajin",
+        "ms_name": "Ajin - Demi Human",
+        "wc_id": "01J76XY98H4S64T2J2WJSSQJCT",
+        "wc_name": "Ajin - Demi Human"
+    },
+    "Bakemonogatari": {
+        "exact_match": "1",
+        "ms_id": "Bakemonogatari",
+        "ms_name": "Bakemonogatari",
+        "wc_id": "01J76XYCE446AEH2ZSX1N6VPF0",
+        "wc_name": "Bakemonogatari"
+    },
+    "Boku-No-Hero-Academia": {
+        "exact_match": "1",
+        "ms_id": "Boku-No-Hero-Academia",
+        "ms_name": "My Hero Academia",
+        "wc_id": "01J76XYAE4S59RVPJETN0MFRX5",
+        "wc_name": "My Hero Academia"
+    },
+    "Chainsaw-Man": {
+        "exact_match": "1",
+        "ms_id": "Chainsaw-Man",
+        "ms_name": "Chainsaw Man",
+        "wc_id": "01J76XYCRVY3QGYAMRR3STW941",
+        "wc_name": "Chainsaw Man"
+    },
+    "Chi-No-Wadachi": {
+        "exact_match": "1",
+        "ms_id": "Chi-No-Wadachi",
+        "ms_name": "Blood on the Tracks",
+        "wc_id": "01J76XYC1E1JPP3H1DAMC8KMAM",
+        "wc_name": "Blood on the Tracks"
+    },
+    "Demi-Chan-Wa-Kataritai": {
+        "exact_match": "1",
+        "ms_id": "Demi-Chan-Wa-Kataritai",
+        "ms_name": "Interviews with Monster Girls",
+        "wc_id": "01J76XYBP8XVZV3SFJQ42D3792",
+        "wc_name": "Interviews with Monster Girls"
+    },
+    "Gleipnir": {
+        "exact_match": "1",
+        "ms_id": "Gleipnir",
+        "ms_name": "Gleipnir",
+        "wc_id": "01J76XYBEQ0F8VZMB61YEYZ10J",
+        "wc_name": "Gleipnir"
+    },
+    "If-Youre-Gonna-Dress-Up-Do-It-Like-This": {
+        "exact_match": "1",
+        "ms_id": "If-Youre-Gonna-Dress-Up-Do-It-Like-This",
+        "ms_name": "If You're Gonna Dress up, Do It Like This",
+        "wc_id": "01J76XYC37HDCA5SD6QP3D0GN7",
+        "wc_name": "If You're Gonna Dress up, Do It Like This"
+    },
+    "Inuyasha": {
+        "exact_match": "1",
+        "ms_id": "Inuyasha",
+        "ms_name": "Inuyasha",
+        "wc_id": "01J76XY87TN46Y0YQ4VGNSQVD5",
+        "wc_name": "Inuyasha"
+    },
+    "Isekai-Ojisan": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Ojisan",
+        "ms_name": "Uncle from Another World",
+        "wc_id": "01J76XYD18M3VVTHAEWACJCE7D",
+        "wc_name": "Uncle from Another World"
+    },
+    "Its-Difficult-To-Love-An-Otaku": {
+        "exact_match": "1",
+        "ms_id": "Its-Difficult-To-Love-An-Otaku",
+        "ms_name": "Wotakoi - Love Is Hard for Otaku",
+        "wc_id": "01J76XYBH76K1K39JBQQWDAX32",
+        "wc_name": "Wotakoi - Love Is Hard for Otaku"
+    },
+    "Jigokuraku-kaku-Yuuji": {
+        "exact_match": "1",
+        "ms_id": "Jigokuraku-kaku-Yuuji",
+        "ms_name": "Hell's Paradise - Jigokuraku",
+        "wc_id": "01J76XYCAJ8MJ5VECWQJE5QTP2",
+        "wc_name": "Hell's Paradise - Jigokuraku"
+    },
+    "Jujutsu-Kaisen": {
+        "exact_match": "1",
+        "ms_id": "Jujutsu-Kaisen",
+        "ms_name": "Jujutsu Kaisen",
+        "wc_id": "01J76XYCERXE60T7FKXVCCAQ0H",
+        "wc_name": "Jujutsu Kaisen"
+    },
+    "Jyoshikausei": {
+        "exact_match": "1",
+        "ms_id": "Jyoshikausei",
+        "ms_name": "Jyoshikausei",
+        "wc_id": "01J76XYA3PZ5HECYP04ZVZZ5SQ",
+        "wc_name": "Jyoshikausei"
+    },
+    "Kakegurui": {
+        "exact_match": "1",
+        "ms_id": "Kakegurui",
+        "ms_name": "Kakegurui - Compulsive Gambler",
+        "wc_id": "01J76XYAF9PWEAKKPH8X2J1527",
+        "wc_name": "Kakegurui - Compulsive Gambler"
+    },
+    "Mato-Seihei-No-Slave": {
+        "exact_match": "1",
+        "ms_id": "Mato-Seihei-No-Slave",
+        "ms_name": "Chained Soldier",
+        "wc_id": "01J76XYCVRSNNY2C2QH721967B",
+        "wc_name": "Chained Soldier"
+    },
+    "Nami-Yo-Kiite-Kure": {
+        "exact_match": "1",
+        "ms_id": "Nami-Yo-Kiite-Kure",
+        "ms_name": "Wave, Listen to Me!",
+        "wc_id": "01J76XYC7WE1FF3JGTM217NZQ4",
+        "wc_name": "Wave, Listen to Me!"
+    },
+    "Raw-Hero": {
+        "exact_match": "1",
+        "ms_id": "Raw-Hero",
+        "ms_name": "RaW Hero",
+        "wc_id": "01J76XYCR9XXV3PP6EDKMMHY4Q",
+        "wc_name": "RaW Hero"
+    },
+    "Renjou-Desperado": {
+        "exact_match": "1",
+        "ms_id": "Renjou-Desperado",
+        "ms_name": "Renjou Desperado",
+        "wc_id": "01J76XYCRBF7HFY4T3DJEVJ8F4",
+        "wc_name": "Renjou Desperado"
+    },
+    "Shin-Chimoguri-Ringo-To-Kingyobachi-Otoko": {
+        "exact_match": "1",
+        "ms_id": "Shin-Chimoguri-Ringo-To-Kingyobachi-Otoko",
+        "ms_name": "Shin Chimoguri Ringo to Kingyobachi Otoko",
+        "wc_id": "01J76XYB6QW899S2EVMWV0JQY1",
+        "wc_name": "Shin Chimoguri Ringo to Kingyobachi Otoko"
+    },
+    "Tejina-Senpai": {
+        "exact_match": "1",
+        "ms_id": "Tejina-Senpai",
+        "ms_name": "Magical Sempai",
+        "wc_id": "01J76XYBQAZCSGE2JX0T72WNDV",
+        "wc_name": "Magical Sempai"
+    },
+    "The-Whimsical-Cursed-Sword": {
+        "exact_match": "1",
+        "ms_id": "The-Whimsical-Cursed-Sword",
+        "ms_name": "A Cursed Sword's Daily Life",
+        "wc_id": "01J76XYDCX8YZVTSY1WRJNQAFM",
+        "wc_name": "A Cursed Sword's Daily Life"
+    },
+    "Witch-Craft-Works": {
+        "exact_match": "1",
+        "ms_id": "Witch-Craft-Works",
+        "ms_name": "Witchcraft Works",
+        "wc_id": "01J76XY7YNKAJJSH0CXNAQNGDG",
+        "wc_name": "Witchcraft Works"
+    },
+    "One-Piece": {
+        "exact_match": "1",
+        "ms_id": "One-Piece",
+        "ms_name": "One Piece",
+        "wc_id": "01J76XY7E9FNDZ1DBBM6PBJPFK",
+        "wc_name": "One Piece"
+    },
+    "ajin": {
+        "exact_match": "1",
+        "ms_id": "ajin",
+        "ms_name": "Ajin - Demi Human",
+        "wc_id": "01J76XY98H4S64T2J2WJSSQJCT",
+        "wc_name": "Ajin - Demi Human"
+    },
+    "Isekai-Tensei-Soudouki": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Tensei-Soudouki",
+        "ms_name": "Multi-Mind Mayhem - Isekai Tensei Soudouki",
+        "wc_id": "01J76XYBH6A1JQAEJM2AA0PG3S",
+        "wc_name": "Multi-Mind Mayhem - Isekai Tensei Soudouki"
+    },
+    "Isekai-Monster-Breeder": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Monster-Breeder",
+        "ms_name": "Isekai Monster Breeder",
+        "wc_id": "01J76XYDFNTRR8SRGC65K7GESN",
+        "wc_name": "Isekai Monster Breeder"
+    },
+    "Its-Not-My-Fault-That-My-Friends-Not-Popular": {
+        "exact_match": "1",
+        "ms_id": "Its-Not-My-Fault-That-My-Friends-Not-Popular",
+        "ms_name": "It's Not My Fault That My Friend's Not Popular",
+        "wc_id": "01J76XY9WJQDJE9C0ZNMTAAW5Z",
+        "wc_name": "It's Not My Fault That My Friend's Not Popular"
+    },
+    "Vampire-Hunter-D": {
+        "exact_match": "1",
+        "ms_id": "Vampire-Hunter-D",
+        "ms_name": "Vampire Hunter D",
+        "wc_id": "01J76XYATNB2YFM0QH57JEPJTD",
+        "wc_name": "Vampire Hunter D"
+    },
+    "Useless-Ponko": {
+        "exact_match": "1",
+        "ms_id": "Useless-Ponko",
+        "ms_name": "Useless Ponko",
+        "wc_id": "01J76XYDB1T1B1FNBRXV00C7ER",
+        "wc_name": "Useless Ponko"
+    },
+    "Detective-Conan": {
+        "exact_match": "1",
+        "ms_id": "Detective-Conan",
+        "ms_name": "Case Closed",
+        "wc_id": "01J76XY7HA6DH9YYGREDVPH8W5",
+        "wc_name": "Case Closed"
+    },
+    "Onepunch-Man": {
+        "exact_match": "1",
+        "ms_id": "Onepunch-Man",
+        "ms_name": "One-Punch Man",
+        "wc_id": "01J76XY7KT7J224EBK6J816Y1Q",
+        "wc_name": "One-Punch Man"
+    },
+    "Burn-the-Witch": {
+        "exact_match": "1",
+        "ms_id": "Burn-the-Witch",
+        "ms_name": "Burn the Witch",
+        "wc_id": "01J76XYDBJEMK16Z5JQS37CSHR",
+        "wc_name": "Burn the Witch"
+    },
+    "The-100-Girlfriends-Who-Really-Really-Really-Really-Really-Love-You": {
+        "exact_match": "1",
+        "ms_id": "The-100-Girlfriends-Who-Really-Really-Really-Really-Really-Love-You",
+        "ms_name": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You",
+        "wc_id": "01J76XYD8VCP2FN1Q8E31RQ9GJ",
+        "wc_name": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You"
+    },
+    "Vagabond": {
+        "exact_match": "1",
+        "ms_id": "Vagabond",
+        "ms_name": "Vagabond",
+        "wc_id": "01J76XY7J8BMXD4D0FM50MJHQG",
+        "wc_name": "Vagabond"
+    },
+    "Kyou-Mei-Machi": {
+        "exact_match": "1",
+        "ms_id": "Kyou-Mei-Machi",
+        "ms_name": "Kyou Mei Machi",
+        "wc_id": "01J76XYCP88QG0JRY5H64JJDRC",
+        "wc_name": "Kyou Mei Machi"
+    },
+    "Sweet-Guy": {
+        "exact_match": "1",
+        "ms_id": "Sweet-Guy",
+        "ms_name": "Sweet Guy",
+        "wc_id": "01J76XYBBRHERRV6CSC9K1FZTT",
+        "wc_name": "Sweet Guy"
+    },
+    "Tensei-Shitara-Slime-Datta-Ken": {
+        "exact_match": "1",
+        "ms_id": "Tensei-Shitara-Slime-Datta-Ken",
+        "ms_name": "That Time I Got Reincarnated as a Slime",
+        "wc_id": "01J76XYBF8PQ831AW2N7B7BJVV",
+        "wc_name": "That Time I Got Reincarnated as a Slime"
+    },
+    "Martial-Peak": {
+        "exact_match": "1",
+        "ms_id": "Martial-Peak",
+        "ms_name": "Martial Peak",
+        "wc_id": "01J76XYCMB1GPHFV1SCDE4KHB2",
+        "wc_name": "Martial Peak"
+    },
+    "High-School-Family-Kokosei-Kazoku": {
+        "exact_match": "1",
+        "ms_id": "High-School-Family-Kokosei-Kazoku",
+        "ms_name": "High School Family - Kokosei Kazoku",
+        "wc_id": "01J76XYDWG1ZEA1D7YR8NNREY6",
+        "wc_name": "High School Family - Kokosei Kazoku"
+    },
+    "Hard-Boiled-Cop-and-Dolphin": {
+        "exact_match": "1",
+        "ms_id": "Hard-Boiled-Cop-and-Dolphin",
+        "ms_name": "Hard-Boiled Cop and Dolphin",
+        "wc_id": "01J76XYDMMGQ8FP2JD6QZN10YJ",
+        "wc_name": "Hard-Boiled Cop and Dolphin"
+    },
+    "Agravity-Boys": {
+        "exact_match": "1",
+        "ms_id": "Agravity-Boys",
+        "ms_name": "Agravity Boys",
+        "wc_id": "01J76XYD7AW9X0XD4BH9G3MXGD",
+        "wc_name": "Agravity Boys"
+    },
+    "Naruto": {
+        "exact_match": "1",
+        "ms_id": "Naruto",
+        "ms_name": "Naruto",
+        "wc_id": "01J76XY7E827QQQT0ERKCGH4CD",
+        "wc_name": "Naruto"
+    },
+    "Yamikin-Ushijima-Kun": {
+        "exact_match": "1",
+        "ms_id": "Yamikin-Ushijima-Kun",
+        "ms_name": "Yamikin Ushijima-kun",
+        "wc_id": "01J76XYA5RT494SG2MV85H7Y46",
+        "wc_name": "Yamikin Ushijima-kun"
+    },
+    "Ballroom-E-Youkoso": {
+        "exact_match": "1",
+        "ms_id": "Ballroom-E-Youkoso",
+        "ms_name": "Welcome to the Ballroom",
+        "wc_id": "01J76XYAMCZYMK1QF07MZXEFDM",
+        "wc_name": "Welcome to the Ballroom"
+    },
+    "Fate-Stay-Night": {
+        "exact_match": "1",
+        "ms_id": "Fate-Stay-Night",
+        "ms_name": "Fate/Stay Night",
+        "wc_id": "01J76XY7SKGN5ZHJASTJ1P7R0K",
+        "wc_name": "Fate/Stay Night"
+    },
+    "Domestic-Na-Kanojo": {
+        "exact_match": "1",
+        "ms_id": "Domestic-Na-Kanojo",
+        "ms_name": "Domestic Girlfriend",
+        "wc_id": "01J76XYB3M8PGMNES8WN5HM44A",
+        "wc_name": "Domestic Girlfriend"
+    },
+    "Dagashi-Kashi": {
+        "exact_match": "1",
+        "ms_id": "Dagashi-Kashi",
+        "ms_name": "Dagashi Kashi",
+        "wc_id": "01J76XYB57K8JY03ET7571SY7H",
+        "wc_name": "Dagashi Kashi"
+    },
+    "ib-Instant-Bullet": {
+        "exact_match": "1",
+        "ms_id": "ib-Instant-Bullet",
+        "ms_name": "ib - Instant Bullet",
+        "wc_id": "01J76XYA7X6TRM8V4KXH6FAFK1",
+        "wc_name": "ib - Instant Bullet"
+    },
+    "Munou-Na-Nana": {
+        "exact_match": "1",
+        "ms_id": "Munou-Na-Nana",
+        "ms_name": "Talentless Nana",
+        "wc_id": "01J76XYC9XVZ0FDKB9D7AD8G0S",
+        "wc_name": "Talentless Nana"
+    },
+    "Tsui-no-Taimashi-Ender-Geister": {
+        "exact_match": "1",
+        "ms_id": "Tsui-no-Taimashi-Ender-Geister",
+        "ms_name": "Tsui no Taimashi -Ender Geister-",
+        "wc_id": "01J76XYDYANJS1HP1XSAF39Q0V",
+        "wc_name": "Tsui no Taimashi -Ender Geister-"
+    },
+    "Immortal-Hounds": {
+        "exact_match": "1",
+        "ms_id": "Immortal-Hounds",
+        "ms_name": "Immortal Hounds",
+        "wc_id": "01J76XY9M4ZCAGQFJDCXZ7WGK4",
+        "wc_name": "Immortal Hounds"
+    },
+    "Monster-8": {
+        "exact_match": "1",
+        "ms_id": "Monster-8",
+        "ms_name": "Kaiju No. 8",
+        "wc_id": "01J76XYDNXNEJ72V8B63390CNT",
+        "wc_name": "Kaiju No. 8"
+    },
+    "Back-Street-Girls": {
+        "exact_match": "1",
+        "ms_id": "Back-Street-Girls",
+        "ms_name": "Back Street Girls",
+        "wc_id": "01J76XYBVQ4WH813H768CNWVK9",
+        "wc_name": "Back Street Girls"
+    },
+    "Moto-Sekai-Ichii-Subchara-Ikusei-Nikki": {
+        "exact_match": "1",
+        "ms_id": "Moto-Sekai-Ichii-Subchara-Ikusei-Nikki",
+        "ms_name": "Moto Sekai Ichi'i Subchara Ikusei Nikki: Hai Player, Isekai wo Kouryakuchuu!",
+        "wc_id": "01J76XYD8C1GG1ZYX8MFEQEHXB",
+        "wc_name": "Moto Sekai Ichi'i Subchara Ikusei Nikki: Hai Player, Isekai wo Kouryakuchuu!"
+    },
+    "Hachi-Ichi": {
+        "exact_match": "1",
+        "ms_id": "Hachi-Ichi",
+        "ms_name": "Hachi Ichi",
+        "wc_id": "01J76XY7VRHNG87A2RSVPDW450",
+        "wc_name": "Hachi Ichi"
+    },
+    "Getsurin-Ni-Kiri-Saku": {
+        "exact_match": "1",
+        "ms_id": "Getsurin-Ni-Kiri-Saku",
+        "ms_name": "Getsurin ni Kiri Saku",
+        "wc_id": "01J76XY9KCKDP1WBE52VZC1ZSF",
+        "wc_name": "Getsurin ni Kiri Saku"
+    },
+    "Ore-Dake-Haireru-Kakushi-Dungeon": {
+        "exact_match": "1",
+        "ms_id": "Ore-Dake-Haireru-Kakushi-Dungeon",
+        "ms_name": "The Hidden Dungeon Only I Can Enter",
+        "wc_id": "01J76XYCVVAKCZ3CRDYSVR9THD",
+        "wc_name": "The Hidden Dungeon Only I Can Enter"
+    },
+    "The-Breaker": {
+        "exact_match": "1",
+        "ms_id": "The-Breaker",
+        "ms_name": "The Breaker",
+        "wc_id": "01J76XY7GSC6DZ9HPGAJ6TCC3Q",
+        "wc_name": "The Breaker"
+    },
+    "Kaguya-Wants-To-Be-Confessed-To": {
+        "exact_match": "1",
+        "ms_id": "Kaguya-Wants-To-Be-Confessed-To",
+        "ms_name": "Kaguya-sama - Love Is War",
+        "wc_id": "01J76XYBPKS1TM2S3AWVSNBH3X",
+        "wc_name": "Kaguya-sama - Love Is War"
+    },
+    "Mahou-Shoujo-ni-Akogarete": {
+        "ms_id": "Mahou-Shoujo-ni-Akogarete",
+        "ms_name": "Gushing Over Magical Girls",
+        "wc_id": "01J76XYD88N4WZK1JPPAGTBX61",
+        "wc_name": "Gushing Over Magical Girls"
+    },
+    "Garbage-Brave": {
+        "exact_match": "1",
+        "ms_id": "Garbage-Brave",
+        "ms_name": "Garbage Brave",
+        "wc_id": "01J76XYD7P7GQ22V9NC45QAH1N",
+        "wc_name": "Garbage Brave"
+    },
+    "Kujibiki-Tokushou-Musou-Harem-ken": {
+        "exact_match": "1",
+        "ms_id": "Kujibiki-Tokushou-Musou-Harem-ken",
+        "ms_name": "Kujibiki Tokushou Musou Harem-ken",
+        "wc_id": "01J76XYD4WVQFN970HVJYA1D46",
+        "wc_name": "Kujibiki Tokushou Musou Harem-ken"
+    },
+    "Freezing": {
+        "exact_match": "1",
+        "ms_id": "Freezing",
+        "ms_name": "Freezing",
+        "wc_id": "01J76XY7EPV84MD5TMB3JXMK4F",
+        "wc_name": "Freezing"
+    },
+    "Creature-Girls-A-HandsOn-Field-Journal-in-Another-World": {
+        "exact_match": "1",
+        "ms_id": "Creature-Girls-A-HandsOn-Field-Journal-in-Another-World",
+        "ms_name": "Creature Girls - A Hands-On Field Journal in Another World",
+        "wc_id": "01J76XYDK74NZWAKM3KFM6D4KF",
+        "wc_name": "Creature Girls - A Hands-On Field Journal in Another World"
+    },
+    "The-World-Of-Moral-Reversal": {
+        "exact_match": "1",
+        "ms_id": "The-World-Of-Moral-Reversal",
+        "ms_name": "The World of Moral Reversal",
+        "wc_id": "01J76XYD1NYYZR9Z2NSPHJ9KMP",
+        "wc_name": "The World of Moral Reversal"
+    },
+    "Kaijuu-No-Shiiku-Iin": {
+        "exact_match": "1",
+        "ms_id": "Kaijuu-No-Shiiku-Iin",
+        "ms_name": "Monster Tamer Girls",
+        "wc_id": "01J76XYCCQQGTK83PX7K7DYT32",
+        "wc_name": "Monster Tamer Girls"
+    },
+    "Sekai-de-Tadahitori-no-Mamono-Tsukai": {
+        "exact_match": "1",
+        "ms_id": "Sekai-de-Tadahitori-no-Mamono-Tsukai",
+        "ms_name": "I'm the Only Monster Tamer in the World and Was Mistaken for the Demon Lord",
+        "wc_id": "01J76XYD544EA1P0ZDKABQ0GV5",
+        "wc_name": "I'm the Only Monster Tamer in the World and Was Mistaken for the Demon Lord"
+    },
+    "Shiro-No-Koukoku-Monogatari": {
+        "exact_match": "1",
+        "ms_id": "Shiro-No-Koukoku-Monogatari",
+        "ms_name": "Shiro no Koukoku Monogatari",
+        "wc_id": "01J76XYAGHWJBK2HS6JNZYXYQR",
+        "wc_name": "Shiro no Koukoku Monogatari"
+    },
+    "Blade-Play": {
+        "exact_match": "1",
+        "ms_id": "Blade-Play",
+        "ms_name": "Blade Play",
+        "wc_id": "01J76XYAMDD134DQCPC9HA42C0",
+        "wc_name": "Blade Play"
+    },
+    "Goblin-Slayer": {
+        "exact_match": "1",
+        "ms_id": "Goblin-Slayer",
+        "ms_name": "Goblin Slayer",
+        "wc_id": "01J76XYBSZ0PQAR4MHFZ59SY3Y",
+        "wc_name": "Goblin Slayer"
+    },
+    "Shounen-no-Abyss": {
+        "ms_id": "Shounen-no-Abyss",
+        "ms_name": "Boy's Abyss",
+        "wc_id": "01J76XYDJDKZRMAQJF8GVZ8901",
+        "wc_name": "Boy's Abyss"
+    },
+    "Ikusa-X-Koi": {
+        "exact_match": "1",
+        "ms_id": "Ikusa-X-Koi",
+        "ms_name": "Val x Love",
+        "wc_id": "01J76XYCAH2SW8HPT7KPMFJJEW",
+        "wc_name": "Val x Love"
+    },
+    "Game-Obu-Familia---Family-Senki": {
+        "exact_match": "1",
+        "ms_id": "Game-Obu-Familia---Family-Senki",
+        "ms_name": "Game of Familia",
+        "wc_id": "01J76XYCKSRM8W3QN3VRJ64WCF",
+        "wc_name": "Game of Familia"
+    },
+    "Dr-Stone": {
+        "exact_match": "1",
+        "ms_id": "Dr-Stone",
+        "ms_name": "Dr. STONE",
+        "wc_id": "01J76XYC1GAF2FWQ59Q0Y17TPA",
+        "wc_name": "Dr. STONE"
+    },
+    "Fuuka": {
+        "exact_match": "1",
+        "ms_id": "Fuuka",
+        "ms_name": "Fuuka",
+        "wc_id": "01J76XY9Z7ZB7RXTWDBPWWQ5XF",
+        "wc_name": "Fuuka"
+    },
+    "Neko-No-Otera-No-Chion-san": {
+        "exact_match": "1",
+        "ms_id": "Neko-No-Otera-No-Chion-san",
+        "ms_name": "Neko no Otera no Chion-san",
+        "wc_id": "01J76XYCD12T15KMQN8XKSZJRR",
+        "wc_name": "Neko no Otera no Chion-san"
+    },
+    "Lust-Geass": {
+        "exact_match": "1",
+        "ms_id": "Lust-Geass",
+        "ms_name": "Lust Geass",
+        "wc_id": "01J76XYDKATZJ7XRS9QP201N2G",
+        "wc_name": "Lust Geass"
+    },
+    "The-Young-Masters-Revenge": {
+        "exact_match": "1",
+        "ms_id": "The-Young-Masters-Revenge",
+        "ms_name": "The Young Master's Revenge",
+        "wc_id": "01J76XYDETSY8KH4PGZ61FBCR2",
+        "wc_name": "The Young Master's Revenge"
+    },
+    "Sekai-Saikyou-No-Kouei": {
+        "exact_match": "1",
+        "ms_id": "Sekai-Saikyou-No-Kouei",
+        "ms_name": "The World's Strongest Rearguard - Labyrinth Country's Novice Seeker",
+        "wc_id": "01J76XYCFBNEE7TJ3SZB0YAJWD",
+        "wc_name": "The World's Strongest Rearguard - Labyrinth Country's Novice Seeker"
+    },
+    "The-Other-Side-Of-Secret": {
+        "exact_match": "1",
+        "ms_id": "The-Other-Side-Of-Secret",
+        "ms_name": "The Other Side of Secret",
+        "wc_id": "01J76XYC4D8PJ33RGSBKTQNMD4",
+        "wc_name": "The Other Side of Secret"
+    },
+    "Himegasaki-Sakurako-wa-Kyoumo-Fubin-Kawaii": {
+        "exact_match": "1",
+        "ms_id": "Himegasaki-Sakurako-wa-Kyoumo-Fubin-Kawaii",
+        "ms_name": "Himegasaki Sakurako wa Kyoumo Fubin Kawaii!",
+        "wc_id": "01J76XYDZ4NAB8MCQCP42X9DS1",
+        "wc_name": "Himegasaki Sakurako wa Kyoumo Fubin Kawaii!"
+    },
+    "The-Story-Between-a-Dumb-Prefect-and-a-High-School-Girl": {
+        "exact_match": "1",
+        "ms_id": "The-Story-Between-a-Dumb-Prefect-and-a-High-School-Girl",
+        "ms_name": "The Story Between a Dumb Prefect and a High School Girl",
+        "wc_id": "01J76XYDY49VC8R4RE2WB0X2EY",
+        "wc_name": "The Story Between a Dumb Prefect and a High School Girl"
+    },
+    "Again": {
+        "exact_match": "1",
+        "ms_id": "Again",
+        "ms_name": "Again!!",
+        "wc_id": "01J76XY7XJZ7RKVF0C45SSFT6H",
+        "wc_name": "Again!!"
+    },
+    "Usogui": {
+        "exact_match": "1",
+        "ms_id": "Usogui",
+        "ms_name": "Usogui",
+        "wc_id": "01J76XY80XFFFA1MM9SCZ2725Z",
+        "wc_name": "Usogui"
+    },
+    "Kanojo-Hitomishirimasu": {
+        "exact_match": "1",
+        "ms_id": "Kanojo-Hitomishirimasu",
+        "ms_name": "Rent-a-(Really Shy!)-Girlfriend",
+        "wc_id": "01J76XYDPJ0Q7TK5X7F60W28X2",
+        "wc_name": "Rent-a-(Really Shy!)-Girlfriend"
+    },
+    "Kimi-To-Kamihikouki-To": {
+        "exact_match": "1",
+        "ms_id": "Kimi-To-Kamihikouki-To",
+        "ms_name": "Kimi to Kamihikouki to",
+        "wc_id": "01J76XY9BPAWB5PV47AC2F7WY5",
+        "wc_name": "Kimi to Kamihikouki to"
+    },
+    "Katekin": {
+        "exact_match": "1",
+        "ms_id": "Katekin",
+        "ms_name": "Katekin",
+        "wc_id": "01J76XYBEYPC84J517HRKCWDGA",
+        "wc_name": "Katekin"
+    },
+    "Kannou-Sensei": {
+        "exact_match": "1",
+        "ms_id": "Kannou-Sensei",
+        "ms_name": "Kannou Sensei",
+        "wc_id": "01J76XYCANC1W5C3P9WETMA7MN",
+        "wc_name": "Kannou Sensei"
+    },
+    "Hinowa-Ga-Yuku": {
+        "ms_id": "Hinowa-Ga-Yuku",
+        "ms_name": "Hinowa ga CRUSH!",
+        "wc_id": "01J76XYC6ZPJ4HASBBH4RGN7C1",
+        "wc_name": "Hinowa ga CRUSH!"
+    },
+    "Akame-Ga-Kiru": {
+        "exact_match": "1",
+        "ms_id": "Akame-Ga-Kiru",
+        "ms_name": "Akame ga KILL!",
+        "wc_id": "01J76XY7M2J6GH1JACPG6FJQ6R",
+        "wc_name": "Akame ga KILL!"
+    },
+    "Umineko-No-Naku-Koro-Ni-Tsubasa": {
+        "exact_match": "1",
+        "ms_id": "Umineko-No-Naku-Koro-Ni-Tsubasa",
+        "ms_name": "Umineko no Naku Koro ni Tsubasa",
+        "wc_id": "01J76XYBQ1DY13ATQZ7DAKB7H7",
+        "wc_name": "Umineko no Naku Koro ni Tsubasa"
+    },
+    "Bambino-Secondo": {
+        "exact_match": "1",
+        "ms_id": "Bambino-Secondo",
+        "ms_name": "Bambino! Secondo",
+        "wc_id": "01J76XY9YEP9SZ085VC9RC0X78",
+        "wc_name": "Bambino! Secondo"
+    },
+    "Bambino": {
+        "exact_match": "1",
+        "ms_id": "Bambino",
+        "ms_name": "Bambino!",
+        "wc_id": "01J76XY9Y03NNRV0QRNGBDE52B",
+        "wc_name": "Bambino!"
+    },
+    "Himeno-chan-ni-Koi-Ha-Mada-Hayai": {
+        "exact_match": "1",
+        "ms_id": "Himeno-chan-ni-Koi-Ha-Mada-Hayai",
+        "ms_name": "Himeno-chan ni Koi wa mada Hayai",
+        "wc_id": "01J76XYD7XSGN3J38NCK3A2406",
+        "wc_name": "Himeno-chan ni Koi wa mada Hayai"
+    },
+    "Fujimi-Lovers": {
+        "ms_id": "Fujimi-Lovers",
+        "ms_name": "Fujimi Lovers",
+        "wc_id": "01J76XYAN244AZFY4YEEQ3RQTD",
+        "wc_name": "Fujimi Lovers"
+    },
+    "Please-Put-These-On-Takamine-san": {
+        "exact_match": "1",
+        "ms_id": "Please-Put-These-On-Takamine-san",
+        "ms_name": "Please Put Them On, Takamine-san",
+        "wc_id": "01J76XYDCB7YMHJ3XDJQV1PX80",
+        "wc_name": "Please Put Them On, Takamine-san"
+    },
+    "Shut-Hell": {
+        "exact_match": "1",
+        "ms_id": "Shut-Hell",
+        "ms_name": "Shut Hell",
+        "wc_id": "01J76XY9QVT6PAPE96D95DE0P6",
+        "wc_name": "Shut Hell"
+    },
+    "Houseki-No-Kuni": {
+        "exact_match": "1",
+        "ms_id": "Houseki-No-Kuni",
+        "ms_name": "Land of the Lustrous",
+        "wc_id": "01J76XYABCBHBZC9ZXB48W53VC",
+        "wc_name": "Land of the Lustrous"
+    },
+    "Ikigami": {
+        "exact_match": "1",
+        "ms_id": "Ikigami",
+        "ms_name": "Ikigami The Ultimate Limit",
+        "wc_id": "01J76XYC5BXA7ZNG4YSW4PXCRV",
+        "wc_name": "Ikigami The Ultimate Limit"
+    },
+    "Danshi-Koukousei-No-Nichijou": {
+        "exact_match": "1",
+        "ms_id": "Danshi-Koukousei-No-Nichijou",
+        "ms_name": "The Daily Lives of High School Boys",
+        "wc_id": "01J76XY7TB55VGHC8W74ZPN7XX",
+        "wc_name": "The Daily Lives of High School Boys"
+    },
+    "Zai-X10": {
+        "exact_match": "1",
+        "ms_id": "Zai-X10",
+        "ms_name": "Zai x 10",
+        "wc_id": "01J76XY9SP76VKRW8G8PKVKASR",
+        "wc_name": "Zai x 10"
+    },
+    "Shounen-Chotto-Sabotteko": {
+        "exact_match": "1",
+        "ms_id": "Shounen-Chotto-Sabotteko",
+        "ms_name": "Shounen, Chotto Sabotteko?",
+        "wc_id": "01J76XYDAFJDRPPEM2Y1D0A273",
+        "wc_name": "Shounen, Chotto Sabotteko?"
+    },
+    "Basilisk": {
+        "exact_match": "1",
+        "ms_id": "Basilisk",
+        "ms_name": "Basilisk",
+        "wc_id": "01J76XY87169RWWKNXM98EA0XX",
+        "wc_name": "Basilisk"
+    },
+    "Nanatsu-No-Taizai": {
+        "exact_match": "1",
+        "ms_id": "Nanatsu-No-Taizai",
+        "ms_name": "The Seven Deadly Sins",
+        "wc_id": "01J76XY7R49GRHNH0PY5S3P162",
+        "wc_name": "The Seven Deadly Sins"
+    },
+    "Hataraku-Saibou": {
+        "exact_match": "1",
+        "ms_id": "Hataraku-Saibou",
+        "ms_name": "Cells at Work!",
+        "wc_id": "01J76XYC944ATEMVV2R6SQW5CS",
+        "wc_name": "Cells at Work!"
+    },
+    "IDINVADED-BRAKE-BROKEN": {
+        "exact_match": "1",
+        "ms_id": "IDINVADED-BRAKE-BROKEN",
+        "ms_name": "ID:INVADED #BRAKE BROKEN",
+        "wc_id": "01J76XYDRGJBX19BGYQQHGK384",
+        "wc_name": "ID:INVADED #BRAKE BROKEN"
+    },
+    "Shibito-No-Koe-O-Kiku-Ga-Yoi": {
+        "exact_match": "1",
+        "ms_id": "Shibito-No-Koe-O-Kiku-Ga-Yoi",
+        "ms_name": "Shibito no Koe o Kiku ga Yoi",
+        "wc_id": "01J76XYBYR431BDJF4EQE9HEPQ",
+        "wc_name": "Shibito no Koe o Kiku ga Yoi"
+    },
+    "My-Home-Hero": {
+        "exact_match": "1",
+        "ms_id": "My-Home-Hero",
+        "ms_name": "My Home Hero",
+        "wc_id": "01J76XYD33N7AE1BDQ72R274YY",
+        "wc_name": "My Home Hero"
+    },
+    "Juujika-no-Rokunin": {
+        "exact_match": "1",
+        "ms_id": "Juujika-no-Rokunin",
+        "ms_name": "Juujika no Rokunin",
+        "wc_id": "01J76XYE6XQCTNQM696ZSS7221",
+        "wc_name": "Juujika no Rokunin"
+    },
+    "Sakamoto-Days": {
+        "exact_match": "1",
+        "ms_id": "Sakamoto-Days",
+        "ms_name": "Sakamoto Days",
+        "wc_id": "01J76XYE3130E1W5HKTJ7VD912",
+        "wc_name": "Sakamoto Days"
+    },
+    "Satanophany": {
+        "exact_match": "1",
+        "ms_id": "Satanophany",
+        "ms_name": "Satanophany",
+        "wc_id": "01J76XYC3PS0J0PTEYZ4Z50HRY",
+        "wc_name": "Satanophany"
+    },
+    "Forget-Me-Not": {
+        "exact_match": "1",
+        "ms_id": "Forget-Me-Not",
+        "ms_name": "Forget-me-not",
+        "wc_id": "01J76XY9VA0NM3RFNDTB8DSFS1",
+        "wc_name": "Forget-me-not"
+    },
+    "Dimension-W": {
+        "exact_match": "1",
+        "ms_id": "Dimension-W",
+        "ms_name": "Dimension W",
+        "wc_id": "01J76XY8P3RY0DNK1WH586Q64M",
+        "wc_name": "Dimension W"
+    },
+    "Ningyohime-No-Gomen-Ne-Gohan": {
+        "exact_match": "1",
+        "ms_id": "Ningyohime-No-Gomen-Ne-Gohan",
+        "ms_name": "Ningyohime no Gomen ne Gohan",
+        "wc_id": "01J76XYC2635X1KGH0THFR7MT6",
+        "wc_name": "Ningyohime no Gomen ne Gohan"
+    },
+    "Kimetsu-No-Yaiba": {
+        "exact_match": "1",
+        "ms_id": "Kimetsu-No-Yaiba",
+        "ms_name": "Demon Slayer - Kimetsu no Yaiba",
+        "wc_id": "01J76XYBPP2A7D38XGF4PSQVPD",
+        "wc_name": "Demon Slayer - Kimetsu no Yaiba"
+    },
+    "Zetman": {
+        "exact_match": "1",
+        "ms_id": "Zetman",
+        "ms_name": "Zetman",
+        "wc_id": "01J76XY7FR7KTEF8CK9VY6VXGC",
+        "wc_name": "Zetman"
+    },
+    "Scientia": {
+        "exact_match": "1",
+        "ms_id": "Scientia",
+        "ms_name": "Scientia",
+        "wc_id": "01J76XY9GG0MCY94027ESWK91A",
+        "wc_name": "Scientia"
+    },
+    "Toudoku-ni-Ita": {
+        "exact_match": "1",
+        "ms_id": "Toudoku-ni-Ita",
+        "ms_name": "Toudoku ni Ita",
+        "wc_id": "01J76XYE9F9F3BF7XNMK1VBRFN",
+        "wc_name": "Toudoku ni Ita"
+    },
+    "Isekai-Apocalypse-MYNOGHRA": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Apocalypse-MYNOGHRA",
+        "ms_name": "Apocalypse Bringer Mynoghra - World Conquest Begins with the Civilization of Ruin",
+        "wc_id": "01J76XYDVJGCRG7STZRAKMKVT9",
+        "wc_name": "Apocalypse Bringer Mynoghra - World Conquest Begins with the Civilization of Ruin"
+    },
+    "Yuri-Na-Watashi-To-Akuma-Na-Kanojo": {
+        "exact_match": "1",
+        "ms_id": "Yuri-Na-Watashi-To-Akuma-Na-Kanojo",
+        "ms_name": "Yuri na Watashi to Akuma na Kanojo",
+        "wc_id": "01J76XYBF161BSP6H2T9H69W8M",
+        "wc_name": "Yuri na Watashi to Akuma na Kanojo"
+    },
+    "25-Dimensional-Seduction": {
+        "exact_match": "1",
+        "ms_id": "25-Dimensional-Seduction",
+        "ms_name": "2.5 Dimensional Seduction",
+        "wc_id": "01J76XYDYRFJ3VB67F2JTGMY54",
+        "wc_name": "2.5 Dimensional Seduction"
+    },
+    "Shingeki-No-Kyojin": {
+        "exact_match": "1",
+        "ms_id": "Shingeki-No-Kyojin",
+        "ms_name": "Attack on Titan",
+        "wc_id": "01J76XY7KWP8KX5RFGVZY5TR95",
+        "wc_name": "Attack on Titan"
+    },
+    "Sayonara-Zetsubou-Sensei": {
+        "exact_match": "1",
+        "ms_id": "Sayonara-Zetsubou-Sensei",
+        "ms_name": "Sayonara Zetsubou Sensei",
+        "wc_id": "01J76XY84WGBDJJF4BF9PRFXT5",
+        "wc_name": "Sayonara Zetsubou Sensei"
+    },
+    "My-Mysterious-Girlfriend-X": {
+        "exact_match": "1",
+        "ms_id": "My-Mysterious-Girlfriend-X",
+        "ms_name": "Mysterious Girlfriend X",
+        "wc_id": "01J76XY7HS2TGP32643YXHPW1S",
+        "wc_name": "Mysterious Girlfriend X"
+    },
+    "Boruto": {
+        "exact_match": "1",
+        "ms_id": "Boruto",
+        "ms_name": "Boruto - Naruto Next Generations",
+        "wc_id": "01J76XYBNEJ5EGK9ZEP3YS0PMH",
+        "wc_name": "Boruto - Naruto Next Generations"
+    },
+    "Yakumo-san-Wa-Edzuke-Ga-Shitai": {
+        "exact_match": "1",
+        "ms_id": "Yakumo-san-Wa-Edzuke-Ga-Shitai",
+        "ms_name": "Beauty and the Feast",
+        "wc_id": "01J76XYC2T9VZMMYW3GNY8X1BH",
+        "wc_name": "Beauty and the Feast"
+    },
+    "Kokou-No-Hito": {
+        "exact_match": "1",
+        "ms_id": "Kokou-No-Hito",
+        "ms_name": "Kokou no Hito",
+        "wc_id": "01J76XY8W7C85DCDGKCABD28K7",
+        "wc_name": "Kokou no Hito"
+    },
+    "Ore-To-Akuma-No-Blues": {
+        "exact_match": "1",
+        "ms_id": "Ore-To-Akuma-No-Blues",
+        "ms_name": "Ore to Akuma no Blues",
+        "wc_id": "01J76XYAYAW5RJFBDGP21DDWJQ",
+        "wc_name": "Ore to Akuma no Blues"
+    },
+    "Murcielago": {
+        "exact_match": "1",
+        "ms_id": "Murcielago",
+        "ms_name": "Murcielago",
+        "wc_id": "01J76XYA0NVS8XQVH5H5SB9P8C",
+        "wc_name": "Murcielago"
+    },
+    "Blue-Phobia": {
+        "exact_match": "1",
+        "ms_id": "Blue-Phobia",
+        "ms_name": "Blue Phobia",
+        "wc_id": "01J76XYCA9AEDJDD2PV3XNWNG1",
+        "wc_name": "Blue Phobia"
+    },
+    "Dragon-Ball-Super": {
+        "ms_id": "Dragon-Ball-Super",
+        "ms_name": "Dragon Ball Super",
+        "wc_id": "01J76XYB8Y1TBX756V0EW065J4",
+        "wc_name": "Dragon Ball Super"
+    },
+    "Jinrouki-Winvurga": {
+        "exact_match": "1",
+        "ms_id": "Jinrouki-Winvurga",
+        "ms_name": "Jinrouki Winvurga",
+        "wc_id": "01J76XYDPG4QTA06KHYN0CNB9N",
+        "wc_name": "Jinrouki Winvurga"
+    },
+    "Worlds-End-Harem---Fantasia": {
+        "exact_match": "1",
+        "ms_id": "Worlds-End-Harem---Fantasia",
+        "ms_name": "World's End Harem - Fantasia",
+        "wc_id": "01J76XYCN1A4CC3B4VFHWHH3JG",
+        "wc_name": "World's End Harem - Fantasia"
+    },
+    "Dokyuu-Hentai-Hxeros": {
+        "exact_match": "1",
+        "ms_id": "Dokyuu-Hentai-Hxeros",
+        "ms_name": "SUPER HXEROS",
+        "wc_id": "01J76XYC6KT141PV3RFZDR9MK5",
+        "wc_name": "SUPER HXEROS"
+    },
+    "Kekkon-Yubiwa-Monogatari": {
+        "exact_match": "1",
+        "ms_id": "Kekkon-Yubiwa-Monogatari",
+        "ms_name": "Tales of Wedding Rings",
+        "wc_id": "01J76XYA3V94VRFQSQTAFXJ44Y",
+        "wc_name": "Tales of Wedding Rings"
+    },
+    "Oshi-no-Ko": {
+        "exact_match": "1",
+        "ms_id": "Oshi-no-Ko",
+        "ms_name": "[Oshi No Ko]",
+        "wc_id": "01J76XYDJ8EJGFDMR878PJM89D",
+        "wc_name": "[Oshi No Ko]"
+    },
+    "Blue-Period": {
+        "exact_match": "1",
+        "ms_id": "Blue-Period",
+        "ms_name": "Blue Period",
+        "wc_id": "01J76XYDBHTQFGYQX6G69SJPEW",
+        "wc_name": "Blue Period"
+    },
+    "The-Reincarnated-Sword-Saint-Wants-to-Take-It-Easy": {
+        "exact_match": "1",
+        "ms_id": "The-Reincarnated-Sword-Saint-Wants-to-Take-It-Easy",
+        "ms_name": "The Reincarnated Sword Saint Wants to Take it Easy",
+        "wc_id": "01J76XYDSDSTXPW3WBFNE97BHF",
+        "wc_name": "The Reincarnated Sword Saint Wants to Take it Easy"
+    },
+    "Skip-to-Loafer": {
+        "exact_match": "1",
+        "ms_id": "Skip-to-Loafer",
+        "ms_name": "Skip and Loafer",
+        "wc_id": "01J76XYDCNM5KV3T1NRFKFCRTZ",
+        "wc_name": "Skip and Loafer"
+    },
+    "Doujima-Kun-Wont-Be-Disturbed": {
+        "exact_match": "1",
+        "ms_id": "Doujima-Kun-Wont-Be-Disturbed",
+        "ms_name": "Doujima-Kun Won't Be Disturbed",
+        "wc_id": "01J76XYEAX2FQ05CBYCYW3T5F8",
+        "wc_name": "Doujima-Kun Won't Be Disturbed"
+    },
+    "Mashle": {
+        "exact_match": "1",
+        "ms_id": "Mashle",
+        "ms_name": "Mashle - Magic and Muscles",
+        "wc_id": "01J76XYDC4M9FEXKV3Z781EMD2",
+        "wc_name": "Mashle - Magic and Muscles"
+    },
+    "Shuumatsu-No-Valkyrie": {
+        "exact_match": "1",
+        "ms_id": "Shuumatsu-No-Valkyrie",
+        "ms_name": "Record of Ragnarok",
+        "wc_id": "01J76XYCT0ZCVY2SWJWKV14DMT",
+        "wc_name": "Record of Ragnarok"
+    },
+    "Fullmetal-Alchemist": {
+        "exact_match": "1",
+        "ms_id": "Fullmetal-Alchemist",
+        "ms_name": "Fullmetal Alchemist",
+        "wc_id": "01J76XY7G0WYV1216AF67J3382",
+        "wc_name": "Fullmetal Alchemist"
+    },
+    "Shuumatsu-no-Valkyrie-The-Legend-of-Lu-Bu-Fengxian": {
+        "ms_id": "Shuumatsu-no-Valkyrie-The-Legend-of-Lu-Bu-Fengxian",
+        "ms_name": "Shuumatsu no Valkyrie: The Legend of Lu Bu Fengxian",
+        "wc_id": "01J76XYEB8EXRWM7F29SRGHHTX",
+        "wc_name": "Shuumatsu no Valkyrie: The Legend of Lu Bu Fengxian"
+    },
+    "Dorohedoro": {
+        "exact_match": "1",
+        "ms_id": "Dorohedoro",
+        "ms_name": "Dorohedoro",
+        "wc_id": "01J76XY7WMZ8SSQQ38YSXJY055",
+        "wc_name": "Dorohedoro"
+    },
+    "Baka-To-Test-To-Shoukanjuu": {
+        "exact_match": "1",
+        "ms_id": "Baka-To-Test-To-Shoukanjuu",
+        "ms_name": "Baka & Test - Summon the Beasts",
+        "wc_id": "01J76XY8SVPF271VYW9BZ9V8F7",
+        "wc_name": "Baka & Test - Summon the Beasts"
+    },
+    "Solo-Leveling": {
+        "exact_match": "1",
+        "ms_id": "Solo-Leveling",
+        "ms_name": "Solo Leveling",
+        "wc_id": "01J76XYCPSY3C4BNPBRY8JMCBE",
+        "wc_name": "Solo Leveling"
+    },
+    "Tales-Of-Demons-And-Gods": {
+        "exact_match": "1",
+        "ms_id": "Tales-Of-Demons-And-Gods",
+        "ms_name": "Tales of Demons and Gods",
+        "wc_id": "01J76XYBBSN5EJ5GTKCBB253NT",
+        "wc_name": "Tales of Demons and Gods"
+    },
+    "Kowloon-Generic-Romance": {
+        "exact_match": "1",
+        "ms_id": "Kowloon-Generic-Romance",
+        "ms_name": "Kowloon Generic Romance",
+        "wc_id": "01J76XYDC3KQVWS1N5Z2MZ1HXF",
+        "wc_name": "Kowloon Generic Romance"
+    },
+    "Slam-Dunk": {
+        "exact_match": "1",
+        "ms_id": "Slam-Dunk",
+        "ms_name": "Slam Dunk",
+        "wc_id": "01J76XY7GN9SV2VK3RTTCYQBEX",
+        "wc_name": "Slam Dunk"
+    },
+    "Haikyu": {
+        "exact_match": "1",
+        "ms_id": "Haikyu",
+        "ms_name": "Haikyu!!",
+        "wc_id": "01J76XY7RZNH4C0J1VVZ6VRAGK",
+        "wc_name": "Haikyu!!"
+    },
+    "Oyasumi-Punpun": {
+        "exact_match": "1",
+        "ms_id": "Oyasumi-Punpun",
+        "ms_name": "Goodnight Punpun",
+        "wc_id": "01J76XYA2AFH8MNBG4FRCM5JMV",
+        "wc_name": "Goodnight Punpun"
+    },
+    "Tongari-Booshi-No-Atorie": {
+        "exact_match": "1",
+        "ms_id": "Tongari-Booshi-No-Atorie",
+        "ms_name": "Witch Hat Atelier",
+        "wc_id": "01J76XYC2K8QWFZZRYYCZMN6EF",
+        "wc_name": "Witch Hat Atelier"
+    },
+    "Fire-Punch": {
+        "exact_match": "1",
+        "ms_id": "Fire-Punch",
+        "ms_name": "Fire Punch",
+        "wc_id": "01J76XYBR7JHFW7Q80MHJP5VYW",
+        "wc_name": "Fire Punch"
+    },
+    "Tokyo-Revengers": {
+        "exact_match": "1",
+        "ms_id": "Tokyo-Revengers",
+        "ms_name": "Tokyo Revengers",
+        "wc_id": "01J76XYCMYQQ0QB96JJWXPSBK7",
+        "wc_name": "Tokyo Revengers"
+    },
+    "Ex-Arm": {
+        "exact_match": "1",
+        "ms_id": "Ex-Arm",
+        "ms_name": "Ex-Arm",
+        "wc_id": "01J76XYECE02J7P2T917DEDNQJ",
+        "wc_name": "Ex-Arm"
+    },
+    "Grimgar-of-Fantasy-and-Ash": {
+        "exact_match": "1",
+        "ms_id": "Grimgar-of-Fantasy-and-Ash",
+        "ms_name": "Grimgar of Fantasy and Ash",
+        "wc_id": "01J76XYE26TMWATCTVFR46X1VR",
+        "wc_name": "Grimgar of Fantasy and Ash"
+    },
+    "Goblin-Slayer-Side-Story-Year-One": {
+        "exact_match": "1",
+        "ms_id": "Goblin-Slayer-Side-Story-Year-One",
+        "ms_name": "Goblin Slayer Side Story - Year One",
+        "wc_id": "01J76XYC6Q2RR2E9ADXHA41J4N",
+        "wc_name": "Goblin Slayer Side Story - Year One"
+    },
+    "Solanin": {
+        "exact_match": "1",
+        "ms_id": "Solanin",
+        "ms_name": "solanin",
+        "wc_id": "01J76XY92RDNNE19GGNTGJH1DN",
+        "wc_name": "solanin"
+    },
+    "Shokugeki-No-Soma": {
+        "exact_match": "1",
+        "ms_id": "Shokugeki-No-Soma",
+        "ms_name": "Food Wars!",
+        "wc_id": "01J76XY7RAYWR4NG28W2A0X1VM",
+        "wc_name": "Food Wars!"
+    },
+    "Hige-Wo-Soru-Soshite-Joshikosei-Wo-Hirou": {
+        "exact_match": "1",
+        "ms_id": "Hige-Wo-Soru-Soshite-Joshikosei-Wo-Hirou",
+        "ms_name": "Higehiro - After Being Rejected, I Shaved and Took in a High School Runaway",
+        "wc_id": "01J76XYCVGH5Z2NQWCPCKJ45VC",
+        "wc_name": "Higehiro - After Being Rejected, I Shaved and Took in a High School Runaway"
+    },
+    "Verndio-Surreal-Sword-Saga": {
+        "exact_match": "1",
+        "ms_id": "Verndio-Surreal-Sword-Saga",
+        "ms_name": "Verndio - Surreal Sword Saga",
+        "wc_id": "01J76XYDWDRV149EB6T00H07V7",
+        "wc_name": "Verndio - Surreal Sword Saga"
+    },
+    "Dragon-Ball": {
+        "ms_id": "Dragon-Ball",
+        "ms_name": "Dragon Ball",
+        "wc_id": "01J76XY9Z3BA1CW4ADD23ZN6TN",
+        "wc_name": "Dragon Ball"
+    },
+    "Boushoku-Hi-no-Ken": {
+        "exact_match": "1",
+        "ms_id": "Boushoku-Hi-no-Ken",
+        "ms_name": "Boushoku-Hi no Ken",
+        "wc_id": "01J76XYDR7NAKRG62RPE8YXW3S",
+        "wc_name": "Boushoku-Hi no Ken"
+    },
+    "Kengan-Omega": {
+        "exact_match": "1",
+        "ms_id": "Kengan-Omega",
+        "ms_name": "Kengan Omega",
+        "wc_id": "01J76XYCSGWJ2FD9C4A1VPJS7R",
+        "wc_name": "Kengan Omega"
+    },
+    "Tomodachi-Game": {
+        "exact_match": "1",
+        "ms_id": "Tomodachi-Game",
+        "ms_name": "Tomodachi Game",
+        "wc_id": "01J76XYASZ4SMSJZZ2GM3FBXT8",
+        "wc_name": "Tomodachi Game"
+    },
+    "Blue-Lock": {
+        "exact_match": "1",
+        "ms_id": "Blue-Lock",
+        "ms_name": "Blue Lock",
+        "wc_id": "01J76XYD7E91K8QP6CY0Y53900",
+        "wc_name": "Blue Lock"
+    },
+    "Dungeon-Meshi": {
+        "ms_id": "Dungeon-Meshi",
+        "ms_name": "Delicious in Dungeon",
+        "wc_id": "01J76XYBAVFJ3WEWWF3994R74Z",
+        "wc_name": "Delicious in Dungeon"
+    },
+    "Mairimashita-Iruma-kun": {
+        "exact_match": "1",
+        "ms_id": "Mairimashita-Iruma-kun",
+        "ms_name": "Welcome to Demon School! Iruma-kun",
+        "wc_id": "01J76XYC5SVSG0YGGA1EN740VW",
+        "wc_name": "Welcome to Demon School! Iruma-kun"
+    },
+    "Yotsubato": {
+        "exact_match": "1",
+        "ms_id": "Yotsubato",
+        "ms_name": "Yotsuba&!",
+        "wc_id": "01J76XY7JB4PBRG03G3EN1KCC1",
+        "wc_name": "Yotsuba&!"
+    },
+    "Uchuu-Kyoudai": {
+        "exact_match": "1",
+        "ms_id": "Uchuu-Kyoudai",
+        "ms_name": "Uchuu Kyoudai",
+        "wc_id": "01J76XY7N6E4KM1PFAMYKEX49Y",
+        "wc_name": "Uchuu Kyoudai"
+    },
+    "Space-Chef-Caisar": {
+        "exact_match": "1",
+        "ms_id": "Space-Chef-Caisar",
+        "ms_name": "Space Chef Caisar",
+        "wc_id": "01J76XYB2V9X31D49VW72WZJ2Y",
+        "wc_name": "Space Chef Caisar"
+    },
+    "Platinum-End": {
+        "exact_match": "1",
+        "ms_id": "Platinum-End",
+        "ms_name": "Platinum End",
+        "wc_id": "01J76XYBFTSE0KCQA5CWB3D9CG",
+        "wc_name": "Platinum End"
+    },
+    "Shoukoku-No-Altair": {
+        "exact_match": "1",
+        "ms_id": "Shoukoku-No-Altair",
+        "ms_name": "Altair - A Record of Battles",
+        "wc_id": "01J76XY8FMGJ7QZ85KPM7XAKX2",
+        "wc_name": "Altair - A Record of Battles"
+    },
+    "Triage-X": {
+        "exact_match": "1",
+        "ms_id": "Triage-X",
+        "ms_name": "Triage X",
+        "wc_id": "01J76XY9E48MCM5WM04HEG9978",
+        "wc_name": "Triage X"
+    },
+    "Thermae-Romae": {
+        "exact_match": "1",
+        "ms_id": "Thermae-Romae",
+        "ms_name": "Thermae Romae",
+        "wc_id": "01J76XYB38Z3BCY4RBB82X0D8Z",
+        "wc_name": "Thermae Romae"
+    },
+    "Happiness-O-S-H-I-M-I-Shuzo": {
+        "exact_match": "1",
+        "ms_id": "Happiness-O-S-H-I-M-I-Shuzo",
+        "ms_name": "Happiness (OSHIMI Shuzo)",
+        "wc_id": "01J76XYB5G5XQ8R1TS7WMXNQ6H",
+        "wc_name": "Happiness (OSHIMI Shuzo)"
+    },
+    "Aku-No-Hana": {
+        "exact_match": "1",
+        "ms_id": "Aku-No-Hana",
+        "ms_name": "The Flowers of Evil",
+        "wc_id": "01J76XY7RK3X0G7WA18RN101HN",
+        "wc_name": "The Flowers of Evil"
+    },
+    "Boku-Wa-Mari-No-Naka": {
+        "exact_match": "1",
+        "ms_id": "Boku-Wa-Mari-No-Naka",
+        "ms_name": "Inside Mari",
+        "wc_id": "01J76XY9J4JBXJZ0AW9WN1X069",
+        "wc_name": "Inside Mari"
+    },
+    "Dead-Dead-Demons-Dededededestruction": {
+        "exact_match": "1",
+        "ms_id": "Dead-Dead-Demons-Dededededestruction",
+        "ms_name": "Dead Dead Demon\u2019s Dededede Destruction",
+        "wc_id": "01J76XYA7GV6ANCQMTH351X50G",
+        "wc_name": "Dead Dead Demon\u2019s Dededede Destruction"
+    },
+    "Real-I-N-O-U-E-Takehiko": {
+        "exact_match": "1",
+        "ms_id": "Real-I-N-O-U-E-Takehiko",
+        "ms_name": "Real",
+        "wc_id": "01J76XY7NK25V5FEZSP45476T1",
+        "wc_name": "Real"
+    },
+    "Ookami-Shounen-wa-Kyou-mo-Uso-o-Kasaneru": {
+        "exact_match": "1",
+        "ms_id": "Ookami-Shounen-wa-Kyou-mo-Uso-o-Kasaneru",
+        "ms_name": "Ookami Shounen wa Kyou mo Uso o Kasaneru",
+        "wc_id": "01J76XYEC3FYZA8N0T5XQ0D5SX",
+        "wc_name": "Ookami Shounen wa Kyou mo Uso o Kasaneru"
+    },
+    "Kiseijuu": {
+        "exact_match": "1",
+        "ms_id": "Kiseijuu",
+        "ms_name": "Parasyte",
+        "wc_id": "01J76XY8G2EJ2R67VW18406VQY",
+        "wc_name": "Parasyte"
+    },
+    "Isekai-de-Cheat-Skill-wo-te-ni-Shita-ore-wa": {
+        "exact_match": "1",
+        "ms_id": "Isekai-de-Cheat-Skill-wo-te-ni-Shita-ore-wa",
+        "ms_name": "I Got a Cheat Skill in Another World and Became Unrivaled in The Real World",
+        "wc_id": "01J76XYD5Y3YBT5RAB0K8KJPDH",
+        "wc_name": "I Got a Cheat Skill in Another World and Became Unrivaled in The Real World"
+    },
+    "Saint-Oniisan": {
+        "exact_match": "1",
+        "ms_id": "Saint-Oniisan",
+        "ms_name": "Saint Young Men",
+        "wc_id": "01J76XY81Y7RB2SSZ406XV12HG",
+        "wc_name": "Saint Young Men"
+    },
+    "The-Beginning-After-The-End": {
+        "exact_match": "1",
+        "ms_id": "The-Beginning-After-The-End",
+        "ms_name": "The Beginning After the End",
+        "wc_id": "01J76XYE23859ZWDP7BJ520AKY",
+        "wc_name": "The Beginning After the End"
+    },
+    "To-You-The-Immortal": {
+        "exact_match": "1",
+        "ms_id": "To-You-The-Immortal",
+        "ms_name": "To Your Eternity",
+        "wc_id": "01J76XYBYX6EGVR7ZNC8VKFJD1",
+        "wc_name": "To Your Eternity"
+    },
+    "Sousou-no-Frieren": {
+        "exact_match": "1",
+        "ms_id": "Sousou-no-Frieren",
+        "ms_name": "Frieren - Beyond Journey's End",
+        "wc_id": "01J76XYDGDQERFSK333582BNBZ",
+        "wc_name": "Frieren - Beyond Journey's End"
+    },
+    "Kuzu-No-Honkai": {
+        "exact_match": "1",
+        "ms_id": "Kuzu-No-Honkai",
+        "ms_name": "Scum's Wish",
+        "wc_id": "01J76XYAC057ME93751ATTSZHE",
+        "wc_name": "Scum's Wish"
+    },
+    "Kimi-Wa-Midara-Na-Boku-No-Joou": {
+        "exact_match": "1",
+        "ms_id": "Kimi-Wa-Midara-Na-Boku-No-Joou",
+        "ms_name": "Kimi wa Midara na Boku no Joou",
+        "wc_id": "01J76XY87YYDBGWQQX1X9E5AP4",
+        "wc_name": "Kimi wa Midara na Boku no Joou"
+    },
+    "Doctor-Du-Ming": {
+        "exact_match": "1",
+        "ms_id": "Doctor-Du-Ming",
+        "ms_name": "Doctor Du Ming",
+        "wc_id": "01J76XY8QNZJQK7EVWWRER19KN",
+        "wc_name": "Doctor Du Ming"
+    },
+    "Shishunki-Na-Adam": {
+        "exact_match": "1",
+        "ms_id": "Shishunki-Na-Adam",
+        "ms_name": "Shishunki na Adam",
+        "wc_id": "01J76XYB9P4Y1XVH03HDHWMVPS",
+        "wc_name": "Shishunki na Adam"
+    },
+    "Out-MIZUTA-Makoto": {
+        "exact_match": "1",
+        "ms_id": "Out-MIZUTA-Makoto",
+        "ms_name": "Out (MIZUTA Makoto)",
+        "wc_id": "01J76XYDPQ762VGZBA5X2QK8SJ",
+        "wc_name": "Out (MIZUTA Makoto)"
+    },
+    "Lychee-Light-Club": {
+        "exact_match": "1",
+        "ms_id": "Lychee-Light-Club",
+        "ms_name": "Lychee Light Club",
+        "wc_id": "01J76XYDTKKF6BKFBRMY9JVMZ6",
+        "wc_name": "Lychee Light Club"
+    },
+    "Go-toubun-No-Hanayome": {
+        "exact_match": "1",
+        "ms_id": "Go-toubun-No-Hanayome",
+        "ms_name": "The Quintessential Quintuplets",
+        "wc_id": "01J76XYC6SH1G8NM9B1B751M5S",
+        "wc_name": "The Quintessential Quintuplets"
+    },
+    "Kanojo-To-Kanojo-No-Neko": {
+        "exact_match": "1",
+        "ms_id": "Kanojo-To-Kanojo-No-Neko",
+        "ms_name": "She and Her Cat",
+        "wc_id": "01J76XYC5HZNQ1DSY5YCWKX1YD",
+        "wc_name": "She and Her Cat"
+    },
+    "Innocent-S-A-K-A-M-O-T-O-Shinichi": {
+        "exact_match": "1",
+        "ms_id": "Innocent-S-A-K-A-M-O-T-O-Shinichi",
+        "ms_name": "Innocent (SAKAMOTO Shinichi)",
+        "wc_id": "01J76XY9B19HSVRQNEQED859C5",
+        "wc_name": "Innocent (SAKAMOTO Shinichi)"
+    },
+    "3-Gatsu-No-Lion": {
+        "exact_match": "1",
+        "ms_id": "3-Gatsu-No-Lion",
+        "ms_name": "March Comes in Like a Lion",
+        "wc_id": "01J76XY9H7ESGDF25RXJMEF2ZR",
+        "wc_name": "March Comes in Like a Lion"
+    },
+    "Hachimitsu-To-Clover": {
+        "exact_match": "1",
+        "ms_id": "Hachimitsu-To-Clover",
+        "ms_name": "Honey and Clover",
+        "wc_id": "01J76XYAV7VJKZDEHXFTDBAVRC",
+        "wc_name": "Honey and Clover"
+    },
+    "D-Gray-Man": {
+        "exact_match": "1",
+        "ms_id": "D-Gray-Man",
+        "ms_name": "D.Gray-Man",
+        "wc_id": "01J76XY7EM2TJ4BVFHJF8CT1JK",
+        "wc_name": "D.Gray-Man"
+    },
+    "Aria": {
+        "exact_match": "1",
+        "ms_id": "Aria",
+        "ms_name": "Aria",
+        "wc_id": "01J76XY8G1GK8EJ9VQG92C3DKM",
+        "wc_name": "Aria"
+    },
+    "Aqua": {
+        "exact_match": "1",
+        "ms_id": "Aqua",
+        "ms_name": "Aqua",
+        "wc_id": "01J76XY8J33NMW1G6F9FNWNXCM",
+        "wc_name": "Aqua"
+    },
+    "Amanchu": {
+        "exact_match": "1",
+        "ms_id": "Amanchu",
+        "ms_name": "Amanchu!",
+        "wc_id": "01J76XY98PXXFZ5QR3GZ83BS07",
+        "wc_name": "Amanchu!"
+    },
+    "Shounan-Junai-Gumi": {
+        "exact_match": "1",
+        "ms_id": "Shounan-Junai-Gumi",
+        "ms_name": "Shounan Junai Gumi!",
+        "wc_id": "01J76XY96B5RVXHRW2728Z2M2Q",
+        "wc_name": "Shounan Junai Gumi!"
+    },
+    "Great-Teacher-Onizuka": {
+        "exact_match": "1",
+        "ms_id": "Great-Teacher-Onizuka",
+        "ms_name": "GTO - Great Teacher Onizuka",
+        "wc_id": "01J76XY7JVAZWQGQNV150T8F30",
+        "wc_name": "GTO - Great Teacher Onizuka"
+    },
+    "G-T-O-Paradise-Lost": {
+        "exact_match": "1",
+        "ms_id": "G-T-O-Paradise-Lost",
+        "ms_name": "GTO -  Paradise Lost",
+        "wc_id": "01J76XYAE20WRN145R853Y3DTT",
+        "wc_name": "GTO -  Paradise Lost"
+    },
+    "Oishii-Kamishama": {
+        "exact_match": "1",
+        "ms_id": "Oishii-Kamishama",
+        "ms_name": "Oishii Kamishama",
+        "wc_id": "01J76XYAR52712S3FRYW39CH31",
+        "wc_name": "Oishii Kamishama"
+    },
+    "Air-Gear": {
+        "exact_match": "1",
+        "ms_id": "Air-Gear",
+        "ms_name": "Air Gear",
+        "wc_id": "01J76XY7FSTE8N9SAT8HCPYCRY",
+        "wc_name": "Air Gear"
+    },
+    "Death-Note": {
+        "exact_match": "1",
+        "ms_id": "Death-Note",
+        "ms_name": "Death Note",
+        "wc_id": "01J76XY7FYW2T2SDXP32NEFY8H",
+        "wc_name": "Death Note"
+    },
+    "Bakuman": {
+        "exact_match": "1",
+        "ms_id": "Bakuman",
+        "ms_name": "Bakuman",
+        "wc_id": "01J76XY7FTVW773JKKW5QA3HF6",
+        "wc_name": "Bakuman"
+    },
+    "Eniale-Dewiela": {
+        "exact_match": "1",
+        "ms_id": "Eniale-Dewiela",
+        "ms_name": "Eniale & Dewiela",
+        "wc_id": "01J76XYE4D0SWJ5KX12CB9A6S1",
+        "wc_name": "Eniale & Dewiela"
+    },
+    "Koko-wa-Ore-ni-Makasete-Saki-ni-Ike-to-Itte-kara-10-Nen-ga-Tattara-Densetsu-ni-Natteita": {
+        "exact_match": "1",
+        "ms_id": "Koko-wa-Ore-ni-Makasete-Saki-ni-Ike-to-Itte-kara-10-Nen-ga-Tattara-Densetsu-ni-Natteita",
+        "ms_name": "I Became a Legend After My 10 Year-Long Last Stand",
+        "wc_id": "01J76XYD66H52PTHEGKF3QTG0Z",
+        "wc_name": "I Became a Legend After My 10 Year-Long Last Stand"
+    },
+    "Btooom": {
+        "exact_match": "1",
+        "ms_id": "Btooom",
+        "ms_name": "BTOOOM!",
+        "wc_id": "01J76XY7M5TSVN899JF692HBKY",
+        "wc_name": "BTOOOM!"
+    },
+    "Task-Force-for-Paranormal-Disaster-Management": {
+        "exact_match": "1",
+        "ms_id": "Task-Force-for-Paranormal-Disaster-Management",
+        "ms_name": "Task Force for Paranormal Disaster Management",
+        "wc_id": "01J76XYDZW8S9AE8ZBA5AAZJ2N",
+        "wc_name": "Task Force for Paranormal Disaster Management"
+    },
+    "Claymore": {
+        "exact_match": "1",
+        "ms_id": "Claymore",
+        "ms_name": "Claymore",
+        "wc_id": "01J76XY7EH7SNNTHJD1CCTJZS7",
+        "wc_name": "Claymore"
+    },
+    "Nana": {
+        "exact_match": "1",
+        "ms_id": "Nana",
+        "ms_name": "Nana",
+        "wc_id": "01J76XY7HTXTE4F6KGTWMHMV9T",
+        "wc_name": "Nana"
+    },
+    "Paradise-Kiss": {
+        "exact_match": "1",
+        "ms_id": "Paradise-Kiss",
+        "ms_name": "Paradise Kiss",
+        "wc_id": "01J76XYE9Q7HBB7EMDCD01VWWM",
+        "wc_name": "Paradise Kiss"
+    },
+    "Kindaichi-Shounen-No-Jikenbo-R": {
+        "exact_match": "1",
+        "ms_id": "Kindaichi-Shounen-No-Jikenbo-R",
+        "ms_name": "Kindaichi Shounen no Jikenbo R",
+        "wc_id": "01J76XYBPQQTMZDGQ45G2GDPGJ",
+        "wc_name": "Kindaichi Shounen no Jikenbo R"
+    },
+    "Barakamon": {
+        "exact_match": "1",
+        "ms_id": "Barakamon",
+        "ms_name": "Barakamon",
+        "wc_id": "01J76XY82EY7K3RDJ9BTQACD18",
+        "wc_name": "Barakamon"
+    },
+    "Yokohama-Kaidashi-Kikou": {
+        "exact_match": "1",
+        "ms_id": "Yokohama-Kaidashi-Kikou",
+        "ms_name": "Yokohama Kaidashi Kikou",
+        "wc_id": "01J76XY8KX5QRVDT6W0HET4FSD",
+        "wc_name": "Yokohama Kaidashi Kikou"
+    },
+    "Hatsukoi-Zombie": {
+        "exact_match": "1",
+        "ms_id": "Hatsukoi-Zombie",
+        "ms_name": "Hatsukoi Zombie",
+        "wc_id": "01J76XYBPJ0FNR34M4T5FH7P7J",
+        "wc_name": "Hatsukoi Zombie"
+    },
+    "One-Piece-Digital-Colored-Comics": {
+        "exact_match": "1",
+        "ms_id": "One-Piece-Digital-Colored-Comics",
+        "ms_name": "One Piece - Digital Colored Comics",
+        "wc_id": "01J76XYAQSGEJPXCSCVPQ3MHZM",
+        "wc_name": "One Piece (Color)"
+    },
+    "Henkyou-Gurashi-no-Maou-Tensei-shite-Saikyou-no-Majutsushi-ni-naru": {
+        "exact_match": "1",
+        "ms_id": "Henkyou-Gurashi-no-Maou-Tensei-shite-Saikyou-no-Majutsushi-ni-naru",
+        "ms_name": "Henkyou Gurashi no Maou",
+        "wc_id": "01J76XYE52HBPAZWSZXEW9329Q",
+        "wc_name": "Henkyou Gurashi no Maou"
+    },
+    "Kuro-no-Senki-Isekai-Teni-Shita-Boku-ga-Saikyou-na-no-wa-Bed-no-Ue-dake-no-You-desu": {
+        "exact_match": "1",
+        "ms_id": "Kuro-no-Senki-Isekai-Teni-Shita-Boku-ga-Saikyou-na-no-wa-Bed-no-Ue-dake-no-You-desu",
+        "ms_name": "Kuro no Senki: Isekai Ten'i Shita Boku ga Saikyou na no wa Bed no Ue dake no You desu",
+        "wc_id": "01J76XYE5DGW9XKY9JHMGG4FVR",
+        "wc_name": "Kuro no Senki: Isekai Ten'i Shita Boku ga Saikyou na no wa Bed no Ue dake no You desu"
+    },
+    "Downfall": {
+        "exact_match": "1",
+        "ms_id": "Downfall",
+        "ms_name": "Downfall",
+        "wc_id": "01J76XYC529NCHAMXRQGPN34QY",
+        "wc_name": "Downfall"
+    },
+    "Fate-Kaleid-Liner-Prisma-Illya": {
+        "ms_id": "Fate-Kaleid-Liner-Prisma-Illya",
+        "ms_name": "Fate/Kaleid Liner Prisma Illya",
+        "wc_id": "01J76XYA6QT7E43X6ZRXMG2FQX",
+        "wc_name": "Fate/Kaleid Liner Prisma Illya"
+    },
+    "Dandadan": {
+        "exact_match": "1",
+        "ms_id": "Dandadan",
+        "ms_name": "Dandadan",
+        "wc_id": "01J76XYEMWA55C7XTZHP1HNARM",
+        "wc_name": "Dandadan"
+    },
+    "Homunculus": {
+        "exact_match": "1",
+        "ms_id": "Homunculus",
+        "ms_name": "Homunculus",
+        "wc_id": "01J76XY9FNA8SMJ003M6NPYZA0",
+        "wc_name": "Homunculus"
+    },
+    "I-Shoujo": {
+        "exact_match": "1",
+        "ms_id": "I-Shoujo",
+        "ms_name": "I Shoujo",
+        "wc_id": "01J76XYA3FNS2RYS7MC7F98NB0",
+        "wc_name": "I Shoujo"
+    },
+    "Hoshi-No-Samidare": {
+        "exact_match": "1",
+        "ms_id": "Hoshi-No-Samidare",
+        "ms_name": "Lucifer and the Biscuit Hammer",
+        "wc_id": "01J76XY7Q8HZHXDFA9WRTF2QH2",
+        "wc_name": "Lucifer and the Biscuit Hammer"
+    },
+    "Black-Torch": {
+        "exact_match": "1",
+        "ms_id": "Black-Torch",
+        "ms_name": "Black Torch",
+        "wc_id": "01J76XYC1DW759DAPF9BNXMQJB",
+        "wc_name": "Black Torch"
+    },
+    "Toukyou-Kushu": {
+        "exact_match": "1",
+        "ms_id": "Toukyou-Kushu",
+        "ms_name": "Tokyo Ghoul",
+        "wc_id": "01J76XY9E3JSAWKXW3Q36SQ7C6",
+        "wc_name": "Tokyo Ghoul"
+    },
+    "Berserk": {
+        "exact_match": "1",
+        "ms_id": "Berserk",
+        "ms_name": "Berserk",
+        "wc_id": "01J76XY7EF75DJNQCV04HTPDZK",
+        "wc_name": "Berserk"
+    },
+    "Jigoku-no-Gouka-de-Yaka-re-Tsuzuketa-Shounen": {
+        "exact_match": "1",
+        "ms_id": "Jigoku-no-Gouka-de-Yaka-re-Tsuzuketa-Shounen",
+        "ms_name": "The Ultimate Fire Sorcerer's Return - Through Hellfire and Back!",
+        "wc_id": "01J76XYE8XVAK0G17DWBRCYTG2",
+        "wc_name": "The Ultimate Fire Sorcerer's Return - Through Hellfire and Back!"
+    },
+    "Monster-X-Monster": {
+        "exact_match": "1",
+        "ms_id": "Monster-X-Monster",
+        "ms_name": "Monster x Monster",
+        "wc_id": "01J76XYAQWJQ77QW2XNTP5K8H4",
+        "wc_name": "Monster x Monster"
+    },
+    "Monster": {
+        "exact_match": "1",
+        "ms_id": "Monster",
+        "ms_name": "Monster",
+        "wc_id": "01J76XY7Q93ESEF90J5MBQBF3K",
+        "wc_name": "Monster"
+    },
+    "High-Score-Girl-DASH": {
+        "exact_match": "1",
+        "ms_id": "High-Score-Girl-DASH",
+        "ms_name": "High Score Girl DASH",
+        "wc_id": "01J76XYDFH6KMEXNYMR57PCE1M",
+        "wc_name": "High Score Girl DASH"
+    },
+    "High-Score-Girl": {
+        "exact_match": "1",
+        "ms_id": "High-Score-Girl",
+        "ms_name": "Hi Score Girl",
+        "wc_id": "01J76XY9Z5EF7KRXQA3QJ4W5SE",
+        "wc_name": "Hi Score Girl"
+    },
+    "Special-A": {
+        "exact_match": "1",
+        "ms_id": "Special-A",
+        "ms_name": "S.A - Special A",
+        "wc_id": "01J76XY7GPFP1NDVWTMM4Y4HJN",
+        "wc_name": "S.A - Special A"
+    },
+    "Double-Arts": {
+        "exact_match": "1",
+        "ms_id": "Double-Arts",
+        "ms_name": "Double Arts",
+        "wc_id": "01J76XY7YZVYQ6T7C5TK3W3CRT",
+        "wc_name": "Double Arts"
+    },
+    "Black-Clover": {
+        "exact_match": "1",
+        "ms_id": "Black-Clover",
+        "ms_name": "Black Clover",
+        "wc_id": "01J76XYB8HNWARAQ67A4GAWG5Y",
+        "wc_name": "Black Clover"
+    },
+    "Tou-no-Kanri-o-Shite-Miyou": {
+        "exact_match": "1",
+        "ms_id": "Tou-no-Kanri-o-Shite-Miyou",
+        "ms_name": "Tou no Kanri o Shite Miyou",
+        "wc_id": "01J76XYDGP9S8B7357EWSDP89C",
+        "wc_name": "Tou no Kanri o Shite Miyou"
+    },
+    "Bleach": {
+        "exact_match": "1",
+        "ms_id": "Bleach",
+        "ms_name": "Bleach",
+        "wc_id": "01J76XY7E4JCPK14V53BVQWD9Y",
+        "wc_name": "Bleach"
+    },
+    "Break-Blade": {
+        "exact_match": "1",
+        "ms_id": "Break-Blade",
+        "ms_name": "Break Blade",
+        "wc_id": "01J76XY7PMJMYMZ09EA3S45A4E",
+        "wc_name": "Break Blade"
+    },
+    "Antimagic-Academy35th-Test-Platoon": {
+        "exact_match": "1",
+        "ms_id": "Antimagic-Academy35th-Test-Platoon",
+        "ms_name": "Antimagic Academy - 35th Test Platoon",
+        "wc_id": "01J76XY98VP4B30CPA1ZT171YN",
+        "wc_name": "Antimagic Academy - 35th Test Platoon"
+    },
+    "Antimagic-Academy---35th-Test-Platoon-yasumura-Youhei": {
+        "ms_id": "Antimagic-Academy---35th-Test-Platoon-yasumura-Youhei",
+        "ms_name": "Anti-Magic Academy - The 35th Test Platoon",
+        "wc_id": "01J76XYCE2D4532S7Q9AKYJFVZ",
+        "wc_name": "Anti-Magic Academy - The 35th Test Platoon"
+    },
+    "Kingdom": {
+        "exact_match": "1",
+        "ms_id": "Kingdom",
+        "ms_name": "Kingdom",
+        "wc_id": "01J76XY7VSG3R5ANYPDWTXDVP6",
+        "wc_name": "Kingdom"
+    },
+    "Edens-Zero": {
+        "exact_match": "1",
+        "ms_id": "Edens-Zero",
+        "ms_name": "Edens Zero",
+        "wc_id": "01J76XYCDXZ2GFY1M9GFCKTFAW",
+        "wc_name": "Edens Zero"
+    },
+    "Solo-Leveling-Volume-Version": {
+        "exact_match": "1",
+        "ms_id": "Solo-Leveling-Volume-Version",
+        "ms_name": "Solo Leveling Volume Version",
+        "wc_id": "01J76XYEJVJ5H6AXPYWS4G0CFV",
+        "wc_name": "Solo Leveling (Volume)"
+    },
+    "Jagaaaaaan": {
+        "exact_match": "1",
+        "ms_id": "Jagaaaaaan",
+        "ms_name": "Jagaaaaaan",
+        "wc_id": "01J76XYC1X45GBJPCV3VXWK1WF",
+        "wc_name": "Jagaaaaaan"
+    },
+    "Yuragi-Sou-No-Yuuna-San": {
+        "exact_match": "1",
+        "ms_id": "Yuragi-Sou-No-Yuuna-San",
+        "ms_name": "Yuuna and the Haunted Hot Springs",
+        "wc_id": "01J76XYBPYFRNBCM4B3A2822NG",
+        "wc_name": "Yuuna and the Haunted Hot Springs"
+    },
+    "Tensei-Shitara-dai-Nana-Ouji-dattanode-Kimamani-Majutsu-o-Kiwamemasu": {
+        "exact_match": "1",
+        "ms_id": "Tensei-Shitara-dai-Nana-Ouji-dattanode-Kimamani-Majutsu-o-Kiwamemasu",
+        "ms_name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magicals",
+        "wc_id": "01J76XYE7E41J26Q2F3EY17382",
+        "wc_name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magicals"
+    },
+    "Kitchen-Palette": {
+        "exact_match": "1",
+        "ms_id": "Kitchen-Palette",
+        "ms_name": "Kitchen Palette",
+        "wc_id": "01J76XY8TPZWBRKZD02V584HX0",
+        "wc_name": "Kitchen Palette"
+    },
+    "Saikyou-Degarashi-Ouji-no-Anyaku-Teii-Arasoi": {
+        "exact_match": "1",
+        "ms_id": "Saikyou-Degarashi-Ouji-no-Anyaku-Teii-Arasoi",
+        "ms_name": "Saikyou Degarashi Ouji no An'yaku Teii Arasoi",
+        "wc_id": "01J76XYDG484RSNWMD8JKFB3K4",
+        "wc_name": "Saikyou Degarashi Ouji no An'yaku Teii Arasoi"
+    },
+    "Ijiranaide-Nagatoro-san": {
+        "exact_match": "1",
+        "ms_id": "Ijiranaide-Nagatoro-san",
+        "ms_name": "Don't Toy With Me, Miss Nagatoro",
+        "wc_id": "01J76XYCJ1SSSQSAEKZXCMKMAD",
+        "wc_name": "Don't Toy With Me, Miss Nagatoro"
+    },
+    "Barbara": {
+        "ms_id": "Barbara",
+        "ms_name": "Barbara",
+        "wc_id": "01J76XYAT9YN64T1TY201WXG2A",
+        "wc_name": "Barbara"
+    },
+    "Aiki-S": {
+        "exact_match": "1",
+        "ms_id": "Aiki-S",
+        "ms_name": "Aiki-S",
+        "wc_id": "01J76XY98GZJ1SMQJXPTZMNPPC",
+        "wc_name": "Aiki-S"
+    },
+    "Kikou-Shoujo-Wa-Kizutsukanai": {
+        "exact_match": "1",
+        "ms_id": "Kikou-Shoujo-Wa-Kizutsukanai",
+        "ms_name": "Kikou Shoujo wa Kizutsukanai",
+        "wc_id": "01J76XY7R2MEQ8GE0YQKYYT0RK",
+        "wc_name": "Kikou Shoujo wa Kizutsukanai"
+    },
+    "To-Aru-Kagaku-No-Choudenjihou": {
+        "exact_match": "1",
+        "ms_id": "To-Aru-Kagaku-No-Choudenjihou",
+        "ms_name": "A Certain Scientific Railgun",
+        "wc_id": "01J76XY7T2P3PY2CAXRS52H6TM",
+        "wc_name": "A Certain Scientific Railgun"
+    },
+    "Date-A-Live": {
+        "exact_match": "1",
+        "ms_id": "Date-A-Live",
+        "ms_name": "Date a Live",
+        "wc_id": "01J76XY88GHAHVHRQF8AQE516X",
+        "wc_name": "Date a Live"
+    },
+    "To-Aru-Majutsu-No-Index": {
+        "exact_match": "1",
+        "ms_id": "To-Aru-Majutsu-No-Index",
+        "ms_name": "A Certain Magical Index",
+        "wc_id": "01J76XY7N95Q35WATKQFMHZS09",
+        "wc_name": "A Certain Magical Index"
+    },
+    "Himouto-Umaru-chan-G": {
+        "exact_match": "1",
+        "ms_id": "Himouto-Umaru-chan-G",
+        "ms_name": "Himouto! Umaru-chan G",
+        "wc_id": "01J76XYEK8MAQWKBY76E1DYR67",
+        "wc_name": "Himouto! Umaru-chan G"
+    },
+    "Himouto-Umaru-Chan": {
+        "ms_id": "Himouto-Umaru-Chan",
+        "ms_name": "Himouto! Umaru-chan",
+        "wc_id": "01J76XY9ZMM9FMKDF0EPEE64DC",
+        "wc_name": "Himouto! Umaru-chan"
+    },
+    "Nisekoi": {
+        "exact_match": "1",
+        "ms_id": "Nisekoi",
+        "ms_name": "Nisekoi - False Love",
+        "wc_id": "01J76XY7F84AQF7DNFA0865TGQ",
+        "wc_name": "Nisekoi - False Love"
+    },
+    "Ore-No-Kanojo-To-Osananajimi-Ga-Shuraba-Sugiru-Plus-H": {
+        "exact_match": "1",
+        "ms_id": "Ore-No-Kanojo-To-Osananajimi-Ga-Shuraba-Sugiru-Plus-H",
+        "ms_name": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru + H",
+        "wc_id": "01J76XY95MHEPJ4F1RSRHMWZQ5",
+        "wc_name": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru + H"
+    },
+    "My-Little-Sister-Cant-Be-This-Cute": {
+        "exact_match": "1",
+        "ms_id": "My-Little-Sister-Cant-Be-This-Cute",
+        "ms_name": "Oreimo",
+        "wc_id": "01J76XY807G3H5QSXMA20BC09D",
+        "wc_name": "Oreimo"
+    },
+    "Angel-Beats-Heavens-Door": {
+        "exact_match": "1",
+        "ms_id": "Angel-Beats-Heavens-Door",
+        "ms_name": "Angel Beats! - Heaven's Door",
+        "wc_id": "01J76XY7ZAYMM0GFJR6EYFX8NQ",
+        "wc_name": "Angel Beats! - Heaven's Door"
+    },
+    "Kono-Subarashii-Sekai-Ni-Shukufuku-O": {
+        "exact_match": "1",
+        "ms_id": "Kono-Subarashii-Sekai-Ni-Shukufuku-O",
+        "ms_name": "Konosuba: God's Blessing on This Wonderful World!",
+        "wc_id": "01J76XYAQ48RHVHTHZ7XBBAA4Z",
+        "wc_name": "Konosuba: God's Blessing on This Wonderful World!"
+    },
+    "Black-Bullet": {
+        "exact_match": "1",
+        "ms_id": "Black-Bullet",
+        "ms_name": "Black Bullet",
+        "wc_id": "01J76XY98ZH3JQ7KHYR31Y0G9C",
+        "wc_name": "Black Bullet"
+    },
+    "To-Love-Ru": {
+        "exact_match": "1",
+        "ms_id": "To-Love-Ru",
+        "ms_name": "To Love-Ru",
+        "wc_id": "01J76XY7GVFMHQS20MREBACA6D",
+        "wc_name": "To LOVE-Ru"
+    },
+    "To-Love-Ru-Darkness": {
+        "exact_match": "1",
+        "ms_id": "To-Love-Ru-Darkness",
+        "ms_name": "To Love-Ru Darkness",
+        "wc_id": "01J76XY7FNP8T6RJQAEFJCBA44",
+        "wc_name": "To LOVE-Ru Darkness"
+    },
+    "Akuma-To-Dolce": {
+        "exact_match": "1",
+        "ms_id": "Akuma-To-Dolce",
+        "ms_name": "Akuma to Dolce",
+        "wc_id": "01J76XY9HDXN66AB6NHCP7DJ98",
+        "wc_name": "Akuma to Dolce"
+    },
+    "To-Aru-Nichijou-No-Index-San": {
+        "exact_match": "1",
+        "ms_id": "To-Aru-Nichijou-No-Index-San",
+        "ms_name": "To Aru Nichijou no Index-san",
+        "wc_id": "01J76XYBF6TKTG0HZH2GZF6FJA",
+        "wc_name": "To Aru Nichijou no Index-san"
+    },
+    "Ore-No-Kanojo-To-Osananajimi-Ga-Shuraba-Sugiru-Ai": {
+        "exact_match": "1",
+        "ms_id": "Ore-No-Kanojo-To-Osananajimi-Ga-Shuraba-Sugiru-Ai",
+        "ms_name": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru Ai",
+        "wc_id": "01J76XY9X5GXX87VR6951A6RSD",
+        "wc_name": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru Ai"
+    },
+    "To-Aru-Kagaku-No-Railgun-Gaiden-Astral-Body": {
+        "exact_match": "1",
+        "ms_id": "To-Aru-Kagaku-No-Railgun-Gaiden-Astral-Body",
+        "ms_name": "A Certain Scientific Railgun - Astral Buddy",
+        "wc_id": "01J76XYCW6848TN3SQJ3JGZDZ8",
+        "wc_name": "A Certain Scientific Railgun - Astral Buddy"
+    },
+    "Tsurugi-no-Joou-to-Rakuin-no-Ko": {
+        "exact_match": "1",
+        "ms_id": "Tsurugi-no-Joou-to-Rakuin-no-Ko",
+        "ms_name": "Tsurugi no Joou to Rakuin no Ko",
+        "wc_id": "01J76XYDQ48ZKSTXMSMQXX6A08",
+        "wc_name": "Tsurugi no Joou to Rakuin no Ko"
+    },
+    "Ore-No-Kanojo-To-Osananajimi-Ga-Shuraba-Sugiru": {
+        "exact_match": "1",
+        "ms_id": "Ore-No-Kanojo-To-Osananajimi-Ga-Shuraba-Sugiru",
+        "ms_name": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru",
+        "wc_id": "01J76XY89377W7SM4GQ51CEYBY",
+        "wc_name": "Ore no Kanojo to Osananajimi ga Shuraba Sugiru"
+    },
+    "Boku-No-Kanojo-Ga-Majime-Sugiru-Shojo-Bitch-Na-Ken": {
+        "exact_match": "1",
+        "ms_id": "Boku-No-Kanojo-Ga-Majime-Sugiru-Shojo-Bitch-Na-Ken",
+        "ms_name": "Boku no Kanojo ga Majime Sugiru Shojo Bitch na Ken",
+        "wc_id": "01J76XYBP5E70B0Q568K1KA7CA",
+        "wc_name": "Boku no Kanojo ga Majime Sugiru Shojo Bitch na Ken"
+    },
+    "Its-Fun-Having-a-300000-Yen-a-Month-Job": {
+        "exact_match": "1",
+        "ms_id": "Its-Fun-Having-a-300000-Yen-a-Month-Job",
+        "ms_name": "It's Fun Having a 300,000 Yen a Month Job Welcoming Home an Onee-San Who Doesn't Find Meaning in a Job That Pays Her 500,000 Yen a Month",
+        "wc_id": "01J76XYDHSCKFSEKKJRH4HYRMR",
+        "wc_name": "It's Fun Having a 300,000 Yen a Month Job Welcoming Home an Onee-San Who Doesn't Find Meaning in a Job That Pays Her 500,000 Yen a Month"
+    },
+    "Kodomo-No-Jikan": {
+        "exact_match": "1",
+        "ms_id": "Kodomo-No-Jikan",
+        "ms_name": "Kodomo no Jikan",
+        "wc_id": "01J76XYA25FBN4YVE88RRKSJFX",
+        "wc_name": "Kodomo no Jikan"
+    },
+    "Omae-O-Otaku-Ni-Shiteyaru-Kara": {
+        "exact_match": "1",
+        "ms_id": "Omae-O-Otaku-Ni-Shiteyaru-Kara",
+        "ms_name": "Omae o Otaku ni Shiteyaru kara, Ore o Riajuu ni Shitekure!",
+        "wc_id": "01J76XY8TZQQ39XMF2PN8RR5WB",
+        "wc_name": "Omae o Otaku ni Shiteyaru kara, Ore o Riajuu ni Shitekure!"
+    },
+    "Sakurai-san-Wants-to-Be-Noticed": {
+        "exact_match": "1",
+        "ms_id": "Sakurai-san-Wants-to-Be-Noticed",
+        "ms_name": "Sakurai-san Wants to Be Noticed",
+        "wc_id": "01J76XYDXFHPSDCPN5GXFBS024",
+        "wc_name": "Sakurai-san Wants to Be Noticed"
+    },
+    "Steel-Ball-Run": {
+        "ms_id": "Steel-Ball-Run",
+        "ms_name": "JoJo's Bizarre Adventure - Part 7 - Steel Ball Run",
+        "wc_id": "01J76XY8NHVJYQJ3VJB51PAQ7B",
+        "wc_name": "JoJo's Bizarre Adventure - Part 7 - Steel Ball Run"
+    },
+    "Boku-To-Rune-To-Aoarashi": {
+        "exact_match": "1",
+        "ms_id": "Boku-To-Rune-To-Aoarashi",
+        "ms_name": "Boku to Rune to Aoarashi",
+        "wc_id": "01J76XYBSP8E43F131JM7WK7B3",
+        "wc_name": "Boku to Rune to Aoarashi"
+    },
+    "Tanaka-Kun-Wa-Itsumo-Kedaruge": {
+        "exact_match": "1",
+        "ms_id": "Tanaka-Kun-Wa-Itsumo-Kedaruge",
+        "ms_name": "Tanaka-kun wa Itsumo Kedaruge",
+        "wc_id": "01J76XY9DSCCV1MGF9612ARRAF",
+        "wc_name": "Tanaka-kun wa Itsumo Kedaruge"
+    },
+    "Fortune-Arterial-Characters-Prelude": {
+        "exact_match": "1",
+        "ms_id": "Fortune-Arterial-Characters-Prelude",
+        "ms_name": "Fortune Arterial - Character's Prelude",
+        "wc_id": "01J76XY8MJ0ZY1W902RTXNCES5",
+        "wc_name": "Fortune Arterial - Character's Prelude"
+    },
+    "Naruto-Digital-Colored-Comics": {
+        "exact_match": "1",
+        "ms_id": "Naruto-Digital-Colored-Comics",
+        "ms_name": "Naruto - Color",
+        "wc_id": "01J76XYBK4HFZMAWWKX52WN8PK",
+        "wc_name": "Naruto (Color)"
+    },
+    "Boku-No-Hero-Academia-Smash": {
+        "exact_match": "1",
+        "ms_id": "Boku-No-Hero-Academia-Smash",
+        "ms_name": "My Hero Academia - Smash!!",
+        "wc_id": "01J76XYBGRFWW472AVW9VQGGHJ",
+        "wc_name": "My Hero Academia - Smash!!"
+    },
+    "Vigilante-Boku-No-Hero-Academia-Illegals": {
+        "exact_match": "1",
+        "ms_id": "Vigilante-Boku-No-Hero-Academia-Illegals",
+        "ms_name": "My Hero Academia - Vigilantes",
+        "wc_id": "01J76XYBYZC021JDNFZ372G2SP",
+        "wc_name": "My Hero Academia - Vigilantes"
+    },
+    "Naruto-Gaiden-The-Seventh-Hokage": {
+        "exact_match": "1",
+        "ms_id": "Naruto-Gaiden-The-Seventh-Hokage",
+        "ms_name": "Naruto - The Seventh Hokage And The Scarlet Spring",
+        "wc_id": "01J76XYB8G4QYWDWD1HT4TN887",
+        "wc_name": "Naruto - The Seventh Hokage And The Scarlet Spring"
+    },
+    "Mob-Psycho100": {
+        "ms_id": "Mob-Psycho100",
+        "ms_name": "Mob Psycho 100",
+        "wc_id": "01J76XY9WY1HW989FW5G9ZYE9G",
+        "wc_name": "Mob Psycho 100"
+    },
+    "Mob-Psycho-100-Reigen": {
+        "exact_match": "1",
+        "ms_id": "Mob-Psycho-100-Reigen",
+        "ms_name": "Mob Psycho 100 - Reigen",
+        "wc_id": "01J76XYE61EK14BA2J700GP4GF",
+        "wc_name": "Mob Psycho 100 - Reigen"
+    },
+    "Sekai-Saikyou-no-Assassin-Isekai-Kizoku-ni-Tensei-Suru": {
+        "exact_match": "1",
+        "ms_id": "Sekai-Saikyou-no-Assassin-Isekai-Kizoku-ni-Tensei-Suru",
+        "ms_name": "The World's Finest Assassin Gets Reincarnated in Another World as an Aristocrat",
+        "wc_id": "01J76XYDADPAWNNQTNR2Q1QM8S",
+        "wc_name": "The World's Finest Assassin Gets Reincarnated in Another World as an Aristocrat"
+    },
+    "How-Do-We-Relationship": {
+        "exact_match": "1",
+        "ms_id": "How-Do-We-Relationship",
+        "ms_name": "How Do We Relationship",
+        "wc_id": "01J76XYDH3P7VSX7DQVXP5V912",
+        "wc_name": "How Do We Relationship"
+    },
+    "Tate-No-Yuusha-No-Nariagari": {
+        "exact_match": "1",
+        "ms_id": "Tate-No-Yuusha-No-Nariagari",
+        "ms_name": "The Rising Of The Shield Hero",
+        "wc_id": "01J76XYACYRE3ZD9A9519PA8A8",
+        "wc_name": "The Rising Of The Shield Hero"
+    },
+    "Hare-Kon": {
+        "exact_match": "1",
+        "ms_id": "Hare-Kon",
+        "ms_name": "Harem Marriage",
+        "wc_id": "01J76XYAEWH27DENK4H6RM68GQ",
+        "wc_name": "Harem Marriage"
+    },
+    "Toukyou-Kushure": {
+        "exact_match": "1",
+        "ms_id": "Toukyou-Kushure",
+        "ms_name": "Tokyo Ghoul:re",
+        "wc_id": "01J76XYADK6G728V2MRK0C5GEB",
+        "wc_name": "Tokyo Ghoul:re"
+    },
+    "Infection": {
+        "exact_match": "1",
+        "ms_id": "Infection",
+        "ms_name": "Infection",
+        "wc_id": "01J76XYBWEJBGSVF5H8H06993K",
+        "wc_name": "Infection"
+    },
+    "Sono-Mono-Nochi-Ni-nariie-Shinichirou": {
+        "exact_match": "1",
+        "ms_id": "Sono-Mono-Nochi-Ni-nariie-Shinichirou",
+        "ms_name": "Sono Mono. Nochi ni... (NARIIE Shinichirou)",
+        "wc_id": "01J76XYCPTEVCC4PD0KJ9VP7BS",
+        "wc_name": "Sono Mono. Nochi ni... (NARIIE Shinichirou)"
+    },
+    "Mahou-Shoujo-Of-The-End": {
+        "exact_match": "1",
+        "ms_id": "Mahou-Shoujo-Of-The-End",
+        "ms_name": "Magical Girl Apocalypse",
+        "wc_id": "01J76XY7Y9T692K04ZHQX1XTJ3",
+        "wc_name": "Magical Girl Apocalypse"
+    },
+    "Shangri-La-Frontier": {
+        "exact_match": "1",
+        "ms_id": "Shangri-La-Frontier",
+        "ms_name": "Shangri-La Frontier",
+        "wc_id": "01J76XYDXH7KT6AABVG3JAT3ZP",
+        "wc_name": "Shangri-La Frontier"
+    },
+    "The-Fable": {
+        "exact_match": "1",
+        "ms_id": "The-Fable",
+        "ms_name": "The Fable",
+        "wc_id": "01J76XYDJJD4P50VFRBX51AG0M",
+        "wc_name": "The Fable"
+    },
+    "Isekai-de-Slow-Life-wo-Ganbou": {
+        "exact_match": "1",
+        "ms_id": "Isekai-de-Slow-Life-wo-Ganbou",
+        "ms_name": "Slow Life in Another World (I Wish!)",
+        "wc_id": "01J76XYD7YCM9G6G27ZD45GZVW",
+        "wc_name": "Slow Life in Another World (I Wish!)"
+    },
+    "Karate-Baka-Isekai": {
+        "exact_match": "1",
+        "ms_id": "Karate-Baka-Isekai",
+        "ms_name": "Karate Master Isekai",
+        "wc_id": "01J76XYD86R4RMARWT9WVN19M5",
+        "wc_name": "Karate Master Isekai"
+    },
+    "Goshujin-sama-to-Yuku-Isekai-Survival": {
+        "exact_match": "1",
+        "ms_id": "Goshujin-sama-to-Yuku-Isekai-Survival",
+        "ms_name": "Survival in Another World with My Mistress",
+        "wc_id": "01J76XYDKGBG9VSYX83KZQXPCK",
+        "wc_name": "Survival in Another World with My Mistress"
+    },
+    "Mieruko-chan": {
+        "exact_match": "1",
+        "ms_id": "Mieruko-chan",
+        "ms_name": "Mieruko-chan",
+        "wc_id": "01J76XYD3082FSG4AVMFK52KCD",
+        "wc_name": "Mieruko-chan"
+    },
+    "Beelzebub": {
+        "exact_match": "1",
+        "ms_id": "Beelzebub",
+        "ms_name": "Beelzebub",
+        "wc_id": "01J76XY7EEHWD3S0TQ5T4KE8Y1",
+        "wc_name": "Beelzebub"
+    },
+    "Beelzebub-Side-Story": {
+        "ms_id": "Beelzebub-Side-Story",
+        "ms_name": "Beelzebub Side Story",
+        "wc_id": "01J76XYA2SD0ZBR5JB1AREKNTT",
+        "wc_name": "Beelzebub Side Story"
+    },
+    "Kawaiikereba-Hentai-Demo-Suki-Ni-Natte-Kuremasu-Ka": {
+        "exact_match": "1",
+        "ms_id": "Kawaiikereba-Hentai-Demo-Suki-Ni-Natte-Kuremasu-Ka",
+        "ms_name": "Kawaiikereba Hentai demo Suki ni Natte Kuremasu ka?",
+        "wc_id": "01J76XYCGHKJN4FN7814XT9CT6",
+        "wc_name": "Kawaiikereba Hentai demo Suki ni Natte Kuremasu ka?"
+    },
+    "Komi-san-Wa-Komyushou-Desu": {
+        "exact_match": "1",
+        "ms_id": "Komi-san-Wa-Komyushou-Desu",
+        "ms_name": "Komi Can\u2019t Communicate",
+        "wc_id": "01J76XYC01B9DNWSX6MVWN5QFX",
+        "wc_name": "Komi Can\u2019t Communicate"
+    },
+    "Sundome-Milky-Way": {
+        "exact_match": "1",
+        "ms_id": "Sundome-Milky-Way",
+        "ms_name": "Sundome!! Milky Way",
+        "wc_id": "01J76XYE9BHHRDXQX17QTDZWET",
+        "wc_name": "Sundome!! Milky Way"
+    },
+    "Full-Metal-Panic": {
+        "exact_match": "1",
+        "ms_id": "Full-Metal-Panic",
+        "ms_name": "Full Metal Panic!",
+        "wc_id": "01J76XY8P4DN68A8PRR1STXXRF",
+        "wc_name": "Full Metal Panic!"
+    },
+    "Full-Metal-Panic-Overload": {
+        "ms_id": "Full-Metal-Panic-Overload",
+        "ms_name": "Full Metal Panic! Overload!",
+        "wc_id": "01J76XYAWVC30E1TAFWAB9SCWS",
+        "wc_name": "Full Metal Panic! Overload!"
+    },
+    "Historie": {
+        "exact_match": "1",
+        "ms_id": "Historie",
+        "ms_name": "Historie",
+        "wc_id": "01J76XY7PCP3F9KSRNAPBY38BW",
+        "wc_name": "Historie"
+    },
+    "Tensura-Nikki-Tensei-Shitara-Slime-Datta-Ken": {
+        "exact_match": "1",
+        "ms_id": "Tensura-Nikki-Tensei-Shitara-Slime-Datta-Ken",
+        "ms_name": "The Slime Diaries - That Time I Got Reincarnated as a Slime",
+        "wc_id": "01J76XYD128GT4THCKFB0S4ZGR",
+        "wc_name": "The Slime Diaries - That Time I Got Reincarnated as a Slime"
+    },
+    "That-Time-I-Got-Reincarnated-Again-as-a-Workaholic-Slime": {
+        "exact_match": "1",
+        "ms_id": "That-Time-I-Got-Reincarnated-Again-as-a-Workaholic-Slime",
+        "ms_name": "That Time I Got Reincarnated (Again!) as a Workaholic Slime",
+        "wc_id": "01J76XYDTQJGMNEEN82R994NMP",
+        "wc_name": "That Time I Got Reincarnated (Again!) as a Workaholic Slime"
+    },
+    "Kimi-no-Okasan-o-Boku-ni-Kudasai": {
+        "exact_match": "1",
+        "ms_id": "Kimi-no-Okasan-o-Boku-ni-Kudasai",
+        "ms_name": "Kimi no Okasan o Boku Ni Kudasai!",
+        "wc_id": "01J76XYD6506Q94X795T3EKA1P",
+        "wc_name": "Kimi no Okasan o Boku Ni Kudasai!"
+    },
+    "Maid-san-wa-Taberu-Dake": {
+        "exact_match": "1",
+        "ms_id": "Maid-san-wa-Taberu-Dake",
+        "ms_name": "The Food Diary of Miss Maid",
+        "wc_id": "01J76XYE5JAWV4EGDJDG9Z734B",
+        "wc_name": "The Food Diary of Miss Maid"
+    },
+    "Futari-Solo-Camp": {
+        "exact_match": "1",
+        "ms_id": "Futari-Solo-Camp",
+        "ms_name": "Futari Solo Camp",
+        "wc_id": "01J76XYE8QW7NPM81QQWDDYR16",
+        "wc_name": "Futari Solo Camp"
+    },
+    "Youkoso-Jitsuryoku-Shijou-Shugi-No-Kyoushitsu-E": {
+        "exact_match": "1",
+        "ms_id": "Youkoso-Jitsuryoku-Shijou-Shugi-No-Kyoushitsu-E",
+        "ms_name": "Classroom of the Elite",
+        "wc_id": "01J76XYCRP41FV944QRKNNJBRC",
+        "wc_name": "Classroom of the Elite"
+    },
+    "Midori-No-Hibi": {
+        "ms_id": "Midori-No-Hibi",
+        "ms_name": "Midori no Hibi",
+        "wc_id": "01J76XY8DN7BVTBC96QS9KR5GW",
+        "wc_name": "Midori no Hibi"
+    },
+    "Ryuuroden": {
+        "exact_match": "1",
+        "ms_id": "Ryuuroden",
+        "ms_name": "Ryuuroden",
+        "wc_id": "01J76XY83JCP0ZNPB3HCRDDCF1",
+        "wc_name": "Ryuuroden"
+    },
+    "Tomogui-Kyoushitsu": {
+        "exact_match": "1",
+        "ms_id": "Tomogui-Kyoushitsu",
+        "ms_name": "Tomogui Kyoushitsu",
+        "wc_id": "01J76XYCHCQQVXDJC5PK1KZ61Q",
+        "wc_name": "Tomogui Kyoushitsu"
+    },
+    "Dissolving-Classroom": {
+        "exact_match": "1",
+        "ms_id": "Dissolving-Classroom",
+        "ms_name": "Dissolving Classroom",
+        "wc_id": "01J76XYE1DAGBQHWXVGQJ2XNW3",
+        "wc_name": "Dissolving Classroom"
+    },
+    "Fukushuu-Kyoushitsu": {
+        "exact_match": "1",
+        "ms_id": "Fukushuu-Kyoushitsu",
+        "ms_name": "Fukushuu Kyoushitsu",
+        "wc_id": "01J76XYB3Q1BWP3D91M9X29QVS",
+        "wc_name": "Fukushuu Kyoushitsu"
+    },
+    "Neet-Dakedo-Hello-Work-Ni-Ittara-Isekai-Ni-Tsuretekareta": {
+        "exact_match": "1",
+        "ms_id": "Neet-Dakedo-Hello-Work-Ni-Ittara-Isekai-Ni-Tsuretekareta",
+        "ms_name": "NEET dakedo Hello Work ni Ittara Isekai ni Tsuretekareta",
+        "wc_id": "01J76XYCSZNVDM3JQ79THPFMW6",
+        "wc_name": "NEET dakedo Hello Work ni Ittara Isekai ni Tsuretekareta"
+    },
+    "Goblin-Slayer-Side-Story-Brand-New-Day": {
+        "exact_match": "1",
+        "ms_id": "Goblin-Slayer-Side-Story-Brand-New-Day",
+        "ms_name": "Goblin Slayer - Brand New Day",
+        "wc_id": "01J76XYCEEXWK1YS2100HJ9FQY",
+        "wc_name": "Goblin Slayer - Brand New Day"
+    },
+    "Isekai-Cheat-Kaitakuki": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Cheat-Kaitakuki",
+        "ms_name": "Isekai Cheat Kaitakuki",
+        "wc_id": "01J76XYE6TB2KS59P5Q1T8BJYZ",
+        "wc_name": "Isekai Cheat Kaitakuki"
+    },
+    "Horimiya": {
+        "exact_match": "1",
+        "ms_id": "Horimiya",
+        "ms_name": "Horimiya",
+        "wc_id": "01J76XY7PBJ0A3GC5PC79VET42",
+        "wc_name": "Horimiya"
+    },
+    "Kirei-Ni-Shite-Moraemasu-Ka": {
+        "exact_match": "1",
+        "ms_id": "Kirei-Ni-Shite-Moraemasu-Ka",
+        "ms_name": "Kirei ni shite moraemasu ka",
+        "wc_id": "01J76XYCXHT99WEW8ATYGR0CK8",
+        "wc_name": "Kirei ni shite moraemasu ka"
+    },
+    "Solo-Login": {
+        "exact_match": "1",
+        "ms_id": "Solo-Login",
+        "ms_name": "I Log In Alone",
+        "wc_id": "01J76XYEGDCR38SA3Y17MQA1C7",
+        "wc_name": "I Log In Alone"
+    },
+    "Sayounara-Ryuusei-Konnichiwa-Jinsei": {
+        "exact_match": "1",
+        "ms_id": "Sayounara-Ryuusei-Konnichiwa-Jinsei",
+        "ms_name": "Goodbye, Dragon Life",
+        "wc_id": "01J76XYBTYCF7BRN6ZDGJ7A55W",
+        "wc_name": "Goodbye, Dragon Life"
+    },
+    "Isekai-NTR-Shinyuu-no-Onna-wo-Saikyou-Skill-de-Otosu-Houhou": {
+        "exact_match": "1",
+        "ms_id": "Isekai-NTR-Shinyuu-no-Onna-wo-Saikyou-Skill-de-Otosu-Houhou",
+        "ms_name": "Isekai NTR ~Shinyuu no Onna wo Saikyou Skill de Otosu Houhou~",
+        "wc_id": "01J76XYDRNGYNET2371JYZD84N",
+        "wc_name": "Isekai NTR ~Shinyuu no Onna wo Saikyou Skill de Otosu Houhou~"
+    },
+    "New-Normal": {
+        "exact_match": "1",
+        "ms_id": "New-Normal",
+        "ms_name": "New Normal",
+        "wc_id": "01J76XYEE47QT44EYWEHXYZ7PE",
+        "wc_name": "New Normal"
+    },
+    "Rengoku-No-Karma": {
+        "exact_match": "1",
+        "ms_id": "Rengoku-No-Karma",
+        "ms_name": "Rengoku no Karma",
+        "wc_id": "01J76XYBKFC52QEJW9EFNZ3Z2D",
+        "wc_name": "Rengoku no Karma"
+    },
+    "Gundam-Legacy": {
+        "exact_match": "1",
+        "ms_id": "Gundam-Legacy",
+        "ms_name": "Gundam Legacy",
+        "wc_id": "01J76XYAX0F7ZFXSJY9RRRQXCG",
+        "wc_name": "Gundam Legacy"
+    },
+    "Gundam-Build-Fighters-A": {
+        "exact_match": "1",
+        "ms_id": "Gundam-Build-Fighters-A",
+        "ms_name": "Gundam Build Fighters A",
+        "wc_id": "01J76XYANAAYF5PA0CQZTJNJNC",
+        "wc_name": "Gundam Build Fighters A"
+    },
+    "Mobile-Suit-Gundam-The-Origin": {
+        "ms_id": "Mobile-Suit-Gundam-The-Origin",
+        "ms_name": "Mobile Suit Gundam: The Origin",
+        "wc_id": "01J76XYBBFEGS03TAW21JKX3R3",
+        "wc_name": "Mobile Suit Gundam: The Origin"
+    },
+    "Rebuild-World": {
+        "exact_match": "1",
+        "ms_id": "Rebuild-World",
+        "ms_name": "Rebuild World",
+        "wc_id": "01J76XYD8HY3KSMY47BCEBX8PF",
+        "wc_name": "Rebuild World"
+    },
+    "Umi-No-Misaki": {
+        "exact_match": "1",
+        "ms_id": "Umi-No-Misaki",
+        "ms_name": "Umi no Misaki",
+        "wc_id": "01J76XY7J6P6FSW22GC9T6P2HG",
+        "wc_name": "Umi no Misaki"
+    },
+    "Diamond-No-Ace-Act-I-I": {
+        "exact_match": "1",
+        "ms_id": "Diamond-No-Ace-Act-I-I",
+        "ms_name": "Diamond no Ace Act II",
+        "wc_id": "01J76XYBASVMF7XXJ2VMGC2RRT",
+        "wc_name": "Ace of the Diamond: Act II"
+    },
+    "Dosanko-Gyaru-Is-Mega-Cute": {
+        "exact_match": "1",
+        "ms_id": "Dosanko-Gyaru-Is-Mega-Cute",
+        "ms_name": "Dosanko Gyaru Is Mega Cute",
+        "wc_id": "01J76XYD2J8J13B7HX66S6HMBF",
+        "wc_name": "Dosanko Gyaru Is Mega Cute"
+    },
+    "Yuusha-Ga-Shinda": {
+        "exact_match": "1",
+        "ms_id": "Yuusha-Ga-Shinda",
+        "ms_name": "Yuusha ga Shinda!",
+        "wc_id": "01J76XYB7NAP3DB4749RK9MZHR",
+        "wc_name": "Yuusha ga Shinda!"
+    },
+    "Suzuka": {
+        "exact_match": "1",
+        "ms_id": "Suzuka",
+        "ms_name": "Suzuka",
+        "wc_id": "01J76XY7KFP12V9E6C5JKNT4RC",
+        "wc_name": "Suzuka"
+    },
+    "Kimi-No-Iru-Machi": {
+        "exact_match": "1",
+        "ms_id": "Kimi-No-Iru-Machi",
+        "ms_name": "Kimi no Iru Machi",
+        "wc_id": "01J76XY7F049Y3WQ1WM57D8VGD",
+        "wc_name": "Kimi no Iru Machi"
+    },
+    "Toumei-Ningen-Kyoutei": {
+        "exact_match": "1",
+        "ms_id": "Toumei-Ningen-Kyoutei",
+        "ms_name": "Toumei Ningen Kyoutei",
+        "wc_id": "01J76XYBQ4EVRNZY8R2FAH7EEZ",
+        "wc_name": "Toumei Ningen Kyoutei"
+    },
+    "Kengan-Asura": {
+        "exact_match": "1",
+        "ms_id": "Kengan-Asura",
+        "ms_name": "Kengan Asura",
+        "wc_id": "01J76XYBB9N16R07SJ0D7YJPVW",
+        "wc_name": "Kengan Asura"
+    },
+    "A-Channel": {
+        "exact_match": "1",
+        "ms_id": "A-Channel",
+        "ms_name": "A-Channel",
+        "wc_id": "01J76XY8XAKGRN3ERGM59ZA994",
+        "wc_name": "A-Channel"
+    },
+    "Ouroboros": {
+        "exact_match": "1",
+        "ms_id": "Ouroboros",
+        "ms_name": "Ouroboros",
+        "wc_id": "01J76XY80AEJ7DMHAD6QQJBFJ7",
+        "wc_name": "Ouroboros"
+    },
+    "Hone-Ga-Kusaru-Made": {
+        "exact_match": "1",
+        "ms_id": "Hone-Ga-Kusaru-Made",
+        "ms_name": "Until Your Bones Rot",
+        "wc_id": "01J76XYC708Y3YFV0VBX8CMZS4",
+        "wc_name": "Until Your Bones Rot"
+    },
+    "Keyman-The-Hand-Of-Judgement": {
+        "exact_match": "1",
+        "ms_id": "Keyman-The-Hand-Of-Judgement",
+        "ms_name": "Keyman - The Hand of Judgement",
+        "wc_id": "01J76XYA83DG5R0SX4JFVHGSXV",
+        "wc_name": "Keyman - The Hand of Judgement"
+    },
+    "Golgo-13": {
+        "exact_match": "1",
+        "ms_id": "Golgo-13",
+        "ms_name": "Golgo 13",
+        "wc_id": "01J76XYD0AWBKVWZSJQ6RYDEZV",
+        "wc_name": "Golgo 13"
+    },
+    "D-Y-N-Freaks": {
+        "exact_match": "1",
+        "ms_id": "D-Y-N-Freaks",
+        "ms_name": "D.Y.N. Freaks",
+        "wc_id": "01J76XY9JFP02600KYAWVMPYES",
+        "wc_name": "D.Y.N. Freaks"
+    },
+    "20th-Century-Boys": {
+        "exact_match": "1",
+        "ms_id": "20th-Century-Boys",
+        "ms_name": "20th Century Boys",
+        "wc_id": "01J76XY7PY911B3RQMZE5DQ57R",
+        "wc_name": "20th Century Boys"
+    },
+    "Boku-Girl": {
+        "exact_match": "1",
+        "ms_id": "Boku-Girl",
+        "ms_name": "Boku Girl",
+        "wc_id": "01J76XY9YKM1AJM7PFTY01HWA3",
+        "wc_name": "Boku Girl"
+    },
+    "21st-Century-Boys": {
+        "exact_match": "1",
+        "ms_id": "21st-Century-Boys",
+        "ms_name": "21st Century Boys",
+        "wc_id": "01J76XY7Q04378ZPK2G1FDNHJK",
+        "wc_name": "21st Century Boys"
+    },
+    "Bio-Meat-Nectar": {
+        "exact_match": "1",
+        "ms_id": "Bio-Meat-Nectar",
+        "ms_name": "Bio-Meat: Nectar",
+        "wc_id": "01J76XY8M1ACGMSV320P32GZTJ",
+        "wc_name": "Bio-Meat: Nectar"
+    },
+    "Bokurano": {
+        "exact_match": "1",
+        "ms_id": "Bokurano",
+        "ms_name": "Bokurano Ours",
+        "wc_id": "01J76XY9ETWXS1S59SZQRXF1QQ",
+        "wc_name": "Bokurano Ours"
+    },
+    "Hikari-Man": {
+        "exact_match": "1",
+        "ms_id": "Hikari-Man",
+        "ms_name": "Hikari-Man",
+        "wc_id": "01J76XYBT33DJ2T53AXHE3QW1V",
+        "wc_name": "Hikari-Man"
+    },
+    "2001-Plus5": {
+        "exact_match": "1",
+        "ms_id": "2001-Plus5",
+        "ms_name": "2001 + 5",
+        "wc_id": "01J76XYAVZXJDQCS4RPQ4NYVMY",
+        "wc_name": "2001 + 5"
+    },
+    "Tengoku-Ni-Musubu-Koi": {
+        "exact_match": "1",
+        "ms_id": "Tengoku-Ni-Musubu-Koi",
+        "ms_name": "Tengoku ni Musubu Koi",
+        "wc_id": "01J76XYAZKZ86JCS9XG5Z50A18",
+        "wc_name": "Tengoku ni Musubu Koi"
+    },
+    "City-Hunter": {
+        "exact_match": "1",
+        "ms_id": "City-Hunter",
+        "ms_name": "City Hunter",
+        "wc_id": "01J76XY971C22PKF0K7QRQJVEA",
+        "wc_name": "City Hunter"
+    },
+    "Pluto": {
+        "exact_match": "1",
+        "ms_id": "Pluto",
+        "ms_name": "Pluto",
+        "wc_id": "01J76XY8K9Q6Z6NHQ5YC7RBZ8J",
+        "wc_name": "Pluto"
+    },
+    "Jujutsu-Kaisen-0": {
+        "exact_match": "1",
+        "ms_id": "Jujutsu-Kaisen-0",
+        "ms_name": "Jujutsu Kaisen 0",
+        "wc_id": "01J76XYE9NJR1MFYY7929ZC1DS",
+        "wc_name": "Jujutsu Kaisen 0"
+    },
+    "Astro-Boy": {
+        "exact_match": "1",
+        "ms_id": "Astro-Boy",
+        "ms_name": "Astro Boy",
+        "wc_id": "01J76XYAMB983N1BFNHRZA5K4X",
+        "wc_name": "Astro Boy"
+    },
+    "67-Inertia": {
+        "exact_match": "1",
+        "ms_id": "67-Inertia",
+        "ms_name": "67% Inertia",
+        "wc_id": "01J76XYEDCBRXQB5Y26D3FF77G",
+        "wc_name": "67% Inertia"
+    },
+    "Helck": {
+        "exact_match": "1",
+        "ms_id": "Helck",
+        "ms_name": "Helck",
+        "wc_id": "01J76XYBJSSFKVCP0PKB2DVTSF",
+        "wc_name": "Helck"
+    },
+    "Gaikotsu-Kishi-sama-Tadaima": {
+        "exact_match": "1",
+        "ms_id": "Gaikotsu-Kishi-sama-Tadaima",
+        "ms_name": "Skeleton Knight in Another World",
+        "wc_id": "01J76XYC588PKVWNW533JT57Z2",
+        "wc_name": "Skeleton Knight in Another World"
+    },
+    "Route-End": {
+        "exact_match": "1",
+        "ms_id": "Route-End",
+        "ms_name": "Route End",
+        "wc_id": "01J76XYC4MGAZR9T6P5TZ7N0YY",
+        "wc_name": "Route End"
+    },
+    "Dna-Wa-Oshiete-Kurenai": {
+        "exact_match": "1",
+        "ms_id": "Dna-Wa-Oshiete-Kurenai",
+        "ms_name": "DNA Doesn't Tell Us",
+        "wc_id": "01J76XYCC9Y96FHAQAZ41VHP58",
+        "wc_name": "DNA Doesn't Tell Us"
+    },
+    "Yuusha-Shoukan-ni-Makikomareta-kedo-Isekai-wa-Heiwa-deshita": {
+        "exact_match": "1",
+        "ms_id": "Yuusha-Shoukan-ni-Makikomareta-kedo-Isekai-wa-Heiwa-deshita",
+        "ms_name": "I Got Caught Up in a Hero Summons, but the Other World Was at Peace!",
+        "wc_id": "01J76XYDSP2ED1MKN9A8VXG20Z",
+        "wc_name": "I Got Caught Up in a Hero Summons, but the Other World Was at Peace!"
+    },
+    "Renai-Boukun": {
+        "exact_match": "1",
+        "ms_id": "Renai-Boukun",
+        "ms_name": "Renai Boukun",
+        "wc_id": "01J76XY8947CDQKCMSQEY1X4SY",
+        "wc_name": "Renai Boukun"
+    },
+    "Sousei-No-Onmyouji": {
+        "exact_match": "1",
+        "ms_id": "Sousei-No-Onmyouji",
+        "ms_name": "Twin Star Exorcists",
+        "wc_id": "01J76XYA5D56VBY1X6YQ8WRC1H",
+        "wc_name": "Twin Star Exorcists"
+    },
+    "Ore-wa-Mada-Honki-o-Dashite-Inai": {
+        "exact_match": "1",
+        "ms_id": "Ore-wa-Mada-Honki-o-Dashite-Inai",
+        "ms_name": "Ore wa Mada, Honki o Dashite Inai",
+        "wc_id": "01J76XYE96916GGR5JV4GHBDYV",
+        "wc_name": "Ore wa Mada, Honki o Dashite Inai"
+    },
+    "Deadpool-Samurai": {
+        "exact_match": "1",
+        "ms_id": "Deadpool-Samurai",
+        "ms_name": "Deadpool - Samurai",
+        "wc_id": "01J76XYECDYP63HB480B0RJS0D",
+        "wc_name": "Deadpool - Samurai"
+    },
+    "Pocket-Monster-Special": {
+        "exact_match": "1",
+        "ms_id": "Pocket-Monster-Special",
+        "ms_name": "Pok\u00e9mon Adventures",
+        "wc_id": "01J76XY95XQPYJZSVXQ1AFTAK5",
+        "wc_name": "Pok\u00e9mon Adventures"
+    },
+    "Hajirau-Kimi-ga-Mitainda": {
+        "exact_match": "1",
+        "ms_id": "Hajirau-Kimi-ga-Mitainda",
+        "ms_name": "Hajirau Kimi ga Mitainda",
+        "wc_id": "01J76XYF5BDTTG0ZDMS7BWZQ03",
+        "wc_name": "Hajirau Kimi ga Mitainda"
+    },
+    "Shinjiteita-Nakama-tachi-ni-Dungeon": {
+        "exact_match": "1",
+        "ms_id": "Shinjiteita-Nakama-tachi-ni-Dungeon",
+        "ms_name": "Backstabbed in a Backwater Dungeon",
+        "wc_id": "01J76XYF5PG8880XXPS1B80VVR",
+        "wc_name": "Backstabbed in a Backwater Dungeon"
+    },
+    "At-That-Time-The-Battle-Began": {
+        "exact_match": "1",
+        "ms_id": "At-That-Time-The-Battle-Began",
+        "ms_name": "At That Time, the Battle Began",
+        "wc_id": "01J76XYEVNTBK844PRRZYHRJTP",
+        "wc_name": "At That Time, the Battle Began"
+    },
+    "Choujin-X": {
+        "exact_match": "1",
+        "ms_id": "Choujin-X",
+        "ms_name": "Choujin X",
+        "wc_id": "01J76XYERPHPGCM3C3HEME1YAK",
+        "wc_name": "Choujin X"
+    },
+    "Inaka-no-Home-Center-Otoko-no-Jiyuu-na-Isekai-Seikatsu": {
+        "exact_match": "1",
+        "ms_id": "Inaka-no-Home-Center-Otoko-no-Jiyuu-na-Isekai-Seikatsu",
+        "ms_name": "Inaka no Home Center Otoko no Jiyuu na Isekai Seikatsu",
+        "wc_id": "01J76XYDVHV01X7W22BS0D054B",
+        "wc_name": "Inaka no Home Center Otoko no Jiyuu na Isekai Seikatsu"
+    },
+    "Seichou-Cheat-De-Nandemo-Dekiru": {
+        "exact_match": "1",
+        "ms_id": "Seichou-Cheat-De-Nandemo-Dekiru",
+        "ms_name": "Seichou Cheat de Nandemo Dekiru you ni Natta ga",
+        "wc_id": "01J76XYCPKTPYRTEYKNE47H4GA",
+        "wc_name": "Seichou Cheat de Nandemo Dekiru you ni Natta ga"
+    },
+    "Oukoku-e-Tsuzuku-Michi": {
+        "exact_match": "1",
+        "ms_id": "Oukoku-e-Tsuzuku-Michi",
+        "ms_name": "Oukoku e Tsuzuku Michi",
+        "wc_id": "01J76XYDJ9MQX5KS56EYKXREX9",
+        "wc_name": "Oukoku e Tsuzuku Michi"
+    },
+    "The-Irregular-of-the-Royal-Academy-of-Magic": {
+        "exact_match": "1",
+        "ms_id": "The-Irregular-of-the-Royal-Academy-of-Magic",
+        "ms_name": "The Irregular of the Royal Academy of Magic",
+        "wc_id": "01J76XYEERP7S7VQN358488B0F",
+        "wc_name": "The Irregular of the Royal Academy of Magic"
+    },
+    "Getsuyoubi-no-Tawawa": {
+        "exact_match": "1",
+        "ms_id": "Getsuyoubi-no-Tawawa",
+        "ms_name": "Getsuyoubi no Tawawa",
+        "wc_id": "01J76XYE8SG4HH0A8VP3XQHAFR",
+        "wc_name": "Getsuyoubi no Tawawa"
+    },
+    "Captain-Tsubasa-Golden23": {
+        "exact_match": "1",
+        "ms_id": "Captain-Tsubasa-Golden23",
+        "ms_name": "Captain Tsubasa: Golden-23",
+        "wc_id": "01J76XY8MEJVEPC1A1Y33CCNHH",
+        "wc_name": "Captain Tsubasa: Golden-23"
+    },
+    "Captain-Tsubasa-Road-To2002": {
+        "exact_match": "1",
+        "ms_id": "Captain-Tsubasa-Road-To2002",
+        "ms_name": "Captain Tsubasa: Road to 2002",
+        "wc_id": "01J76XY8CN392RAW146KJV8921",
+        "wc_name": "Captain Tsubasa: Road to 2002"
+    },
+    "Ya-Boy-Kongming": {
+        "exact_match": "1",
+        "ms_id": "Ya-Boy-Kongming",
+        "ms_name": "Ya Boy Kongming!",
+        "wc_id": "01J76XYEV7XNWZR89KRDJZ0H7Q",
+        "wc_name": "Ya Boy Kongming!"
+    },
+    "Captain-Tsubasa-Kaigai-Gekitouhen-In-Calcio": {
+        "exact_match": "1",
+        "ms_id": "Captain-Tsubasa-Kaigai-Gekitouhen-In-Calcio",
+        "ms_name": "Captain Tsubasa Kaigai - Gekitouhen in Calcio",
+        "wc_id": "01J76XY8MGYD09G54YDP322TX5",
+        "wc_name": "Captain Tsubasa Kaigai - Gekitouhen in Calcio"
+    },
+    "Dragon-Quest-The-Adventure-Of-Dai": {
+        "ms_id": "Dragon-Quest-The-Adventure-Of-Dai",
+        "ms_name": "Dragon Quest - The Adventure of Dai",
+        "wc_id": "01J76XY7Q2RAD4AXQNKRW99B12",
+        "wc_name": "Dragon Quest - The Adventure of Dai"
+    },
+    "Fuan-No-Tane": {
+        "exact_match": "1",
+        "ms_id": "Fuan-No-Tane",
+        "ms_name": "Fuan no Tane",
+        "wc_id": "01J76XY9FBY6PS1CXF9PBYZPPV",
+        "wc_name": "Fuan no Tane"
+    },
+    "Toukyou-Tarareba-Musume": {
+        "ms_id": "Toukyou-Tarareba-Musume",
+        "ms_name": "Tokyo Tarareba Girls",
+        "wc_id": "01J76XYC872TDPQQBPHBXZHGHX",
+        "wc_name": "Tokyo Tarareba Girls"
+    },
+    "Ossan-Idol": {
+        "ms_id": "Ossan-Idol",
+        "ms_name": "Ossan Idol",
+        "wc_id": "01J76XYEJRJ7RDJX8H4WVZXA0Q",
+        "wc_name": "Ossan Idol"
+    },
+    "Ragna-Crimson": {
+        "exact_match": "1",
+        "ms_id": "Ragna-Crimson",
+        "ms_name": "Ragna Crimson",
+        "wc_id": "01J76XYCMGN54M3ESGDVGHERD5",
+        "wc_name": "Ragna Crimson"
+    },
+    "Maou-No-Hajimekata-The-Comic": {
+        "exact_match": "1",
+        "ms_id": "Maou-No-Hajimekata-The-Comic",
+        "ms_name": "How to Build a Dungeon - Book of the Demon King",
+        "wc_id": "01J76XYBD3S9W5FF0BBZ2P66EE",
+        "wc_name": "How to Build a Dungeon - Book of the Demon King"
+    },
+    "Tokyo-Tarareba-Girls-Returns": {
+        "ms_id": "Tokyo-Tarareba-Girls-Returns",
+        "ms_name": "Tokyo Tarareba Girls Returns",
+        "wc_id": "01J76XYEBM006ZCJFA9W0XC6QS",
+        "wc_name": "Tokyo Tarareba Girls Returns"
+    },
+    "Gamma": {
+        "exact_match": "1",
+        "ms_id": "Gamma",
+        "ms_name": "Gamma",
+        "wc_id": "01J76XYAP8ART3TS9FWHXAB3GR",
+        "wc_name": "Gamma"
+    },
+    "Innocent-Rouge": {
+        "exact_match": "1",
+        "ms_id": "Innocent-Rouge",
+        "ms_name": "Innocent Rouge",
+        "wc_id": "01J76XYBRG8QGTQHP5B8STYY9V",
+        "wc_name": "Innocent Rouge"
+    },
+    "Blade-Of-The-Immortal": {
+        "exact_match": "1",
+        "ms_id": "Blade-Of-The-Immortal",
+        "ms_name": "Blade of the Immortal",
+        "wc_id": "01J76XY7H4WVPKNZ19MTPV1GTB",
+        "wc_name": "Blade of the Immortal"
+    },
+    "Boku-No-Ojii-Chan-Wa-Hen-Na-Hanashisuru": {
+        "exact_match": "1",
+        "ms_id": "Boku-No-Ojii-Chan-Wa-Hen-Na-Hanashisuru",
+        "ms_name": "Boku no Ojii-chan wa Hen na Hanashisuru!",
+        "wc_id": "01J76XYAMFVX83VXBK9JYT3HFR",
+        "wc_name": "Boku no Ojii-chan wa Hen na Hanashisuru!"
+    },
+    "Jin": {
+        "exact_match": "1",
+        "ms_id": "Jin",
+        "ms_name": "Jin",
+        "wc_id": "01J76XY8F41GTQCTCAVANC3CGD",
+        "wc_name": "Jin"
+    },
+    "Grisaia-No-Kajitsu-Sanctuary-Fellows": {
+        "exact_match": "1",
+        "ms_id": "Grisaia-No-Kajitsu-Sanctuary-Fellows",
+        "ms_name": "Grisaia no Kajitsu - Sanctuary Fellows",
+        "wc_id": "01J76XYAP94KB4P8QFQQS7EXYH",
+        "wc_name": "Grisaia no Kajitsu - Sanctuary Fellows"
+    },
+    "Love-After-World-Domination": {
+        "exact_match": "1",
+        "ms_id": "Love-After-World-Domination",
+        "ms_name": "Love After World Domination",
+        "wc_id": "01J76XYD2V4KVF8D21CZ0BNP4Z",
+        "wc_name": "Love After World Domination"
+    },
+    "Mononogatari": {
+        "exact_match": "1",
+        "ms_id": "Mononogatari",
+        "ms_name": "Malevolent Spirits - Mononogatari",
+        "wc_id": "01J76XYCQYM0743SF6QEK3AXHM",
+        "wc_name": "Malevolent Spirits - Mononogatari"
+    },
+    "Rosen-Garten-Saga": {
+        "exact_match": "1",
+        "ms_id": "Rosen-Garten-Saga",
+        "ms_name": "Rosen Garten Saga",
+        "wc_id": "01J76XYEED94BME8CREFS6R7D1",
+        "wc_name": "Rosen Garten Saga"
+    },
+    "Ansatsu-Skill-de-Isekai-Saikyou": {
+        "exact_match": "1",
+        "ms_id": "Ansatsu-Skill-de-Isekai-Saikyou",
+        "ms_name": "Killer Alchemist - Assassinations in Another World",
+        "wc_id": "01J76XYFD35VDWP83JS9VXY8F8",
+        "wc_name": "Killer Alchemist - Assassinations in Another World"
+    },
+    "Ibitsu": {
+        "ms_id": "Ibitsu",
+        "ms_name": "Ibitsu",
+        "wc_id": "01J76XY97NK8BB63YR0QNHHKJY",
+        "wc_name": "Ibitsu"
+    },
+    "Ibitsu-No-Amalgam": {
+        "exact_match": "1",
+        "ms_id": "Ibitsu-No-Amalgam",
+        "ms_name": "Ibitsu no Amalgam",
+        "wc_id": "01J76XYC1QBHXXGDMJN099Y36M",
+        "wc_name": "Ibitsu no Amalgam"
+    },
+    "Brutal-Satsujin-Kansatsukan-no-Kokuhaku": {
+        "exact_match": "1",
+        "ms_id": "Brutal-Satsujin-Kansatsukan-no-Kokuhaku",
+        "ms_name": "Brutal: Satsujin Kansatsukan no Kokuhaku",
+        "wc_id": "01J76XYF1Z8Z8AWSA7ZGYY46Z0",
+        "wc_name": "Brutal: Satsujin Kansatsukan no Kokuhaku"
+    },
+    "Sasori": {
+        "exact_match": "1",
+        "ms_id": "Sasori",
+        "ms_name": "Sasori",
+        "wc_id": "01J76XYBRZQN53PMVKX60Z49DA",
+        "wc_name": "Sasori"
+    },
+    "Summer-Time-Render": {
+        "exact_match": "1",
+        "ms_id": "Summer-Time-Render",
+        "ms_name": "Summertime Rendering",
+        "wc_id": "01J76XYCY081GTYRWRPFS4194N",
+        "wc_name": "Summertime Rendering"
+    },
+    "Shaman-King": {
+        "ms_id": "Shaman-King",
+        "ms_name": "Shaman King",
+        "wc_id": "01J76XY7K9F11X8PPS1A47Z1AK",
+        "wc_name": "Shaman King"
+    },
+    "Kage-No-Jitsuryokusha-Ni-Naritakute": {
+        "exact_match": "1",
+        "ms_id": "Kage-No-Jitsuryokusha-Ni-Naritakute",
+        "ms_name": "The Eminence in Shadow",
+        "wc_id": "01J76XYCXG1EX4EVP4CYWCJBTR",
+        "wc_name": "The Eminence in Shadow"
+    },
+    "100-man-No-Inochi-No-Ue-Ni-Ore-Wa-Tatte-Iru": {
+        "exact_match": "1",
+        "ms_id": "100-man-No-Inochi-No-Ue-Ni-Ore-Wa-Tatte-Iru",
+        "ms_name": "I'm Standing on a Million Lives",
+        "wc_id": "01J76XYBZCFB9A40YCE4RCQ6KB",
+        "wc_name": "I'm Standing on a Million Lives"
+    },
+    "Mushoku-Tensei-Isekai-Ittara-Honki-Dasu": {
+        "exact_match": "1",
+        "ms_id": "Mushoku-Tensei-Isekai-Ittara-Honki-Dasu",
+        "ms_name": "Mushoku Tensei - Jobless Reincarnation",
+        "wc_id": "01J76XYAFV191F37BTH3JGATKP",
+        "wc_name": "Mushoku Tensei - Jobless Reincarnation"
+    },
+    "Musume-no-Tomodachi": {
+        "exact_match": "1",
+        "ms_id": "Musume-no-Tomodachi",
+        "ms_name": "Musume no Tomodachi",
+        "wc_id": "01J76XYD32FY6FJM8J070DB9JE",
+        "wc_name": "Musume no Tomodachi"
+    },
+    "RuriDragon": {
+        "exact_match": "1",
+        "ms_id": "RuriDragon",
+        "ms_name": "Ruri Dragon",
+        "wc_id": "01J76XYFH6Y4GN3P2G4WF82BEZ",
+        "wc_name": "Ruri Dragon"
+    },
+    "12-Beast": {
+        "ms_id": "12-Beast",
+        "ms_name": "12 Beast",
+        "wc_id": "01J76XY989V7KX2MC985H9YVB7",
+        "wc_name": "12 Beast"
+    },
+    "Give-My-Regards-to-Black-Jack": {
+        "exact_match": "1",
+        "ms_id": "Give-My-Regards-to-Black-Jack",
+        "ms_name": "Give My Regards to Black Jack",
+        "wc_id": "01J76XYFGSZE807RRTM4M6JDAQ",
+        "wc_name": "Give My Regards to Black Jack"
+    },
+    "Captain-Tsubasa-World-Youth": {
+        "exact_match": "1",
+        "ms_id": "Captain-Tsubasa-World-Youth",
+        "ms_name": "Captain Tsubasa World Youth",
+        "wc_id": "01J76XY8MH6F5R75STQVTDW4WN",
+        "wc_name": "Captain Tsubasa World Youth"
+    },
+    "Yagate-Kimi-Ni-Naru": {
+        "exact_match": "1",
+        "ms_id": "Yagate-Kimi-Ni-Naru",
+        "ms_name": "Bloom Into You",
+        "wc_id": "01J76XYC8CP89DCBTG34HZ8WCN",
+        "wc_name": "Bloom Into You"
+    },
+    "U-Q-Holder": {
+        "exact_match": "1",
+        "ms_id": "U-Q-Holder",
+        "ms_name": "UQ Holder!",
+        "wc_id": "01J76XY9E79ZNESGC7N72G94AK",
+        "wc_name": "UQ Holder!"
+    },
+    "Chainsaw-Man-Color": {
+        "exact_match": "1",
+        "ms_id": "Chainsaw-Man-Color",
+        "ms_name": "Chainsaw Man - Color",
+        "wc_id": "01J76XYFBEQQVKR5WPXZMQXPY6",
+        "wc_name": "Chainsaw Man (Color)"
+    },
+    "Into-the-Deepest-Most-Unknowable-Dungeon": {
+        "exact_match": "1",
+        "ms_id": "Into-the-Deepest-Most-Unknowable-Dungeon",
+        "ms_name": "Into the Deepest, Most Unknowable Dungeon",
+        "wc_id": "01J76XYF936FCBDCDH90V69FMH",
+        "wc_name": "Into the Deepest, Most Unknowable Dungeon"
+    },
+    "Viral-Hit": {
+        "exact_match": "1",
+        "ms_id": "Viral-Hit",
+        "ms_name": "Viral Hit",
+        "wc_id": "01J76XYE8HKQ5KFPY5MRR9CNCR",
+        "wc_name": "Viral Hit"
+    },
+    "Shibuya-Kingyo": {
+        "exact_match": "1",
+        "ms_id": "Shibuya-Kingyo",
+        "ms_name": "Shibuya Goldfish",
+        "wc_id": "01J76XYCJTCTFHD8QYKGVQK98F",
+        "wc_name": "Shibuya Goldfish"
+    },
+    "Mezametara-Saikyou-Soubi-to-Uchuusen-mochi-Datta-no-de": {
+        "exact_match": "1",
+        "ms_id": "Mezametara-Saikyou-Soubi-to-Uchuusen-mochi-Datta-no-de",
+        "ms_name": "Reborn as a Space Mercenary - I Woke Up Piloting the Strongest Starship!",
+        "wc_id": "01J76XYDFXTP1WTFBE3PQMM37J",
+        "wc_name": "Reborn as a Space Mercenary - I Woke Up Piloting the Strongest Starship!"
+    },
+    "Tondemo-Skill-De-Isekai-Hourou-Meshi": {
+        "exact_match": "1",
+        "ms_id": "Tondemo-Skill-De-Isekai-Hourou-Meshi",
+        "ms_name": "Campfire Cooking in Another World with my Absurd Skill",
+        "wc_id": "01J76XYC69HG8W1P8MXKN6NJDP",
+        "wc_name": "Campfire Cooking in Another World with my Absurd Skill"
+    },
+    "Franken-Furan": {
+        "exact_match": "1",
+        "ms_id": "Franken-Furan",
+        "ms_name": "Franken Fran",
+        "wc_id": "01J76XY7Q32KCQ71J1HSMKJWW7",
+        "wc_name": "Franken Fran"
+    },
+    "Franken-Fran-Frantic": {
+        "exact_match": "1",
+        "ms_id": "Franken-Fran-Frantic",
+        "ms_name": "Franken Fran Frantic",
+        "wc_id": "01J76XYFD7RFKKVP4W59YQW9KN",
+        "wc_name": "Franken Fran Frantic"
+    },
+    "Grappler-Baki": {
+        "ms_id": "Grappler-Baki",
+        "ms_name": "Grappler Baki",
+        "wc_id": "01J76XY8P7AEC2SQWFFPBW2JG7",
+        "wc_name": "Grappler Baki"
+    },
+    "Fuuka-Special-Edition": {
+        "exact_match": "1",
+        "ms_id": "Fuuka-Special-Edition",
+        "ms_name": "Fuuka Special Edition",
+        "wc_id": "01J76XYEJZ92T15G7HHEKMZ51S",
+        "wc_name": "Fuuka Special Edition"
+    },
+    "Dragon-Ball-Side-Story---Reborn-As-Yamcha": {
+        "exact_match": "1",
+        "ms_id": "Dragon-Ball-Side-Story---Reborn-As-Yamcha",
+        "ms_name": "Dragon Ball Side Story - Reborn as Yamcha",
+        "wc_id": "01J76XYC32EQGGFE8Z63W1H4RY",
+        "wc_name": "Dragon Ball Side Story - Reborn as Yamcha"
+    },
+    "Otomodachi-Kara-Hajimemashou": {
+        "exact_match": "1",
+        "ms_id": "Otomodachi-Kara-Hajimemashou",
+        "ms_name": "Otomodachi kara Hajimemashou",
+        "wc_id": "01J76XYBKCF6CEEFH3WB6VA9W9",
+        "wc_name": "Otomodachi kara Hajimemashou"
+    },
+    "Shigurui": {
+        "exact_match": "1",
+        "ms_id": "Shigurui",
+        "ms_name": "Shigurui",
+        "wc_id": "01J76XY9GJ0H3B65DTBZYYPNGA",
+        "wc_name": "Shigurui"
+    },
+    "Seiken-Gakuin-no-Maken-Tsukai": {
+        "exact_match": "1",
+        "ms_id": "Seiken-Gakuin-no-Maken-Tsukai",
+        "ms_name": "The Demon Sword Master of Excalibur Academy",
+        "wc_id": "01J76XYDRZKNNEQ7HHN6F1R6Z3",
+        "wc_name": "The Demon Sword Master of Excalibur Academy"
+    },
+    "Jojos-Bizarre-Adventure-Color": {
+        "exact_match": "1",
+        "ms_id": "Jojos-Bizarre-Adventure-Color",
+        "ms_name": "JoJo's Bizarre Adventure Color",
+        "wc_id": "01J76XYCNX88GXEJ8Q15KW8A5B",
+        "wc_name": "JoJo's Bizarre Adventure (Color)"
+    },
+    "Isekai-Kaeri-no-Daikenja-sama-wa-Sore-Demo-Kossori-Kurashite-Iru-Tsumori-desu": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Kaeri-no-Daikenja-sama-wa-Sore-Demo-Kossori-Kurashite-Iru-Tsumori-desu",
+        "ms_name": "Isekai Kaeri no Daikenja-sama wa Sore Demo Kossori Kurashite Iru",
+        "wc_id": "01J76XYF5DM3HD4XWSQWAPMV50",
+        "wc_name": "Isekai Kaeri no Daikenja-sama wa Sore Demo Kossori Kurashite Iru"
+    },
+    "Ar-No-Surge-Umareizuru-Hoshu-E-Inoru-Uta": {
+        "exact_match": "1",
+        "ms_id": "Ar-No-Surge-Umareizuru-Hoshu-E-Inoru-Uta",
+        "ms_name": "Ar no Surge - Umareizuru Hoshu e Inoru Uta",
+        "wc_id": "01J76XYADVGN8HAH9K4E7GND29",
+        "wc_name": "Ar no Surge - Umareizuru Hoshu e Inoru Uta"
+    },
+    "Desuraba": {
+        "exact_match": "1",
+        "ms_id": "Desuraba",
+        "ms_name": "Destiny Lovers",
+        "wc_id": "01J76XYCTRQSQQJ5YF49726T3C",
+        "wc_name": "Destiny Lovers"
+    },
+    "Young-Ladies-Dont-Play-Fighting-Games": {
+        "exact_match": "1",
+        "ms_id": "Young-Ladies-Dont-Play-Fighting-Games",
+        "ms_name": "Young Ladies Don't Play Fighting Games",
+        "wc_id": "01J76XYF2Z1MXA1ENVS7681W65",
+        "wc_name": "Young Ladies Don't Play Fighting Games"
+    },
+    "Erotic-x-Anabolic": {
+        "exact_match": "1",
+        "ms_id": "Erotic-x-Anabolic",
+        "ms_name": "Erotic x Anabolic",
+        "wc_id": "01J76XYF59N4VS2GBX4568CTYV",
+        "wc_name": "Erotic x Anabolic"
+    },
+    "Tsubaki-Chou-Lonely-Planet": {
+        "exact_match": "1",
+        "ms_id": "Tsubaki-Chou-Lonely-Planet",
+        "ms_name": "Tsubaki-chou Lonely Planet",
+        "wc_id": "01J76XYBBZX79VYYHG2QRDQ6HN",
+        "wc_name": "Tsubaki-chou Lonely Planet"
+    },
+    "Parallel-Paradise": {
+        "exact_match": "1",
+        "ms_id": "Parallel-Paradise",
+        "ms_name": "Parallel Paradise",
+        "wc_id": "01J76XYC3MVEYYP9QZ95DX8XZQ",
+        "wc_name": "Parallel Paradise"
+    },
+    "Slave-B": {
+        "exact_match": "1",
+        "ms_id": "Slave-B",
+        "ms_name": "Slave B",
+        "wc_id": "01J76XYDTAAEJREFNNSW5PJGHP",
+        "wc_name": "Slave B"
+    },
+    "Umehara-F-I-G-H-T-I-N-G-G-A-M-E-R-S": {
+        "exact_match": "1",
+        "ms_id": "Umehara-F-I-G-H-T-I-N-G-G-A-M-E-R-S",
+        "ms_name": "Umehara FIGHTING GAMERS!",
+        "wc_id": "01J76XYBJ0SPTBNEZ4YWV7WCCV",
+        "wc_name": "Umehara FIGHTING GAMERS!"
+    },
+    "Chain-Chronicle-Crimson": {
+        "exact_match": "1",
+        "ms_id": "Chain-Chronicle-Crimson",
+        "ms_name": "Chain Chronicle Crimson",
+        "wc_id": "01J76XYBCCVDGA26GRWWTYMNQT",
+        "wc_name": "Chain Chronicle Crimson"
+    },
+    "Cyborg009": {
+        "exact_match": "1",
+        "ms_id": "Cyborg009",
+        "ms_name": "Cyborg 009",
+        "wc_id": "01J76XYAMNS3G99BF11ZCE2WCB",
+        "wc_name": "Cyborg 009"
+    },
+    "Cage-Of-Eden": {
+        "ms_id": "Cage-Of-Eden",
+        "ms_name": "Cage of Eden",
+        "wc_id": "01J76XY7EGD0TH514CCXREE2JR",
+        "wc_name": "Cage of Eden"
+    },
+    "Sakamoto-Desu-Ga": {
+        "exact_match": "1",
+        "ms_id": "Sakamoto-Desu-Ga",
+        "ms_name": "Haven't You Heard - I'm Sakamoto",
+        "wc_id": "01J76XY9D489VNZTQ7SPJJJA0Q",
+        "wc_name": "Haven't You Heard - I'm Sakamoto"
+    },
+    "Akane-banashi": {
+        "exact_match": "1",
+        "ms_id": "Akane-banashi",
+        "ms_name": "Akane-banashi",
+        "wc_id": "01J76XYFBDW005SQ7TQNV8FW28",
+        "wc_name": "Akane-banashi"
+    },
+    "The-Iceblade-Magician-Rules-Over-the-World": {
+        "exact_match": "1",
+        "ms_id": "The-Iceblade-Magician-Rules-Over-the-World",
+        "ms_name": "The Iceblade Sorcerer Shall Rule the World",
+        "wc_id": "01J76XYDWABGQ8CSCPC7Q4YNNG",
+        "wc_name": "The Iceblade Sorcerer Shall Rule the World"
+    },
+    "Dont-XXX-With-Teachers": {
+        "exact_match": "1",
+        "ms_id": "Dont-XXX-With-Teachers",
+        "ms_name": "Don't XXX With Teachers!",
+        "wc_id": "01J76XYFVZVW11YP564P9G86F2",
+        "wc_name": "Don't XXX With Teachers!"
+    },
+    "Kunoichi-Tsubaki-No-Mune-No-Uchi": {
+        "ms_id": "Kunoichi-Tsubaki-No-Mune-No-Uchi",
+        "ms_name": "Kunoichi Tsubaki no Mune no Uchi",
+        "wc_id": "01J76XYCP719CNGP8CHWZFBJW4",
+        "wc_name": "Kunoichi Tsubaki no Mune no Uchi"
+    },
+    "Hi-Fi-Cluster": {
+        "exact_match": "1",
+        "ms_id": "Hi-Fi-Cluster",
+        "ms_name": "Hi-Fi Cluster",
+        "wc_id": "01J76XYD99DKJVKHYP8V0J9RH0",
+        "wc_name": "Hi-Fi Cluster"
+    },
+    "Yu-Yu-Hakusho": {
+        "exact_match": "1",
+        "ms_id": "Yu-Yu-Hakusho",
+        "ms_name": "Yu Yu Hakusho",
+        "wc_id": "01J76XY7QH18K4Y6MS85GJKF3H",
+        "wc_name": "Yu Yu Hakusho"
+    },
+    "Beck": {
+        "exact_match": "1",
+        "ms_id": "Beck",
+        "ms_name": "Beck - Mongolian Chop Squad",
+        "wc_id": "01J76XY7E3JVY2XJGG8VGP46NN",
+        "wc_name": "Beck - Mongolian Chop Squad"
+    },
+    "Kuroiwa-Medaka-ni-Watashi-no-Kawaii-ga-Tsuujinai": {
+        "exact_match": "1",
+        "ms_id": "Kuroiwa-Medaka-ni-Watashi-no-Kawaii-ga-Tsuujinai",
+        "ms_name": "Medaka Kuroiwa is Impervious to My Charms",
+        "wc_id": "01J76XYETGNFG0N1ZGT03MN57K",
+        "wc_name": "Medaka Kuroiwa is Impervious to My Charms"
+    },
+    "Mission-Yozakura-Family": {
+        "exact_match": "1",
+        "ms_id": "Mission-Yozakura-Family",
+        "ms_name": "Mission: Yozakura Family",
+        "wc_id": "01J76XYD1E10H2XZDH2YT03G8A",
+        "wc_name": "Mission: Yozakura Family"
+    },
+    "Spriggan": {
+        "exact_match": "1",
+        "ms_id": "Spriggan",
+        "ms_name": "Spriggan",
+        "wc_id": "01J76XYAGN26P0KZCZV7FG2HHN",
+        "wc_name": "Spriggan"
+    },
+    "Captain-Alice": {
+        "exact_match": "1",
+        "ms_id": "Captain-Alice",
+        "ms_name": "Captain Alice",
+        "wc_id": "01J76XY994NQPX3XCDEBT0ZPXV",
+        "wc_name": "Captain Alice"
+    },
+    "Idol-A": {
+        "exact_match": "1",
+        "ms_id": "Idol-A",
+        "ms_name": "Idol A",
+        "wc_id": "01J76XY90XM7SA1EZND4GYRMNP",
+        "wc_name": "Idol A"
+    },
+    "Natsume-Arata-no-Kekkon": {
+        "exact_match": "1",
+        "ms_id": "Natsume-Arata-no-Kekkon",
+        "ms_name": "Natsume Arata no Kekkon",
+        "wc_id": "01J76XYE747R6MYCAP87T3YMBF",
+        "wc_name": "Natsume Arata no Kekkon"
+    },
+    "Iryuu-Team-Medical-Dragon": {
+        "exact_match": "1",
+        "ms_id": "Iryuu-Team-Medical-Dragon",
+        "ms_name": "Iryuu - Team Medical Dragon",
+        "wc_id": "01J76XY8F2AW69Z94T3K15QQ0C",
+        "wc_name": "Iryuu - Team Medical Dragon"
+    },
+    "Yuureitou": {
+        "exact_match": "1",
+        "ms_id": "Yuureitou",
+        "ms_name": "Yuureitou",
+        "wc_id": "01J76XY83Y6D0P44TN6TTWBSPC",
+        "wc_name": "Yuureitou"
+    },
+    "Tobaku-Mokushiroku-Kaiji": {
+        "exact_match": "1",
+        "ms_id": "Tobaku-Mokushiroku-Kaiji",
+        "ms_name": "Gambling Apocalypes Kaiji",
+        "wc_id": "01J76XY9XQE65ANTV6QYSPFH18",
+        "wc_name": "Gambling Apocalypes Kaiji"
+    },
+    "Theres-A-Demon-Lord-On-The-Floor": {
+        "exact_match": "1",
+        "ms_id": "Theres-A-Demon-Lord-On-The-Floor",
+        "ms_name": "There's a Demon Lord on the Floor",
+        "wc_id": "01J76XYBQ6V5TYWNSQTC3Z0WA3",
+        "wc_name": "There's a Demon Lord on the Floor"
+    },
+    "Neeko-Wa-Tsurai-Yo": {
+        "exact_match": "1",
+        "ms_id": "Neeko-Wa-Tsurai-Yo",
+        "ms_name": "Neeko wa Tsurai yo",
+        "wc_id": "01J76XYCXVCSKCJMQX9KR231JY",
+        "wc_name": "Neeko wa Tsurai yo"
+    },
+    "Orenchi-Ni-Kita-Onna-kishi": {
+        "exact_match": "1",
+        "ms_id": "Orenchi-Ni-Kita-Onna-kishi",
+        "ms_name": "Orenchi ni Kita Onna Kishi to Inakagurashi Surukotoninatta Ken",
+        "wc_id": "01J76XYCPF1NAX4XDETKWMKPPB",
+        "wc_name": "Orenchi ni Kita Onna Kishi to Inakagurashi Surukotoninatta Ken"
+    },
+    "Futari-Ecchi": {
+        "exact_match": "1",
+        "ms_id": "Futari-Ecchi",
+        "ms_name": "Futari Ecchi",
+        "wc_id": "01J76XY9Z6GC51FXN4C896C6S0",
+        "wc_name": "Futari Ecchi"
+    },
+    "Level-1-no-Saikyou-kenja": {
+        "exact_match": "1",
+        "ms_id": "Level-1-no-Saikyou-kenja",
+        "ms_name": "Level 1 no Saikyou kenja",
+        "wc_id": "01J76XYDPM4S1WPK6AXKHTMBCD",
+        "wc_name": "Level 1 no Saikyou kenja"
+    },
+    "Genkai-Level-1-kara-no-Nariagari": {
+        "exact_match": "1",
+        "ms_id": "Genkai-Level-1-kara-no-Nariagari",
+        "ms_name": "I'm Capped at Level 1?! Thus Begins My Journey to Become the World's Strongest Badass",
+        "wc_id": "01J76XYDHKGQ86XYGK8PP8D7DP",
+        "wc_name": "I'm Capped at Level 1?! Thus Begins My Journey to Become the World's Strongest Badass"
+    },
+    "Hazure-Akamadoushi-wa-Kenja-Time-ni-Musou-suru": {
+        "exact_match": "1",
+        "ms_id": "Hazure-Akamadoushi-wa-Kenja-Time-ni-Musou-suru",
+        "ms_name": "Hazure Akamadoushi wa Kenja Time ni Musou suru",
+        "wc_id": "01J76XYEVVD05Y7CB7J5F94EQ7",
+        "wc_name": "Hazure Akamadoushi wa Kenja Time ni Musou suru"
+    },
+    "Dog-Nigga": {
+        "exact_match": "1",
+        "ms_id": "Dog-Nigga",
+        "ms_name": "Dog Nigga",
+        "wc_id": "01J76XYE4WPJEDMVKVPS895MG9",
+        "wc_name": "Dog Nigga"
+    },
+    "Guardian-Dog": {
+        "exact_match": "1",
+        "ms_id": "Guardian-Dog",
+        "ms_name": "Guardian Dog",
+        "wc_id": "01J76XY8QZ7440BC70N0PHZ01A",
+        "wc_name": "Guardian Dog"
+    },
+    "Dog-and-Scum": {
+        "exact_match": "1",
+        "ms_id": "Dog-and-Scum",
+        "ms_name": "Dog and Scum",
+        "wc_id": "01J76XYF212X8GYBZ6GWZDTB1H",
+        "wc_name": "Dog and Scum"
+    },
+    "Tokyo-Underworld": {
+        "exact_match": "1",
+        "ms_id": "Tokyo-Underworld",
+        "ms_name": "Tokyo Underworld",
+        "wc_id": "01J76XYFQFEYCK05BTKBWNXNP6",
+        "wc_name": "Tokyo Underworld"
+    },
+    "S-Study": {
+        "exact_match": "1",
+        "ms_id": "S-Study",
+        "ms_name": "SStudy",
+        "wc_id": "01J76XYBDY3S6AJ3X2EJK1CQV7",
+        "wc_name": "SStudy"
+    },
+    "Genjitsushugisha-No-Oukokukaizouki": {
+        "exact_match": "1",
+        "ms_id": "Genjitsushugisha-No-Oukokukaizouki",
+        "ms_name": "How a Realist Hero Rebuilt the Kingdom",
+        "wc_id": "01J76XYCAE2EG5QSED0QJVY6JZ",
+        "wc_name": "How a Realist Hero Rebuilt the Kingdom"
+    },
+    "Ani-to-Imouto-no-Shitai-Shitai-Shitai-Koto": {
+        "exact_match": "1",
+        "ms_id": "Ani-to-Imouto-no-Shitai-Shitai-Shitai-Koto",
+        "ms_name": "Ani to Imouto no Shitai Shitai Shitai Koto",
+        "wc_id": "01J76XYG7A0G6X01QCPFS8H4YA",
+        "wc_name": "Ani to Imouto no Shitai Shitai Shitai Koto"
+    },
+    "Matchmaking-of-the-Amagami-Household": {
+        "exact_match": "1",
+        "ms_id": "Matchmaking-of-the-Amagami-Household",
+        "ms_name": "Tying the Knot with an Amagami Sister",
+        "wc_id": "01J76XYETHGCDTYRYVHYTX4WM1",
+        "wc_name": "Tying the Knot with an Amagami Sister"
+    },
+    "Thank-You-Isekai": {
+        "ms_id": "Thank-You-Isekai",
+        "ms_name": "Thank You, Isekai!",
+        "wc_id": "01J76XYFHSDSWBYSA94C05SQVR",
+        "wc_name": "Thank You, Isekai!"
+    },
+    "Netsuzou-Trap-N-T-R": {
+        "exact_match": "1",
+        "ms_id": "Netsuzou-Trap-N-T-R",
+        "ms_name": "NTR - Netsuzou Trap",
+        "wc_id": "01J76XYBDBY6BJVDFDBAKMQG4H",
+        "wc_name": "NTR - Netsuzou Trap"
+    },
+    "Terra-For-Mars": {
+        "exact_match": "1",
+        "ms_id": "Terra-For-Mars",
+        "ms_name": "Terra ForMars",
+        "wc_id": "01J76XY90KN52K87D8H03ZZ99R",
+        "wc_name": "Terra ForMars"
+    },
+    "Another-World-Munchkin": {
+        "exact_match": "1",
+        "ms_id": "Another-World-Munchkin",
+        "ms_name": "Otherworldly Munchkin - Let's Speedrun the Dungeon with Only 1 HP!",
+        "wc_id": "01J76XYDF6JFJZ1910468RT0B2",
+        "wc_name": "Otherworldly Munchkin - Let's Speedrun the Dungeon with Only 1 HP!"
+    },
+    "Nues-Exorcist": {
+        "exact_match": "1",
+        "ms_id": "Nues-Exorcist",
+        "ms_name": "Nue's Exorcist",
+        "wc_id": "01J76XYG5WMRXM4STX4HABM6B1",
+        "wc_name": "Nue's Exorcist"
+    },
+    "Tenmaku-Cinema": {
+        "exact_match": "1",
+        "ms_id": "Tenmaku-Cinema",
+        "ms_name": "Tenmaku Cinema",
+        "wc_id": "01J76XYG3EG76AKVMA5BA1HG4G",
+        "wc_name": "Tenmaku Cinema"
+    },
+    "Ingoshima": {
+        "exact_match": "1",
+        "ms_id": "Ingoshima",
+        "ms_name": "Ingoshima",
+        "wc_id": "01J76XYCXCDAW4AM91PSFXQW7W",
+        "wc_name": "Ingoshima"
+    },
+    "Kangoku-Gakuen": {
+        "exact_match": "1",
+        "ms_id": "Kangoku-Gakuen",
+        "ms_name": "Prison School",
+        "wc_id": "01J76XY7MB4G71X4JQBVZZX2Q3",
+        "wc_name": "Prison School"
+    },
+    "Futari-Switch": {
+        "exact_match": "1",
+        "ms_id": "Futari-Switch",
+        "ms_name": "Futari Switch",
+        "wc_id": "01J76XYFK8Y3SMFEB3VHBPJX14",
+        "wc_name": "Futari Switch"
+    },
+    "Zombie-100": {
+        "exact_match": "1",
+        "ms_id": "Zombie-100",
+        "ms_name": "Zom 100 - Bucket List of the Dead",
+        "wc_id": "01J76XYD3H39272N2E9KRNW4S4",
+        "wc_name": "Zom 100 - Bucket List of the Dead"
+    },
+    "Yakitate-Japan": {
+        "exact_match": "1",
+        "ms_id": "Yakitate-Japan",
+        "ms_name": "Yakitate!! Japan",
+        "wc_id": "01J76XYC2RC44S4RD0CWB6FGJ0",
+        "wc_name": "Yakitate!! Japan"
+    },
+    "Baki-Dou": {
+        "exact_match": "1",
+        "ms_id": "Baki-Dou",
+        "ms_name": "Baki-Dou",
+        "wc_id": "01J76XYA8GENXM6DM5JHH5P988",
+        "wc_name": "Baki-Dou"
+    },
+    "Baki-Son-Of-Ogre": {
+        "exact_match": "1",
+        "ms_id": "Baki-Son-Of-Ogre",
+        "ms_name": "Baki - Son of Ogre",
+        "wc_id": "01J76XY7PQ3J53M98RX8AYRV34",
+        "wc_name": "Baki - Son of Ogre"
+    },
+    "Baki-Dou-2018": {
+        "exact_match": "1",
+        "ms_id": "Baki-Dou-2018",
+        "ms_name": "Baki-Dou (2018)",
+        "wc_id": "01J76XYCTK3FXWCTT97C98XHBX",
+        "wc_name": "Baki-Dou (2018)"
+    },
+    "Boys-On-The-Run": {
+        "exact_match": "1",
+        "ms_id": "Boys-On-The-Run",
+        "ms_name": "Boys on the Run",
+        "wc_id": "01J76XY82JZTAKS6CKF7ZEY5Z5",
+        "wc_name": "Boys on the Run"
+    },
+    "Under-Ninja": {
+        "exact_match": "1",
+        "ms_id": "Under-Ninja",
+        "ms_name": "Under Ninja",
+        "wc_id": "01J76XYG77XSFQKFJ51CZW9W0M",
+        "wc_name": "Under Ninja"
+    },
+    "I-Am-A-Hero": {
+        "exact_match": "1",
+        "ms_id": "I-Am-A-Hero",
+        "ms_name": "I am a Hero",
+        "wc_id": "01J76XY9720JA20H3XRRDNXRYX",
+        "wc_name": "I am a Hero"
+    },
+    "I-Am-A-Hero-In-Nagasaki": {
+        "exact_match": "1",
+        "ms_id": "I-Am-A-Hero-In-Nagasaki",
+        "ms_name": "I Am a Hero in Nagasaki",
+        "wc_id": "01J76XYBXWBQ34G673E6F46RK9",
+        "wc_name": "I Am a Hero in Nagasaki"
+    },
+    "I-Am-A-Hero-In-Osaka": {
+        "exact_match": "1",
+        "ms_id": "I-Am-A-Hero-In-Osaka",
+        "ms_name": "I Am a Hero in Osaka",
+        "wc_id": "01J76XYBMNYGTSY7MM81TPGS21",
+        "wc_name": "I Am a Hero in Osaka"
+    },
+    "Shokuryou-Jinrui": {
+        "exact_match": "1",
+        "ms_id": "Shokuryou-Jinrui",
+        "ms_name": "Starving Anonymous",
+        "wc_id": "01J76XYCDFDZSNNZJ95MR19JMM",
+        "wc_name": "Starving Anonymous"
+    },
+    "Reincarnation-Coliseum": {
+        "exact_match": "1",
+        "ms_id": "Reincarnation-Coliseum",
+        "ms_name": "Reincarnation Coliseum",
+        "wc_id": "01J76XYG22193RK1XRA3BSBP8J",
+        "wc_name": "Reincarnation Coliseum"
+    },
+    "Zettai-Karen-Children": {
+        "exact_match": "1",
+        "ms_id": "Zettai-Karen-Children",
+        "ms_name": "Zettai Karen Children",
+        "wc_id": "01J76XY7MYWNKWK414TRPRAWPN",
+        "wc_name": "Zettai Karen Children"
+    },
+    "We-Cant-Do-Just-Plain-Love": {
+        "exact_match": "1",
+        "ms_id": "We-Cant-Do-Just-Plain-Love",
+        "ms_name": "We Can't Do Just Plain Love",
+        "wc_id": "01J76XYG39BR0CFC7YHE3KGPXZ",
+        "wc_name": "We Can't Do Just Plain Love"
+    },
+    "The-City-of-Imprisoned-Love": {
+        "exact_match": "1",
+        "ms_id": "The-City-of-Imprisoned-Love",
+        "ms_name": "The City of Imprisoned Love",
+        "wc_id": "01J76XYDAPMVNXDBECDV816N10",
+        "wc_name": "The City of Imprisoned Love"
+    },
+    "Noragami": {
+        "exact_match": "1",
+        "ms_id": "Noragami",
+        "ms_name": "Noragami - Stray God",
+        "wc_id": "01J76XY8YHF9TCB6DGD2Q8EZPH",
+        "wc_name": "Noragami - Stray God"
+    },
+    "Fairy-Tail": {
+        "exact_match": "1",
+        "ms_id": "Fairy-Tail",
+        "ms_name": "Fairy Tail",
+        "wc_id": "01J76XY7E5E1C5Y9J0M2FCVQ8H",
+        "wc_name": "Fairy Tail"
+    },
+    "Im-in-Love-with-the-Older-Girl-Next-Door": {
+        "exact_match": "1",
+        "ms_id": "Im-in-Love-with-the-Older-Girl-Next-Door",
+        "ms_name": "I'm in Love With the Older Girl Next Door",
+        "wc_id": "01J76XYF42YZK69D3X127STS8H",
+        "wc_name": "I'm in Love With the Older Girl Next Door"
+    },
+    "Violence-Jack": {
+        "exact_match": "1",
+        "ms_id": "Violence-Jack",
+        "ms_name": "Violence Jack",
+        "wc_id": "01J76XYB4KYD5XX4KDGKS0KNP6",
+        "wc_name": "Violence Jack"
+    },
+    "Tsugumomo": {
+        "exact_match": "1",
+        "ms_id": "Tsugumomo",
+        "ms_name": "Tsugumomo",
+        "wc_id": "01J76XY9RTMMF6RM30GGGZCQYP",
+        "wc_name": "Tsugumomo"
+    },
+    "Yomi-no-Tsugai": {
+        "exact_match": "1",
+        "ms_id": "Yomi-no-Tsugai",
+        "ms_name": "Daemons of the Shadow Realm",
+        "wc_id": "01J76XYF9WXVB2VVMCYXHD1P1E",
+        "wc_name": "Daemons of the Shadow Realm"
+    },
+    "Telework-Yotabanashi": {
+        "exact_match": "1",
+        "ms_id": "Telework-Yotabanashi",
+        "ms_name": "Telework Yotabanashi",
+        "wc_id": "01J76XYG04SW0H14FV11RM8Z16",
+        "wc_name": "Home Office Romance"
+    },
+    "Aitsu-no-Kanojo": {
+        "exact_match": "1",
+        "ms_id": "Aitsu-no-Kanojo",
+        "ms_name": "Aitsu no Kanojo",
+        "wc_id": "01J76XYGF98MHXQT74F394X2ZE",
+        "wc_name": "Someone's Girlfriend"
+    },
+    "Police-in-a-Pod": {
+        "exact_match": "1",
+        "ms_id": "Police-in-a-Pod",
+        "ms_name": "Police in a Pod",
+        "wc_id": "01J76XYEYR80TSAT9BE2E04SW6",
+        "wc_name": "Police in a Pod"
+    },
+    "Kaifuku-Jutsushi-No-Yarinaoshi": {
+        "exact_match": "1",
+        "ms_id": "Kaifuku-Jutsushi-No-Yarinaoshi",
+        "ms_name": "Kaifuku Jutsushi no Yarinaoshi",
+        "wc_id": "01J76XYCAMANMYWS5H6EF954QW",
+        "wc_name": "Kaifuku Jutsushi no Yarinaoshi"
+    },
+    "Skyhigh": {
+        "exact_match": "1",
+        "ms_id": "Skyhigh",
+        "ms_name": "Skyhigh",
+        "wc_id": "01J76XY8WTJQPJRTDBD0ZW6TXH",
+        "wc_name": "Skyhigh"
+    },
+    "Skyhigh-Karma": {
+        "exact_match": "1",
+        "ms_id": "Skyhigh-Karma",
+        "ms_name": "Skyhigh: Karma",
+        "wc_id": "01J76XY92P1X1KB1ABPAHWRBB2",
+        "wc_name": "Skyhigh: Karma"
+    },
+    "Skyhigh-I-V": {
+        "ms_id": "Skyhigh-I-V",
+        "ms_name": "Skyhigh IV",
+        "wc_id": "01J76XY8WVPEE3618BB25ZS683",
+        "wc_name": "Skyhigh IV"
+    },
+    "Battle-Angel-Alita": {
+        "exact_match": "1",
+        "ms_id": "Battle-Angel-Alita",
+        "ms_name": "Battle Angel Alita",
+        "wc_id": "01J76XYA6GDGMKGDY78QAQKF1H",
+        "wc_name": "Battle Angel Alita"
+    },
+    "Battle-Angel-Alita-Last-Order": {
+        "ms_id": "Battle-Angel-Alita-Last-Order",
+        "ms_name": "Battle Angel Alita - Last Order",
+        "wc_id": "01J76XY8G88W6SDN27CKFV71D8",
+        "wc_name": "Battle Angel Alita - Last Order"
+    },
+    "Maria-no-Danzai": {
+        "exact_match": "1",
+        "ms_id": "Maria-no-Danzai",
+        "ms_name": "Maria no Danzai",
+        "wc_id": "01J76XYGC29NQ1GWSS8SXCH0A4",
+        "wc_name": "Maria no Danzai"
+    },
+    "Dungeon-Ni-Deai": {
+        "exact_match": "1",
+        "ms_id": "Dungeon-Ni-Deai",
+        "ms_name": "Is It Wrong to Try to Pick Up Girls in a Dungeon?",
+        "wc_id": "01J76XY99ST5KF8M1N0GH63XN4",
+        "wc_name": "Is It Wrong to Try to Pick Up Girls in a Dungeon?"
+    },
+    "Kusuriya-No-Hitorigoto": {
+        "exact_match": "1",
+        "ms_id": "Kusuriya-No-Hitorigoto",
+        "ms_name": "The Apothecary Diaries",
+        "wc_id": "01J76XYCCTKZ5GDQ05600AG7TQ",
+        "wc_name": "The Apothecary Diaries"
+    },
+    "Isekai-Affair-Ten-Years-After-The-Demon-Kings-Subjugation": {
+        "exact_match": "1",
+        "ms_id": "Isekai-Affair-Ten-Years-After-The-Demon-Kings-Subjugation",
+        "ms_name": "Isekai Affair ~Ten Years After The Demon King's Subjugation",
+        "wc_id": "01J76XYEDP4SJTYM2H8DWKYHT5",
+        "wc_name": "ISEKAI AFFAIR - 10 Years After Defeating the Demon King, the Hero Cheats on His Wife With a Warrior Woman Who Lost Her Husband"
+    },
+    "Ushiro-no-Shoumen-Kamui-san": {
+        "exact_match": "1",
+        "ms_id": "Ushiro-no-Shoumen-Kamui-san",
+        "ms_name": "Ushiro no Shoumen Kamui-san",
+        "wc_id": "01J76XYE9H83QW0EBXAPCER4A6",
+        "wc_name": "Ushiro no Shoumen Kamui-san"
+    },
+    "The-Galactic-Navy-Officer-Becomes-an-Adventurer": {
+        "exact_match": "1",
+        "ms_id": "The-Galactic-Navy-Officer-Becomes-an-Adventurer",
+        "ms_name": "Captain Corinth - The Galactic Navy Officer Becomes an Adventurer",
+        "wc_id": "01J76XYDPW2PAFE3WNRDHY2KWK",
+        "wc_name": "Captain Corinth - The Galactic Navy Officer Becomes an Adventurer"
+    },
+    "The-Hero-Took-Everything-from-Me-So-I-Partied-with-the-Heros-Mother": {
+        "exact_match": "1",
+        "ms_id": "The-Hero-Took-Everything-from-Me-So-I-Partied-with-the-Heros-Mother",
+        "ms_name": "The Hero Took Everything From Me, So I Partied With the Hero's Mother",
+        "wc_id": "01J76XYG81J8DTDXMNKHWRHR64",
+        "wc_name": "The Hero Took Everything From Me, So I Partied With the Hero's Mother"
+    },
+    "Ode-To-Kirihito": {
+        "exact_match": "1",
+        "ms_id": "Ode-To-Kirihito",
+        "ms_name": "Ode to Kirihito",
+        "wc_id": "01J76XYAY54WFGWHNYPM990HGY",
+        "wc_name": "Ode to Kirihito"
+    },
+    "Kuma-Kuma-Kuma-Bear": {
+        "exact_match": "1",
+        "ms_id": "Kuma-Kuma-Kuma-Bear",
+        "ms_name": "Kuma Kuma Kuma Bear",
+        "wc_id": "01J76XYDD9Z1RXNBCEVGMG85PE",
+        "wc_name": "Kuma Kuma Kuma Bear"
+    },
+    "Mysteries-Maidens-And-Mysterious-Disappearances": {
+        "exact_match": "1",
+        "ms_id": "Mysteries-Maidens-And-Mysterious-Disappearances",
+        "ms_name": "Mysteries, Maidens, And Mysterious Disappearances",
+        "wc_id": "01J76XYDX801WE4TPRD7NQ9DYR",
+        "wc_name": "Mysteries, Maidens, And Mysterious Disappearances"
+    },
+    "Tentacle-Hole": {
+        "exact_match": "1",
+        "ms_id": "Tentacle-Hole",
+        "ms_name": "Tentacle Hole",
+        "wc_id": "01J76XYGA80S4EAGXEK1D0WV09",
+        "wc_name": "Tentacle Hole"
+    },
+    "Gedou-Tenisha-no-Harem-Dungeon-Seisakuki": {
+        "exact_match": "1",
+        "ms_id": "Gedou-Tenisha-no-Harem-Dungeon-Seisakuki",
+        "ms_name": "Gedou Tenisha no Harem Dungeon Seisakuki",
+        "wc_id": "01J76XYGDKA1W1X83PT8PT80RM",
+        "wc_name": "Gedou Tenisha no Harem Dungeon Seisakuki"
+    },
+    "Mx0": {
+        "exact_match": "1",
+        "ms_id": "Mx0",
+        "ms_name": "Mx0",
+        "wc_id": "01J76XY7K4YMV6GX2VGJWQ23GV",
+        "wc_name": "Mx0"
+    },
+    "The-Great-Mage-Returns-After-4000-Years": {
+        "exact_match": "1",
+        "ms_id": "The-Great-Mage-Returns-After-4000-Years",
+        "ms_name": "The Archmage Returns After 4000 Years",
+        "wc_id": "01J76XYDMTRNJZJH9G1ADMPJQC",
+        "wc_name": "The Archmage Returns After 4000 Years"
+    },
+    "Renge-to-Naruto": {
+        "exact_match": "1",
+        "ms_id": "Renge-to-Naruto",
+        "ms_name": "Renge to Naruto!",
+        "wc_id": "01J76XYGT1V4E5DB8MS5QN8CN1",
+        "wc_name": "Renge to Naruto!"
+    },
+    "STAR-Strike-it-Rich": {
+        "exact_match": "1",
+        "ms_id": "STAR-Strike-it-Rich",
+        "ms_name": "STAR: Strike it Rich",
+        "wc_id": "01J76XYGW7WXNTMF0EY2D7KB18",
+        "wc_name": "STAR: Strike it Rich"
+    },
+    "Saraba-Yoki-Hi": {
+        "exact_match": "1",
+        "ms_id": "Saraba-Yoki-Hi",
+        "ms_name": "Saraba, Yoki Hi",
+        "wc_id": "01J76XYCVZNPKZ31XVZ2YZ2NK7",
+        "wc_name": "Saraba, Yoki Hi"
+    },
+    "Super-no-Ura-de-Yani-Suu-Hanashi": {
+        "exact_match": "1",
+        "ms_id": "Super-no-Ura-de-Yani-Suu-Hanashi",
+        "ms_name": "Smoking Behind the Supermarket with You",
+        "wc_id": "01J76XYFP55025PVETS8GD9B6B",
+        "wc_name": "Smoking Behind the Supermarket with You"
+    },
+    "Solo-Bug-Player": {
+        "exact_match": "1",
+        "ms_id": "Solo-Bug-Player",
+        "ms_name": "Solo Glitch Player",
+        "wc_id": "01J76XYDTCXD7A261S24T30TZE",
+        "wc_name": "Solo Glitch Player"
+    },
+    "Level-E": {
+        "exact_match": "1",
+        "ms_id": "Level-E",
+        "ms_name": "Level E",
+        "wc_id": "01J76XYA66JC7CVZCB226MRK9R",
+        "wc_name": "Level E"
+    },
+    "Ane-Naru-Mono": {
+        "exact_match": "1",
+        "ms_id": "Ane-Naru-Mono",
+        "ms_name": "The Elder Sister-Like One",
+        "wc_id": "01J76XYBQSS995BVKW6JWPCTX8",
+        "wc_name": "The Elder Sister-Like One"
+    },
+    "Torako-Anmari-Kowashicha-Damedayo": {
+        "exact_match": "1",
+        "ms_id": "Torako-Anmari-Kowashicha-Damedayo",
+        "ms_name": "Torako, Anmari Kowashicha Damedayo",
+        "wc_id": "01J76XYCDMJV7PMH69SJCY6Q8W",
+        "wc_name": "Torako, Anmari Kowashicha Damedayo"
+    },
+    "Inside-the-Tentacle-Cave": {
+        "exact_match": "1",
+        "ms_id": "Inside-the-Tentacle-Cave",
+        "ms_name": "Inside the Tentacle Cave",
+        "wc_id": "01J76XYGRNMSZSBKKJ5GFKKRMA",
+        "wc_name": "Inside the Tentacle Cave"
+    },
+    "Overgeared": {
+        "exact_match": "1",
+        "ms_id": "Overgeared",
+        "ms_name": "Overgeared",
+        "wc_id": "01J76XYDMR2777KEM5BKTBBK83",
+        "wc_name": "Overgeared"
+    },
+    "A-Good-Day-to-be-a-Dog": {
+        "exact_match": "1",
+        "ms_id": "A-Good-Day-to-be-a-Dog",
+        "ms_name": "A Good Day to be a Dog",
+        "wc_id": "01J76XYD3KN3ZKQ6NA0T8WXQ7D",
+        "wc_name": "A Good Day to be a Dog"
+    },
+    "Valhalla-Penis-Mansion": {
+        "exact_match": "1",
+        "ms_id": "Valhalla-Penis-Mansion",
+        "ms_name": "Valhalla Penis Mansion",
+        "wc_id": "01J76XYEF21RRT9HJGRAZMWYMJ",
+        "wc_name": "Valhalla Penis Mansion"
+    },
+    "My-Blasted-Reincarnated-Life": {
+        "exact_match": "1",
+        "ms_id": "My-Blasted-Reincarnated-Life",
+        "ms_name": "My Blasted Reincarnated Life",
+        "wc_id": "01J76XYG12YTB3J27FVBM256V8",
+        "wc_name": "My Blasted Reincarnated Life"
+    },
+    "Battle-Royale": {
+        "exact_match": "1",
+        "ms_id": "Battle-Royale",
+        "ms_name": "Battle Royale",
+        "wc_id": "01J76XY7YXT13932GT4NHPV6ZA",
+        "wc_name": "Battle Royale"
+    },
+    "Keep-Your-Hands-Off-Eizouken": {
+        "exact_match": "1",
+        "ms_id": "Keep-Your-Hands-Off-Eizouken",
+        "ms_name": "Keep Your Hands Off Eizouken!",
+        "wc_id": "01J76XYGX7EK3DKJB87N3STMW5",
+        "wc_name": "Keep Your Hands Off Eizouken!"
+    },
+    "The-Fable-The-Second-Contact": {
+        "exact_match": "1",
+        "ms_id": "The-Fable-The-Second-Contact",
+        "ms_name": "The Fable - The Second Contact",
+        "wc_id": "01J76XYFP7F271PVX043XXHPBV",
+        "wc_name": "The Fable - The Second Contact"
+    },
+    "Koi-Wa-Amaagari-No-You-Ni": {
+        "exact_match": "1",
+        "ms_id": "Koi-Wa-Amaagari-No-You-Ni",
+        "ms_name": "After the Rain",
+        "wc_id": "01J76XYBK00C2PMR9RTP5HE03D",
+        "wc_name": "After the Rain"
+    },
+    "Shinka-No-Mi": {
+        "exact_match": "1",
+        "ms_id": "Shinka-No-Mi",
+        "ms_name": "Shinka no Mi",
+        "wc_id": "01J76XYCPPN1JSM0N07MD2Y5M4",
+        "wc_name": "Shinka no Mi"
+    },
+    "Dragon-and-Chameleon": {
+        "exact_match": "1",
+        "ms_id": "Dragon-and-Chameleon",
+        "ms_name": "Dragon and Chameleon",
+        "wc_id": "01J76XYGY5P4EJ9EH20A85HKVY",
+        "wc_name": "Dragon and Chameleon"
+    },
+    "Mermaid-Saga": {
+        "ms_id": "Mermaid-Saga",
+        "ms_name": "Mermaid Saga",
+        "wc_id": "01J76XYE48V18RR2B0VWZHVYVD",
+        "wc_name": "Mermaid Saga"
+    },
+    "Ningyou-No-Kuni": {
+        "exact_match": "1",
+        "ms_id": "Ningyou-No-Kuni",
+        "ms_name": "APOSIMZ",
+        "wc_id": "01J76XYCD25V7JKDC4TFXRVY2C",
+        "wc_name": "APOSIMZ"
+    },
+    "Sidonia-No-Kishi": {
+        "ms_id": "Sidonia-No-Kishi",
+        "ms_name": "Knights of Sidonia",
+        "wc_id": "01J76XY96C1QCBZQW67DMTRPZ2",
+        "wc_name": "Knights of Sidonia"
+    },
+    "Martial-Master-Asumi": {
+        "exact_match": "1",
+        "ms_id": "Martial-Master-Asumi",
+        "ms_name": "Martial Master Asumi",
+        "wc_id": "01J76XYG8YFRSZ4759PNQDQZB1",
+        "wc_name": "Martial Master Asumi"
+    },
+    "Season-of-Alabaster": {
+        "ms_id": "Season-of-Alabaster",
+        "ms_name": "Season of Alabaster",
+        "wc_id": "01J76XYGP5669H4GN1QCHN1C47",
+        "wc_name": "Season of Alabaster"
+    },
+    "Alabaster": {
+        "exact_match": "1",
+        "ms_id": "Alabaster",
+        "ms_name": "Alabaster",
+        "wc_id": "01J76XYAW5GZKVMRTDBJM8V9MV",
+        "wc_name": "Alabaster"
+    },
+    "Spider-Man": {
+        "exact_match": "1",
+        "ms_id": "Spider-Man",
+        "ms_name": "Spider-Man",
+        "wc_id": "01J76XYB2WRV5W0S74K1NQCSG9",
+        "wc_name": "Spider-Man"
+    },
+    "No-Longer-Human-ITOU-Junji": {
+        "ms_id": "No-Longer-Human-ITOU-Junji",
+        "ms_name": "No Longer Human (ITOU Junji)",
+        "wc_id": "01J76XYD24YGHP61A66RGB4QC6",
+        "wc_name": "No Longer Human (ITOU Junji)"
+    },
+    "Ningen-Shikkaku": {
+        "exact_match": "1",
+        "ms_id": "Ningen-Shikkaku",
+        "ms_name": "No Longer Human",
+        "wc_id": "01J76XYCV7SKAQA8HTTRE298Y8",
+        "wc_name": "No Longer Human"
+    },
+    "Lovesickness-Junji-Ito-Story-Collection": {
+        "exact_match": "1",
+        "ms_id": "Lovesickness-Junji-Ito-Story-Collection",
+        "ms_name": "Lovesickness - Junji Ito Story Collection",
+        "wc_id": "01J76XYEQ0S76W9CSAZF837GX2",
+        "wc_name": "Lovesickness - Junji Ito Story Collection"
+    },
+    "Tombs-Junji-Ito-Story-Collection": {
+        "exact_match": "1",
+        "ms_id": "Tombs-Junji-Ito-Story-Collection",
+        "ms_name": "Tombs - Junji Ito Story Collection",
+        "wc_id": "01J76XYG2K3BN6PS54W18M4386",
+        "wc_name": "Tombs - Junji Ito Story Collection"
+    },
+    "Gyo": {
+        "exact_match": "1",
+        "ms_id": "Gyo",
+        "ms_name": "Gyo",
+        "wc_id": "01J76XYCTWY5D351Z5GVA7DBFT",
+        "wc_name": "Gyo"
+    },
+    "SSS-Class-Suicide-Hunter": {
+        "ms_id": "SSS-Class-Suicide-Hunter",
+        "ms_name": "SSS-Class Revival Hunter",
+        "wc_id": "01J76XYEADS8EDBWFPVSF8J3VG",
+        "wc_name": "SSS-Class Revival Hunter"
+    },
+    "Fujiyama-San-Wa-Shishunki": {
+        "exact_match": "1",
+        "ms_id": "Fujiyama-San-Wa-Shishunki",
+        "ms_name": "Fujiyama-san wa Shishunki",
+        "wc_id": "01J76XYAB4YFABSD8A0RPVN9RN",
+        "wc_name": "Fujiyama-san wa Shishunki"
+    },
+    "Kagurabachi": {
+        "exact_match": "1",
+        "ms_id": "Kagurabachi",
+        "ms_name": "Kagurabachi",
+        "wc_id": "01J76XYGGM22WZP7T4TKA4ZFAF",
+        "wc_name": "Kagurabachi"
+    },
+    "Yu-Gi-Oh": {
+        "exact_match": "1",
+        "ms_id": "Yu-Gi-Oh",
+        "ms_name": "Yu-Gi-Oh!",
+        "wc_id": "01J76XYBA63KCZWX4ESDNWAR88",
+        "wc_name": "Yu-Gi-Oh!"
+    },
+    "Yu-GiOh-Duelist": {
+        "exact_match": "1",
+        "ms_id": "Yu-GiOh-Duelist",
+        "ms_name": "Yu-Gi-Oh! Duelist",
+        "wc_id": "01J76XYEPS2M6PRQ5THXCNXZAP",
+        "wc_name": "Yu-Gi-Oh! Duelist"
+    },
+    "Hands-Off": {
+        "exact_match": "1",
+        "ms_id": "Hands-Off",
+        "ms_name": "Hands Off!",
+        "wc_id": "01J76XYDE0WFQ0HT3G5EGT8AE0",
+        "wc_name": "Hands Off!"
+    },
+    "Dragon-Ball-S-D": {
+        "exact_match": "1",
+        "ms_id": "Dragon-Ball-S-D",
+        "ms_name": "Dragon Ball SD",
+        "wc_id": "01J76XY8T5ZCY51703JVD7PMQ4",
+        "wc_name": "Dragon Ball SD"
+    },
+    "Sensou-Kyoushitsu": {
+        "exact_match": "1",
+        "ms_id": "Sensou-Kyoushitsu",
+        "ms_name": "Sensou Kyoushitsu",
+        "wc_id": "01J76XYGW6F702H48WE54YDYTS",
+        "wc_name": "Sensou Kyoushitsu"
+    },
+    "Liar-Game": {
+        "exact_match": "1",
+        "ms_id": "Liar-Game",
+        "ms_name": "Liar Game",
+        "wc_id": "01J76XY7HQFW5ERKT28TQV0YP7",
+        "wc_name": "Liar Game"
+    },
+    "We-Never-Learn": {
+        "exact_match": "1",
+        "ms_id": "We-Never-Learn",
+        "ms_name": "We Never Learn",
+        "wc_id": "01J76XYC2PYYZM89DVZHYWX377",
+        "wc_name": "We Never Learn"
+    },
+    "Kekkaishi-e-no-Tensei": {
+        "exact_match": "1",
+        "ms_id": "Kekkaishi-e-no-Tensei",
+        "ms_name": "Reborn as a Barrier Master",
+        "wc_id": "01J76XYDWXTAE19J848A6SS227",
+        "wc_name": "Reborn as a Barrier Master"
+    },
+    "Gachiakuta": {
+        "exact_match": "1",
+        "ms_id": "Gachiakuta",
+        "ms_name": "Gachiakuta",
+        "wc_id": "01J76XYFD97DRQQKK75FZB7PQH",
+        "wc_name": "Gachiakuta"
+    },
+    "Astro-Baby": {
+        "exact_match": "1",
+        "ms_id": "Astro-Baby",
+        "ms_name": "Astro Baby",
+        "wc_id": "01J76XYGY1FJ99GVPDR9BF952H",
+        "wc_name": "Astro Baby"
+    },
+    "Kanojo-mo-Kanojo": {
+        "exact_match": "1",
+        "ms_id": "Kanojo-mo-Kanojo",
+        "ms_name": "Girlfriend, Girlfriend",
+        "wc_id": "01J76XYDHWZTVHDH6XWR86BR7B",
+        "wc_name": "Girlfriend, Girlfriend"
+    },
+    "Manuke-Na-Fps-Player-Ga-Isekai-E-Ochita-Baai": {
+        "exact_match": "1",
+        "ms_id": "Manuke-Na-Fps-Player-Ga-Isekai-E-Ochita-Baai",
+        "ms_name": "Manuke na FPS Player ga Isekai e Ochita Baai",
+        "wc_id": "01J76XYCSREM65KD9MHF45K92P",
+        "wc_name": "Manuke na FPS Player ga Isekai e Ochita Baai"
+    },
+    "Shin-Elf-san-wa-Yaserarenai": {
+        "exact_match": "1",
+        "ms_id": "Shin-Elf-san-wa-Yaserarenai",
+        "ms_name": "Shin Elf-san wa Yaserarenai",
+        "wc_id": "01J76XYFKQFMVAGZ72YEFP9EBH",
+        "wc_name": "Shin Elf-san wa Yaserarenai"
+    },
+    "99-Reinforced-Wooden-Stick": {
+        "exact_match": "1",
+        "ms_id": "99-Reinforced-Wooden-Stick",
+        "ms_name": "+99 Reinforced Wooden Stick",
+        "wc_id": "01J76XYFQ7MSZ82JJVJNEPQDGE",
+        "wc_name": "+99 Reinforced Wooden Stick"
+    },
+    "Akuyaku-Onzoushi-no-Kanchigai-Seija-Seikatsu": {
+        "exact_match": "1",
+        "ms_id": "Akuyaku-Onzoushi-no-Kanchigai-Seija-Seikatsu",
+        "ms_name": "Akuyaku Onzoushi no Kanchigai Seija Seikatsu",
+        "wc_id": "01J76XYGVRYFEWNF2HBTYQPJ9Z",
+        "wc_name": "Akuyaku Onzoushi no Kanchigai Seija Seikatsu"
+    },
+    "009-Re-Cyborg": {
+        "exact_match": "1",
+        "ms_id": "009-Re-Cyborg",
+        "ms_name": "009 Re:Cyborg",
+        "wc_id": "01J76XYAAD1J5W2XH97X7RNT34",
+        "wc_name": "009 Re:Cyborg"
+    },
+    "Drawing-Saikyou-Mangaka-wa-Oekaki-Skill-de-Isekai-Musou-Suru": {
+        "exact_match": "1",
+        "ms_id": "Drawing-Saikyou-Mangaka-wa-Oekaki-Skill-de-Isekai-Musou-Suru",
+        "ms_name": "Drawing: Saikyou Mangaka wa Oekaki Skill de Isekai Musou Suru",
+        "wc_id": "01J76XYG9FT94W5JQGH5R6RJ8J",
+        "wc_name": "Drawing: Saikyou Mangaka wa Oekaki Skill de Isekai Musou Suru"
+    },
+    "Ran-To-Haiiro-No-Sekai": {
+        "exact_match": "1",
+        "ms_id": "Ran-To-Haiiro-No-Sekai",
+        "ms_name": "Ran and the Gray World",
+        "wc_id": "01J76XY8HK8MB5TQ5WGTCSVN9F",
+        "wc_name": "Ran and the Gray World"
+    },
+    "Happy": {
+        "exact_match": "1",
+        "ms_id": "Happy",
+        "ms_name": "Happy!",
+        "wc_id": "01J76XY8TGA3FYHAEQQEY45SYJ",
+        "wc_name": "Happy!"
+    },
+    "I-Was-A-Sword-When-I-Reincarnated": {
+        "exact_match": "1",
+        "ms_id": "I-Was-A-Sword-When-I-Reincarnated",
+        "ms_name": "Reincarnated as a Sword",
+        "wc_id": "01J76XYC1WW62ADV7XWHHKDZ51",
+        "wc_name": "Reincarnated as a Sword"
+    },
+    "Yugami-Kun-Ni-Wa-Tomodachi-Ga-Inai": {
+        "exact_match": "1",
+        "ms_id": "Yugami-Kun-Ni-Wa-Tomodachi-Ga-Inai",
+        "ms_name": "Yugami-kun ni wa Tomodachi ga Inai",
+        "wc_id": "01J76XYATY13GCDGPFWXKJAY2Z",
+        "wc_name": "Yugami-kun ni wa Tomodachi ga Inai"
+    },
+    "Basara": {
+        "exact_match": "1",
+        "ms_id": "Basara",
+        "ms_name": "Basara",
+        "wc_id": "01J76XY870RAH7VNV137BZA8QY",
+        "wc_name": "Basara"
+    },
+    "Atori-Shou": {
+        "exact_match": "1",
+        "ms_id": "Atori-Shou",
+        "ms_name": "Atori Shou",
+        "wc_id": "01J76XY8Q8WZFQ81QXYT1E8BBF",
+        "wc_name": "Atori Shou"
+    },
+    "TSUYOSHI": {
+        "exact_match": "1",
+        "ms_id": "TSUYOSHI",
+        "ms_name": "TSUYOSHI",
+        "wc_id": "01J76XYGCC920MP27M1Z44S9VX",
+        "wc_name": "TSUYOSHI"
+    },
+    "Solo-Leveling-Ragnarok": {
+        "exact_match": "1",
+        "ms_id": "Solo-Leveling-Ragnarok",
+        "ms_name": "Solo Leveling: Ragnarok",
+        "wc_id": "01J76XYHERFDX1V9X4A032QT6B",
+        "wc_name": "Solo Leveling: Ragnarok"
+    },
+    "Dungeon-ni-Hisomu-Yandere-na-Kanojo-ni-Ore-wa-Nando-mo-Korosareru": {
+        "exact_match": "1",
+        "ms_id": "Dungeon-ni-Hisomu-Yandere-na-Kanojo-ni-Ore-wa-Nando-mo-Korosareru",
+        "ms_name": "Dungeon ni Hisomu Yandere na Kanojo ni Ore wa Nando mo Korosareru",
+        "wc_id": "01J76XYGDJDBK4B0Y3P49PT23D",
+        "wc_name": "Dungeon ni Hisomu Yandere na Kanojo ni Ore wa Nando mo Korosareru"
+    },
+    "The-Siren-Becoming-the-Villains-Family": {
+        "exact_match": "1",
+        "ms_id": "The-Siren-Becoming-the-Villains-Family",
+        "ms_name": "The Siren: Becoming the Villain's Family",
+        "wc_id": "01J76XYG5FG00J36ARGNHT8A5D",
+        "wc_name": "The Siren: Becoming the Villain's Family"
+    }
+}
