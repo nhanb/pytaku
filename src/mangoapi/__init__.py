@@ -1,5 +1,4 @@
 from .mangadex import Mangadex
-from .mangasee import Mangasee
 from .weebcentral import Weebcentral
 
 """
@@ -10,7 +9,6 @@ Instantiating and managing Site objects is the responsibility of the caller.
 
 SITES = {
     "mangadex": Mangadex,
-    "mangasee": Mangasee,
     "weebcentral": Weebcentral,
 }
 
