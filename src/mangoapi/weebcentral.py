@@ -53,7 +53,7 @@ class Weebcentral(Site):
         chapters = [
             {
                 "id": chap_id,
-                "name": name,
+                "name": name if not name.startswith("Chapter ") else "",
                 "volume": "",
                 "groups": [],
                 "num_major": int(num_major),
@@ -70,7 +70,7 @@ class Weebcentral(Site):
         chapters.append(
             {
                 "id": chapter_1_id,
-                "name": name,
+                "name": name if not name.startswith("Chapter ") else "",
                 "volume": "",
                 "groups": [],
                 "num_major": int(num_major),
@@ -106,7 +106,7 @@ class Weebcentral(Site):
             "id": chapter_id,
             "title_id": title_id,
             "site": "weebcentral",
-            "name": name,
+            "name": name if not name.startswith("Chapter ") else "",
             "pages": pages,
             "pages_alt": [],
             "groups": [],

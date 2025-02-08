@@ -20,7 +20,7 @@ def test_get_title():
     assert chapters[112] == {
         "groups": [],
         "id": "01J76XYYF8TDH22V5BWENQA006",
-        "name": "Chapter 63.5",
+        "name": "",
         "num_major": 63,
         "num_minor": 5,
         "number": "63.5",
@@ -94,7 +94,7 @@ def test_get_title_3k_chapters():
     assert chapters[-1] == {
         "groups": [],
         "id": "01J76XZ2DAADMHYVAMPATCM5Q6",
-        "name": "Chapter 1",
+        "name": "",
         "num_major": 1,
         "num_minor": 0,
         "number": "1",
@@ -116,7 +116,7 @@ def test_get_chapter():
     assert chapter == {
         "groups": [],
         "id": "01J76XYYF8TDH22V5BWENQA006",
-        "name": "Chapter 63.5",
+        "name": "",
         "num_major": 63,
         "num_minor": 5,
         "number": "63.5",
