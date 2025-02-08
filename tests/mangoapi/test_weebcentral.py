@@ -28,6 +28,11 @@ def test_get_title():
     }
 
 
+def test_get_title_unescape_html():
+    title = Weebcentral().get_title("01J76XYC37HDCA5SD6QP3D0GN7")
+    assert title["name"] == "If You're Gonna Dress up, Do It Like This"
+
+
 def test_get_chapter():
     chapter = Weebcentral().get_chapter(
         "01J76XY7QH18K4Y6MS85GJKF3H", "01J76XYYF8TDH22V5BWENQA006"
@@ -51,10 +56,10 @@ def test_get_chapter():
 
 def test_search_title():
     site = Weebcentral()
-    results = site.search_title("sayonara football")
+    results = site.search_title("if you're gonna dress up, do it like this")
     assert results[0] == {
-        "id": "01J76XYAYWZXV9XB7SGZ2035YR",
-        "name": "Sayonara, Football",
+        "id": "01J76XYC37HDCA5SD6QP3D0GN7",
+        "name": "If You're Gonna Dress up, Do It Like This",
         "site": "weebcentral",
-        "thumbnail": "https://temp.compsci88.com/cover/normal/01J76XYAYWZXV9XB7SGZ2035YR.webp",
+        "thumbnail": "https://temp.compsci88.com/cover/normal/01J76XYC37HDCA5SD6QP3D0GN7.webp",
     }

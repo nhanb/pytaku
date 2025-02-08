@@ -1,5 +1,5 @@
 import re
-from urllib.parse import quote
+from html import unescape
 
 from mangoapi.base_site import Site
 
@@ -27,8 +27,8 @@ class Weebcentral(Site):
     def get_title(self, title_id):
         resp = self.http_get(f"https://weebcentral.com/series/{title_id}")
         html = resp.text
-        name = regexes["title_name"].search(html).group(1).strip()
-        desc = regexes["title_desc"].search(html).group(1).strip()
+        name = unescape(regexes["title_name"].search(html).group(1)).strip()
+        desc = unescape(regexes["title_desc"].search(html).group(1)).strip()
         chapters_html = self.http_get(
             f"https://weebcentral.com/series/{title_id}/full-chapter-list"
         ).text
@@ -88,13 +88,13 @@ class Weebcentral(Site):
     def search_title(self, query):
         html = self.http_post(
             "https://weebcentral.com/search/simple?location=main",
-            data={"text": quote(query)},
+            data={"text": query},
         ).text
 
         return [
             {
                 "id": title_id,
-                "name": name,
+                "name": unescape(name),
                 "site": "weebcentral",
                 "thumbnail": self.title_thumbnail(title_id, "webp"),
             }
