@@ -63,7 +63,8 @@ def test_get_title_custom_chapter_name():
         "is_webtoon": False,
     }
     assert len(chapters) >= 1139
-    assert chapters[-1]["name"] == "File 1"
+    assert chapters[-1]["name"] == ""
+    assert chapters[-1]["number"] == "1"
 
 
 def test_get_title_3k_chapters():
@@ -129,10 +130,17 @@ def test_get_chapter():
 
 
 def test_get_chapter_custom_name():
+    """
+    This title (Case Closed) has chapters named "File XXX" instead of "Chapter XXX".
+    We should be able to parse this as well.
+    """
     chapter = Weebcentral().get_chapter(
         "01J76XY7HA6DH9YYGREDVPH8W5", "01J76XYYH1X0HS61FJG7FA3Q34"
     )
-    assert chapter["name"] == "File 1"
+    assert chapter["name"] == ""
+    assert chapter["num_major"] == 1
+    assert chapter["num_minor"] == 0
+    assert chapter["number"] == "1"
 
 
 def test_search_title():
