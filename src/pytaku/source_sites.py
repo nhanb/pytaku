@@ -54,7 +54,7 @@ def search_title_all_sites(query):
     Returns dict in the form of {site_name: List[Title]}
     I should really look into proper type annotations huh.
     """
-    site_names = ("mangasee", "mangadex")
+    site_names = ("weebcentral", "mangasee", "mangadex")
     results = []
 
     def safe_search(site_name, query):

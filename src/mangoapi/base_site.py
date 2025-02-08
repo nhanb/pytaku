@@ -15,9 +15,9 @@ from .exceptions import (
 
 def create_session():
     session = requests.Session()
-    session.headers[
-        "User-Agent"
-    ] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36"
+    session.headers["User-Agent"] = (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36"
+    )
     return session
 
 
@@ -26,27 +26,27 @@ class Site(ABC):
         self._session = create_session()
 
     @abstractmethod
-    def get_title(self, title_id):
+    def get_title(self, title_id) -> dict:
         pass
 
     @abstractmethod
-    def get_chapter(self, title_id, chapter_id):
+    def get_chapter(self, title_id, chapter_id) -> dict:
         pass
 
     @abstractmethod
-    def search_title(self, query):
+    def search_title(self, query) -> list[dict]:
         pass
 
     @abstractmethod
-    def title_cover(self, title_id, cover_ext):
+    def title_cover(self, title_id, cover_ext) -> str:
         pass
 
     @abstractmethod
-    def title_thumbnail(self, title_id, cover_ext):
+    def title_thumbnail(self, title_id, cover_ext) -> str:
         pass
 
     @abstractmethod
-    def title_source_url(self, title_id):
+    def title_source_url(self, title_id) -> str:
         pass
 
     # optional abstract method
