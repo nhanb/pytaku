@@ -3,7 +3,7 @@ import json
 import re
 from datetime import timedelta
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 import requests
 from flask import Flask, jsonify, make_response, render_template, request, url_for
@@ -18,13 +18,13 @@ from .persistence import (
     get_prev_next_chapters,
     get_username,
     import_follows,
-    is_manga_page_url,
     load_chapter,
     load_title,
     read,
     register_user,
     save_chapter,
     save_title,
+    site_from_page_url,
     unfollow,
     unread,
     verify_username_password,
@@ -71,16 +71,20 @@ def _decode_proxy_url(b64_url):
     return base64.urlsafe_b64decode(b64_url).decode()
 
 
-def _is_manga_img_url(
+def site_from_img_url(
     url,
     cover_pattern=re.compile(r"^https://([\w-]+\.)?mangadex\.org/(images|covers)"),
-):
+) -> Optional[str]:
     """
     Check if either a cover or page img url.
+    Returns site name if there's a match, otherwise returns None.
     """
-    # Mangasee has god knows how many domains for manga page images, so we can't just
+    if cover_pattern.match(url):
+        return "mangadex"
+
+    # Weebcentral has god knows how many domains for manga page images, so we can't just
     # do a regex check, but need to query our db instead.
-    return cover_pattern.match(url) or is_manga_page_url(url)
+    return site_from_page_url(url)
 
 
 def proxied(url) -> str:
@@ -97,7 +101,8 @@ def proxy_view(b64_url):
         - be a polite netizen in general
     """
     url = _decode_proxy_url(b64_url)
-    if not _is_manga_img_url(url):
+    site = site_from_img_url(url)
+    if site is None:
         print("Invalid img url:", url)
         return "Nope", 400
 
@@ -105,11 +110,10 @@ def proxy_view(b64_url):
     cached_headers_path = cached_file_path.with_suffix(".headers.json")
 
     if not (storage.exists(cached_file_path) and storage.exists(cached_headers_path)):
-        print("proxy: fetching", url)
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36"
         }
-        if url.startswith("https://scans.lastation.us/"):
+        if site == "weebcentral":
             headers["Referer"] = "https://weebcentral.com/"
 
         md_resp = requests.get(url, headers=headers)

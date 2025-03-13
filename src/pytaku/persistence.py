@@ -1,6 +1,6 @@
 import json
 import secrets
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 import apsw
 import argon2
@@ -411,19 +411,22 @@ def delete_expired_tokens():
     return num_deleted
 
 
-def is_manga_page_url(url):
+# Return site name if exists, else None
+def site_from_page_url(url) -> Optional[str]:
     """
     Checks if url exists in db as a page image.
     This is currently used to avoid abuse of our /proxy/ endpoint.
     """
-    is_page = run_sql(
-        "SELECT 1 FROM chapter, json_each(pages) WHERE value = ? LIMIT 1;", (url,)
-    ) == [1]
-    if is_page:
-        return True
+    site = run_sql(
+        "SELECT site FROM chapter, json_each(pages) WHERE value = ? LIMIT 1;", (url,)
+    )
+    if site:
+        return site[0]
 
-    is_page_alt = run_sql(
+    site_alt = run_sql(
         "SELECT 1 FROM chapter, json_each(pages_alt) WHERE value = ? LIMIT 1;", (url,)
-    ) == [1]
+    )
+    if site_alt:
+        return site_alt[0]
 
-    return is_page_alt
+    return None
