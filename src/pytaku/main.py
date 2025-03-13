@@ -105,7 +105,14 @@ def proxy_view(b64_url):
     cached_headers_path = cached_file_path.with_suffix(".headers.json")
 
     if not (storage.exists(cached_file_path) and storage.exists(cached_headers_path)):
-        md_resp = requests.get(url)
+        print("proxy: fetching", url)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36"
+        }
+        if url.startswith("https://scans.lastation.us/"):
+            headers["Referer"] = "https://weebcentral.com/"
+
+        md_resp = requests.get(url, headers=headers)
         status_code = md_resp.status_code
         body = md_resp.content
         # Normal responsible adults would always include the Content-Type header,
@@ -275,7 +282,7 @@ def api_chapter(site, title_id, chapter_id):
     else:
         print("Loading chapter", chapter_id, "from db")
 
-    if site in ("mangadex", "mangasee"):
+    if site in ("mangadex", "weebcentral"):
         chapter["pages"] = [proxied(p) for p in chapter["pages"]]
         chapter["pages_alt"] = [proxied(p) for p in chapter["pages_alt"]]
 
