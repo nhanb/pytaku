@@ -180,15 +180,13 @@ TITLES_PATTERN = re.compile(
 )
 
 
-def _parse_chapter_number(string):
+def _parse_chapter_number(string: str):
     if string in (None, "none"):
         # most likely a oneshot
         return {"number": "0.0", "num_major": 0, "num_minor": 0}
-    nums = string.split(".")
-    count = len(nums)
-    assert count == 1 or count == 2
+    nums = string.split(".", maxsplit=1)
     result = {"number": string}
     result["num_major"] = nums[0]
-    if count == 2:
+    if len(nums) == 2:
         result["num_minor"] = nums[1]
     return result

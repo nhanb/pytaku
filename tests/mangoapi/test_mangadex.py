@@ -104,3 +104,11 @@ def test_search():
 def test_get_title_with_empty_descriptions():
     title = Mangadex().get_title("fc102424-d94b-4a1b-98bc-d5062cd768d6")
     assert title["descriptions"] == []
+
+
+# Some dumb title broke shit
+def test_get_chapter_number_with_more_than_2_parts():
+    chap = Mangadex().get_chapter("_", "1b01162b-19c7-461e-9efb-275fc7fb6253")
+    assert chap["number"] == "17.1.5"
+    assert chap["num_major"] == "17"
+    assert chap["num_minor"] == "1.5"
