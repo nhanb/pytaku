@@ -303,7 +303,9 @@ def unread(user_id, site, title_id, chapter_id):
     )
 
 
-def find_outdated_titles(since=f"-{config.MANGA_HOURS_UNTIL_OUTDATED} hours"):
+def find_outdated_titles(since=None):
+    # avoid reading config at import time
+    since = since or f"-{config.MANGA_HOURS_UNTIL_OUTDATED} hours"
     return run_sql(
         """
         SELECT id, name, site FROM title WHERE updated_at <= datetime('now', ?)

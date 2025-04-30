@@ -1,19 +1,27 @@
-[tool.poetry]
+[project]
 name = "pytaku"
-version = "0.7.1"
+version = "0.8.0"
 description = "Self-hostable web-based manga reader"
-authors = ["Bùi Thành Nhân <hi@imnhan.com>"]
-license = "AGPL-3.0-only"
 readme = "README.md"
-packages = [
-    { include = "pytaku", from = "src" },
-    { include = "mangoapi", from = "src" },
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+dependencies = [
+    "apsw>=3.49.1.0",
+    "argon2-cffi>=23.1.0",
+    "bbcode>=1.1.0",
+    "flask>=3.1.0",
+    "goodconf>=6.1.2",
+    "gunicorn>=23.0.0",
+    "requests>=2.32.3",
 ]
-# Compiled js bundle dir is in gitignore, which poetry also reads.
-# Therefore, it needs to be specifically whitelisted here:
-include = ["src/pytaku/static/js/*"]
 
-[tool.poetry.scripts]
+[dependency-groups]
+dev = [
+    "ipdb",
+    "pytest",
+]
+
+[project.scripts]
 pytaku = "pytaku:serve"
 pytaku-dev = "pytaku:dev"
 pytaku-migrate = "pytaku:migrate"
@@ -21,24 +29,7 @@ pytaku-generate-config = "pytaku:generate_config"
 pytaku-scheduler = "pytaku:scheduler"
 pytaku-collect-static = "pytaku:collect_static"
 
-[tool.poetry.dependencies]
-python = "^3.7"
-flask = "^2"
-gunicorn = "^23"
-requests = "^2"
-goodconf = "^1"
-argon2-cffi = "^21"
-bbcode = "^1"
-apsw = "^3"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "*"
-ipdb = "*"
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
-
-[tool.black]
-line-length = 88
-target-version = ['py37']
+requires = ["hatchling"]
+build-backend = "hatchling.build"
