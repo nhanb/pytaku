@@ -31,5 +31,14 @@ pytaku-collect-static = "pytaku:collect_static"
 
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    { include = "pytaku", from = "src" },
+    { include = "mangoapi", from = "src" },
+]
+# Compiled js bundle dir is in gitignore, which poetry also reads.
+# Therefore, it needs to be specifically whitelisted here:
+include = ["src/pytaku/static/js/*"]

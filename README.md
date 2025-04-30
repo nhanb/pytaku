@@ -29,7 +29,7 @@ On Chapter page, press `?` to show keyboard shortcuts.
 
 ```sh
 ## Backend ##
-poetry install
+uv sync
 
 pytaku-generate-config > pytaku.conf.json
 # fill stuff as needed
@@ -44,15 +44,13 @@ pytaku-scheduler  # scheduled tasks e.g. update titles
 
 ## Frontend ##
 
-sudo pacman -S entr  # to watch source files
-npm install -g --prefix ~/.node_modules esbuild # to bundle js
+sudo pacman -S entr esbuild
 
 # Listen for changes in js-src dir, automatically build minified bundle:
-find src/pytaku/js-src -name '*.js' | entr -rc \
-     esbuild src/pytaku/js-src/main.js \
-     --bundle --sourcemap --minify \
-     --outfile=src/pytaku/static/js/main.min.js
+find src/pytaku/js-src -name '*.js' | entr -rc ./build.py js
 ```
+
+We use `build.py` as a less annoying Makefile.
 
 ### Dumb proxy
 
@@ -61,7 +59,8 @@ so cloudscraper alone is not enough (looks like our IP got blacklisted or
 throttled all the time), so now I have to send requests through a crappy
 [GAE-based proxy](https://git.sr.ht/~nhanb/gae-proxy). You'll need to spin up
 your own proxy instance (Google App Engine free tier is enough for personal
-use), then fill out OUTGOING_PROXY_NETLOC and OUTGOING_PROXY_KEY accordingly.
+use), then fill out `OUTGOING_PROXY_NETLOC` and `OUTGOING_PROXY_KEY`
+accordingly.
 
 Yes it's not a standards-compliant http(s) proxy so you can't just use yours. I
 chose the cheapest (free) way to get a somewhat reliable IP-rotating proxy.
@@ -72,35 +71,31 @@ Can be run with just `pytest`. It needs a pytaku.conf.json as well.
 
 ## Code QA tools
 
-- Python: black, isort, flake8 without mccabe
+- Python: ruff
 - JavaScript: jshint, prettier
 
 ```sh
-sudo pacman python-black python-isort flake8 prettier
+sudo pacman -S ruff prettier
 npm install -g --prefix ~/.node_modules jshint
 ```
 
 # Production
 
-**Gotcha:** mangasee image servers will timeout if you try to download images
-via ipv6, so you'll need to disable IPv6 on your VM. It's unfortunate that
-python-requests [doesn't][https://github.com/psf/requests/issues/1691] have an
-official way to specify ipv4/ipv6 on its API, and I'm too lazy to figure out
-alternatives.
-
-I'm running my instance on Debian 11, but any unix-like environment with these
+I'm running my instance on Debian 12, but any unix-like environment with these
 should work:
 
-- python3.7+
+- python3.11+
 - the rest are all pypi packages that should be automatically installed when
   you run `pip install pytaku`
 
-The following is a step-by-step guide on Debian 11.
+The following is a step-by-step guide on Debian 12 using pipx for demonstration
+purposes. It's possible to use any python isolation technique (virtualenv, venv,
+etc.) - personally I'm running pytaku in production using a venv.
 
 ```sh
-sudo apt install python3-pip
-pip3 install --user pytaku
-# now make sure ~/.local/bin is in your $PATH so pytaku commands are usable
+sudo apt install pipx
+pipx install pytaku
+# you now have access to pytaku commands
 
 pytaku-generate-config > pytaku.conf.json
 # fill stuff as needed
@@ -116,7 +111,7 @@ pytaku-scheduler  # scheduled tasks e.g. update titles
 # https://git.sr.ht/~nhanb/gae-proxy
 
 # upgrades:
-pip3 install --user --upgrade pytaku
+pipx upgrade pytaku
 pytaku-migrate
 # then restart `pytaku` & `pytaku-scheduler` processes
 ```
