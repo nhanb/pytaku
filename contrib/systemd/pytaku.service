@@ -8,8 +8,8 @@ Wants=network-online.target systemd-networkd-wait-online.service
 Restart=on-abnormal
 User=pytaku
 Group=pytaku
-WorkingDirectory=/home/pytaku/pytaku
-ExecStart=/bin/bash -c 'export PATH=$PATH:$HOME/.local/bin; pytaku -w 10 -b 0.0.0.0:5001'
+WorkingDirectory=/opt/pytaku/workdir
+ExecStart=/bin/bash -c 'export PATH=$PATH:/opt/pytaku/venv/bin; pytaku -w 10 -b 0.0.0.0:8000'
 
 [Install]
 WantedBy=multi-user.target

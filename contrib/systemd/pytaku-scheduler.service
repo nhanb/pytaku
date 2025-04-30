@@ -8,8 +8,8 @@ Environment="PYTHONUNBUFFERED=1"
 Restart=on-abnormal
 User=pytaku
 Group=pytaku
-WorkingDirectory=/home/pytaku/pytaku
-ExecStart=/home/pytaku/.local/bin/pytaku-scheduler
+WorkingDirectory=/opt/pytaku/workdir
+ExecStart=/opt/pytaku/venv/bin/pytaku-scheduler
 
 [Install]
 WantedBy=multi-user.target
