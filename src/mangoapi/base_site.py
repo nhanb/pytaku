@@ -61,15 +61,16 @@ class Site(ABC):
         # print(">>", url, args, kwargs)
 
         # Proxy shit
-        parsed_url = urlparse(url)
-        url = parsed_url._replace(
-            netloc=config.OUTGOING_PROXY_NETLOC,
-            scheme="https",
-        ).geturl()
-        headers["X-Proxy-Target-Host"] = parsed_url.netloc
-        headers["X-Proxy-Key"] = config.OUTGOING_PROXY_KEY
-        headers["X-Proxy-Scheme"] = parsed_url.scheme
-        kwargs["headers"] = headers
+        if config.OUTGOING_PROXY_NETLOC:
+            parsed_url = urlparse(url)
+            url = parsed_url._replace(
+                netloc=config.OUTGOING_PROXY_NETLOC,
+                scheme="https",
+            ).geturl()
+            headers["X-Proxy-Target-Host"] = parsed_url.netloc
+            headers["X-Proxy-Key"] = config.OUTGOING_PROXY_KEY
+            headers["X-Proxy-Scheme"] = parsed_url.scheme
+            kwargs["headers"] = headers
 
         request_func = getattr(self._session, method)
         try:

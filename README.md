@@ -136,8 +136,7 @@ pytaku-collect-static target_dir
 ```
 
 This will copy all assets into `target_dir/static`. You can now instruct
-nginx/caddy/etc. to serve this dir on `/static/*` paths. There's an example
-caddyfile to do this in the ./contrib/ dir.
+nginx/caddy/etc. to serve this dir on `/static/*` paths.
 
 # LICENSE
 
