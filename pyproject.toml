@@ -1,6 +1,6 @@
 [project]
 name = "pytaku"
-version = "0.8.0"
+version = "0.8.1"
 description = "Self-hostable web-based manga reader"
 readme = "README.md"
 requires-python = ">=3.11"
