@@ -3,12 +3,12 @@ Live demo: https://pytaku.imnhan.com
 
 Production instance coming When It's Ready (tm).
 
-# Pytaku [![builds.sr.ht status](https://builds.sr.ht/~nhanb/pytaku/commits/master.svg)](https://builds.sr.ht/~nhanb/pytaku/commits/master?)
+# Pytaku
 
 Pytaku is a WIP web-based manga reader that keeps track of your reading
 progress and new chapter updates. Its design goals are:
 
-- Self-host friendly - if you have a UNIX-like server with python3.7+ and can
+- Self-host friendly - if you have a UNIX-like server with python3.11+ and can
   run `pip install`, you're good.
 
 - Phone/tablet friendly - although I hardly read any webtoons these days so the
@@ -52,14 +52,16 @@ find src/pytaku/js-src -name '*.js' | entr -rc ./build.py js
 
 We use `build.py` as a less annoying Makefile.
 
-### Dumb proxy
+### Optional proxy
 
-Eventually mangasee started using a somewhat aggressive cloudflare protection
-so cloudscraper alone is not enough (looks like our IP got blacklisted or
-throttled all the time), so now I have to send requests through a crappy
-[GAE-based proxy](https://git.sr.ht/~nhanb/gae-proxy). You'll need to spin up
-your own proxy instance (Google App Engine free tier is enough for personal
-use), then fill out `OUTGOING_PROXY_NETLOC` and `OUTGOING_PROXY_KEY`
+Weebcentral's previous incarnation, mangasee, used to deploy a somewhat
+aggressive cloudflare protection level that cloudscraper alone couldn't
+bypass. So I had to send requests through a crappy [GAE-based
+proxy](https://github.com/nhanb/gae-proxy). Apparently it isn't necessary
+anymore.
+
+FWIW, in order to use it, you'll need to deploy your own gae-proxy on Google App
+Engine, then fill out `OUTGOING_PROXY_NETLOC` and `OUTGOING_PROXY_KEY`
 accordingly.
 
 Yes it's not a standards-compliant http(s) proxy so you can't just use yours. I
