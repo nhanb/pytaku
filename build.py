@@ -58,12 +58,16 @@ def deploy():
         "--force-reinstall",
         "/tmp/pytaku.tar.gz",
     )
-    run(
-        "ssh",
-        hostname,
-        "/opt/pytaku/venv/bin/pytaku-collect-static",
-        "/opt/pytaku/workdir",
-    )
+
+    # # Optional: copy static files into a separate dir for nginx/caddy to serve.
+    # # Personally I don't use it for my demo instance.
+    # run("ssh", hostname, "rm", "-rf", "/opt/pytaku/workdir/static")
+    # run(
+    #     "ssh",
+    #     hostname,
+    #     "/opt/pytaku/venv/bin/pytaku-collect-static",
+    #     "/opt/pytaku/workdir",
+    # )
 
     # Install & restart systemd services
     services = ("pytaku", "pytaku-scheduler")
