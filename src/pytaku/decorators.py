@@ -30,7 +30,9 @@ def process_token(required=True):
 
             user_id = verify_token(token)
             if user_id is None:
-                return jsonify({"message": "Invalid token."}), 401
+                resp = jsonify({"message": "Invalid token."})
+                resp.delete_cookie("token")
+                return resp, 401
 
             request.token = token
             request.user_id = user_id

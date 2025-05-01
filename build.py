@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import shlex
+import shutil
 import subprocess
 from pathlib import Path
 from sys import argv
@@ -34,11 +35,14 @@ def build_js():
 
 
 def build_py():
+    shutil.rmtree("dist")
+    Path("dist").mkdir()
+
     run("uv", "build")
 
 
 def deploy():
-    hostname = "pytaku-1"
+    hostname = "pytaku"
 
     # Ensure necessary dirs
     run("ssh", hostname, "mkdir", "-p", "/opt/pytaku/workdir", "/opt/pytaku/venv")
