@@ -152,10 +152,15 @@ class Mangadex(Site):
             for rel in result["relationships"]:
                 if rel["type"] == "cover_art":
                     cover = rel["attributes"]["fileName"]
+
+            name = data["attributes"]["title"].get("en")
+            if not name:
+                continue
+
             titles.append(
                 {
                     "id": data["id"],
-                    "name": data["attributes"]["title"]["en"],
+                    "name": name,
                     "site": "mangadex",
                     "thumbnail": f"https://uploads.mangadex.org/covers/{data['id']}/{cover}.256.jpg",
                 }
