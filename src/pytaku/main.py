@@ -39,8 +39,6 @@ from .source_sites import (
 )
 from .storages import storage
 
-config.load()
-
 app = Flask(__name__)
 app.config.update(
     SECRET_KEY=config.FLASK_SECRET_KEY,

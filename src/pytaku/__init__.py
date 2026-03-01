@@ -47,16 +47,15 @@ def migrate():
     )
     args = argparser.parse_args()
 
-    config.load()
     migrate(overwrite_latest_schema=args.dev)
 
 
 def generate_config():
-    print(config.generate_json(DEBUG=True))
+    # TODO
+    raise NotImplementedError()
 
 
 def scheduler():
-    config.load()
     from .scheduler import main_loop
 
     main_loop()
