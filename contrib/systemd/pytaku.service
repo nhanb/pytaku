@@ -5,6 +5,8 @@ After=network-online.target
 Wants=network-online.target systemd-networkd-wait-online.service
 
 [Service]
+Environment="PYTHONUNBUFFERED=1"
+Environment="VIRTUAL_ENV=/opt/pytaku/venv"
 Restart=on-abnormal
 User=pytaku
 Group=pytaku

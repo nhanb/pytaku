@@ -4,8 +4,6 @@ from goodconf import Field, GoodConf
 
 
 class Config(GoodConf):
-    model_config = {"default_files": ["pytaku.conf.json"]}
-
     FLASK_SECRET_KEY: str = Field(initial=lambda: token_urlsafe(50))
 
     MANGA_HOURS_UNTIL_OUTDATED: int = Field(default=6)
@@ -18,6 +16,8 @@ class Config(GoodConf):
 
     OUTGOING_PROXY_NETLOC: str = Field()
     OUTGOING_PROXY_KEY: str = Field()
+
+    model_config = {"default_files": ["pytaku.conf.json"]}
 
 
 config = Config()
