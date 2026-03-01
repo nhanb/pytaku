@@ -5,8 +5,9 @@ from datetime import datetime, timedelta
 from json.decoder import JSONDecodeError
 from pathlib import Path
 
-from mangoapi.exceptions import SourceSite5xxError, SourceSite404Error
 from requests.exceptions import ReadTimeout
+
+from mangoapi.exceptions import SourceSite5xxError, SourceSite404Error
 
 from .conf import config
 from .persistence import delete_expired_tokens, find_outdated_titles, save_title
@@ -75,7 +76,7 @@ class UpdateOutdatedTitles(Worker):
                 save_title(updated_title)
                 chapters = updated_title["chapters"]
                 print(f" done ({chapters and chapters[0]['number']})")
-                if title["site"] == "mangasee":
+                if title["site"] != "mangadex":
                     time.sleep(2)
             except (
                 # TODO: on 404, maybe delete title that's no longer on source site?
