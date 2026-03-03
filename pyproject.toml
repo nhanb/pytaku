@@ -1,17 +1,17 @@
 [project]
 name = "pytaku"
-version = "0.8.2"
+version = "0.8.3"
 description = "Self-hostable web-based manga reader"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "AGPL-3.0-only"
 dependencies = [
-    "apsw>=3.49.1.0",
-    "argon2-cffi>=23.1.0",
-    "bbcode>=1.1.0",
-    "flask>=3.1.0",
-    "gunicorn>=23.0.0",
-    "requests>=2.32.3",
+    "apsw>=3",
+    "argon2-cffi>=23",
+    "bbcode>=1",
+    "flask>=3",
+    "gunicorn>=23",
+    "requests>=2",
 ]
 
 [dependency-groups]
