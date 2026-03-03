@@ -1,5 +1,6 @@
 from .mangadex import Mangadex
 from .weebcentral import Weebcentral
+from .weebdex import Weebdex
 
 """
 The mangoapi package is designed to be self-contained as if it was an external library.
@@ -10,6 +11,7 @@ Instantiating and managing Site objects is the responsibility of the caller.
 SITES = {
     "mangadex": Mangadex,
     "weebcentral": Weebcentral,
+    "weebdex": Weebdex,
 }
 
 
