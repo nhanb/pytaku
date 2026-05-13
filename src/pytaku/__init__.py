@@ -13,7 +13,16 @@ def serve():
     import subprocess
     from sys import argv
 
-    command = ["gunicorn", "pytaku.main:app"] + argv[1:]
+    command = [
+        "gunicorn",
+        # https://github.com/pulp/pulpcore/issues/7574
+        # Gunicorn decided to be a smartass and would try to create a socket at $HOME,
+        # which breaks our stuff, because the `pytaku` user doesn't have a home dir.
+        # Make it in the working dir instead.
+        "--control-socket",
+        "gunicornctl.sock",
+        "pytaku.main:app",
+    ] + argv[1:]
     print("Running:", " ".join(command))
 
     subprocess.run(command)
