@@ -112,3 +112,10 @@ def test_get_chapter_number_with_more_than_2_parts():
     assert chap["number"] == "17.1.5"
     assert chap["num_major"] == "17"
     assert chap["num_minor"] == "1.5"
+
+
+def test_search_non_english_title_name():
+    md = Mangadex()
+    results = md.search_title("Hen na Ie")
+    assert results[0]["id"] == "09b6eec8-adcb-4813-90c6-ee5f1e209083"
+    assert results[0]["name"] == "Hen na Ie"

@@ -153,9 +153,16 @@ class Mangadex(Site):
                 if rel["type"] == "cover_art":
                     cover = rel["attributes"]["fileName"]
 
-            name = data["attributes"]["title"].get("en")
-            if not name:
-                continue
+            # The main title is usually in `en`, but not always. For example:
+            # >"attributes": {
+            # >  "title": { "ja-ro": "Hen na Ie" },
+            # >  "altTitles": [
+            # >    { "ja": "\u5909\u306a\u5bb6" },
+            # >    { "en": "The Strange House" },
+            # >    { "en": "Strange Houses" },
+            # >    { "ne": "\u0935\u093f\u091a\u093f\u0924\u094d\u0930 \u0918\u0930" },
+            # > ...
+            name = list(data["attributes"]["title"].values())[0]
 
             titles.append(
                 {
