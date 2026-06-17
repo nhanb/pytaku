@@ -12,18 +12,22 @@ from .exceptions import (
     SourceSiteUnexpectedError,
 )
 
+CHROME_USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
 
-def create_session():
+
+def create_session(user_agent: str | None):
     session = requests.Session()
-    session.headers["User-Agent"] = (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36"
-    )
+    if user_agent is not None:
+        session.headers["User-Agent"] = user_agent
     return session
 
 
 class Site(ABC):
+    # A subclass can set this to None to disable UA faking at all (see: Mangadex)
+    user_agent: str | None = CHROME_USER_AGENT
+
     def __init__(self):
-        self._session = create_session()
+        self._session = create_session(self.user_agent)
 
     @abstractmethod
     def get_title(self, title_id) -> dict:
@@ -79,7 +83,7 @@ class Site(ABC):
             raise SourceSiteTimeoutError(url)
 
         if resp.status_code == 403:
-            self._session = create_session()
+            self._session = create_session(self.user_agent)
 
         if 500 <= resp.status_code <= 599:
             raise SourceSite5xxError(url, resp.status_code, resp.text)

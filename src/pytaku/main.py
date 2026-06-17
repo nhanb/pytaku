@@ -8,6 +8,8 @@ from typing import List, Optional, Tuple
 import requests
 from flask import Flask, jsonify, make_response, render_template, request, url_for
 
+from mangoapi import get_site_class
+
 from .conf import config
 from .decorators import handle_source_site_errors, process_token
 from .persistence import (
@@ -108,9 +110,11 @@ def proxy_view(b64_url):
     cached_headers_path = cached_file_path.with_suffix(".headers.json")
 
     if not (storage.exists(cached_file_path) and storage.exists(cached_headers_path)):
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36"
-        }
+        headers = {}
+        site_class = get_site_class(site)
+        if site_class and site_class.user_agent:
+            headers["User-Agent"] = site_class.user_agent
+
         if site == "weebcentral":
             headers["Referer"] = "https://weebcentral.com/"
 

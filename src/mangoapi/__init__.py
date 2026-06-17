@@ -1,3 +1,6 @@
+from typing import Type
+
+from .base_site import Site
 from .mangadex import Mangadex
 from .weebcentral import Weebcentral
 
@@ -13,5 +16,5 @@ SITES = {
 }
 
 
-def get_site_class(name):
+def get_site_class(name) -> Type[Site] | None:
     return SITES.get(name)

@@ -15,6 +15,8 @@ _bbparser.add_simple_formatter(
 
 
 class Mangadex(Site):
+    user_agent = None
+
     def get_title(self, title_id):
         md_resp = self.http_get(
             f"https://api.mangadex.org/manga/{title_id}",
