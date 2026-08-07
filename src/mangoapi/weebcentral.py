@@ -5,9 +5,7 @@ from mangoapi.base_site import Site
 
 regexes = {
     "title_name": re.compile(r"<title>\s*([^|]+) | Weeb Central</title>"),
-    "title_chapter_id": re.compile(
-        r'a href="https:\/\/weebcentral.com\/chapters\/([A-Z0-9]+)"'
-    ),
+    "title_chapter_id": re.compile(r'a href="\/chapters\/([A-Z0-9]+)"'),
     "title_chapters": re.compile(
         r'href="https://weebcentral\.com/chapters/([0-9A-Z]+)".*?>(.*?(([0-9]+)(\.([0-9])+)?))</a>'
     ),
