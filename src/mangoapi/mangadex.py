@@ -18,9 +18,12 @@ class Mangadex(Site):
     user_agent = None
 
     def get_title(self, title_id):
+        params = {
+            "includes[]": "cover_art",
+        }
         md_resp = self.http_get(
             f"https://api.mangadex.org/manga/{title_id}",
-            params={"includes[]": "cover_art"},
+            params=params,
         )
         assert md_resp.status_code == 200
         md_json = md_resp.json()
@@ -73,6 +76,12 @@ class Mangadex(Site):
                     "order[chapter]": "desc",
                     "offset": offset,
                     "limit": limit,
+                    "contentRating[]": [
+                        "safe",
+                        "suggestive",
+                        "erotica",
+                        "pornographic",
+                    ],
                 },
             )
             assert resp.status_code == 200
@@ -142,6 +151,7 @@ class Mangadex(Site):
             "title": query,
             "includes[]": "cover_art",
             "order[relevance]": "desc",
+            "contentRating[]": ["safe", "suggestive", "erotica", "pornographic"],
         }
         md_resp = self.http_get("https://api.mangadex.org/manga", params=params)
         assert md_resp.status_code == 200
